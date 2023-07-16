@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<header class="header-black">
+    {% if state == 'ongoing' %}
+        {% include 'headersnippets/back.html' with url=url %}
+        {% with title="학생 신청서" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+    {% else %}
+        {% if user.state == 'student' %}
+            {% url 'studentapp:dashboard' pk=target_application.student.pk as url %}
+            {% include 'headersnippets/navback.html' with url=url %}
+            {% with title="신청서 확인" %}
+            {% include 'headersnippets/title.html' %}
+            {% endwith %}
+        {% else %}
+            {% url 'teacherapp:applicationlist' pk=target_application.teacher.pk as url %}
+            {% include 'headersnippets/navback.html' with url=url %}
+            {% with title="신청서 확인" %}
+            {% include 'headersnippets/title.html' %}
+            {% endwith %}
+        {% endif %}
+    {% endif %}
+</header>
+
+<main class="application-detail">
+<div class="main-box ">
+    {% if not user == target_application.student and state != 'applied'  %}
+        <a href="{% url 'applicationapp:update' pk=target_application.pk %}" class="main-icon-positive material-icons" style="right: 6rem">
+        edit
+        </a>
+        <form action="{% url 'applicationapp:delete' pk=target_application.pk %}" method="post" id="application-delete-form">
+            {% csrf_token %}
+            <input style="display:none" type="submit" name="next" value="{% url 'studentapp:dashboard' pk=target_application.student.pk %}">
+            <button type="button" onclick="confirmapplicationDelete()" class="main-icon-negative material-icons">delete_forever</button>
+        </form>
+    {% endif %}
+    {% if user == target_application.teacher %}
+        {% if state == 'applied' %}
+        <a id="tostatebreak" class="main-icon-negative material-icons"
+           href="{% url 'application_refusalapp:create' pk=target_application.pk %}">close
+        </a>
+        <a id="tostatematching" href="{% url 'applicationapp:stateupdate' %}?application_pk={{ target_application.pk }}"
+           class="main-icon-positive material-icons" style="right:6rem;">done
+        </a>
+        {% elif state == 'matching' %}
+        <a id="tostatedenied" class="main-icon-negative material-icons"
+           href="{% url 'application_refusalapp:create' pk=target_application.pk %}">close
+        </a>
+        <a id="toconsultcreate" href="{% url 'consultapp:create' pk=target_application.student.pk %}"
+           class="main-icon-positive material-icons" style="right:6rem;">done
+        </a>
+        {% endif %}
+    {% endif %}
+    <div class="main-array-title-table">
+    <div class="main-text-title-table" >선생님 정보</div>
+    </div>
+    <div class="main-container-table" >
+        <div class="main-array-row" >
+            <div class="row-index border1">담임</div>
+            <div class="row-content-full border2">{{ target_application.teacher.userrealname}} 선생님</div>
+        </div>
+        <div class="main-array-row" >
+            <div class="row-index border4" >연락처</div>
+            {% if phonenumber_reveal %}
+            <div class="row-content-full border3" >
+                {{ target_application.teacher.user_phonenumber }}
+            </div>
+            {% else %}
+                <div class="row-content-full border3 text-empty" >
+                신청서 수락 이후 공개됩니다
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="main-array-title-table">
+    <div class="main-text-title-table">신청자 정보</div>
+    </div>
+    <div class="main-container-table">
+        <div class="main-array-row" >
+            <div class="row-index border1">이름</div>
+            <div class="row-content-half">{{ target_application.student.userrealname}}</div>
+            <div class="row-index">학년</div>
+            <div class="row-content-half border2">{{ target_application.get_age_display}}</div>
+        </div>
+        <div class="main-array-row" >
+            <div class="row-index">소속</div>
+            <div class="row-content-full ">
+                {{ target_application.belong}}
+            </div>
+        </div>
+        <div class="main-array-row" >
+            <div class="row-index border4">연락처</div>
+
+            {% if phonenumber_reveal %}
+            <div class="row-content-full border3" >
+                {{ target_application.student.user_phonenumber }}
+            </div>
+            {% else %}
+            <div class="row-content-full border3 text-empty">
+                신청서 수락 이후 공개됩니다
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="main-array-title-table">
+    <div class="main-text-title-table">신청 수업 내용</div>
+    </div>
+    <div class="main-container-table"  >
+        <div class="main-array-row" >
+            <div class="row-index border1 border4">전형</div>
+            <div class="row-content-full border2 border3" >{{ target_application.strategy}}</div>
+        </div>
+    </div>
+    <div class="main-container-table" >
+        <div class="column-index border1 border2">
+            현재 성적, 문제점
+        </div>
+        <div class="column-content border3 border4">{{ target_application.problem|safe|linebreaksbr}}</div>
+    </div>
+    <div class="main-container-table">
+        <div class="column-index border1 border2">
+            수업 진행 희망 사항
+        </div>
+        <div class="column-content border3 border4">{{ target_application.want|safe|linebreaksbr}}</div>
+    </div>
+
+</div>
+</main>
+
+<script>
+
+function confirmtostatematching(event) {
+    if (confirm("수업 신청을 수락하시겠습니까?. 이후 취소하실 수 없습니다.")) {
+        window.location.href = event.target.href;
+    } else {
+        event.preventDefault();
+    }
+}
+
+const tostatematching = document.getElementById('tostatematching');
+if (tostatematching) {
+    tostatematching.addEventListener('click', confirmtostatematching);
+}
+
+
+function confirmtoconsultcreate(event) {
+    if (confirm("수업이 성사되었나요?. 수업을 개설하세요.")) {
+        window.location.href = event.target.href;
+    } else {
+        event.preventDefault();
+    }
+}
+
+const toconsultcreate = document.getElementById('toconsultcreate');
+if (toconsultcreate) {
+    toconsultcreate.addEventListener('click', confirmtoconsultcreate);
+}
+
+
+function confirmtostatebreak(event) {
+    if (confirm("매칭이 종료되었나요?. 거절 사유를 작성하세요.")) {
+        window.location.href = event.target.href;
+    } else {
+        event.preventDefault();
+    }
+}
+
+const tostatebreak = document.getElementById('tostatebreak');
+if (tostatebreak) {
+    tostatebreak.addEventListener('click', confirmtostatebreak);
+}
+function confirmtostatedenied(event) {
+    if (confirm("매칭이 종료되었나요?. 거절 사유를 작성하세요.")) {
+        window.location.href = event.target.href;
+    } else {
+        event.preventDefault();
+    }
+}
+
+const tostatedenied = document.getElementById('tostatedenied');
+if (tostatedenied) {
+    tostatedenied.addEventListener('click', confirmtostatedenied);
+}
+
+</script>
+
+{% endblock %}
+
+

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<style>
+
+
+.container-bankaccount{
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: flex-start;
+    box-shadow: none;
+    padding:0;
+    margin-bottom: 2rem;
+}
+
+.container-bankaccount .item-bank{
+    width:3.7rem;
+    height:3.7rem;
+    border-radius:50%;
+    object-fit: cover;
+    margin-right:5%;
+}
+.container-bankaccount .item-accountinfo{
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items: flex-start;
+}
+</style>
+
+<header class="header-black">
+        {% include 'headersnippets/back.html' %}
+        {% with title="수익 상세" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+</header>
+
+<main>
+
+<div class="main-box account-salary_last" >
+    {% include 'salaryapp/detailsnippets/salaryinfo.html' %}
+    <div class="main-container-info" style="margin-bottom:2rem;">
+        {% include 'salaryapp/detailsnippets/bank.html' %}
+        {% include 'salaryapp/detailsnippets/amountinfo.html' %}
+        <a id="tostategiven" href="{% url 'salaryapp:stateupdate' %}?salary_pk={{ target_salary.pk }}"
+           class="btn-submit">지급 완료
+        </a>
+    </div>
+    {% include 'salaryapp/detailsnippets/historys.html' %}
+</div>
+
+</main>
+<script>
+function confirmtostategiven(event) {
+    if (confirm("수업료를 입금 완료하셨나요?.")) {
+        window.location.href = event.target.href;
+    } else {
+        event.preventDefault();
+    }
+}
+
+const tostategiven = document.getElementById('tostategiven');
+if (tostategiven) {
+    tostategiven.addEventListener('click', confirmtostategiven);
+}
+</script>
+{% endblock %}
+

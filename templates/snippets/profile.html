@@ -1,0 +1,50 @@
+<style>
+
+.container-profile{
+    padding: 1.7rem var(--main-padding);
+    border-radius:0rem;
+    border-top:2px solid var(--whitegray);
+    border-bottom:2px solid var(--whitegray);
+    background:var(--white);
+    box-shadow: none;
+}
+
+
+
+.container-profile .image-profile{
+    width:6rem;
+    height:6rem;
+    border-radius:50%;
+    object-fit: cover;
+    border:1px solid var(--darkgray);
+    margin-right:9%;
+    flex-shrink: 0;
+}
+
+
+
+.container-profile .text-profiletitle{
+    margin-bottom:0.3rem;
+}
+
+
+</style>
+
+<a href="{% url 'profileapp:detail' pk=profile.pk %}"  class="container-profile main-container-snippets">
+    <div class="main-array-row">
+        {% if  profile.profile_profileimage %}
+            <img class="image-profile" src="{{ profile.profile_profileimage.image.url }}">
+        {% else %}
+            <img class="image-profile" src="/static/icons/user.png">
+        {% endif %}
+        <div class="main-array-column">
+        <span class="text-title text-profiletitle">{{profile.teacher.userrealname}}&nbsp;선생님&nbsp;</span>
+        <span class="main-text-content">{{profile.profile_scholarship.scholarship_name}}</span>
+        <span class="main-text-content">{{profile.profile_consulttype.consulttype_name}}</span>
+        <span class="main-text-content">4주/ {{profile.tuition}}만원</span>
+        </div>
+    </div>
+    <div  class="item-nav material-icons">
+        arrow_forward_ios
+    </div>
+</a>

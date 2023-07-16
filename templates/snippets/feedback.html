@@ -1,0 +1,56 @@
+<style>
+
+.container-feedback{
+    padding: 1.7rem var(--main-padding);
+    border-radius:0rem;
+    border-top:2px solid var(--whitegray);
+    border-bottom:2px solid var(--whitegray);
+    background:var(--white);
+    box-shadow: none;
+}
+
+
+
+.container-feedback .item-date{
+    display: flex;
+    flex-display: row;
+    align-items: center;
+    justify-content: center;
+    width:3.8rem;
+    height:3.8rem;
+    border-radius: 50%;
+    background: var(--darkblue);
+    border:1px solid var(--darkgray);
+    color: var(--white);
+    font-size: 1.2rem;
+    font-weight: var(--fontweight-content);
+    margin-right:8%;
+    flex-shrink: 0;
+}
+
+
+
+.container-feedback .text-feedbacktitle{
+    margin-bottom:0.3rem;
+}
+
+
+</style>
+
+<a href="{% url 'consult_feedbackapp:coachdetail' pk=feedback.pk %}"  class="container-feedback main-container-snippets">
+    <div class="main-array-row">
+        <div class="item-date" >{{feedback.classtime|date:"M" }}</div>
+        <div class="main-array-column">
+        <span class="text-title text-feedbacktitle">{{feedback.classtime|date:"m월 d일" }}&nbsp;수업&nbsp;</span>
+        <span class="main-text-content">
+            {{ feedback.subjects_list}}
+        </span>
+       <span class="main-text-content">학습 계획
+           {{feedback.plan_duration.0|date:"m.d"}} ~ {{feedback.plan_duration.1|date:"m.d"}}
+       </span>
+        </div>
+    </div>
+    <div  class="item-nav material-icons">
+        arrow_forward_ios
+    </div>
+</a>

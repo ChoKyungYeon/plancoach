@@ -1,0 +1,35 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<style>
+    .btn-login{
+    margin-top:4rem;
+    height: 4.5rem;
+    font-size:1.4rem;
+    border-radius:1rem;
+}
+
+</style>
+<header class="header-black">
+        {% with title="기본 정보 수정" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+        {% url 'accountapp:setting' pk=user.pk as url %}
+        {% include 'headersnippets/exit.html' with url=url %}
+</header>
+<main>
+  <div class="main-box">
+      <div class="main-container-form">
+          <form action="{% url 'accountapp:infoupdate' pk=user.pk %}" method="post" >
+            {% csrf_token %}{% bootstrap_form form %}
+              <div class="main-link-help">
+                <span class="text-help">* 연락처를 변경하고 싶으신가요?</span>
+                <a href="{% url 'phonenumberapp:updatecreate' pk=user.pk %}" class="text-link">연락처 변경</a>
+              </div>
+            <input type="submit" class="btn-submit " value="정보 수정">
+          </form>
+      </div>
+  </div>
+</main>
+{% endblock %}

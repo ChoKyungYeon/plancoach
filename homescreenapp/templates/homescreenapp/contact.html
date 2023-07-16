@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<style>
+.container-contact .img-contact{
+        width: 3.8rem;
+        height: 3.8rem;
+        object-fit: cover;
+}
+
+.container-contact .btn-kakaotalk,
+.container-contact .btn-phone{
+        margin-left: 2rem;
+        width: 100%;
+        height: 3.8rem;
+        display: flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items: center;
+        border-radius: 1rem;
+        font-size: 1.28rem;
+        font-weight: var(--fontweight-content);
+        color: var(--black);
+
+}
+.container-contact .btn-kakaotalk{
+        background: #FFEB3B;
+}
+.container-contact .btn-phone{
+        background: #6AAF50;
+    color: var(--white);
+}
+.container-contact .item-contact{
+        width: 100%;
+        display: flex;
+        flex-direction:row;
+        justify-content:flex-start;
+        align-items: center;
+        margin-top: 1.5rem;
+}
+.container-contact .text-guide{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+</style>
+<header class="header-black">
+    {% include 'headersnippets/back.html' %}
+    {% with title="Contact" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
+</header>
+
+
+<main class="main-guide">
+    <div class="main-container-etc container-contact">
+        <div class="text-index" >궁금한 점 또는 문의 사항이 있으신가요?</div>
+        <div class="text-content text-guide">궁금한점 또는 문의 사항을 본인의 등록 전화번호와 함께 알려주세요!
+            평균 1시간 내로 응답합니다.</div>
+        <div class="item-contact">
+                <img class="img-contact" src='/static/icons/phone.png' >
+                <a class="btn-phone">고객센터로 문의하기</a>
+        </div>
+        <div class="item-contact">
+                <img class="img-contact" src='/static/icons/kakaotalk.png' >
+                <a class="btn-kakaotalk">카카오톡 문의하기</a>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

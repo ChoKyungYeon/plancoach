@@ -1,0 +1,52 @@
+<style>
+
+
+
+.container-bank .item-bank{
+    width:4rem;
+    height:4rem;
+    border-radius:50%;
+    object-fit: cover;
+    margin-right:5%;
+}
+.container-bank .item-accountinfo{
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items: flex-start;
+    margin-right: auto;
+}
+
+
+</style>
+<div class="main-box">
+<div class="main-array-title">
+    <span class="main-text-title">
+        계좌 관리
+    </span>
+</div>
+
+
+{% if user.state == 'superuser' %}
+    <a href="{% url 'profile_bankapp:update' pk=target_bank.pk %}"  class="main-container-snippets container-bank">
+{% else %}
+    <a  class=" main-container-dashboard container-bank">
+{% endif %}
+      <img class="item-bank" src={{target_bank.bankimage}}>
+      <div class="item-accountinfo">
+          <div class="main-array-row" >
+              <span class="main-text-index text-content">{{target_bank.bank}}</span>
+              <span class="main-text-content">{{target_bank.accountnumber}}</span>
+          </div>
+          <span class="main-text-content array-info">{{target_bank.depositor}}</span>
+      </div>
+    {% if user.state == 'superuser' %}
+    <div class="item-nav material-icons" style="font-size: 1.5rem">edit</div>
+    {% endif %}
+</a>
+    <div class="main-link-help">
+        <span class="text-help">등록 계좌를 변경하고 싶으신가요?</span>
+        <a href="{% url 'homescreenapp:contact' %}" class="text-link">고객센터</a>
+    </div>
+</div>
+

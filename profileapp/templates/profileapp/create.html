@@ -1,0 +1,64 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+<header class="header-black">
+        {% with title="선생님 등록" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+        {% url 'superuserapp:dashboard' %}
+        {% include 'headersnippets/exit.html' with url=url %}
+</header>
+
+
+<main>
+    <div class="main-box">
+        <div class="main-text-title-guideform" >* 선생님 등록 주의 사항</div>
+        <div class="main-container-guideform">
+            <div class="item-guide">
+                <span class="text-content">
+                선생님을 등록하고 급여 계좌를 등록하세요.</span>
+            </div>
+            <div class="item-guide">
+                <span class="text-content">
+                선생님이 가능한 수업을 제대로 등록하였는지 확인하세요.</span>
+            </div>
+            <div class="item-guide">
+                <span class="text-content">
+                선생님 학력 정보가 정확한지 확인해주세요.</span>
+            </div>
+        </div>
+    </div>
+    <div class="main-box">
+        <div class="main-text-title-guideform" >다음 정보로 선생님을 등록합니다</div>
+        <div class="main-container-guideform" >
+            <div class="item-info">
+                <span class="text-content">선생님 학력</span>
+                <span class="main-text-rowindex">
+                    {{ target_teacherapply.scholarship_name }}
+                </span>
+            </div>
+            <div class="item-info">
+                <span class="text-content">선생님 이름</span>
+                <span class="main-text-rowindex">{{ target_teacherapply.customuser.userrealname}}</span>
+            </div>
+            <div class="item-info">
+                <span class="text-content">선생님 연락처</span>
+                <span class="main-text-rowindex">{{ target_teacherapply.customuser.user_phonenumber}}</span>
+            </div>
+            <form action="{% url 'profileapp:create' pk=target_teacherapply.pk %}"
+                  method="post"  onsubmit="return confirmCreateProfile()">{% csrf_token %}{% bootstrap_form form %}
+            <input type="submit" class="btn-submit" value="선생님 등록">
+            </form>
+        </div>
+    </div>
+</main>
+
+<script>
+    function confirmCreateProfile() {
+        var confirmMessage = "등록 정보를 확인해주세요. 선생님을 등록하시겠습니까?.";
+        return confirm(confirmMessage);
+    }
+</script>
+{% endblock %}

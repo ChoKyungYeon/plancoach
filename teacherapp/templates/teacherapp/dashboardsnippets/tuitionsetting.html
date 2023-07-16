@@ -1,0 +1,26 @@
+
+
+<div class="main-box" style="padding-top: 1rem;">
+    <a href="{% url 'profileapp:tuitionupdate' pk=target_user.profile.pk %}" class="main-container-dashboard" >
+        <div class="item-content">
+            {% if target_user.profile.is_payment_updated_possible == True %}
+            <span class="main-text-content">수업료 변경이 가능합니다</span>
+            {% else %}
+            <span class="main-text-content">
+                {{target_user.profile.is_payment_updated_possible}}일 후 변경이 가능합니다
+            </span>
+            {% endif %}
+            <div class="main-array-row array-info" >
+                <span class="main-text-content text-content">현재 수업료</span>
+                <span class="main-text-index">
+                    {{target_user.profile.tuition }}0000원
+                </span>
+            </div>
+        </div>
+        <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
+    </a>
+</div>
+
+
+
+

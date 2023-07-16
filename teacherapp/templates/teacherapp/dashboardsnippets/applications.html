@@ -1,0 +1,24 @@
+
+<div class="main-box ">
+    <div class="main-array-title">
+        <span class="main-text-title">수업 신청</span>
+    </div>
+    <a href="{% url 'teacherapp:applicationlist' pk=target_user.pk %}" class="main-container-dashboard" >
+            <div class="item-content" >
+                {% if applications_applied %}
+                <div class="main-array-row">
+                <span class="main-text-content text-content"  style="color:var(--orange)">미확인 신청서</span>
+                <span class="main-text-index">{{applications_applied|length}}개</span>
+                </div>
+                {% else %}
+                <span class="main-text-content text-content" >미확인 신청서가 없습니다</span>
+                {% endif %}
+                <div class="main-array-row array-info" >
+                    <span class="main-text-content text-content">진행중 매칭</span>
+                    <span class="main-text-index">{{applications_ongoing}}개</span>
+                </div>
+            </div>
+            <div class="material-icons item-nav">arrow_forward_ios</div>
+    </a>
+
+</div>

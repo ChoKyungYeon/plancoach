@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+
+<header class="header-black">
+        {% include 'headersnippets/back.html' %}
+        {% with title="신규 수업료 입금" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+</header>
+
+
+
+<main class="payment-new">
+    <div class="main-box">
+        {% if target_consult.state == 'new' %}
+        <div class="main-text-title-guideform" >* 신규 입금 주의 사항</div>
+        <div class="main-container-guideform">
+            <div class="item-guide">
+                <span class="text-content">수업은 수업료 납부일을 기준으로 28일(4주)간 진행됩니다 </span>
+            </div>
+            <div class="item-guide">
+                <span class="text-content">수업 진행 이후 수업료 환불은 정해진 절차에 따라 진행됩니다</span>
+            </div>
+            <div class="item-guide">
+                <span class="text-content">수업 연장은 수업 기간중 수업 설정을 통해 연장하실 수 있습니다</span>
+            </div>
+        </div>
+        {% else %}
+        <div class="main-text-title-guideform" >* 연장 입금 주의 사항</div>
+        <div class="main-container-guideform">
+            <div class="item-guide">
+                <span class="text-content">
+                수업료가 입금되면 이번 수업이 종료된 뒤 자동으로 연장됩니다.
+                </span>
+            </div>
+            <div class="item-guide">
+                <span class="text-content">
+                수업을 연장하면 현재 진행중인 수업에 대해서는 환불이 불가능해집니다
+                </span>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="main-box">
+        <div class="main-text-title-guideform" >다음 정보로 입금을 진행합니다</div>
+        <div class="main-container-guideform" >
+            <div class="item-info">
+                {% if target_consult.state == 'new' %}
+                <span class="text-content">수업 시작일</span>
+                <span class="main-text-rowindex">
+                    {{ startdate|date:"Y년 m월 d일" }}
+                </span>
+                {% else %}
+                <span class="text-content">수업 연장일</span>
+                <span class="main-text-rowindex">
+                    {{ extenddate |date:"Y년 m월 d일" }}
+                </span>
+                {% endif %}
+            </div>
+            <div class="item-info">
+                <span class="text-content">담당 선생님</span>
+                <span class="main-text-rowindex">{{ target_consult.teacher.userrealname}}</span>
+            </div>
+            <div class="item-info">
+                <span class="text-content">담당 학생</span>
+                <span class="main-text-rowindex">{{ target_consult.student.userrealname}}</span>
+            </div>
+            <div class="item-info">
+                <span class="text-content">입금 수업료</span>
+                <span class="main-text-rowindex">
+                    {{ target_consult.tuition }}0000
+                </span>
+            </div>
+            <form action="" method="post" onsubmit="return confirmCreatePayment()">
+                {% csrf_token %}{% bootstrap_form form %}
+                <input type="submit" class="btn-submit" value="결제 진행">
+            </form>
+        </div>
+            <div class="main-link-help">
+        <span class="text-help">결제 진행에 실패하시나요?</span>
+        <a href="{% url 'homescreenapp:contact' %}" class="text-link">고객센터</a>
+    </div>
+    </div>
+
+</main>
+<script>
+    function confirmCreatePayment() {
+        var confirmMessage = "입금 정보를 확인해주세요. 입금을 진행하시겠습니까?.";
+        return confirm(confirmMessage);
+    }
+</script>
+{% endblock %}

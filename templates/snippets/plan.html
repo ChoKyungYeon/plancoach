@@ -1,0 +1,61 @@
+<style>
+
+.container-plan{
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:flex-start;
+    position: relative;
+    box-shadow: var(--shadow-itembox-info);
+    margin-bottom: 3rem;
+}
+.container-plan .text-content{
+    margin-top:1rem;
+}
+.container-plan .text-weekdate{
+    padding:0.3rem 0.6rem;
+    background: var(--darkblue);
+    color: var(--white);
+    font-size: var(--fontsize-detail);
+    font-weight: var(--fontweight-content);
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+
+}
+.container-plan .text-subcontent{
+    font-size: var(--fontsize-detail);
+    color: var(--darkgray);
+    font-weight: var(--fontweight-content);
+    margin-left:0.7rem;
+}
+
+</style>
+<div class="container-plan main-container-snippets">
+    <div class="item-btn">
+     {% if user == target_consult.teacher %}
+     <a href="{% url 'feedback_planapp:update' pk=plan.pk %}" class="main-btn-edit material-icons">edit</a>
+    {% endif %}
+    </div>
+    <div class="main-array-row">
+        <div class="text-weekdate">
+        {{plan.plantime|date:"m.d"}}
+        </div>
+        <div class="text-subcontent">
+        {{plan.plantime|date:"D"}}
+        </div>
+    </div>
+    <span class="main-text-content text-content" >
+    {% if plan.content %}
+        {{plan.content|safe|linebreaksbr}}
+    {% else %}
+        학습 플랜을 작성해주세요
+    {% endif %}
+    </span>
+</div>
+<script>
+
+function confirmplanDelete(counter) {
+    if (confirm("선택한 과목 피드백을 삭제하시겠습니까?")) {
+        document.getElementById("plan-delete-form"+ counter).submit();
+    }
+}
+</script>

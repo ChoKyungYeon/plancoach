@@ -1,0 +1,75 @@
+<style>
+
+.container-qna{
+    padding: 2rem var(--main-padding-snippet);
+    border-radius:0rem;
+    border-top:2px solid var(--whitegray);
+    border-bottom:2px solid var(--whitegray);
+    background:var(--white);
+    box-shadow: none;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+
+
+
+
+
+
+.container-qna .text-before,
+.container-qna .text-unanswered,
+.container-qna .text-answered{
+    font-size: var(--fontsize-detail);
+    color: var(--darkgray);
+    font-weight: var(--fontweight-content);
+}
+.container-qna .text-answered{
+    color: var(--orange);
+}
+.container-qna .text-qnacontent{
+    margin-bottom:0.7rem;
+    margin-top:0.5rem;
+}
+
+
+.container-qna .icon-image{
+    background: var(--darkblue);
+    padding:0.3rem 0.4rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: var(--fontweight-content);
+    color: var(--white);
+    display: inline-block;
+    position: relative;
+    bottom:0.1rem;
+    margin-right: 0.5rem;
+}
+
+
+</style>
+
+<a href="{% url 'consult_qnaapp:detail' pk=qna.pk %}"  class="container-qna main-container-snippets">
+    <div class="main-array-row">
+    <span class="text-title">
+        {% if qna.image %}
+        <span class="icon-image material-icons">photo_camera</span>
+        {% endif %}
+        {{ qna.title|truncatechars:25 }}</span>
+
+    </div>
+    <span class="main-text-content text-qnacontent">
+        {{ qna.content|truncatechars:55 }}
+    </span>
+    <div class=" main-array-row" style="justify-content: space-between">
+        {% if qna.is_answered %}
+        <span class="text-answered">답변 완료</span>
+        {% else %}
+        <span class="text-unanswered">답변 대기</span>
+        {% endif %}
+        <span class="text-before">
+            {{ qna.created_before}}
+        </span>
+    </div>
+</a>

@@ -1,0 +1,23 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<header class="header-white">
+</header>
+
+
+<main class="main-guide" >
+    <div class="main-container-guide" >
+        <div class="item-title">
+            <span class="text-emphasize">신청서</span>
+            <span class="text-title">작성 완료&nbsp;&#127881;</span>
+        </div>
+
+        <div class="item-content">내 신청서의 현황은 대시보드에서 확인 가능하며 확인 전까지 수정 삭제가 가능합니다.
+        <a href="{% url 'studentapp:dashboard' pk=user.pk %}" class="link-nav">
+        신청서 확인 >
+        </a>
+        </div>
+    </div>
+</main>
+{% endblock %}
+

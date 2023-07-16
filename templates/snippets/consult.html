@@ -1,0 +1,58 @@
+
+
+<style>
+
+
+.container-consult{
+    padding:0 5% 0 6%;
+    height:10rem;
+    width:47%;
+    margin-bottom: 2rem;
+}
+
+
+.container-consult .item-info{
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: flex-start;
+    width:100%;
+}
+
+
+
+
+.container-consult .text-ongoing-noextend{
+    color:var(--color-positive);
+}
+
+
+.container-consult .text-ongoing-extend{
+    color:var(--color-pending);
+}
+.container-consult .text-new{
+    color:var(--color-negative);
+}
+
+
+</style>
+
+
+
+<a href="{% url 'consultapp:dashboard' pk=consult.pk %}" class="container-consult main-container-snippets">
+    <div class="item-info">
+        {% if consult.state == 'new'%}
+        <span class="main-text-content text-new">신규 개설</span>
+        {% elif consult.state == 'unextended'%}
+        <span class="main-text-content text-ongoing-noextend">{{consult.remaining_day}}</span>
+        {% else %}
+        <span class="main-text-content text-ongoing-extend">{{consult.remaining_day}}</span>
+        {% endif %}
+
+        <span class="main-text-index interval-top">{{consult.student.userrealname}}&nbsp;학생</span>
+        <span class="main-text-content">{{ consult.belong }}</span>
+    </div>
+    <div class="item-nav material-icons" style="font-size: 1.4rem;">
+        open_in_new
+    </div>
+</a>

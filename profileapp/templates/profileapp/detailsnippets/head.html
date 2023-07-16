@@ -1,0 +1,235 @@
+<style>
+
+
+
+.profile-detail-head .box-info{
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: center;
+    margin-bottom:2rem;
+}
+
+.profile-detail-head .btn-zoom-image{
+    position: absolute;
+    width:4rem;
+    height:4rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+
+
+.profile-detail-head .btn-profileimage{
+    position: absolute;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    zoom:0.95;
+}
+
+.profile-detail-head .btn-introduction{
+    margin-right:0.7rem;
+    zoom:0.95;
+}
+
+
+
+.profile-detail-head .item-image{
+    position: relative;
+    margin-right:2rem;
+}
+
+
+.profile-detail-head .img-present,
+.profile-detail-head .img-none{
+    width:7rem;
+    height:8rem;
+    padding:1.5rem 1rem;
+    background:#758299;
+    border-radius:1rem;
+    border: 1.5px solid var(--gray);
+}
+
+.profile-detail-head .img-present{
+    padding:0rem;
+    object-fit: cover;
+}
+.profile-detail-head .text-name{
+    color:var(--white);
+    font-size:1.6rem;
+    font-weight:var(--fontweight-title);
+}
+
+
+
+
+
+
+
+.profile-detail-head .icon-headinfo{
+    color:var(--whitegreen);
+    margin-right:0.6rem;
+    font-size:1.2rem;
+    font-weight:var(--fontweight-index);
+}
+
+
+.profile-detail-head .array-detail,
+.profile-detail-head .array-name{
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: center;
+    margin-bottom:0.6rem;
+}
+
+.profile-detail-head .array-detail{
+    margin-top:0.25rem;
+    margin-bottom:0rem;
+    height:1.7rem;
+}
+.profile-detail-head  .head-text-content{
+    font-size:1.25rem;
+}
+
+
+</style>
+
+<div class="profile-detail-head head-detail" >
+    <div class="box-info">
+        <div class="item-image">
+        <button onclick="showprofileheaderimage()" class="btn-zoom-image"></button>
+        {% if target_profile.profile_profileimage %}
+        <img class="img-present" src="{{ target_profile.profile_profileimage.image.url }}">
+            {% if user.profile == target_profile %}
+            <form action="{% url 'profile_profileimageapp:delete' pk=target_profile.profile_profileimage.pk %}" method="post" id="profileimage-delete-form">
+                {% csrf_token %}
+                <input style="display:none" type="submit" name="next" value="{% url 'profileapp:detail' pk=target_profile.pk %}">
+                <button type="button" onclick="confirmprofileimageDelete()" class="main-btn-delete material-icons btn-profileimage">remove</button>
+            </form>
+            {% endif %}
+        {% else %}
+        <img class="img-none" src='/static/icons/user.png'>
+            {% if user.profile == target_profile %}
+                <a href="{% url 'profile_profileimageapp:create' pk=target_profile.pk%}"
+                   class="material-icons main-btn-add btn-profileimage" style="border:1px solid var(--whitegray) ">add</a>
+            {% endif %}
+        {% endif %}
+        </div>
+        <div id="profileheaderimage-fullscreen" class="fullscreenimage" >
+            <button onclick="closeprofileheaderimage()"
+                    class="btn-exit material-icons">close
+            </button>
+            {% if target_profile.profile_profileimage %}
+            <img class="fullscreenimage-image" src="{{ target_profile.profile_profileimage.image.url }}">
+            {% else %}
+            <img class="fullscreenimage-image" src='/static/icons/user.png'>
+            {% endif %}
+        </div>
+        <div>
+            <div class="array-name" >
+                <span class="text-name ">{{target_profile.teacher.userrealname}}&nbsp;선생님</span>
+            </div>
+            <div class="array-detail">
+                <span class="material-icons icon-headinfo">school</span>
+                <span class="head-text-content">{{target_profile.profile_scholarship.scholarship_name}}</span>
+            </div>
+            <div class="array-detail">
+                <span class="material-icons icon-headinfo">subject</span>
+                <span class="head-text-content">{{target_profile.profile_consulttype.consulttype_name}}</span>
+            </div>
+            <div class="array-detail" style="marign-bottom:0rem; marign-top:0rem;">
+                <span class="material-icons icon-headinfo" style="font-weight: 500">account_balance</span>
+                <span class="head-text-content">4주/ {{target_profile.tuition}}만원</span>
+            </div>
+        </div>
+    </div>
+    <div style="position: relative">
+        {% if target_profile.profile_introduction %}
+            <span class="head-text-content" style="font-size:var(--fontsize-content);">
+                {% if user.profile == target_profile %}
+                <a href="{% url 'profile_introductionapp:update' pk=target_profile.profile_introduction.pk %}"
+                   class="material-icons main-btn-edit btn-introduction">
+                    edit
+                </a>
+                {% endif %}
+                {{target_profile.profile_introduction.content|safe|linebreaksbr}}
+            </span>
+        {% else %}
+            <span class="head-text-empty" >
+            {% if user.profile == target_profile %}
+                <a href="{% url 'profile_introductionapp:create' pk=target_profile.pk  %}"
+                   class="material-icons main-btn-add btn-introduction" >add</a>
+                자기소개를 작성해주세요.
+            {% endif %}
+            </span>
+        {% endif %}
+    </div>
+    <div class="head-box-nav">
+         <button onclick="showSlide(1)" id="btn-slide1" class="btn-touched">선생님 정보</button>
+         <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched">수업 설명</button>
+    </div>
+</div>
+
+<script>
+
+ function confirmprofileimageDelete() {
+    if (confirm("프로필 이미지를 정말 삭제하시겠습니까?")) {
+        document.getElementById("profileimage-delete-form").submit();
+    }
+}
+ function confirmintroductionDelete() {
+    if (confirm("자기소개를 정말 삭제하시겠습니까?")) {
+        document.getElementById("introduction-delete-form").submit();
+    }
+}
+
+function showprofileheaderimage() {
+    var element = document.getElementById("profileheaderimage-fullscreen");
+    element.style.display = "flex";
+    element.style.opacity = 0;
+    setTimeout(function() {
+        element.style.transition = 'opacity 0.2s ease-in-out';
+        element.style.opacity = 1;
+    }, 10);
+}
+
+function closeprofileheaderimage() {
+    var element = document.getElementById("profileheaderimage-fullscreen");
+    element.style.transition = 'opacity 0.4s ease-in-out';
+    element.style.opacity = 0;
+    setTimeout(function() {
+        element.style.display = "none";
+    }, 400);
+}
+
+
+
+
+function showSlide(slideNumber) {
+    // Loop over all slides
+    for (let i = 1; i <= 5; i++) {
+        const btn = document.querySelector(`#btn-slide${i}`);
+        const slide = document.querySelector(`.profile-detail-slide${i}`);
+
+        // Check if this is the slide to show
+        if (i === slideNumber) {
+            btn.classList.add('btn-touched');
+            btn.classList.remove('btn-untouched');
+            slide.style.display = 'block';
+        } else {
+            btn.classList.add('btn-untouched');
+            btn.classList.remove('btn-touched');
+            slide.style.display = 'none';
+        }
+    }
+}
+
+// Initialize first slide to show on page load
+showSlide(1);
+
+</script>

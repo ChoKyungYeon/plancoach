@@ -1,0 +1,31 @@
+<style>
+
+
+
+.container-phonenumber .image-profile{
+    width:4.3rem;
+    height:4.3rem;
+    margin-right:var(--content-padding);
+    border-radius:50%;
+    object-fit: cover;
+    border:1px solid var(--darkgray);
+    margin-right: 7%;
+    flex-shrink: 0;
+}
+
+
+
+</style>
+
+<a href="{% url 'profileapp:detail' pk=profile.pk %}"  class="container-phonenumber main-container-dashboard">
+    {% if  profile.profile_profileimage %}
+        <img class="image-profile" src="{{ profile.profile_profileimage.image.url }}">
+    {% else %}
+        <img class="image-profile" src="/static/icons/user.png">
+    {% endif %}
+    <div class="item-content" >
+        <span class="main-text-index">{{profile.teacher.userrealname}} 선생님</span>
+        <span class="main-text-content"  style="margin-top:0.3rem;">{{profile.teacher.user_phonenumber}}</span>
+    </div>
+    <div class="material-icons item-nav">arrow_forward_ios</div>
+</a>

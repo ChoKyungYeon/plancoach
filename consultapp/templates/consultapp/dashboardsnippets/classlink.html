@@ -1,0 +1,41 @@
+<style>
+
+.container-link .img-meet{
+        width: 3.1rem;
+        height: 3.1rem;
+        object-fit: cover;
+        border-radius: 1rem;
+        margin-right: 7%;
+}
+
+</style>
+<div class="main-box" >
+    <div class="main-array-title">
+        <span class="main-text-title">정기 컨설팅</span>
+        {% if target_consult_classlink and user == target_consult.teacher %}
+        <a href="{% url 'consult_classlinkapp:update' pk=target_consult_classlink.pk %}"  class="main-btn-edit material-icons">edit</a>
+        {% endif %}
+    </div>
+    {% if target_consult_classlink %}
+    <a href="{{target_classlink}}" class="main-container-dashboard container-link" >
+        <img class="img-meet" src='/static/icons/meet.png' >
+        <div class="item-content">
+            <span class="main-text-content">클릭해서 이동하세요!</span>
+            <div class="main-array-row array-info" >
+                <span class="main-text-content text-content">접속</span>
+                <span class="main-text-index">{{target_consult_classlink.weekdate}}&nbsp;{{target_consult_classlink.classtime}}</span>
+            </div>
+        </div>
+        <div class="material-icons item-nav" >arrow_forward_ios</div>
+    </a>
+    {% else %}
+    <a href="{% url 'consult_classlinkapp:create' pk=target_consult.pk %}" class="main-container-dashboard container-link" >
+        <div class="item-content">
+                <span class="main-text-content text-content">수업 정보가 없습니다</span>
+        </div>
+        {% if user == target_consult.teacher %}
+        <div class="material-icons item-nav" style="font-size:1.9rem;">add</div>
+        {% endif %}
+    </a>
+    {% endif %}
+</div>

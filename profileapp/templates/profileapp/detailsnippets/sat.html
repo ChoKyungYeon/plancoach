@@ -1,0 +1,100 @@
+<style>
+.profile-detail-sat .main-array-row{
+    margin-bottom:0.5rem;
+}
+
+.profile-detail-sat .main-btn-edit{
+    margin-left:auto;
+}
+
+</style>
+
+{% if sats %}
+<div class="main-box profile-detail-sat">
+
+    <div class="main-array-title"><span class="main-text-title">수능 성적</span>
+        {% if user == target_profile.teacher %}
+            {% if can_add_sat %}
+            <a href="{% url 'profile_satapp:create' pk=target_profile.pk %}" class="main-btn-add material-icons">add</a>
+            {% endif %}
+        {% endif %}
+    </div>
+    {% for sat in sats %}
+        {% if not forloop.last %}
+        <div class="container-info" style="margin-bottom:2rem;">
+        {% else %}
+        <div class="container-info">
+        {% endif %}
+            <div class="item-btn">
+            {% if user == target_profile.teacher %}
+            <a href="{% url 'profile_satapp:update' pk=sat.pk %}" class="main-btn-edit material-icons">edit</a>
+            <form action="{% url 'profile_satapp:delete' pk=sat.pk %}" method="post" id="sat-delete-form{{ forloop.counter }}">
+                {% csrf_token %}
+                <input style="display:none" type="submit" name="next" value="{% url 'profileapp:detail' pk=target_profile.pk %}">
+                <button type="button" onclick="confirmsatDelete({{ forloop.counter }})" class="main-btn-delete material-icons">remove</button>
+            </form>
+            {% endif %}
+            </div>
+            <div class="main-array-row">
+                <span class="main-text-index">20{{sat.satyear}}학년도 대학수학능력시험</span>
+                {% if sat.satverificationimage %}
+                    <button onclick="showsatscoreimage({{ forloop.counter }})"
+                            class="material-icons btn-verification">verified</button>
+                    <div id="satscoreimage-fullscreen{{ forloop.counter }}" class="fullscreenimage" >
+                    <button onclick="closesatscoreimage({{ forloop.counter }})"
+                            class="btn-exit material-icons">close
+                    </button>
+                    <img class="fullscreenimage-image" src="{{ sat.satverificationimage.url }}">
+                    </div>
+                {% endif %}
+            </div>
+            <div class="main-text-content">
+                {{sat.score|safe|linebreaksbr}}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% else %}
+    {% if user == target_profile.teacher %}
+        <div class="main-box profile-detail-sat">
+            <div class="main-array-title"><span class="main-text-title">수능 성적</span>
+                <a href="{% url 'profile_satapp:create' pk=target_profile.pk %}" class="main-btn-add material-icons">add</a>
+            </div>
+            <div class="main-container-empty">
+                <span class="text-empty">
+                수능 성적을 추가해주세요!
+                </span>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+
+
+
+<script>
+function showsatscoreimage(counter) {
+    var element = document.getElementById("satscoreimage-fullscreen" + counter);
+    element.style.display = "flex";
+    element.style.opacity = 0;
+    setTimeout(function() {
+        element.style.transition = 'opacity 0.2s ease-in-out';
+        element.style.opacity = 1;
+    }, 10);
+}
+
+function closesatscoreimage(counter) {
+    var element = document.getElementById("satscoreimage-fullscreen" + counter);
+    element.style.transition = 'opacity 0.4s ease-in-out';
+    element.style.opacity = 0;
+    setTimeout(function() {
+        element.style.display = "none";
+    }, 400);
+}
+
+
+function confirmsatDelete(counter) {
+    if (confirm("선택한 성적을 정말 삭제하시겠습니까?")) {
+        document.getElementById("sat-delete-form"+ counter).submit();
+    }
+}
+</script>

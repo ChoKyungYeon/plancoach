@@ -1,0 +1,85 @@
+<style>
+
+.container-profileinfo{
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.container-profileinfo .array-btn{
+    width:100%;
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: center;
+    flex-flow: wrap;
+    flex-shrink: 0;
+    margin-top: 1.3rem;
+    margin-bottom: 2rem;
+}
+.container-profileinfo .btn-yet,
+.container-profileinfo .btn-done{
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    height:2.5rem;
+    padding-left:4%;
+    padding-right:4%;
+    background:var(--whitegray);
+    color:var(--gray);
+    margin-bottom:1rem;
+    font-weight: var(--fontsize-index);
+    border-radius: 1rem;
+    margin-right: 2%;
+    font-size:1.2rem;
+}
+.container-profileinfo .btn-done{
+    background:var(--gray);
+    color:var(--white);
+}
+.container-profileinfo .icon-check{
+    color:var(--whitegreen);
+    margin-left:0.5rem;
+    font-weight: var(--fontsize-emphasize);
+    font-size:var(--fontweight-index);
+}
+</style>
+
+<div class="main-box" style="padding-top:1rem;">
+    <div class="main-container-dashboard container-profileinfo">
+    <div class="main-array-row" >
+        <span class="main-text-content text-content">프로필 완성도 </span>
+        <span class="main-text-index" >
+            {{profile_completeness}}%
+        </span>
+    </div>
+    <div class="array-btn">
+        {% if profiles_completed %}
+            {% for instance in profiles_completed %}
+            <div class="main-btn btn-done" >
+                <div class="main-array-row">{{instance}}
+                <span class="material-icons icon-check">check</span></div>
+            </div>
+            {% endfor%}
+        {% endif %}
+        {% if profiles_uncompleted %}
+            {% for instance in profiles_uncompleted %}
+            <div class="main-btn btn-yet" >{{instance}}</div>
+            {% endfor%}
+        {% endif %}
+    </div>
+    <div class="main-array-row" >
+        <span class="main-text-content text-content">나를 찜한 사람</span>
+        <span class="main-text-index">
+            {{profiles_liked}}명
+        </span>
+    </div>
+    </div>
+    <div class="main-link-help">
+        <span class="text-help">* 학력 사항을 변경하고 싶으신가요?</span>
+        <a href="{% url 'homescreenapp:contact' %}" class="text-link">고객센터</a>
+    </div>
+</div>
+
+

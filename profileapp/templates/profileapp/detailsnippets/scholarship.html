@@ -1,0 +1,76 @@
+<style>
+.profile-detail-scholarship .main-array-row{
+    margin-bottom:0.6rem;
+}
+
+
+
+.profile-detail-scholarship .main-text-content{
+    margin-top:0.5rem;
+}
+
+
+
+</style>
+
+
+<div class="main-box profile-detail-scholarship">
+    <div class="main-array-title"><span class="main-text-title">학력 사항</span>
+    </div>
+        <div class="container-info">
+            <div class="main-array-row">
+                <span class="main-text-index">
+                    {{scholarship.school}}&nbsp;{{scholarship.major}}&nbsp;{{scholarship.studentid}}학번
+                </span>
+                    <button onclick="showscholarshipimage()" class="material-icons btn-verification">verified</button>
+                    <div id="scholarshipimage-fullscreen" class="fullscreenimage" >
+                    <button onclick="closescholarshipimage()"
+                            class="btn-exit material-icons">close
+                    </button>
+                    <img class="fullscreenimage-image" src="{{ scholarship.schoolverificationimage.url }}">
+                    </div>
+                {% if user == target_profile.teacher %}
+                <div class="item-btn">
+                <a href="{% url 'profile_scholarshipapp:update' pk=scholarship.pk %}"
+                   class="main-btn-edit  material-icons" >edit</a>
+                </div>
+                {% endif %}
+                {% if user.state == 'superuser' %}
+                <div class="item-btn">
+                <a href="{% url 'profile_scholarshipapp:manage' pk=scholarship.pk %}"
+                   class="main-btn-edit  material-icons" >edit</a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="main-text-subindex">전형: {{ scholarship.accepttype }}</div>
+            <div class="main-text-content">
+                {{scholarship.content|safe|linebreaksbr}}
+            </div>
+        </div>
+</div>
+
+
+<script>
+
+
+function showscholarshipimage() {
+    var element = document.getElementById("scholarshipimage-fullscreen");
+    element.style.display = "flex";
+    element.style.opacity = 0;
+    setTimeout(function() {
+        element.style.transition = 'opacity 0.2s ease-in-out';
+        element.style.opacity = 1;
+    }, 10);
+}
+
+function closescholarshipimage() {
+    var element = document.getElementById("scholarshipimage-fullscreen");
+    element.style.transition = 'opacity 0.4s ease-in-out';
+    element.style.opacity = 0;
+    setTimeout(function() {
+        element.style.display = "none";
+    }, 400);
+}
+
+
+</script>

@@ -1,0 +1,136 @@
+<style>
+.teacherapply-guidesnippets-steps{
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items: flex-start;
+    width:100%;
+    border-radius:1rem;
+    background:var(--white);
+    padding:2.5rem var(--content-padding);
+}
+
+
+.teacherapply-guidesnippets-steps .link-nav{
+    display: inline-block;
+    color:var(--middleblue);
+    font-weight:var(--fontweight-index);
+    font-size:1.3rem;
+}
+
+
+.teacherapply-guidesnippets-steps .item-bar{
+    height:3.7rem;
+    width:0.8rem;
+    border-radius:0.3rem;
+    background:var(--gray);
+}
+
+
+.teacherapply-guidesnippets-steps .icon-down{
+    color:var(--gray);
+    font-size:2.6rem;
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    height:4rem;
+    width:100%;
+}
+
+.teacherapply-guidesnippets-steps .item-info{
+    color:var(--darkgray);
+    font-size:var(--fontsize-content);
+    font-weight:var(--fontweight-content);
+    margin-left:var(--content-padding);
+}
+
+
+
+
+.teacherapply-guidesnippets-steps .item-index{
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    height:6rem;
+    width:5%;
+    flex-shrink:0;
+}
+
+.teacherapply-guidesnippets-steps .state-ongoing,
+.teacherapply-guidesnippets-steps .state-normal{
+    width:100%;
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: center;
+}
+
+.teacherapply-guidesnippets-steps .state-ongoing .item-info{
+    color:var(--black);
+    font-size:1.3rem;
+}
+.teacherapply-guidesnippets-steps .state-ongoing .item-bar{
+    background:var(--darkblue);
+    height:4rem;
+    width:1rem;
+}
+
+
+
+</style>
+
+
+<div class="teacherapply-guidesnippets-steps">
+    {% if step == "step1" %}
+    <div class="main-array-row state-ongoing" >
+    {% else %}
+    <div class="main-array-row state-normal">
+    {% endif %}
+        <div class="item-index">
+            <div class="item-bar"></div>
+        </div>
+        <div class="item-info">
+            정해진 양식에 따라 학력 증명, 신원 인증, 급여 계좌를 등록합니다.
+            {% if step == "step1" %}
+            &nbsp;
+            <a href="{% url 'teacherapplyapp:schoolimagecreate' pk=target_user.pk %}" class="link-nav">
+            학력사항 작성 >
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="material-icons icon-down">arrow_drop_down</div>
+    {% if step == "step2" %}
+    <div class="main-array-row state-ongoing" >
+    {% else %}
+    <div class="main-array-row state-normal">
+    {% endif %}
+        <div class="item-index">
+            <div class="item-bar"></div>
+        </div>
+        <div class="item-info">
+            신청서를 관리자가 확인하고 이후 승인하기 전까지 1,2일간 대기합니다.
+            {% if step == "step2" %}
+            &nbsp;
+            <a href="{% url 'teacherapplyapp:detail' pk=target_user.teacherapply.pk %}" class="link-nav">
+            신청 상세 >
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="material-icons icon-down">arrow_drop_down</div>
+    {% if step == "step3" %}
+    <div class="main-array-row state-ongoing" >
+    {% else %}
+    <div class="main-array-row state-normal">
+    {% endif %}
+        <div class="item-index">
+            <div class="item-bar"></div>
+        </div>
+        <div class="item-info">
+            승인이 완료되면 관리자에게 안내사항을 전달받고 자유롭게 수업을 진행합니다.
+        </div>
+    </div>
+</div>

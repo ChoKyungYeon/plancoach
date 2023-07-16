@@ -1,0 +1,40 @@
+<style>
+
+
+
+.profile-detail-consulttype .text-subject{
+    margin-right:1rem;
+}
+.profile-detail-consulttype .main-text-subindex{
+    margin-right:auto;
+}
+
+
+.profile-detail-consulttype .array-title{
+    margin-bottom:0.5rem
+}
+
+</style>
+<div class="main-box profile-detail-consulttype">
+    <div class="main-array-title"><span class="main-text-title">담당 수업</span>
+    </div>
+    <div class="container-info">
+            <div class="item-btn">
+            {% if user == target_profile.teacher %}
+            <a href="{% url 'profile_consulttypeapp:update' pk=consulttype.pk %}" class="main-btn-edit material-icons">edit</a>
+            {% endif %}
+            </div>
+            <div class="main-array-row array-title">
+                <span class="main-text-index text-subject">
+                    학습 컨설팅
+                </span>
+               <span class="main-text-subindex" >
+                    {{ consulttype.consulttype}}
+                </span>
+            </div>
+            <div class="main-text-content text-content">
+                {{ consulttype.content|safe|linebreaksbr }}
+            </div>
+    </div>
+</div>
+

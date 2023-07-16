@@ -1,0 +1,43 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<header class="header-black">
+        {% with title="담당 수업 소개" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+        {% url 'profileapp:detail' pk=target_profile_consulttype.profile.pk as url %}
+        {% include 'headersnippets/exit.html' with url=url %}
+</header>
+
+<main>
+  <div class="main-box">
+      <div class="main-container-form">
+         <form action="{% url 'profile_consulttypeapp:update' pk=target_profile_consulttype.pk %}" method="post" >
+            {% csrf_token %}{% bootstrap_form form %}
+            <input type="submit" class="btn-submit btn-submit-short" value="소개 수정">
+          </form>
+      </div>
+  </div>
+</main>
+<script>
+    function setInitialColor(checkbox) {
+        if(checkbox.checked) {
+            checkbox.parentNode.style.backgroundColor = 'var(--darkblue)';
+            checkbox.parentNode.style.color = 'var(--white)';
+        } else {
+            checkbox.parentNode.style.backgroundColor = 'var(--whitegray)';
+            checkbox.parentNode.style.color = 'var(--gray)';
+        }
+    }
+    document.querySelectorAll('.selectmultiple input[type="checkbox"]').forEach(function(checkbox){
+        // Set the initial color
+        setInitialColor(checkbox);
+
+        // Add the event listener for future changes
+        checkbox.addEventListener('change', function() {
+            setInitialColor(checkbox);
+        });
+    });
+</script>
+{% endblock %}

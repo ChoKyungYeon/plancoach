@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+<style>
+.teacher-applicationlist .border{
+    background: var(--whitegray);
+    height:1rem;
+    padding-left:var(--main-padding);
+    padding-right:var(--main-padding);
+    width:100%;
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.teacher-applicationlist .icon-help{
+    font-size: 2rem;
+    color: var(--white);
+    font-weight: 600;
+}
+
+.teacher-applicationlist .border-tounched-step3,
+.teacher-applicationlist .border-tounched-step2,
+.teacher-applicationlist .border-tounched-step1{
+    background: var(--orange);
+    position: relative;
+    height:1rem;
+    width:20%;
+    flex-shrink: 0;
+}
+.teacher-applicationlist .border-tounched-step2{
+    margin-left:40%;
+}
+
+.teacher-applicationlist .border-tounched-step3{
+    margin-left:80%;
+}
+
+
+
+.teacher-applicationlist .main-box{
+    padding-top:3rem;
+}
+
+</style>
+
+<header class="header-black">
+    {%  url 'teacherapp:dashboard' pk=target_user.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
+    {% with title="신청 내역" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
+</header>
+
+<main class="teacher-applicationlist ">
+    {% include 'teacherapp/applicationlistsnippets/head.html' %}
+    <div class="teacher-applicationlist-slide1" style="display:block">
+        <div class="border">
+            <div class="border-tounched-step1">
+            </div>
+        </div>
+    {% include 'teacherapp/applicationlistsnippets/step1.html' %}
+    </div>
+    <div class="teacher-applicationlist-slide2" style="display:none;">
+        <div class="border">
+            <div class="border-tounched-step2">
+            </div>
+        </div>
+        {% include 'teacherapp/applicationlistsnippets/step2.html' %}
+    </div>
+    <div class="teacher-applicationlist-slide3" style="display:none;">
+        <div class="border">
+            <div class="border-tounched-step3">
+            </div>
+        </div>
+        {% include 'teacherapp/applicationlistsnippets/step3.html' %}
+    </div>
+    <button onclick="showhelp_application()"  class="material-icons main-icon-help">question_mark</button>
+    {% include 'teacherapp/applicationlistsnippets/help_application.html' %}
+</main>
+{% endblock %}

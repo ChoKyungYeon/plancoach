@@ -1,0 +1,25 @@
+
+<div class="item-content">
+    <span class="main-text-content">총 수익</span>
+    <span class="main-text-rowindex text-salary" >
+        {{ target_salary.total_amount }}원
+    </span>
+</div>
+<div class="item-content">
+    <span class="main-text-content">수익 상세 (수업료/환불액)</span>
+    <span class="main-text-rowindex text-salary" >
+        {{ target_salary.payment_amount }}원 / {{ target_salary.refund_amount }}원
+    </span>
+</div>
+<div class="item-content">
+    <span class="main-text-content">수수료 + 소득세</span>
+    <span class="main-text-rowindex text-salary" >
+        {{ target_salary.charge_amount }}원
+    </span>
+</div>
+<div class="item-content">
+    <span class="main-text-content">실수령액</span>
+    <span class="main-text-rowindex text-salary" >
+        {{ target_salary.paid_amount }}원
+    </span>
+</div>

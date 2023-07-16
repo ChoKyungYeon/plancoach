@@ -1,0 +1,10 @@
+<a href="{% url 'teacherapplyapp:detail' pk=teacherapply.pk %}"  class="container-teacherapply main-container-snippets">
+    <div class="main-array-column">
+        <div class="main-array-row">
+            <span class="main-text-index interval-right">{{teacherapply.customuser.userrealname}}</span>
+            <span class="main-text-content" >{{teacherapply.customuser.user_phonenumber}}</span>
+        </div>
+        <span class="main-text-content interval-top">{{teacherapply.school}}&nbsp;{{teacherapply.major}}&nbsp;{{teacherapply.studentid}}</span>
+    </div>
+    <div class="material-icons item-nav">arrow_forward_ios</div>
+</a>

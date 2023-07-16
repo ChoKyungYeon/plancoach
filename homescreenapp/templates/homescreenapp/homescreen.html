@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<style>
+
+</style>
+<header class="header-black" >
+        {% include 'headersnippets/logo.html' %}
+        {% include 'headersnippets/dashboard.html' %}
+</header>
+<main style="padding-bottom: 0" >
+    {% include 'homescreenapp/homescreensnippets/head.html' %}
+    {% include 'homescreenapp/homescreensnippets/introduce.html' %}
+    {% include 'homescreenapp/homescreensnippets/apply.html' %}
+    {% include 'homescreenapp/homescreensnippets/guide.html' %}
+    {% include 'homescreenapp/homescreensnippets/teacherapply.html' %}
+    {% include 'homescreenapp/homescreensnippets/questions.html' %}
+    {% include 'homescreenapp/homescreensnippets/contact.html' %}
+</main>
+{% include 'footer.html'  %}
+
+
+
+{% endblock %}

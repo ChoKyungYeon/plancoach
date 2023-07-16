@@ -1,0 +1,18 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<header class="header-white">
+    {% url 'profileapp:detail' pk=target_user.profile.pk as url %}
+    {% include 'headersnippets/exit.html' with url=url %}
+</header>
+
+<main class="main-guide">
+    <div class="main-container-guide">
+        {% with step="step2" %}
+        {% include 'studentapp/dashboardsnippets/steps.html' %}
+        {% endwith %}
+    </div>
+</main>
+{% endblock %}
+

@@ -1,0 +1,59 @@
+<style>
+.container-apply{
+    background: linear-gradient(0deg, #33364d, #292b3d,#33364d);
+ }
+
+.container-apply .text-class{
+    font-weight: var(--fontweight-content);
+    color: var(--white);
+}
+
+.container-apply .btn-apply{
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    font-size: 1.6rem;
+    color: var(--black);
+    font-weight: var(--fontweight-title);
+    padding:1rem 5rem;
+    margin-top:2rem;
+    border-radius: 1rem;
+    background: var(--white);
+}
+</style>
+{% if target_step == 'unauthenticated' %}
+<a href="{% url 'accountapp:login' %}" class="main-container-homescreen container-apply">
+{% elif can_user_apply == True %}
+<a href="{% url 'studentapp:dashboard' pk=user.pk %}" class="main-container-homescreen container-apply">
+{% elif target_step == 'ongoing' %}
+<a href="{% url 'consultapp:dashboard' pk=target_consult_pk %}" class="main-container-homescreen container-apply">
+{% elif target_step == 'teacher' %}
+<a href="{% url 'teacherapp:dashboard' pk=user.pk  %}" class="main-container-homescreen container-apply">
+{% elif user.state == 'superuser' %}
+<a href="{% url 'superuserapp:dashboard' %}" class="main-container-homescreen container-apply">
+{% else %}
+<a href="{% url 'studentapp:dashboard' pk=user.pk %}" class="main-container-homescreen container-apply">
+{% endif %}
+    {% if target_step == 'unauthenticated' or can_user_apply == True %}
+        <div class="text-index text-class">
+            아직 혼자 공부하시나요?
+        </div>
+        <div class="text-index text-class">
+            지금 바로 수업을 신청해보세요
+        </div>
+        <div class="btn-apply">
+            수업 신청하러 가기 &#128073;
+        </div>
+    {% else %}
+        <div class="text-index text-class">
+            수업을 매칭 또는 진행 중이신가요?
+        </div>
+        <div class="text-index text-class">
+            현재 내 수업 현황을 확인하세요
+        </div>
+        <div class="btn-apply">
+            내 수업 현황 확인 &#128073;
+        </div>
+    {% endif %}
+</a>

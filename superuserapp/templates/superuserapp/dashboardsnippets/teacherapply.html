@@ -1,0 +1,20 @@
+
+<div class="main-box" >
+    <div class="main-array-title">
+        <span class="main-text-title">선생님 신청 목록</span>
+    </div>
+    {% if teacherapplys %}
+        {% for teacherapply in teacherapplys %}
+        {% include 'snippets/teacherapply.html' %}
+        {% if not forloop.last %}
+        <div class="main-interval-items"></div>
+        {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="main-container-empty">
+        <span class="text-empty">
+        환불 목록이 존재하지 않습니다.
+        </span>
+        </div>
+    {% endif %}
+</div>

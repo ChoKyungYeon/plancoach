@@ -1,0 +1,65 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+
+<header class="header-black">
+        {% with title="신원 증명" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+        {% url 'accountapp:setting' pk=target_teacherapply.customuser.pk as url %}
+        {% include 'headersnippets/exit.html' with url=url %}
+</header>
+
+
+<main class="consult-create ">
+    <div class="main-box">
+        <div class="main-text-title-guideform" >* 신원 증명 주의 사항</div>
+        <div class="main-container-guideform">
+            <div class="item-guide">
+                <span class="text-content">
+                빛 반사에 주의하여 신분증의 앞면을 촬영하여 제출해주세요
+            </span>
+            </div>
+            <div class="item-guide">
+                <span class="text-content">
+                주민번호 뒷 6자리, 운전면허번호, 여권번호, 주소는 반드시 가려주세요
+            </span>
+            </div>
+            <div class="item-guide">
+                <span class="text-content">
+                성별을 확인할 수 있도록 주민번호 뒷자리 첫 번째 숫자는 가리지 말아주세요
+            </span>
+            </div>
+            <div class="item-guide">
+                <span class="text-content">
+                스캔 이미지, 복사본은 승인 처리가 어렵습니다
+            </span>
+            </div>
+            <div class="item-guide">
+                <span class="text-content">
+                위 자료는 신원 증명 이후 바로 파기됩니다.
+            </span>
+            </div>
+        </div>
+    </div>
+    <div class="main-box" style="padding-top:1rem;">
+        <div class="main-container-guideform" style="padding-top:0.5rem;" >
+        <form action="{% url 'teacherapplyapp:userimagecreate' pk=target_teacherapply.pk %}"
+              enctype="multipart/form-data" method="post" onsubmit="return confirmCreateUserverificationapply()">
+            {% csrf_token %}{% bootstrap_form form %}
+            <input type="submit" class="btn-submit" value="증빙 자료 제출">
+        </form>
+        </div>
+    </div>
+
+</main>
+<script>
+    function confirmCreateUserverificationapply() {
+        var confirmMessage = "주의 사항을 확인해주세요. 이후 기재 사항을 수정할 수 없습니다.";
+        return confirm(confirmMessage);
+    }
+</script>
+{% endblock %}
+

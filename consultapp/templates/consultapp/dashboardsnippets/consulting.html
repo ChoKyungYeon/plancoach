@@ -1,0 +1,41 @@
+<style>
+
+.container-consulting{
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.container-consulting .text-latest{
+    margin-bottom:1.5rem;
+    margin-top:0.5rem
+}
+.container-consulting .item-btn{
+    background:var(--color-btn-submit);
+    border-radius: 0.7rem;
+    height: 3.7rem;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.25rem;
+    color: var(--white);
+    margin:2rem auto 0 auto;
+    font-weight: var(--fontweight-content);
+}
+</style>
+<div class="main-box" style="padding-top:1rem;">
+    <div class="main-container-dashboard container-consulting" >
+        <span class="main-text-index">오늘의 학습 계획</span>
+        <span class="main-text-content text-latest">
+            {{target_plan_content}}
+        </span>
+        <div class="main-array-row" >
+            <span class="main-text-content text-content" >전체 수업</span>
+            <span class="main-text-index">
+                {{feedbacks_length}}개
+            </span>
+        </div>
+        <a  href="{% url 'consult_feedbackapp:list' pk=target_consult.pk %}" class="item-btn">전체 목록</a>
+    </div>
+</div>

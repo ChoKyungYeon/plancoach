@@ -1,0 +1,102 @@
+<style>
+.container-guide{
+    background: linear-gradient(0deg, white, white,#f0f3ff);
+    padding-top:6rem;
+    padding-bottom:6rem;
+ }
+
+.container-guide .item-content{
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items: center;
+    height:  5.3rem;
+    width: 100%;
+}
+
+.container-guide .item-untouched .text-content,
+.container-guide .item-touched .text-content{
+    color:var(--gray);
+    padding-left: var(--content-padding);
+    width: 100%;
+}
+.container-guide .item-touched .text-content{
+    font-size: 1.55rem;
+    color: var(--black);
+    font-weight: var(--fontweight-index);
+}
+.container-guide .item-untouched .btn-circle,
+.container-guide .item-touched .btn-circle{
+    background: var(--darkblue);
+    color: var(--white);
+    font-size: 1.35rem;
+    font-weight: var(--fontweight-index);
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0px 0px 6px #a7abbe;
+    height: 5.1rem;
+    width: 5.1rem;
+    flex-shrink: 0;
+}
+.container-guide .item-untouched .btn-circle{
+    background: var(--darkgray);
+    font-size: 1.3rem;
+    box-shadow: none;
+    height: 4.6rem;
+    width: 4.6rem;
+    margin:0.5rem;
+}
+.container-guide .item-arrow{
+    font-size: 2.3rem;
+    color: var(--darkblue);
+    font-weight: var(--fontweight-index);
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    height: 7rem;
+    width: 100%;
+}
+.container-guide .item-content {
+    transition: all 0.5s ease;
+}
+</style>
+<div class="main-container-homescreen container-guide">
+        <div id="homescreen-guide1" class="item-content item-touched">
+            <div class="btn-circle">5</div>
+            <div class="text-content">5단계의 간단한 매칭 과정과, 자유로운 시범 수업을 진행하고 수업을 시작합니다.</div>
+        </div>
+        <div class="item-arrow material-icons">arrow_drop_down</div>
+        <div  id="homescreen-guide2" class="item-content item-untouched">
+            <div class="btn-circle">16</div>
+            <div class="text-content">16 만원대의 합리적 가격으로 4주간 최고의 선생님들과 컨설팅을 진행합니다.</div>
+        </div>
+        <div class="item-arrow material-icons">arrow_drop_down</div>
+        <div  id="homescreen-guide3" class="item-content item-untouched">
+            <div class="btn-circle">7/24</div>
+            <div class="text-content">7일 단위로 진행되는 학습 코칭과 공부 계획 작성, 24시간 진행되는 질문 답변을 활용해보세요</div>
+        </div>
+</div>
+
+<script>
+let current = 1; // Start with guide1
+
+setInterval(function() {
+    // Reset all items to "item-untouched"
+    document.getElementById('homescreen-guide1').className = 'item-content item-untouched';
+    document.getElementById('homescreen-guide2').className = 'item-content item-untouched';
+    document.getElementById('homescreen-guide3').className = 'item-content item-untouched';
+
+    // Set the current item to "item-touched"
+    document.getElementById('homescreen-guide' + current).className = 'item-content item-touched';
+
+    // Increment current for the next run (and wrap around if necessary)
+    current++;
+    if (current > 3) {
+        current = 1;
+    }
+}, 3000);
+</script>

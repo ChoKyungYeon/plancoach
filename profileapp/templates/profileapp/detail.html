@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<style>
+
+.container-{
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:flex-start;
+    box-shadow:var(--shadow-itembox-);
+    padding:2rem var(--content-padding) ;
+    width:100%;
+    background:var(--white);
+    border-radius:1rem;
+    position: relative;
+}
+
+
+.profile-detail .btn-verification{
+    color: var(--green);
+    font-size: 1.8rem;
+    font-weight: var(--fontweight-content);
+    padding-right:1rem;
+    padding-left:0.7rem;
+}
+.profile-detail .item-btn{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+</style>
+
+<header class="header-black">
+    {% if not user.is_authenticated %}
+        {% url 'profileapp:list' as url %}
+        {% include 'headersnippets/list.html' with url=url %}
+        {% include 'headersnippets/share.html' %}
+    {% else%}
+        {% if user.state == 'student' %}
+            {% url 'profileapp:list' as url %}
+            {% include 'headersnippets/list.html' with url=url %}
+            {% include 'headersnippets/share.html' %}
+            {% include 'headersnippets/like.html' %}
+        {% elif user.state == 'superuser' %}
+            {% url 'superuserapp:dashboard' as url %}
+            {% include 'headersnippets/list.html' with url=url %}
+            {% include 'headersnippets/share.html' %}
+        {% else%}
+            {% url 'profileapp:list' as url %}
+            {% include 'headersnippets/list.html' with url=url %}
+            {% include 'headersnippets/share.html' %}
+        {% endif %}
+    {% endif %}
+</header>
+<main class="profile-detail ">
+    {% include 'profileapp/detailsnippets/head.html' %}
+    <div class="profile-detail-slide1" style="display:block">
+        {% include 'profileapp/detailsnippets/scholarship.html'  %}
+        {% include 'profileapp/detailsnippets/gpa.html' %}
+        {% include 'profileapp/detailsnippets/sat.html'  %}
+        {% include 'profileapp/detailsnippets/career.html' %}
+    </div>
+    <div class="profile-detail-slide2" style="display:none">
+        {% include 'profileapp/detailsnippets/consulttype.html'   %}
+        {% include 'profileapp/detailsnippets/subject.html'  %}
+    </div>
+    {% include 'profileapp/detailsnippets/foot.html' %}
+</main>
+
+{% endblock %}
+

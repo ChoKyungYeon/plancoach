@@ -1,0 +1,29 @@
+<style>
+.array-consult{
+    width:100%;
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items: center;
+}
+}    
+</style>
+<div class="main-box" >
+    <div class="main-array-title">
+        <span class="main-text-title">수업 전체</span>
+    </div>
+    <div class="array-consult">
+    {% if consults_ongoing %}
+        {% for consult in consults_ongoing %}
+            {% include 'snippets/consult.html' %}
+            {% if not forloop.last %}
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="main-container-empty"><span class="text-empty">진행중인 수업이 없습니다.&#128549;</span></div>
+    {% endif %}
+    </div>
+</div>
+
+

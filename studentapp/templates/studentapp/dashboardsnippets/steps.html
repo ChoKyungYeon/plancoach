@@ -1,0 +1,197 @@
+<style>
+.container-steps{
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items: flex-start;
+    width:100%;
+    border-radius:1rem;
+    background:var(--white);
+    padding:2.5rem var(--content-padding);
+}
+
+
+
+.container-steps .link-nav{
+    display: inline-block;
+        color:var(--orange);
+    font-weight:var(--fontweight-index);
+    font-size:1.3rem;
+}
+
+
+
+
+
+
+.container-steps .item-arrow{
+    color:var(--gray);
+    font-size:2.5rem;
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    height:4rem;
+    width:20%;
+}
+
+.container-steps .text-content{
+    color:var(--darkgray);
+    font-size:var(--fontsize-content);
+    font-weight:var(--fontweight-content);
+    margin-left:var(--content-padding);
+}
+
+.container-steps .item-activated .text-content{
+    color:var(--black);
+    font-size:1.3rem;
+}
+
+
+.container-steps .item-activated,
+.container-steps .item-disabled{
+    width:100%;
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: center;
+}
+
+.container-steps .array-circle{
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    height:6rem;
+    width:20%;
+    flex-shrink:0;
+}
+.container-steps .circle{
+    color:var(--white);
+    font-size:var(--fontsize-content);
+    font-weight:var(--fontweight-content);
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    height:4.7rem;
+    width:4.7rem;
+    border-radius:50%;
+    background:var(--gray);
+}
+
+.container-steps .item-activated .circle{
+    background:var(--orange);
+    height:5.5rem;
+    width:5.5rem;
+}
+
+
+</style>
+
+<div class="container-steps">
+    {% if step == "step1" %}
+    <div class="main-array-row item-activated" >
+    {% else %}
+    <div class="main-array-row item-disabled">
+    {% endif %}
+        <div class="array-circle">
+            <div class="circle">
+               1단계
+            </div>
+        </div>
+        <div class="text-content">
+            선생님 목록에서 수업을 신청할 나에게 맞는 선생님을 찾습니다.
+            {% if step == "step1" %}
+            &nbsp;
+            <a href="{% url 'profileapp:list' %}"  class="link-nav">
+            선생님 찾기 >
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="material-icons item-arrow">arrow_drop_down</div>
+    {% if step == "step2" %}
+    <div class="main-array-row item-activated" >
+    {% else %}
+    <div class="main-array-row item-disabled">
+    {% endif %}
+        <div class="array-circle">
+            <div class="circle">
+                2단계
+            </div>
+        </div>
+        <div class="text-content">
+            선택한 선생님의 프로필에서 양식에 맞게 신청서를 작성합니다
+            {% if step == "step2" %}
+            &nbsp;
+            <a href="{% url 'applicationapp:create' pk=target_user.pk %}" class="link-nav">
+            신청서 작성 >
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="material-icons item-arrow">arrow_drop_down</div>
+    {% if step == "step3" %}
+    <div class="main-array-row item-activated" >
+    {% else %}
+    <div class="main-array-row item-disabled">
+    {% endif %}
+        <div class="array-circle">
+            <div class="circle">
+                3단계
+            </div>
+        </div>
+        <div class="text-content">
+            신청서가 수락되기 전까지 신청서 수정, 삭제가 가능합니다
+            {% if step == "step3" %}
+            &nbsp;
+            <a href="{% url 'applicationapp:detail' pk=user.application_student.pk %}" class="link-nav">
+            신청서 상세 >
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="material-icons item-arrow">arrow_drop_down</div>
+    {% if step == "step4" %}
+    <div class="main-array-row item-activated" >
+    {% else %}
+    <div class="main-array-row item-disabled">
+    {% endif %}
+        <div class="array-circle">
+            <div class="circle">
+                4단계
+            </div>
+        </div>
+        <div class="text-content">
+            공개된 연락처를 통해 1주일 내로 자유롭게 시범 수업을 진행하고 수업을 성사합니다
+            {% if step == "step4" %}
+            &nbsp;
+            <a href="{% url 'applicationapp:detail' pk=user.application_student.pk %}" class="link-nav">
+            연락처 확인 >
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="material-icons item-arrow">arrow_drop_down</div>
+    {% if step == "step5" %}
+    <div class="main-array-row item-activated" >
+    {% else %}
+    <div class="main-array-row item-disabled">
+    {% endif %}
+        <div class="array-circle">
+            <div class="circle">
+                5단계
+            </div>
+        </div>
+        <div class="text-content">
+            신규 수업이 개설되고 3일 내로 수업료를 입금하면 수업이 시작됩니다!.
+            {% if step == "step5" %}
+            &nbsp;
+            <a href="{% url 'paymentapp:create' pk=target_consult_pk %}" class="link-nav">
+            수업료 입금 >
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>

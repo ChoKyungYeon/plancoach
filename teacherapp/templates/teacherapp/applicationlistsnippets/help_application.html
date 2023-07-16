@@ -1,0 +1,125 @@
+<style>
+
+
+.help_application .item-circle{
+    color:var(--white);
+    font-size:var(--fontsize-content);
+    font-weight:var(--fontweight-title);
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    height:5rem;
+    width:5rem;
+    border-radius:50%;
+    background:var(--orange);
+}
+.help_application .item-info{
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+.help_application .icon-down{
+    color:var(--gray);
+    font-size:2.6rem;
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    height:6rem;
+    width:5rem;
+}
+
+.help_application .item-explanation{
+    color:var(--black);
+    font-size:1.3rem;
+    font-weight:var(--fontweight-content);
+    margin-left:var(--content-padding);
+}
+
+
+
+.help_application .array-index{
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    height:5rem;
+    width:5rem;
+    flex-shrink:0;
+}
+
+.help_application .array-info{
+    width:100%;
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: center;
+}
+
+
+
+
+</style>
+
+<div id="help_application"  class="fullscreeninfo help_application">
+    <div class="itembox">
+        <div class="item-head">
+            <button onclick="closehelp_application()" class="material-icons btn-exit">cancel</button>
+        </div>
+        <div class="item-info">
+            <div class="array-info" >
+                <div class="array-index">
+                    <div class="item-circle">
+                       1단계
+                    </div>
+                </div>
+                <div class="item-explanation">
+                    48시간 내에 학생의 신청서를 확인하고 수락 또는 거절합니다.
+                </div>
+            </div>
+            <div class="material-icons icon-down">arrow_drop_down</div>
+            <div class="array-info" >
+                <div class="array-index">
+                    <div class="item-circle">
+                        2단계
+                    </div>
+                </div>
+                <div class="item-explanation">
+                    신청서를 수락하면 연락처가 공개되고 7일 내로 공개된 연락처를 통해 시범 수업을 진행합니다.
+                </div>
+            </div>
+            <div class="material-icons icon-down">arrow_drop_down</div>
+            <div class="array-info" >
+                <div class="array-index">
+                    <div class="item-circle">
+                        3단계
+                    </div>
+                </div>
+                <div class="item-explanation">
+                    수업이 성사되어 생성되면 48시간 내로 수업료를 입금하고 수업이 시작됩니다.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function showhelp_application() {
+    var element = document.getElementById("help_application");
+    element.style.display = "flex";
+    element.style.opacity = 0;
+    setTimeout(function() {
+        element.style.transition = 'opacity 0.2s ease-in-out';
+        element.style.opacity = 1;
+    }, 10);
+}
+
+function  closehelp_application() {
+    var element = document.getElementById("help_application");
+    element.style.transition = 'opacity 0.4s ease-in-out';
+    element.style.opacity = 0;
+    setTimeout(function() {
+        element.style.display = "none";
+    }, 400);
+}
+</script>

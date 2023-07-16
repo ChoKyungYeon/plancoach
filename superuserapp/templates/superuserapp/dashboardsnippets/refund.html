@@ -1,0 +1,22 @@
+
+
+
+<div class="main-box" >
+    <div class="main-array-title">
+        <span class="main-text-title">환불 목록</span>
+    </div>
+    {% if refunds %}
+        {% for refund in refunds %}
+        {% include 'snippets/checkrefund.html' %}
+        {% if not forloop.last %}
+        <div class="main-interval-items"></div>
+        {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="main-container-empty">
+        <span class="text-empty">
+        환불 목록이 존재하지 않습니다.
+        </span>
+        </div>
+    {% endif %}
+</div>

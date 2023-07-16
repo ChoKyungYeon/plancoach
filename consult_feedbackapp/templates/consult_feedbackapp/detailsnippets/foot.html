@@ -1,0 +1,15 @@
+<style>
+.icon-edit{
+right:6rem;
+}
+</style>
+
+{% if user == target_consult.teacher %}
+<a href="{% url 'consult_feedbackapp:update' pk=target_consult_feedback.pk %}"
+class="material-icons main-icon-edit icon-edit">edit</a>
+<form action="{% url 'consult_feedbackapp:delete' pk=target_consult_feedback.pk %}" method="post" id="feedback-delete-form">
+    {% csrf_token %}
+    <input style="display:none" type="submit" name="next" value="{% url 'consult_feedbackapp:list' pk=target_consult.pk %}">
+    <button type="button" onclick="confirmfeedbackDelete()" class="material-icons main-icon-delete btn-delete">delete_forever</button>
+</form>
+{% endif %}

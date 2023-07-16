@@ -1,0 +1,25 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+<header class="header-black">
+        {% with title="답변 수정" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+        {% url 'consult_qnaapp:detail' pk=target_qna_comment.consult_qna.pk as url %}
+        {% include 'headersnippets/exit.html' with url=url %}
+</header>
+
+<main>
+  <div class="main-box">
+      <div class="main-container-form">
+          <form action="{% url 'qna_commentapp:update' pk=target_qna_comment.pk %}" method="post" enctype="multipart/form-data" >
+            {% csrf_token %}{% bootstrap_form form %}
+            <input type="submit" class="btn-submit" value="답변 수정">
+          </form>
+      </div>
+  </div>
+</main>
+{% endblock %}
+

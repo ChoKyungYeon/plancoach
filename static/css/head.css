@@ -1,0 +1,210 @@
+
+/* head 관리 */
+.head-dashboard,
+.head-detail{
+    background: var(--blackblue);
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items: flex-start;
+    padding: 2rem var(--main-padding) 3rem var(--main-padding);
+    z-index:99;
+}
+
+.head-detail{
+    padding: 3rem var(--main-padding) 0rem var(--main-padding);
+
+}
+
+.head-dashboard{
+    padding: 2rem var(--main-padding) 0rem var(--main-padding);
+
+}
+
+
+.head-detail .btn-touched,
+.head-detail .btn-untouched{
+    height:3.5rem;
+    font-size:var(--fontsize-index);
+    padding-right:6%;
+    padding-left:6%;
+    border-radius:0.8rem;
+    border-bottom-left-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+    color:var(--white);
+    font-weight:var(--fontweight-index);
+}
+.head-detail .btn-touched{
+    color:var(--black);
+    box-shadow: 0px 0px 3px var(--white);
+    background: var(--color-base);
+    font-weight:var(--fontweight-title);
+}
+.head-box-nav{
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: flex-end;
+    margin-top:4rem;
+    width:100%;
+}
+
+.head-btn-edit{
+    background:var(--darkgray);
+    margin-left:1rem;
+}
+
+
+.head-text-title{
+    color:var(--white);
+    font-size:2rem;
+    font-weight:var(--fontweight-emphasize);
+}
+.head-text-classification{
+    color:var(--whitegreen);
+    font-size:2rem;
+    font-weight:var(--fontweight-emphasize);
+    margin-right:1rem;
+}
+.head-text-empty,
+.head-text-content{
+    color:var(--white);
+    font-weight:var(--fontweight-content);
+    font-size:var(--fontsize-content);
+}
+
+.head-text-empty{
+    color:var(--gray);
+}
+.head-text-index{
+    color:var(--whitegreen);
+    font-weight:var(--fontweight-index);
+    font-size:var(--fontsize-content);
+}
+.head-itembox-index{
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items:center;
+    margin-top:1.3rem;
+}
+
+
+.head-item-index{
+    padding:0.5rem 1.3rem;
+    border-radius:0.8rem;
+    background:var(--blackblue);
+    margin-right:1rem;
+}
+
+
+/*새로*/
+
+.head-dashboard .btn-touched,
+.head-dashboard .btn-untouched{
+    align-self: flex-start;
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items: center;
+    padding-left:1rem;
+    padding-right:1rem;
+    height:3rem;
+    border-bottom:8px solid var(--color-base);
+    color:var(--white);
+    font-size:var(--fontsize-index);
+    font-weight:var(--fontweight-index);
+    margin-right:1rem;
+
+}
+
+.head-dashboard .btn-untouched{
+    border-bottom:12px solid var(--blackblue);
+    color:var(--gray);
+}
+
+.head-dashboard .text-title-emphasize{
+    color:var(--whitegreen);
+    font-size:2.1rem;
+    font-weight:var(--fontweight-emphasize);
+    margin-bottom:0.3rem;
+}
+
+.head-dashboard .text-title-normal{
+    color:var(--white);
+    font-size:2rem;
+    font-weight:var(--fontweight-emphasize);
+}
+
+.head-dashboard .itembox-nav{
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: flex-end;
+    margin-top:5rem;
+    width:100%;
+}
+
+
+
+
+.head-consultdetail .btn-untouched,
+.head-consultdetail .btn-touched{
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    width:5rem;
+}
+
+.head-consultdetail .btn-untouched .text-number,
+.head-consultdetail .btn-touched .text-number{
+    color:#528484;
+    font-size:1.4rem;
+    font-weight:var(--fontweight-emphasize);
+    margin-bottom:0.3rem;
+}
+
+.head-consultdetail .btn-touched .text-number{
+    color:var(--whitegreen);
+    font-size:1.45rem;
+    text-shadow:0px 0px 1px var(--whitegreen);
+}
+
+.head-consultdetail .btn-touched .text-index,
+.head-consultdetail .btn-untouched .text-index{
+    color:#b5b5bf;
+    font-size:1.27rem;
+    font-weight:var(--fontweight-emphasize);
+
+}
+
+.head-consultdetail .btn-touched .text-index{
+    color:white;
+    font-size:var(--fontsize-index);
+    text-shadow:0px 0px 1px white;
+}
+
+.head-consultdetail .btn-nav{
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    height:3.7rem;
+    width:11rem;
+    background:var(--blackblue);
+    color:var(--white);
+    border-radius:0.7rem;
+    font-size:1.4rem;
+    font-weight:var(--fontweight-index);
+    margin-right:auto;
+    box-shadow:0px 0px 3px var(--darkblue);
+    flex-shrink: 0;
+}
+.head-consultdetail .icon-nav{
+    font-size:1.4rem;
+    color:var(--white);
+    margin-right:0.6rem;
+    font-weight:800;
+}
+

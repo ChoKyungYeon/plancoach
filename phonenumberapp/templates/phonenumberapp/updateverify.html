@@ -1,0 +1,41 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<style>
+
+</style>
+
+
+<header class="header-black">
+        {% with title="휴대폰 인증" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+        {% url 'accountapp:setting' pk=user.pk as url %}
+        {% include 'headersnippets/exit.html' with url=url %}
+</header>
+<main class="main-white">
+  <div class="main-box">
+      <div class="main-container-form" >
+          <form id="phone-number-form" action="{% url 'phonenumberapp:updateverify' pk=phonenumber.pk  %}" method="post" >
+            {% csrf_token %}{% bootstrap_form form %}
+              <div class="main-link-help">
+                <span class="text-help">* 인증 메세지가 도착하지 않나요?</span>
+                <a href="{% url 'phonenumberapp:updatecreate' pk=phonenumber.customuser.pk %}" class="text-link">재인증</a>
+              </div>
+            <input type="submit" class="btn-submit btn-submit-short"  value="휴대폰 인증">
+          </form>
+      </div>
+  </div>
+</main>
+
+
+<script>
+  const phoneNumber = "{{ phonenumber.phonenumber }}";
+  document.getElementById('phone-number-form').addEventListener('submit', function(event) {
+    const confirmation = confirm(`전화번호(아이디)가 ${phoneNumber}로 변경됩니다.`);
+    if (!confirmation) {
+      event.preventDefault();
+    }
+  });
+</script>
+{% endblock %}

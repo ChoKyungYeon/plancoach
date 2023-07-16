@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<style>
+
+
+</style>
+
+<header class="header-black">
+        {% include 'headersnippets/back.html' %}
+        {% with title="수익 지급 내역" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+</header>
+
+<main>
+<div class="main-box" >
+    {% if salarys %}
+        {% for salary in salarys %}
+        {% include 'snippets/salary.html' %}
+        {% if not forloop.last %}
+        <div class="main-interval-items"></div>
+        {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="main-container-empty">
+        <span class="text-empty">
+        수익 지급 내역이 존재하지 않습니다.
+        </span>
+        </div>
+    {% endif %}
+</div>
+
+</main>
+{% endblock %}
+

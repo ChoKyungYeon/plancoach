@@ -1,0 +1,119 @@
+<style>
+
+
+.profile-list-head{
+    position:fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: var(--blackblue);
+    display: flex;
+    height:14.5rem;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:2rem var(--main-padding) 1rem var(--main-padding);
+    z-index:99;
+}
+
+
+.profile-list-head .array-title{
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items:flex-start;
+    margin-top: 0.5rem;
+}
+.profile-list-head .emoji-eye,
+.profile-list-head .text-teacher,
+.profile-list-head .text-scholarship{
+    color:var( --whitegreen);
+    font-size:1.8rem;
+    font-weight:var(--fontweight-emphasize);
+    margin-right:0.6rem;
+}
+
+
+.profile-list-head .emoji-eye{
+    position:relative;
+    bottom:3px;
+    margin-right:0rem;
+    margin-left:0.4rem;
+}
+.profile-list-head .text-teacher{
+    color:var(--white);
+}
+
+
+.profile-list-head .btn-touched,
+.profile-list-head .btn-untouched{
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    height:3rem;
+    width: 15%;
+    color:var(--gray);
+    font-weight:var(--fontweight-index);
+    font-size:var(--fontsize-content);
+}
+
+.profile-list-head .btn-touched{
+    color:var(--white);
+}
+
+.profile-list-head .itembox-nav{
+    display: flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    margin-top:2rem;
+}
+
+</style>
+<div class="profile-list-head">
+    <div class="array-title">
+        <span class="text-teacher">대한민국 최고의</span>
+    </div>
+    <div class="array-title">
+        <span class="text-scholarship">서울대, 의대생</span>
+        <span class="text-teacher" >선생님을 찾아보세요</span>
+        <span class="emoji-eye">&#128064;</span>
+    </div>
+    <div class="itembox-nav">
+        <button onclick="showSlide(1)" id="btn-slide1" class="btn-touched">전체</button>
+        <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched">정시</button>
+        <button onclick="showSlide(3)" id="btn-slide3" class="btn-untouched">내신</button>
+        <button onclick="showSlide(4)" id="btn-slide4" class="btn-untouched">학생부</button>
+        <button onclick="showSlide(5)" id="btn-slide5" class="btn-untouched">논술</button>
+        {% if user.state == 'student' %}
+        <button onclick="showSlide(6)" id="btn-slide6" class="btn-untouched">찜</button>
+        {% endif %}
+    </div>
+</div>
+
+
+<script>
+function showSlide(slideNumber) {
+    // Loop over all slides
+    for (let i = 1; i <= 6; i++) {
+        const btn = document.querySelector(`#btn-slide${i}`);
+        const slide = document.querySelector(`.profile-list-slide${i}`);
+
+        // Check if this is the slide to show
+        if (i === slideNumber) {
+            btn.classList.add('btn-touched');
+            btn.classList.remove('btn-untouched');
+            slide.style.display = 'block';
+        } else {
+            btn.classList.add('btn-untouched');
+            btn.classList.remove('btn-touched');
+            slide.style.display = 'none';
+        }
+    }
+}
+
+// Initialize first slide to show on page load
+showSlide(1);
+</script>

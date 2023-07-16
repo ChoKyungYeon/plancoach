@@ -1,0 +1,86 @@
+<style>
+
+.profile-detail-gpa .main-text-content{
+    margin-top:0.5rem;
+}
+
+
+
+</style>
+
+{% if gpa %}
+    <div class="main-box profile-detail-gpa">
+        <div class="main-array-title"><span class="main-text-title">출신 고교 및 성적/활동</span>
+        </div>
+        <div class="container-info" >
+                <div class="item-btn">
+                {% if user == target_profile.teacher %}
+                <a href="{% url 'profile_gpaapp:update' pk=gpa.pk %}" class="main-btn-edit material-icons">edit</a>
+                <form action="{% url 'profile_gpaapp:delete' pk=gpa.pk %}" method="post" id="gpa-delete-form{{ forloop.counter }}">
+                    {% csrf_token %}
+                    <input style="display:none" type="submit" name="next" value="{% url 'profileapp:detail' pk=target_profile.pk %}">
+                    <button type="button" onclick="confirmgpaDelete()" class="main-btn-delete material-icons">remove</button>
+                </form>
+                {% endif %}
+                </div>
+                <div class="main-array-row" >
+                    <span class="main-text-index">{{gpa.highschool}}
+                        ({{gpa.schooltype}})</span>
+                    {% if gpa.gpaverificationimage %}
+                    <button onclick="showgpaimage()" class="material-icons btn-verification">verified</button>
+                    <div id="gpaimage-fullscreen" class="fullscreenimage" >
+                        <button onclick="closegpaimage()" class="btn-exit material-icons">close</button>
+                        <img class="fullscreenimage-image" src="{{ gpa.gpaverificationimage.url }}">
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="main-text-content" >
+                    {{gpa.score|safe|linebreaksbr}}
+                </div>
+
+        </div>
+    </div>
+{% else %}
+    {% if user == target_profile.teacher %}
+    <div class="main-box profile-detail-gpa">
+        <div class="main-array-title"><span class="main-text-title">출신 고교 및 성적/활동</span>
+            <a href="{% url 'profile_gpaapp:create' pk=target_profile.pk %}" class="main-btn-add material-icons">add</a>
+        </div>
+        <div class="main-container-empty">
+            <span class="text-empty">
+            출신 고교 및 성적/활동을 추가해주세요!
+            </span>
+        </div>
+    </div>
+    {% endif %}
+{% endif %}
+
+<script>
+
+function showgpaimage() {
+    var element = document.getElementById("gpaimage-fullscreen");
+    element.style.display = "flex";
+    element.style.opacity = 0;
+    setTimeout(function() {
+        element.style.transition = 'opacity 0.2s ease-in-out';
+        element.style.opacity = 1;
+    }, 10);
+}
+
+function closegpaimage() {
+    var element = document.getElementById("gpaimage-fullscreen");
+    element.style.transition = 'opacity 0.4s ease-in-out';
+    element.style.opacity = 0;
+    setTimeout(function() {
+        element.style.display = "none";
+    }, 400);
+}
+
+
+
+function confirmgpaDelete() {
+    if (confirm("선택한 고교 성적 및 활동을 정말 삭제하시겠습니까?")) {
+        document.getElementById("gpa-delete-form").submit();
+    }
+}
+</script>

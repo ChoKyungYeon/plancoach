@@ -1,0 +1,79 @@
+
+
+:root {
+    --black:black;
+    --white:white;
+    --whiteblue:#f6f8fd;
+    --blackblue:#1d2134;
+    --gray:#65697b;
+    --darkgray:#959fb1;
+    --whitegray:#eaeaf1;
+    --orange:#ea9143;
+    --yellow:#edbd0c;
+    --darkblue:#394065;
+    --middleblue:#3549ac;
+    --red:#ee7472;
+    --green:#4aa184;
+    --whitegreen:#abeded;
+    --mint:#1fabc1;
+
+    --color-empty:#a7aabe;
+    --color-positive:#217d5e;
+    --color-negative:#e75855;
+    --color-pending:#3549ac;
+    --color-btn-nav:#2a2c37;
+    --color-btn-link:#636883;
+    --color-btn-submit:#414458;
+
+    --color-base:#efeff5;
+
+
+    --fontsize-content:1.28rem;
+    --fontsize-index:1.33rem;
+    --fontsize-title:1.5rem;
+    --fontsize-emphasize:1.7rem;
+    --fontsize-detail:1.23rem;
+
+    --fontweight-content:500;
+    --fontweight-index:600;
+    --fontweight-title:700;
+    --fontweight-emphasize:900;
+
+    --shadow-itembox:0px 4px 13px #bdc1d6;
+    --shadow-itembox-info:0px 0px 4px #bdc1d6;
+    --shadow-btn:0px 3px 10px #bdc1d6;
+
+
+    --main-padding:7%;
+    --main-padding-snippet:9%;
+    --header-padding:6%;
+    --content-padding:7%;
+
+    --header-height:5.4rem;
+    --body-minheight:calc(100vh - var(--header-height));
+    --main-padding-bottom:12rem;
+    --homescreen-padding:8%;
+}
+
+
+.IndexFont{
+    font-weight: 600;
+}
+.ContentFont{
+    font-weight: 450;
+}
+.TitleFont{
+    font-weight: 700;
+}
+.EmphasizeFont{
+    font-weight: 900;
+}
+
+@media screen and (min-width: 500px) {
+  :root {
+    --main-padding:32%;
+    --main-padding-snippet:32%;
+    --header-padding:32%;
+    --homescreen-padding:32%;
+  }
+}

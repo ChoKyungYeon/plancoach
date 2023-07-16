@@ -1,0 +1,82 @@
+<style>
+
+
+.profile-detail-subject .text-subject{
+    margin-right:1rem;
+}
+.profile-detail-subject .main-text-subindex{
+    margin-right:auto;
+}
+
+
+.profile-detail-subject .array-title{
+    margin-bottom:0.5rem
+}
+
+
+
+
+</style>
+{% if subjects %}
+<div class="main-box profile-detail-subject">
+    <div class="main-array-title"><span class="main-text-title">담당 교과목</span>
+        {% if user == target_profile.teacher %}
+            {% if can_add_subject %}
+            <a href="{% url 'profile_subjectapp:create' pk=target_profile.pk %}" class="main-btn-add material-icons">add</a>
+            {% endif %}
+        {% endif %}
+    </div>
+    {% for subject in subjects %}
+    {% if not forloop.last %}
+    <div class="container-info" style="margin-bottom:2rem;">
+    {% else %}
+    <div class="container-info">
+    {% endif %}
+        <div class="item-btn">
+        {% if user == target_profile.teacher %}
+        <a href="{% url 'profile_subjectapp:update' pk=subject.pk %}" class="main-btn-edit material-icons">edit</a>
+        <form action="{% url 'profile_subjectapp:delete' pk=subject.pk %}" method="post" id="subject-delete-form{{ forloop.counter }}">
+            {% csrf_token %}
+            <input style="display:none" type="submit" name="next" value="{% url 'profileapp:detail' pk=target_profile.pk %}">
+            <button type="button" onclick="confirmsubjectDelete({{ forloop.counter }})" class="main-btn-delete material-icons">remove</button>
+        </form>
+        {% endif %}
+        </div>
+       <div class="main-array-row array-title">
+            <span class="main-text-index text-subject">
+                {{ subject.subjectclassification }}
+            </span>
+           <span class="main-text-subindex" >
+                {{ subject.subjectdetail }}
+            </span>
+        </div>
+        <div class="main-text-content text-content">
+            {{ subject.content|safe|linebreaksbr }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+    {% if user == target_profile.teacher %}
+        <div class="main-box profile-detail-subject">
+            <div class="main-array-title"><span class="main-text-title">담당 교과목</span>
+            <a href="{% url 'profile_subjectapp:create' pk=target_profile.pk %}" class="main-btn-add material-icons">add</a>
+            </div>
+            <div class="main-container-empty">
+                <span class="text-empty">
+                담당 교과목을 추가해주세요!
+                </span>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+
+<script>
+
+function confirmsubjectDelete(counter) {
+    if (confirm("선택한 교과목을 정말 삭제하시겠습니까?")) {
+        document.getElementById("subject-delete-form"+ counter).submit();
+    }
+}
+</script>
+

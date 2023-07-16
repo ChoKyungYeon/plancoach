@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+
+<header class="header-black">
+        {% include 'headersnippets/back.html' %}
+        {% with title="환불 신청" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+
+</header>
+
+
+<main class="consult-create ">
+    <div class="main-box">
+        <div class="main-text-title-guideform" >* 주의 사항</div>
+        <div class="main-container-guideform">
+            <div class="item-guide">
+                <span class="text-content">환불이 완료되면 수업은 자동 종료됩니다</span>
+            </div>
+            <div class="item-guide">
+                <span class="text-content">환불액은 약 2일 내에 입금이 완료됩니다.</span>
+            </div>
+            <div class="item-guide">
+                <span class="text-content">환불 이후 자유롭게 수업을 새로 매칭할 수 있습니다.</span>
+            </div>
+        </div>
+    </div>
+    <div class="main-box">
+        <div class="main-text-title-guideform" >다음 정보로 환불이 진행됩니다</div>
+        <div class="main-container-guideform" >
+            <div class="item-info">
+                <span class="text-content">환불 수업</span>
+                <span class="main-text-rowindex">{{ target_consult.consult_name }}</span>
+            </div>
+            <div class="item-info">
+                <span class="text-content">수업료</span>
+                <span class="main-text-rowindex">{{ target_consult.tuition }}0000</span>
+            </div>
+            <div class="item-info">
+                <span class="text-content">연장 취소 여부</span>
+                {% if target_consult.state == 'extended' %}
+                <span class="main-text-rowindex">연장 취소</span>
+                {% else %}
+                <span class="main-text-rowindex">수업 미연장</span>
+                {% endif %}
+            </div>
+            <div class="item-info">
+                <span class="text-content">총 환불액</span>
+                <span class="main-text-rowindex">
+                    {{ target_consult.refund_entire_amount }}
+                </span>
+            </div>
+        <a id="confirmcreaterefund" href="{% url 'refundapp:create' pk=target_consult.pk %}" class="btn-submit">
+        환불 진행
+        </a>
+        </div>
+                <div class="main-link-help">
+        <span class="text-help">환불 규정이 궁금하신가요?</span>
+        <a href="{% url 'homescreenapp:refund' %}"  class="text-link">환불 규정</a>
+    </div>
+    </div>
+</main>
+<script>
+
+function ConfirmCreateRefund(event) {
+    if (confirm("환불 금액을 정확히 확인해주세요. 이후 수업을 복구하실 수 없습니다.")) {
+        window.location.href = event.target.href;
+    } else {
+        event.preventDefault();
+    }
+}
+
+const confirmCreateRefund = document.getElementById('confirmcreaterefund');
+if (confirmCreateRefund) {
+    confirmCreateRefund.addEventListener('click', ConfirmCreateRefund);
+}
+</script>
+{% endblock %}
+

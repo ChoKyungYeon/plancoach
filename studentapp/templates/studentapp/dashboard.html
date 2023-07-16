@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<header class="header-white">
+        {% include 'headersnippets/home.html' %}
+        {% include 'headersnippets/account.html'  %}
+</header>
+
+
+<main class="main-guide">
+    {% if target_step == 'step5' %}
+        {% include 'studentapp/dashboardsnippets/step5.html' %}
+    {% elif target_step == 'step1' %}
+        {% include 'studentapp/dashboardsnippets/step1.html' %}
+    {% elif target_step == 'refund' %}
+        {% include 'studentapp/dashboardsnippets/refund.html' %}
+    {% elif target_step == 'step3' %}
+        {% include 'studentapp/dashboardsnippets/step3.html' %}
+    {% elif target_step == 'step4' %}
+        {% include 'studentapp/dashboardsnippets/step4.html' %}
+    {% elif target_step == 'denied' %}
+        {% include 'studentapp/dashboardsnippets/denied.html' %}
+    {% endif %}
+</main>
+{% endblock %}
+

@@ -1,0 +1,66 @@
+<style>
+
+
+.superuser-dashboard-head .btn-touched,
+.superuser-dashboard-head .btn-untouched{
+    align-self: flex-start;
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items: center;
+    padding-left:1rem;
+    padding-right:1rem;
+    height:3rem;
+    border-bottom:8px solid var(--color-base);
+    color:var(--white);
+    font-size:1.35rem;
+    font-weight:var(--fontweight-index);
+    margin-right:1rem;
+
+}
+
+.superuser-dashboard-head .head-box-nav{
+    margin-top:3rem;
+}
+
+.superuser-dashboard-head .btn-untouched{
+    border-bottom:12px solid var(--blackblue);
+    color:var(--gray);
+}
+
+
+</style>
+
+<div class="superuser-dashboard-head head-dashboard">
+    <div class="main-array">
+        <span class="head-text-classification">관리자</span><span class="head-text-title">대시보드</span>
+    </div>
+    <div class="head-box-nav">
+        <button onclick="showSlide(1)" id="btn-slide1" class="btn-touched">급여</button>
+        <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched">선생님 신청</button>
+        <button onclick="showSlide(3)" id="btn-slide3" class="btn-untouched">환불 신청</button>
+        <button onclick="showSlide(4)" id="btn-slide4" class="btn-untouched">선생님</button>
+    </div>
+</div>
+
+
+
+<script>
+function showSlide(slideNumber) {
+    for (let i = 1; i <= 5; i++) {
+        const btn = document.querySelector(`#btn-slide${i}`);
+        const slide = document.querySelector(`.superuser-dashboard-slide${i}`);
+        if (i === slideNumber) {
+            btn.classList.add('btn-touched');
+            btn.classList.remove('btn-untouched');
+            slide.style.display = 'block';
+        } else {
+            btn.classList.add('btn-untouched');
+            btn.classList.remove('btn-touched');
+            slide.style.display = 'none';
+        }
+    }
+}
+
+showSlide(1);
+</script>

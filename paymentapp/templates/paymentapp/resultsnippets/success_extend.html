@@ -1,0 +1,11 @@
+<div class="item-title" >
+    <div class="text-emphasize">&nbsp;&nbsp;수업</div>
+    <span class="text-title">연장 완료.&nbsp;&#127881;</span>
+</div>
+<div class="item-subtitle">수업 연장일은 {{payment.consult.startdate|date:"y년 n월 j일"}} 입니다.</div>
+
+<span class="item-content">수업은 {{payment.consult.extenddate|date:"y년 n월 j일"}}부터 재연장 가능합니다
+    <a href="{% url 'consultapp:dashboard' pk=payment.consult.pk %}"  class="link-nav">
+    수업 바로가기 >
+    </a>
+</span>

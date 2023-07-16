@@ -1,0 +1,23 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+<header class="header-black">
+        {% with title="신청서 작성" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+        {% url 'profileapp:detail' pk=target_user.profile.pk  as url %}
+        {% include 'headersnippets/exit.html' with url=url %}
+</header>
+<main>
+  <div class="main-box">
+      <div class="main-container-form">
+          <form action="{% url 'applicationapp:create' pk=target_user.pk %}" method="post">
+            {% csrf_token %}{% bootstrap_form form %}
+            <input type="submit" class="btn-submit" value="신청서 작성">
+          </form>
+      </div>
+  </div>
+</main>
+{% endblock %}

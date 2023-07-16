@@ -1,0 +1,34 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+
+<header class="header-black">
+        {% with title="급여 계좌 등록" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+        {% url 'accountapp:setting' pk=target_teacherapply.customuser.pk as url %}
+        {% include 'headersnippets/exit.html' with url=url %}
+</header>
+
+<main>
+  <div class="main-box">
+      <div class="main-text-title-guideform" >* 오기입에 의한 불이익은 책임지지 않습니다.</div>
+      <div class="main-container-form">
+          <form action="{% url 'teacherapplyapp:bankcreate' pk=target_teacherapply.pk %}"
+            method="post" style="width:100%" onsubmit="return confirmBankCreate()">
+            {% csrf_token %}{% bootstrap_form form %}
+            <input type="submit" class="btn-submit" value="계좌 등록">
+          </form>
+      </div>
+  </div>
+</main>
+<script>
+    function confirmBankCreate() {
+        var confirmMessage = "기재 정보를 정학히 확인해주세요. 이후 내용을 수정할 수 없습니다.";
+        return confirm(confirmMessage);
+    }
+</script>
+{% endblock %}
+

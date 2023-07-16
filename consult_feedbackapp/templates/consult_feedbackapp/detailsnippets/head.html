@@ -1,0 +1,41 @@
+
+<div class="main-container-head container-head-detail">
+        <div class="item-infos">
+            <span class="text-title">{{target_feedback.classtime|date:"m.d D"}} 수업</span>
+            <div class="main-array-row array-info" >
+                {% if index == "coach" %}
+                <span class="text-content">피드백 과목:</span>
+                <span class="text-subcontent">{{coaches|length}}개</span>
+                {% else %}
+                <span class="text-content">학습 플랜:</span>
+                <span class="text-subcontent">
+                    {{target_feedback.plan_duration.0|date:"m.d"}} ~ {{target_feedback.plan_duration.1|date:"m.d"}}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="item-btn">
+            {% if feedback_before %}
+                {% if index == "coach" %}
+                <a href="{% url 'consult_feedbackapp:coachdetail' pk=feedback_before.pk %}" class="btn-abled">
+                {% else %}
+                <a href="{% url 'consult_feedbackapp:plandetail' pk=feedback_before.pk %}" class="btn-abled">
+                {% endif %}
+            {% else %}
+            <a class="btn-disabled">
+            {% endif%}
+                <span class="text-index">이전</span>
+            </a>
+            {% if feedback_next %}
+                {% if index == "coach" %}
+                <a href="{% url 'consult_feedbackapp:coachdetail' pk=feedback_next.pk %}" class="btn-abled">
+                {% else %}
+                <a href="{% url 'consult_feedbackapp:plandetail' pk=feedback_next.pk %}" class="btn-abled">
+                {% endif %}
+            {% else %}
+            <a class="btn-disabled">
+            {% endif%}
+                <span class="text-index">다음</span>
+            </a>
+        </div>
+</div>

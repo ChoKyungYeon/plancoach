@@ -1,0 +1,81 @@
+<style>
+.container-comment{
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:flex-start;
+    position: relative;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    box-shadow: var(--shadow-itembox-info);
+}
+
+.container-comment .text-content{
+    margin-top: 1rem;
+}
+
+.container-comment  .text-before{
+    font-size: var(--fontsize-detail);
+    color: var(--darkgray);
+    font-weight: var(--fontweight-content);
+    margin-left:0.7rem;
+}
+
+.container-comment .btn-image{
+    background: var(--darkblue);
+    padding:0.3rem 0.4rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: var(--fontweight-content);
+    color: var(--white);
+    display: inline-block;
+    position: relative;
+    bottom:0.1rem;
+    margin-right: 0.5rem;
+}
+</style>
+
+<div class="container-comment main-container-snippets">
+    <div class="item-btn">
+     {% if user == comment.customuser %}
+     <a href="{% url 'qna_commentapp:update' pk=comment.pk %}" class="main-btn-edit material-icons">edit</a>
+    {% endif %}
+    </div>
+    <div class="main-array-row" >
+        <span class="text-title">{{comment.customuser.userrealname}}</span>
+        <span class="text-before">{{comment.created_before}}</span>
+    </div>
+    <span class="main-text-content text-content">
+    {% if comment.image %}
+
+    <button onclick="showcommentimage({{ forloop.counter }})" class="material-icons btn-image">photo_camera</button>
+    <div id="commentimage-fullscreen{{ forloop.counter }}" class="fullscreenimage" >
+    <button onclick="closecommentimage({{ forloop.counter }})"
+            class="btn-exit material-icons">close
+    </button>
+    <img class="fullscreenimage-image" src="{{ comment.image.url }}">
+    </div>
+    {% endif %}
+    {{comment.content|safe|linebreaksbr}}
+    </span>
+</div>
+
+<script>
+function showcommentimage(counter) {
+    var element = document.getElementById("commentimage-fullscreen"+ counter);
+    element.style.display = "flex";
+    element.style.opacity = 0;
+    setTimeout(function() {
+        element.style.transition = 'opacity 0.2s ease-in-out';
+        element.style.opacity = 1;
+    }, 10);
+}
+
+function closecommentimage(counter) {
+    var element = document.getElementById("commentimage-fullscreen"+ counter);
+    element.style.transition = 'opacity 0.4s ease-in-out';
+    element.style.opacity = 0;
+    setTimeout(function() {
+        element.style.display = "none";
+    }, 400);
+}
+</script>

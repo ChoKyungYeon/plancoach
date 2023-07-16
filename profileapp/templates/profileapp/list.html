@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<style>
+main{
+    padding-top: 14.5rem;
+}
+
+.main-hr-head{
+    height:2px;
+    background:var(--whitegray);
+    width:100%;
+}
+
+</style>
+
+
+<header class="header-black">
+        {% include 'headersnippets/home.html' %}
+        {% include 'headersnippets/dashboard.html' %}
+</header>
+<main>
+{% include 'profileapp/listsnippets/head.html' %}
+<div class="main-hr-head"></div>
+    <div class="profile-list-slide1" style="display:block">
+        {% with profiles=profiles_all %}
+            {% include 'profileapp/listsnippets/list.html' %}
+        {% endwith %}
+    </div>
+    <div class="profile-list-slide2" style="display:none">
+        {% with profiles=profiles_sat %}
+            {% include 'profileapp/listsnippets/list.html' %}
+        {% endwith %}
+    </div>
+    <div class="profile-list-slide3" style="display:none">
+        {% with profiles=profiles_gpa %}
+            {% include 'profileapp/listsnippets/list.html' %}
+        {% endwith %}
+    </div>
+    <div class="profile-list-slide4" style="display:none">
+        {% with profiles=profiles_extra %}
+            {% include 'profileapp/listsnippets/list.html' %}
+        {% endwith %}
+    </div>
+    <div class="profile-list-slide5" style="display:none">
+        {% with profiles=profiles_essay %}
+            {% include 'profileapp/listsnippets/list.html' %}
+        {% endwith %}
+    </div>
+    <div class="profile-list-slide6" style="display:none">
+        {% with profiles=profiles_like %}
+            {% include 'profileapp/listsnippets/list.html' %}
+        {% endwith %}
+    </div>
+<div class="main-hr-head"></div>
+</main>
+
+{% endblock %}
+

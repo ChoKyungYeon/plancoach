@@ -1,0 +1,23 @@
+
+<main>
+<div class="main-box" >
+    <div class="main-array-title">
+        <span class="main-text-title">급여 목록</span>
+    </div>
+    {% if salarys %}
+        {% for salary in salarys %}
+        {% include 'snippets/salarypay.html' %}
+        {% if not forloop.last %}
+        <div class="main-interval-items"></div>
+        {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="main-container-empty">
+        <span class="text-empty">
+        지급 대상이 없습니다.
+        </span>
+        </div>
+    {% endif %}
+</div>
+
+

@@ -1,0 +1,117 @@
+<style>
+.teacher-applicationlist-head {
+    background: var(--white);
+    padding-left: var(--main-padding);
+    padding-right:var(--main-padding);
+    padding-top:2rem;
+    padding-bottom: 1rem;
+}
+
+.teacher-applicationlist-head .container-head{
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items: center;
+    width:100%;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+
+
+
+.container-head .btn-touched,
+.container-head .btn-untouched{
+    width:20%;
+    height:6rem;
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+
+
+
+.container-head .btn-touched .item-circle,
+.container-head .btn-untouched .item-circle{
+    height:4.2rem;
+    width:4.2rem;
+    border-radius:50%;
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    background:var(--gray);
+    flex-shrink: 0;
+    color:var(--white);
+    font-size:1.1rem;
+    font-weight:var(--fontweight-content);
+}
+
+.container-head .btn-touched .item-circle{
+    font-size: var(--fontsize-detail);
+    background:var(--orange);
+    box-shadow: var(--shadow-btn);
+    height:5.5rem;
+    width:5.5rem;
+}
+
+
+.container-head .icon-right{
+    color:var(--gray);
+    font-size:2.7rem;
+    width:20%;
+    height:6rem;
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+}
+
+
+
+
+
+
+
+</style>
+<div class="teacher-applicationlist-head">
+    <div class="container-head">
+        <button onclick="showSlide(1)" id="btn-slide1" class="btn-touched">
+            <div class="item-circle">{{applications_applied|length}}개</div>
+        </button>
+        <div class="material-icons icon-right">arrow_right</div>
+        <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched">
+            <div class="item-circle">{{applications_matching|length}}개</div>
+        </button>
+        <div class="material-icons icon-right">arrow_right</div>
+        <button onclick="showSlide(3)" id="btn-slide3" class="btn-untouched">
+            <div class="item-circle">{{applications_waiting|length}}개</div>
+        </button>
+    </div>
+</div>
+
+<script>
+function showSlide(slideNumber) {
+    // Loop over all slides
+    for (let i = 1; i <= 5; i++) {
+        const btn = document.querySelector(`#btn-slide${i}`);
+        const slide = document.querySelector(`.teacher-applicationlist-slide${i}`);
+
+        // Check if this is the slide to show
+        if (i === slideNumber) {
+            btn.classList.add('btn-touched');
+            btn.classList.remove('btn-untouched');
+            slide.style.display = 'block';
+        } else {
+            btn.classList.add('btn-untouched');
+            btn.classList.remove('btn-touched');
+            slide.style.display = 'none';
+        }
+    }
+}
+
+// Initialize first slide to show on page load
+showSlide(1);
+</script>

@@ -1,0 +1,51 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<style>
+.selectmultiple .form-check:last-child {
+    margin-right: auto;
+    margin-left: 2%;
+}
+</style>
+
+<header class="header-black">
+        {% with title="수업 내용 작성" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+        {% url 'consult_feedbackapp:list' pk=target_consult.pk as url %}
+        {% include 'headersnippets/exit.html' with url=url %}
+</header>
+
+<main>
+  <div class="main-box">
+      <div class="main-container-form">
+          <form action="{% url 'consult_feedbackapp:create' pk=target_consult.pk %}" method="post" >
+            {% csrf_token %}{% bootstrap_form form %}
+            <input type="submit" class="btn-submit" value="수업 등록">
+          </form>
+      </div>
+  </div>
+</main>
+<script>
+    function setInitialColor(checkbox) {
+        if(checkbox.checked) {
+            checkbox.parentNode.style.backgroundColor = 'var(--darkblue)';
+            checkbox.parentNode.style.color = 'var(--white)';
+        } else {
+            checkbox.parentNode.style.backgroundColor = 'var(--whitegray)';
+            checkbox.parentNode.style.color = 'var(--gray)';
+        }
+    }
+    document.querySelectorAll('.selectmultiple input[type="checkbox"]').forEach(function(checkbox){
+        // Set the initial color
+        setInitialColor(checkbox);
+
+        // Add the event listener for future changes
+        checkbox.addEventListener('change', function() {
+            setInitialColor(checkbox);
+        });
+    });
+</script>
+{% endblock %}
+

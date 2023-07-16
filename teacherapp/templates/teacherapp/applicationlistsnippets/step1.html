@@ -1,0 +1,17 @@
+
+<div class="main-box" >
+    {% if applications_applied %}
+    {% for target_application in applications_applied %}
+        {% include 'snippets/application.html' with forloop=forloop %}
+        {% if not forloop.last %}
+        <div class="main-interval-items"></div>
+        {% endif %}
+    {% endfor %}
+    {% else %}
+        <div class="main-container-empty">
+        <span class="text-empty">
+        미확인 신청서가 없습니다.
+        </span>
+        </div>
+    {% endif %}
+</div>

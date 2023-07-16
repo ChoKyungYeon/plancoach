@@ -1,0 +1,7 @@
+{% if not like %}
+<a href="{% url 'profile_likeapp:like' %}?profile_pk={{ target_profile.pk }}"
+        class="btn-like-false material-icons">favorite</a>
+{% else %}
+<a href="{% url 'profile_likeapp:like' %}?profile_pk={{ target_profile.pk }}"
+        class="btn-like-true material-icons">favorite</a>
+{% endif %}

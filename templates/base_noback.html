@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="ko">
+{%  include 'head.html' %}
+<body onload="noBack();" onpageshow="if(event.persisted) noBack()">
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
+<script>
+window.history.forward(); function noBack(){
+    window.history.forward();
+}
+</script>

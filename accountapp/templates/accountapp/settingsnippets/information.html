@@ -1,0 +1,39 @@
+<style>
+
+
+
+.container-accountinfo{
+    box-shadow:var(--shadow-itembox-info);
+    padding-top:1rem;
+    padding-bottom:1rem;
+    border-radius: 1rem;
+}
+.container-accountinfo .text-content{
+    color: var(--black);
+}
+</style>
+<div class="main-box">
+    <div class="main-array-title">
+        <span class="main-text-title">계정 정보</span>
+    </div>
+    <div class="container-accountinfo main-container-info" >
+        <div class="item-content">
+            <span class="main-text-content text-content">이름:</span>
+            <span class="main-text-rowindex">{{target_user.userrealname}}</span>
+        </div>
+        <div class="item-content">
+            <span class="main-text-content text-content">E-mail:</span>
+            <span class="main-text-rowindex" >{{target_user.email}}</span>
+        </div>
+        <div class="item-content">
+            <span class="main-text-content text-content">연락처 (아이디):</span>
+            <span class="main-text-rowindex" >{{target_user.username}}</span>
+        </div>
+        <div class="item-content">
+            <span class="main-text-content">계정 상태:</span>
+            <span class="main-text-rowindex" >{{target_user.get_state_display}}</span>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<header class="header-white">
+         {% include 'headersnippets/back.html' %}
+</header>
+
+
+<main class="main-guide">
+    {% if teacherapply_step == 'step1' %}
+        {% include 'teacherapplyapp/guidesnippets/step1.html' %}
+    {% elif teacherapply_step == 'step2' %}
+        {% include 'teacherapplyapp/guidesnippets/step2.html' %}
+    {% elif teacherapply_step == 'step3' %}
+        {% include 'teacherapplyapp/guidesnippets/step3.html' %}
+    {% endif %}
+</main>
+{% endblock %}
+

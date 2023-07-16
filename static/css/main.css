@@ -1,0 +1,221 @@
+
+.main-box{
+    width:100%;
+    padding:4rem var(--main-padding) 1rem var(--main-padding);
+ }
+
+
+/* text 관리 */
+
+.main-text-title-guideform,
+.main-text-title-table,
+.main-text-title{
+    font-size:var(--fontsize-title);
+    color:var(--black);
+    font-weight:var(--fontweight-emphasize);
+
+}
+
+.main-text-title-guideform{
+    font-size:1.6rem;
+    margin-bottom: 1.5rem;
+    margin-left:0.5rem;
+}
+.main-text-title-table{
+    font-size:1.4rem;
+}
+
+.main-text-subtitle{
+    color:var(--gray);
+    margin-left: 1rem;
+    font-size:1.4rem;
+    font-weight:var(--fontweight-index);
+}
+
+
+
+.main-text-subindex{
+    color:var(--middleblue);
+    font-size:var(--fontsize-content);
+    font-weight:var(--fontweight-content);
+    margin-right:0.6rem;
+}
+
+
+
+.main-text-index{
+    color:var(--black);
+    font-size:var(--fontsize-index);
+    font-weight:var(--fontweight-title);
+}
+
+.main-text-rowindex{
+    color:var(--black);
+    font-size:var(--fontsize-content);
+    font-weight:var(--fontweight-index);
+}
+
+.main-text-content{
+    color:var(--gray);
+    font-size:var(--fontsize-content);
+    font-weight:var(--fontweight-content);
+}
+
+
+/* emoji 관리 */
+
+.main-emoji-empty{
+    font-size:1.4rem;
+    margin-left:0.6rem;
+}
+
+
+
+
+
+
+.main-array-title-table,
+.main-array-title,
+.main-array-row{
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: center;
+    width:100%;
+}
+.main-array-title{
+    padding-left:0.5rem;
+    padding-right:0.5rem;
+    margin-bottom:1.3rem;
+}
+.main-array-title-table{
+    padding-left:0.5rem;
+    padding-right:0.5rem;
+    margin-bottom:1rem;
+}
+
+.main-array-column{
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items: flex-start;
+}
+
+.main-hr-head{
+    height:3px;
+    background:var(--whitegray);
+    width:100%;
+}
+
+
+.main-interval-items{
+    height:1.7rem;
+    width:100%;
+}
+.main-interval-line{
+    height:2px;
+    background: var(--whitegray);
+    width:100%;
+}
+
+.main-interval-items:last-child {
+    display: none;
+}
+
+/* btn 관리 */
+
+
+
+.main-btn{
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    height:3.3rem;
+    padding-left:var(--content-padding);
+    padding-right:var(--content-padding);
+    background:var(--darkgray);
+    color:var(--white);
+    border-radius:0.7rem;
+    font-size:var(--fontsize-detail);
+    font-weight:var(--fontweight-index);
+    flex-shrink: 0;
+}
+
+
+.main-icon-negative,
+.main-icon-positive,
+.main-icon-help{
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    width:3.3rem;
+    height:3.3rem;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--orange);
+    box-shadow: var(--shadow-btn);
+    font-size: 2rem;
+    color: var(--white);
+    font-weight: 600;
+}
+.main-icon-positive{
+    background: var(--darkblue);
+}
+.main-icon-negative{
+    background: var(--red);
+}
+
+.main-btn-add,
+.main-btn-delete,
+.main-btn-edit{
+    padding:0.1rem;
+    border-radius:50%;
+    background:var(--darkgray);
+    color: var(--white);
+    font-size:1.4rem;
+    font-weight:800;
+    margin-left:1rem;
+    flex-shrink:0;
+}
+
+
+.main-btn-edit{
+    font-weight:100;
+    font-size:1.02rem;
+    padding:0.25rem 0.28rem;
+}
+.main-btn-delete{
+    margin-left:0.7rem;
+    background:var(--red);
+}
+
+
+
+
+
+.main-link-help{
+    margin-top:1.3rem;
+    margin-left:0.5rem;
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: center;
+}
+.main-link-help .text-help{
+    font-size:var(--fontsize-content);
+    color:var(--gray);
+    font-weight:var(--fontweight-content);
+}
+.main-link-help .text-link{
+    font-weight:var(--fontweight-index);
+    font-size:1.25rem;
+    color:var(--darkblue);
+    text-decoration: underline;
+    text-decoration-color:var(--darkblue);
+    text-decoration-thickness: 1px;
+    margin-left:0.7rem;
+}

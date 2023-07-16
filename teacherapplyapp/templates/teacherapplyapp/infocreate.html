@@ -1,0 +1,53 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+
+<header class="header-black">
+        {% with title="선생님 정보 작성" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+        {% url 'accountapp:setting' pk=target_teacherapply.customuser.pk as url %}
+        {% include 'headersnippets/exit.html' with url=url %}
+</header>
+
+<main>
+  <div class="main-box">
+      <div class="main-text-title-guideform" >기본 정보를 입력해주세요</div>
+      <div class="main-container-form">
+                 <form action="{% url 'teacherapplyapp:infocreate' pk=target_teacherapply.pk %}"
+            method="post" style="width:100%" onsubmit="return confirmCreateTeacherapply()">
+            {% csrf_token %}{% bootstrap_form form %}
+
+            <input type="submit" class="btn-submit"   value="선생님 신청">
+          </form>
+      </div>
+  </div>
+</main>
+
+<script>
+    function confirmCreateTeacherapply() {
+        var confirmMessage = "기재 정보를 정학히 확인해주세요. 이후 내용을 수정할 수 없습니다.";
+        return confirm(confirmMessage);
+    }
+
+    function setInitialColor(checkbox) {
+        if(checkbox.checked) {
+            checkbox.parentNode.style.backgroundColor = 'var(--darkblue)';
+            checkbox.parentNode.style.color = 'var(--white)';
+        } else {
+            checkbox.parentNode.style.backgroundColor = 'var(--whitegray)';
+            checkbox.parentNode.style.color = 'var(--gray)';
+        }
+    }
+
+    document.querySelectorAll('.selectmultiple input[type="checkbox"]').forEach(function(checkbox){
+        setInitialColor(checkbox);
+        checkbox.addEventListener('change', function() {
+            setInitialColor(checkbox);
+        });
+    });
+</script>
+{% endblock %}
+

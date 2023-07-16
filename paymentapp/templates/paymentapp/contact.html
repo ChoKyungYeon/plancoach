@@ -1,0 +1,77 @@
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<style>
+.container-contact .img-contact{
+        width: 3.8rem;
+        height: 3.8rem;
+        object-fit: cover;
+}
+
+.container-contact .btn-kakaotalk,
+.container-contact .btn-phone{
+        margin-left: 2rem;
+        width: 100%;
+        height: 3.8rem;
+        display: flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items: center;
+        border-radius: 1rem;
+        font-size: 1.28rem;
+        font-weight: var(--fontweight-content);
+        color: var(--black);
+
+}
+.container-contact .btn-kakaotalk{
+        background: #FFEB3B;
+}
+.container-contact .btn-phone{
+        background: #6AAF50;
+    color: var(--white);
+}
+.container-contact .item-contact{
+        width: 100%;
+        display: flex;
+        flex-direction:row;
+        justify-content:flex-start;
+        align-items: center;
+        margin-top: 2rem;
+}
+.container-contact .text-guide{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+</style>
+
+<header class="header-black">
+        {% with title="Contact" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+        {% if target_consult.state == 'new'  %}
+        {% url 'studentapp:dashboard' pk=user.pk  as url %}
+        {% include 'headersnippets/exit.html' with url=url %}
+        {% else %}
+        {% url 'consultapp:dashboard' pk=target_consult.pk  as url %}
+        {% include 'headersnippets/exit.html' with url=url %}
+        {% endif %}
+</header>
+
+<main class="main-guide">
+    <div class="main-container-etc container-contact">
+        <div class="text-index" >결제에 실패하셨나요?</div>
+        <div class="text-content text-guide">결제에 실패하셨을 경우 아래 고객센터로 문의해주세요
+        본인의 연락처와 진행중인 수업을 남겨주시면 평균 1시간 내로 조치해드립니다!</div>
+        <div class="item-contact">
+                <img class="img-contact" src='/static/icons/phone.png' >
+                <a class="btn-phone">고객센터로 문의하기</a>
+        </div>
+        <div class="item-contact">
+                <img class="img-contact" src='/static/icons/kakaotalk.png' >
+                <a class="btn-kakaotalk">카카오톡 문의하기</a>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

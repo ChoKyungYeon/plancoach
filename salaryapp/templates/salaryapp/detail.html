@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<header class="header-black">
+        {% include 'headersnippets/back.html' %}
+        {% with title="수익 상세" %}
+        {% include 'headersnippets/title.html' %}
+        {% endwith %}
+</header>
+
+<main>
+<div class="main-box account-salary_last" >
+    {% include 'salaryapp/detailsnippets/salaryinfo.html' %}
+    <div class="main-container-info" style="margin-bottom:2rem;">
+        {% include 'salaryapp/detailsnippets/bank.html' %}
+        {% include 'salaryapp/detailsnippets/amountinfo.html' %}
+    </div>
+    {% include 'salaryapp/detailsnippets/historys.html' %}
+</div>
+
+</main>
+
+{% endblock %}
+

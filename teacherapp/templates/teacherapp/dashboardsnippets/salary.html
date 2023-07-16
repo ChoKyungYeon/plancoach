@@ -1,0 +1,27 @@
+<div class="main-box">
+    <div class="main-array-title">
+        <span class="main-text-title">급여 관리</span>
+    </div>
+    {% if target_salary %}
+    <a href="{% url 'salaryapp:detail' pk=target_salary.pk %}" class="main-container-dashboard" >
+        <div class="item-content">
+            <span class="main-text-content">{{target_salary.salaryday|date:"Y년 m월 d일" }}</span>
+            <div class="main-array-row array-info" >
+                <span class="main-text-content text-content">예상 급여</span>
+                <span class="main-text-index">{{target_salary.paid_amount}}원</span>
+            </div>
+        </div>
+        <div class="material-icons item-nav" style="font-size:1.9rem;">zoom_in</div>
+    </a>
+    {% else %}
+    <a  class="main-container-dashboard" >
+        <div class="item-content">
+            <span class="main-text-content">예정된 급여일이 없습니다.</span>
+            <div class="main-array-row array-info" >
+                <span class="main-text-content text-content">예상 급여</span>
+                <span class="main-text-index">0원</span>
+            </div>
+        </div>
+    </a>
+    {% endif %}
+</div>

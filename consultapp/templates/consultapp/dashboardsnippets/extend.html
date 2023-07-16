@@ -1,0 +1,39 @@
+
+
+<div class="main-box consult-dashboard-setting" >
+    <div class="main-array-title"><span class="main-text-title">수업 연장</span>
+    </div>
+    <a href="{% url 'paymentapp:create' pk=target_consult.pk %}" class="main-container-dashboard" >
+        <div class="item-content">
+            {% if target_consult.state == 'unextended'%}
+            <span class="main-text-content" >수업을 연장해주세요.</span>
+            {% elif target_consult.state == 'extended'%}
+            <div class="main-array-row">
+            <span class="main-text-content" >
+                {{ target_consult.extenddate|date:"m월 d일" }}
+            </span>
+            <span class="main-text-content">
+                부터 재연장 가능
+            </span>
+            </div>
+            {% else %}
+            <span class="main-text-content">신규 수업입니다</span>
+            {% endif %}
+            <div class="main-array-row array-info" >
+                <span class="main-text-content text-content">수업 상태</span>
+                {% if target_consult.state == 'unextended'%}
+                <span class="main-text-index">미연장</span>
+                {% elif target_consult.state == 'extended'%}
+                <span class="main-text-index">연장완료</span>
+                {% else %}
+                <span class="main-text-index">신규</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
+    </a>
+</div>
+
+
+
+

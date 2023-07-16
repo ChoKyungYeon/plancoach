@@ -1,0 +1,28 @@
+
+<style>
+.text-logo{
+    font-size: 2.5rem;
+    color:var(--white);
+    margin-right: auto;
+    text-shadow: 0 0 1.5px var(--white);
+}
+.text-logo .text-letter{
+    text-shadow: inherit;
+    font-family: 'Righteous', cursive;
+    font-weight:var(--fontweight-title);
+    font-size: inherit;
+    color: inherit;
+}
+.text-logo .text-and{
+    font-weight:var(--fontweight-emphasize);
+    text-shadow: inherit;
+    font-size: 90%;
+    color: inherit;
+    margin-left:0.3rem;
+    margin-right: 0.3rem;
+}
+</style>
+
+<a class="text-logo" href="{% url 'homescreenapp:homescreen'%}">
+    <span class="text-letter">Plan</span><span class="text-and">&</span><span class="text-letter">Coach</span>
+</a>

@@ -1,0 +1,69 @@
+
+<style>
+
+.container-contact{
+    background: linear-gradient(0deg, #f5f7ff, white);
+    padding-bottom: 10rem;
+    align-items: center;
+
+}
+
+
+.container-contact .item-contact{
+    margin-top:1.5rem;
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+    width: 100%;
+    padding-left: var(--content-padding);
+    padding-right: var(--content-padding);
+}
+
+
+.container-contact .img-contact{
+        width: 3.6rem;
+        height: 3.6rem;
+        object-fit: cover;
+}
+.container-contact .btn-kakaotalk,
+.container-contact .btn-phone{
+        margin-left: 4%;
+        width: 100%;
+        height: 4.3rem;
+        display: flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items: center;
+        border-radius: 1rem;
+        font-size: 1.5rem;
+        font-weight: var(--fontweight-content);
+        color: var(--black);
+
+}
+.container-contact .btn-kakaotalk{
+        background: #FFEB3B;
+    font-weight: var(--fontweight-index);
+}
+.container-contact .btn-phone{
+        background: #6AAF50;
+    color: var(--white);
+}
+
+</style>
+<div class="main-container-homescreen container-contact">
+    <div class="text-title">
+        궁금한 점이 더 있으신가요?
+    </div>
+    <div class="text-title">
+        언제든 고객 센터로 문의주세요!
+    </div>
+    <div class="item-contact" style="margin-top:3rem" >
+            <img class="img-contact" src='/static/icons/phone.png' >
+            <a class="btn-phone">고객센터로 문의하기</a>
+    </div>
+    <div class="item-contact">
+            <img class="img-contact" src='/static/icons/kakaotalk.png' >
+            <a class="btn-kakaotalk">카카오톡 문의하기</a>
+    </div>
+</div>

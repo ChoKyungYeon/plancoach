@@ -1,0 +1,131 @@
+/* hedaer 관리*/
+.header-whiteblue,
+.header-white,
+.header-black{
+    color:var(--white);
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items: center;
+    width:100%;
+    height:var(--header-height);
+    position: fixed;
+    background-color:var(--blackblue);
+    padding-left:var(--header-padding);
+    padding-right:var(--header-padding);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index:100;
+}
+
+
+
+
+
+.header-white{
+    background-color:var(--color-base);
+    color:#3c3e49;
+}
+.header-whiteblue{
+    background-color:var(--whiteblue);
+    color:#3c3e49;
+}
+
+
+
+
+header .text-title{
+    font-size: 1.7rem;
+    color:inherit;
+    font-weight: var(--fontweight-index);
+    margin-right: auto;
+}
+
+
+
+
+header .btn-like-false,
+header .btn-like-true,
+header .btn-share{
+    color:inherit;
+    font-size: 2.2rem;
+    font-weight: var(--fontweight-content);
+    margin-left:1.5rem;
+}
+
+header .btn-like-true{
+    color:var(--red);
+}
+
+header .btn-share{
+    font-size: 2.1rem;
+    margin-left: auto;
+}
+header .btn-delete{
+    font-size: 2.3rem;
+    margin-left: auto;
+}
+
+header .btn-back{
+    color:inherit;
+    font-size: 1.7rem;
+    font-weight: var(--fontweight-emphasize);
+}
+
+.header-white .text-title{
+    font-weight: var(--fontweight-emphasize);
+}
+
+
+
+header .btn-home{
+    color:inherit;
+    font-size: 2.5rem;
+    font-weight: var(--fontweight-emphasize);
+    margin-right: auto;
+}
+
+header .btn-account{
+    color:inherit;
+    font-size: 2.5rem;
+    var(--fontweight-Content);
+    margin-left:auto;
+}
+
+header .btn-menu{
+    color:inherit;
+    font-size: 2.5rem;
+    var(--fontweight-Content);
+    margin-right:auto;
+}
+header .btn-exit{
+    color:inherit;
+    font-size: 2.5rem;
+    var(--fontweight-title);
+    margin-left:auto;
+}
+header .btn-dashboard{
+    color:inherit;
+    font-size: 2.3rem;
+    var(--fontweight-title);
+    margin-left:auto;
+}
+
+header .btn-main{
+    border: 0.3px solid var(--gray);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background:var(--darkgray);
+    height:2.7rem;
+    padding-left:1rem;
+    padding-right:1rem;
+    border-radius:0.5rem;
+    font-size:1.3rem;
+    font-weight: var(--fontweight-index);
+    color:var(--white);
+}
+
+

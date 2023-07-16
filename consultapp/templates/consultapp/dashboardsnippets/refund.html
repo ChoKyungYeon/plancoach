@@ -1,0 +1,23 @@
+
+
+<div class="main-box">
+    <div class="main-array-title"><span class="main-text-title">수업 환불</span>
+    </div>
+    <a href="{% url 'refundapp:guide' pk=target_consult.pk %}"  class="main-container-dashboard">
+        <div class="item-content">
+            <span class="main-text-content">수업 환불을 진행하고 싶으신가요?</span>
+            <div class="main-array-row array-info" >
+                <span class="main-text-content text-content">환불 예정액</span>
+                <span class="main-text-index">
+                    {{target_consult.refund_entire_amount}}원
+                </span>
+            </div>
+
+        </div>
+        <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
+    </a>
+</div>
+
+
+
+

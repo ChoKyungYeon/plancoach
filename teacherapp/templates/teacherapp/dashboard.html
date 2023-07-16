@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+
+
+<header class="header-black">
+    {% if user.state == 'superuser' %}
+        {% url 'superuserapp:dashboard' as url %}
+        {% include 'headersnippets/list.html' with url=url %}
+        <form action="{% url 'profileapp:delete' pk=target_user.profile.pk %}" method="post" id="teacher-delete-form">
+            {% csrf_token %}
+            <input style="display:none" type="submit" name="next" value="{% url 'superuserapp:dashboard' %}">
+            <button type="button" onclick="confirmteacherDelete()" class=" btn-delete material-icons">delete_forever</button>
+        </form>
+    {% else %}
+        {% include 'headersnippets/home.html' %}
+        {% include 'headersnippets/account.html'  %}
+    {% endif %}
+</header>
+
+<main >
+    {% include 'teacherapp/dashboardsnippets/head.html' %}
+    <div class="teacher-dashboard-slide1" style="display:block">
+        {% include  'teacherapp/dashboardsnippets/profile.html' %}
+        {% include  'teacherapp/dashboardsnippets/profileinfo.html' %}
+        {% include  'teacherapp/dashboardsnippets/disablesetting.html' %}
+        {% include  'teacherapp/dashboardsnippets/tuitionsetting.html' %}
+
+    </div>
+    <div class="teacher-dashboard-slide2" style="display:none;">
+        {% include 'teacherapp/dashboardsnippets/applications.html' %}
+        {% include 'teacherapp/dashboardsnippets/consults.html' %}
+    </div>
+    <div class="teacher-dashboard-slide3" style="display:none;">
+        {% include  'teacherapp/dashboardsnippets/bank.html' %}
+        {% include  'teacherapp/dashboardsnippets/salary.html' %}
+        {% include  'teacherapp/dashboardsnippets/history.html' %}
+    </div>
+</main>
+<script>
+    function confirmteacherDelete() {
+    if (confirm("선택한 선생님을 학생으로 전환하시겠습니까?")) {
+        document.getElementById("teacher-delete-form").submit();
+    }
+}
+</script>
+{% endblock %}
+

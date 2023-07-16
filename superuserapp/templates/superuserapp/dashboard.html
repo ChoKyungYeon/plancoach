@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+
+
+<header class="header-black">
+    {% include 'headersnippets/home.html' %}
+    {% include 'headersnippets/account.html'  %}
+</header>
+
+<main class=" superuser-dashboard ">
+    {% include 'superuserapp/dashboardsnippets/head.html' %}
+    <div class="superuser-dashboard-slide1" style="display:block">
+        {% include 'superuserapp/dashboardsnippets/salary.html' %}
+    </div>
+    <div class="superuser-dashboard-slide2" style="display:none">
+        {% include 'superuserapp/dashboardsnippets/teacherapply.html' %}
+    </div>
+    <div class="superuser-dashboard-slide3" style="display:none">
+        {% include 'superuserapp/dashboardsnippets/refund.html' %}
+    </div>
+    <div class="superuser-dashboard-slide4" style="display:none">
+        {% include 'superuserapp/dashboardsnippets/teacher.html' %}
+    </div>
+</main>
+{% endblock %}

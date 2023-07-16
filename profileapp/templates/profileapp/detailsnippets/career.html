@@ -1,0 +1,82 @@
+<style>
+
+.profile-detail-career .main-array-row{
+    margin-bottom:0.5rem;
+}
+
+.profile-detail-career .main-btn-edit{
+    margin-left:auto;
+}
+.profile-detail-career .main-text-subindex{
+    margin-top:0.5rem;
+}
+
+
+
+
+
+</style>
+{% if careers %}
+<div class="main-box profile-detail-career">
+    <div class="main-array-title"><span class="main-text-title">학원 및 교습 경력</span>
+        {% if user == target_profile.teacher %}
+        <a href="{% url 'profile_careerapp:create' pk=target_profile.pk %}" class="main-btn-add material-icons">add</a>
+        {% endif %}
+    </div>
+    {% for career in careers %}
+        {% if not forloop.last %}
+        <div class="container-info" style="margin-bottom:2rem;">
+        {% else %}
+        <div class="container-info">
+        {% endif %}
+            <div class="main-array-row">
+                <span class="main-text-index">
+                    {{career.subject}}&nbsp;{{career.type}}
+                </span>
+                <div class="item-btn">
+                {% if user == target_profile.teacher %}
+                <a href="{% url 'profile_careerapp:update' pk=career.pk %}" class="main-btn-edit material-icons">edit</a>
+                <form action="{% url 'profile_careerapp:delete' pk=career.pk %}" method="post" id="career-delete-form{{ forloop.counter }}">
+                    {% csrf_token %}
+                    <input style="display:none" type="submit" name="next" value="{% url 'profileapp:detail' pk=target_profile.pk %}">
+                    <button type="button" onclick="confirmcareerDelete({{ forloop.counter }})" class="main-btn-delete material-icons">remove</button>
+                </form>
+                {% endif %}
+                </div>
+            </div>
+            <span class="main-text-content">{{career.content|safe|linebreaksbr}}</span>
+            <span class="main-text-subindex">
+                {{ career.year }}년도 ~
+                {% if career.duration == '진행중' %}
+                현재까지
+                {% else %}
+                {{ career.duration }}
+                {% endif %}
+            </span>
+
+        </div>
+    {% endfor %}
+</div>
+
+{% else %}
+    {% if user == target_profile.teacher %}
+    <div class="main-box profile-detail-career">
+        <div class="main-array-title"><span class="main-text-title">학원 및 교습 경력</span>
+            <a href="{% url 'profile_careerapp:create' pk=target_profile.pk %}" class="main-btn-add material-icons">add</a>
+        </div>
+        <div class="main-container-empty">
+            <span class="text-empty">
+            경력 사항을 추가해주세요!<br>
+            </span>
+        </div>
+    </div>
+    {% endif %}
+{% endif %}
+
+<script>
+    function confirmcareerDelete(counter) {
+        if (confirm("선택한 경력 사항을 정말 삭제하시겠습니까?")) {
+            document.getElementById("career-delete-form"+ counter).submit();
+        }
+    }
+</script>

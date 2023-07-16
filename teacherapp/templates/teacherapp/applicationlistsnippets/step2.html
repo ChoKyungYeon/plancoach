@@ -1,0 +1,17 @@
+
+<div class="main-box">
+    {% if applications_matching %}
+    {% for target_application in applications_matching %}
+        {% include 'snippets/application.html' %}
+        {% if not forloop.last %}
+        <div class="main-interval-items"></div>
+        {% endif %}
+    {% endfor %}
+    {% else %}
+        <div class="main-container-empty">
+        <span class="text-empty">
+        확인 완료한 신청서가 없습니다.
+        </span>
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,49 @@
+<style>
+
+.container-manageprofile .icon-abled,
+.container-manageprofile .icon-disabled{
+    color:var(--middleblue);
+    font-width: 700;
+    font-size: 1.4rem;
+    margin-left: 1rem;
+    background: var(--whitegray);
+    padding:0.2rem;
+    border-radius: 50%;
+}
+.container-manageprofile .icon-disabled{
+    color: var(--red);
+}
+
+</style>
+
+<div class="main-box">
+        <div class="main-array-title">
+        <span class="main-text-title">선생님 목록</span>
+    </div>
+    {% if profiles %}
+        {% for profile in profiles %}
+        <a href="{% url 'teacherapp:dashboard' pk=profile.teacher.pk %}"   class="container-manageprofile main-container-snippets">
+            <div class="main-array-column">
+                <div class="main-array-row">
+                <span class="main-text-index">{{ profile.teacher.userrealname}}</span>
+                {% if profile.state == 'abled' %}
+                <span class="material-icons icon-abled">person</span>
+                {% else %}
+                <span class="material-icons icon-disabled">person_off</span>
+                {% endif %}
+                </div>
+                <span class="main-text-content" style="margin-top:0.3rem;">{{ profile.teacher.user_phonenumber}}</span>
+            </div>
+        </a>
+        {% if not forloop.last %}
+        <div class="main-interval-items"></div>
+        {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="main-container-empty">
+        <span class="text-empty">
+        선생님 목록이 없습니다
+        </span>
+        </div>
+    {% endif %}
+</div>

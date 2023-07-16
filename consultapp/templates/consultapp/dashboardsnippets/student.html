@@ -1,0 +1,33 @@
+<style>
+.container-student .text-phone{
+    margin-bottom: 0.3rem;
+    margin-top: 0.7rem;
+}
+</style>
+
+
+<div class="main-box" >
+    <div class="main-array-title"><span class="main-text-title">학생 정보</span></div>
+    {% if user == target_consult.teacher %}
+    <a href="{% url 'consultapp:infoupdate' pk=target_consult.pk %}"  class="main-container-dashboard container-student">
+    {% else %}
+    <a class="main-container-dashboard container-student">
+    {% endif %}
+    <div class="item-content">
+        <span class="main-text-index" >
+            {{target_consult.student.userrealname}} 학생
+        </span>
+        <span class="main-text-content text-phone" >
+            {{target_consult.student.user_phonenumber}}
+        </span>
+        <span class="main-text-content">
+            {{target_consult.belong}}, {{target_consult.get_age_display}}
+        </span>
+    </div>
+    {% if user == target_consult.teacher %}
+    <div class="item-nav material-icons" style="font-size: 1.5rem">edit</div>
+    {% endif %}
+    </a>
+</div>
+
+

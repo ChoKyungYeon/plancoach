@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<style>
+.container-privacyploicy{
+    flex-direction:row;
+    justify-content:space-between;
+    align-items: center;
+}
+</style>
+<header class="header-black">
+    {% include 'headersnippets/back.html' %}
+    {% with title="개인정보 처리방침" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
+</header>
+
+<main class="main-guide">
+    <div class="main-container-etc container-privacyploicy">
+            <div class="item-content">
+                 <span class="main-text-content" style="margin-right: 1rem;">수정</span>
+                 <span class="main-text-index">{{ target_document.privacypolicy_updated|date:"Y년 m월 d일"  }}</span>
+            </div>
+            <a class="btn-submit  material-icons" href="{{ target_document.privacypolicy.url }}" download>
+                <button style="width: 100%">download</button></a>
+    </div>
+</main>
+{% endblock %}
