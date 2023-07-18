@@ -1,8 +1,7 @@
-
 <div class="main-container-head container-head-detail">
     <div class="item-infos">
         <span class="text-title">{{target_qna.created_before}} 작성</span>
-        <div class="main-array-row array-info" >
+        <div class="main-array-row interval-top">
             <span class="text-content">답변 여부:</span>
             {% if target_qna.is_answered %}
             <span class="text-subcontent">답변 완료</span>
@@ -13,18 +12,18 @@
     </div>
     <div class="item-btn">
         {% if qna_before %}
-            <a href="{% url 'consult_qnaapp:detail' pk=qna_before.pk %}" class="btn-abled">
+        <a href="{% url 'consult_qnaapp:detail' pk=qna_before.pk %}" class="btn-abled">
         {% else %}
         <a class="btn-disabled">
         {% endif%}
-            <span class="text-index">이전</span>
+        <span class="text-index">이전</span>
         </a>
         {% if qna_next %}
-            <a href="{% url 'consult_qnaapp:detail' pk=qna_next.pk %}" class="btn-abled">
+        <a href="{% url 'consult_qnaapp:detail' pk=qna_next.pk %}" class="btn-abled">
         {% else %}
         <a class="btn-disabled">
         {% endif%}
-            <span class="text-index">다음</span>
+        <span class="text-index">다음</span>
         </a>
     </div>
 </div>

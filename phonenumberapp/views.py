@@ -1,48 +1,48 @@
 from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, FormView
-from django.utils.http import urlencode
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import login
 from accountapp.models import CustomUser
 from plancoach.sms import Send_SMS
 from phonenumberapp.forms import PhonenumberCreateForm, PhoneNumberVerifyForm
 from phonenumberapp.models import Phonenumber
-import random
 from django.contrib.auth import get_user_model
-
+from django.core.exceptions import ObjectDoesNotExist
 
 class PhonenumberCreateMixin(CreateView):
     model = Phonenumber
     form_class = PhonenumberCreateForm
 
     def form_valid(self, form):
+        for phonenumber in Phonenumber.objects.all():
+            phonenumber.updater()
         phonenumber = form.cleaned_data['phonenumber']
         usernames = get_user_model().objects.values_list('username', flat=True)
         with transaction.atomic():
-            Phonenumber.objects.filter(phonenumber=phonenumber).delete()
+            # form invalid
             if len(phonenumber) <11 or phonenumber[:3] != '010':
                 form.add_error('phonenumber', '정확한 전화번호를 입력해주세요')
                 return self.form_invalid(form)
-
             if self.condition(phonenumber, usernames):
                 form.add_error('phonenumber', self.error_message)
                 return self.form_invalid(form)
             try:
+                # updater
                 customuser = get_object_or_404(CustomUser, pk=self.kwargs['pk'])
                 form.instance.customuser = customuser
                 form.instance.save()
             except:
                 pass
+            form.instance.verification_code='111111'#deploy check random.randint(100000, 999999)
+            form.instance.save()
+            to = form.instance.phonenumber
+            content = f'{self.sms_message} {form.instance.verification_code}를 입력하세요'
+            Send_SMS(to, content, True)
             return super().form_valid(form)
 
     def get_success_url(self):
-        self.object.verification_code ='111111'
-        self.object.save()
-        to = self.object.phonenumber
-        content = f'{self.sms_message} {self.object.verification_code}를 입력하세요'
-        Send_SMS(to, content, True)
         return reverse_lazy(self.reverse_url, kwargs={'pk': self.object.pk})
 
     def condition(self, phonenumber, usernames):
@@ -82,10 +82,18 @@ class PhonenumberSearchCreateView(PhonenumberCreateMixin):
     def condition(self, phonenumber, usernames):
         return phonenumber not in usernames
 
-
+#없으면 redirect하도록, 시작할때 업데이트
 class PhonenumberVerifyMixin(FormView):
     model = Phonenumber
     form_class = PhoneNumberVerifyForm
+
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            phonenumber = self.model.objects.get(pk=self.kwargs['pk'])
+        except ObjectDoesNotExist:
+            return redirect(reverse('accountapp:login'))
+
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -118,8 +126,6 @@ class PhonenumberVerifyMixin(FormView):
 
     def success_action(self, phonenumber):
         raise NotImplementedError()
-
-
 
 
 class PhonenumberSignupVerifyView(PhonenumberVerifyMixin):

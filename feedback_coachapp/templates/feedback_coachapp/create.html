@@ -2,25 +2,24 @@
 {% load bootstrap4 %}
 {% block content %}
 
-
-
 <header class="header-black">
-        {% with title="과목 분석 추가" %}
-        {% include 'headersnippets/title.html' %}
-        {% endwith %}
-        {% url 'consult_feedbackapp:coachdetail' pk=target_feedback.pk as url %}
-        {% include 'headersnippets/exit.html' with url=url %}
+    {% with title="과목 분석 추가" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
+    {% url 'consult_feedbackapp:coachdetail' pk=target_feedback.pk as url %}
+    {% include 'headersnippets/exit.html' with url=url %}
 </header>
 
 <main>
-  <div class="main-box">
-      <div class="main-container-form">
-          <form action="{% url 'feedback_coachapp:create' pk=target_feedback.pk %}" method="post" >
-            {% csrf_token %}{% bootstrap_form form %}
-            <input type="submit" class="btn-submit" value="과목 추가">
-          </form>
-      </div>
-  </div>
+    <div class="main-box">
+        <div class="main-container-form">
+            <form action="{% url 'feedback_coachapp:create' pk=target_feedback.pk %}" method="post">
+                {% csrf_token %}{% bootstrap_form form %}
+                <input type="submit" class="btn-submit" value="과목 추가">
+            </form>
+        </div>
+    </div>
 </main>
+
 {% endblock %}
 

@@ -1,16 +1,12 @@
 
 {% if not user.is_authenticated %}
     {% include 'headersnippets/login.html'  %}
-{% elif user.state == 'teacher' %}
-<a class="btn-dashboard material-icons" href="{% url 'teacherapp:dashboard' pk=user.pk %}">
-{% elif user.state == 'superuser' %}
-<a class="btn-dashboard material-icons" href="{% url 'superuserapp:dashboard' %}">
+{% elif user.student_step == 'teacher' %}
+    <a class="btn-dashboard material-icons" href="{% url 'teacherapp:dashboard' pk=user.pk %}">dashboard</a>
+{% elif user.student_step == 'superuser' %}
+    <a class="btn-dashboard material-icons" href="{% url 'superuserapp:dashboard' %}">dashboard</a>
+{% elif user.student_step == 'ongoing' %}
+    <a class="btn-dashboard material-icons" href="{% url 'consultapp:dashboard' user.consult_student.pk %}">dashboard</a>
 {% else %}
-    {% if user.user_consult %}
-    <a class="btn-dashboard material-icons" href="{% url 'consultapp:dashboard' user.user_consult.pk %}">
-    {% else %}
-    <a class="btn-dashboard material-icons" href="{% url 'studentapp:dashboard' pk=user.pk %}">
-    {% endif %}
+    <a class="btn-dashboard material-icons" href="{% url 'studentapp:dashboard' pk=user.pk %}">dashboard</a>
 {% endif %}
-    dashboard
-</a>

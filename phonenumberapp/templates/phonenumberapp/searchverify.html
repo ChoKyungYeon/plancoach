@@ -24,7 +24,7 @@
 
 <main>
   <div class="main-box">
-      <div class="main-container-form" >
+      <div class="main-container-form">
           <form action="{% url 'phonenumberapp:searchverify' pk=phonenumber.pk  %}" method="post" >
             {% csrf_token %}{% bootstrap_form form %}
       <div class="main-link-help">

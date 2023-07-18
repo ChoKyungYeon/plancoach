@@ -1,14 +1,9 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
-from django.utils.decorators import method_decorator
-from django.views.generic import RedirectView
 
-from plancoach.decorators import is_student
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
+from django.views.generic import RedirectView
 from profile_likeapp.models import Profile_like
 from profileapp.models import Profile
-
-# Create your views here.
 
 
 class Profile_likeView(RedirectView):

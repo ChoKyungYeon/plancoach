@@ -1,28 +1,20 @@
-from datetime import date, datetime
-
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
-from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, RedirectView, TemplateView, DetailView
-
-from accountapp.models import CustomUser
+from django.views.generic import CreateView, RedirectView, DetailView
 from consultapp.models import Consult
 from plancoach.sms import Send_SMS
-from plancoach.updaters import request_user_updater
-from paymentapp.models import Payment
+from plancoach.utils import salaryday_calculator
+from plancoach.variables import current_datetime
 from refundapp.forms import RefundCreateForm
 from refundapp.models import Refund
-from salaryapp.utils import salaryday_calculator
-
 
 class RefundGuideView(DetailView):
     model = Consult
     context_object_name = 'target_consult'
     template_name = 'refundapp/guide.html'
 
-# Create your views here.
-@method_decorator(request_user_updater, 'get')
+
 class RefundCreateView(CreateView):
     model = Refund
     form_class = RefundCreateForm
@@ -36,15 +28,17 @@ class RefundCreateView(CreateView):
 
     def form_valid(self, form):
         target_consult = get_object_or_404(Consult, pk=self.kwargs['pk'])
-        teacher=target_consult.teacher
+        teacher = target_consult.teacher
+        salaryday = salaryday_calculator(target_consult.enddate())
+        target_salary = target_consult.teacher.salary.get(salaryday=salaryday)
         with transaction.atomic():
+            # form instacne
             form.instance.classname = target_consult.consult_name()
             form.instance.student = target_consult.student
-            salaryday = salaryday_calculator(target_consult.enddate())
             form.instance.amount = target_consult.refund_amount()
-            target_salary = target_consult.teacher.salary.get(salaryday=salaryday)
             form.instance.salary = target_salary
             form.instance.save()
+            # add object
             if target_consult.state == 'extended':
                 extend_salaryday =salaryday_calculator(target_consult.extend_enddate())
                 next_salary = target_consult.teacher.salary.get(salaryday=extend_salaryday)
@@ -52,38 +46,34 @@ class RefundCreateView(CreateView):
                     classname=form.instance.classname,
                     salary=next_salary,
                     student=form.instance.student,
-                    amount=target_consult.tuition*10000,
+                    amount=target_consult.tuition,
                     bank=form.instance.bank,
                     accountnumber=form.instance.accountnumber,
                     depositor=form.instance.depositor
                 )
-
             target_consult.delete()
-            target_consult.application.delete()
-            return super().form_valid(form)
-            content = f'({self.classname}) 수업이 환불 처리 되었습니다.'
+            # sendsms
+            content = f'({form.instance.classname}) 수업이 환불 처리 되었습니다.'
             Send_SMS(teacher.username, content, teacher.can_receive_notification)
-            print('done')
+            return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('studentapp:dashboard', kwargs={'pk': self.request.user.pk})
 
-#1 로그인 2 소유자(선생만) 4step3
-@method_decorator(request_user_updater, 'get')
 class RefundStateUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
-        refund = Refund.objects.get(pk=self.request.GET.get('refund_pk'))
-        with transaction.atomic():
-            student=refund.student
-            content = f'({refund.classname}) 수업이 환불 완료되었습니다.'
-            Send_SMS(student.username, content, student.can_receive_notification)
         return reverse_lazy('superuserapp:dashboard')
+
     def get(self, request, *args, **kwargs):
         refund = Refund.objects.get(pk=self.request.GET.get('refund_pk'))
-        refund.is_given = True
-        refund.save()
-        return super(RefundStateUpdateView, self).get(request, *args, **kwargs)
-
+        student = refund.student
+        with transaction.atomic():
+            refund.is_given= True
+            refund.given_at= current_datetime
+            refund.save()
+            content = f'({refund.classname}) 수업이 환불 완료되었습니다.'
+            Send_SMS(student.username, content, student.can_receive_notification)
+            return super(RefundStateUpdateView, self).get(request, *args, **kwargs)
 
 
 class RefundDetailView(DetailView):

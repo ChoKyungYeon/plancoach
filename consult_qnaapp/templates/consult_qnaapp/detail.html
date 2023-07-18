@@ -1,27 +1,28 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-<style>
 
-header .btn-back{
-    margin-right: auto;
-}
+<style>
+    header .btn-back {
+        margin-right: auto;
+    }
 </style>
 
 {% with index="coach" %}
 <header class="header-black">
-        {%  url 'consult_qnaapp:list' pk=target_consult.pk  as url %}
-        {% include 'headersnippets/navback.html' with url=url %}
-        {% if user == target_consult.student %}
-            {% if not like %}
-            <a href="{% url 'qna_likeapp:like' %}?qna_pk={{ target_qna.pk }}"
-                    class="btn-like-false material-icons">favorite</a>
-            {% else %}
-            <a href="{% url 'qna_likeapp:like' %}?qna_pk={{ target_qna.pk }}"
-                    class="btn-like-true material-icons">favorite</a>
-            {% endif %}
-        {% endif %}
+    {% url 'consult_qnaapp:list' pk=target_consult.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
+    {% if user == target_consult.student %}
+    {% if not like %}
+    <a href="{% url 'qna_likeapp:like' %}?qna_pk={{ target_qna.pk }}"
+       class="btn-like-false material-icons">favorite</a>
+    {% else %}
+    <a href="{% url 'qna_likeapp:like' %}?qna_pk={{ target_qna.pk }}"
+       class="btn-like-true material-icons">favorite</a>
+    {% endif %}
+    {% endif %}
 </header>
+
 <main>
     {% include 'consult_qnaapp/detailsnippets/head.html' %}
     {% include 'consult_qnaapp/detailsnippets/question.html' %}
@@ -30,9 +31,10 @@ header .btn-back{
 
     {% if user == target_consult.student %}
     <a href="{% url 'consult_qnaapp:update' pk=target_consult_qna.pk %}"
-    class="material-icons main-icon-edit">edit</a>
+       class="material-icons main-icon-positive">edit</a>
     {% endif %}
 </main>
 {% endwith %}
+
 {% endblock %}
 

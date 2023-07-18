@@ -14,4 +14,4 @@ class Profile_gpa(models.Model):
     gpaverificationimage = models.ImageField(upload_to='profile_gpa/', blank=True, null=True)
     highschool = models.CharField(max_length=10)
     schooltype= models.CharField(max_length=20, choices=highschooltypechoice)
-    score = models.TextField(max_length=500)
+    score = models.TextField(max_length=300)

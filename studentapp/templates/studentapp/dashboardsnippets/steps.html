@@ -90,7 +90,7 @@
 </style>
 
 <div class="container-steps">
-    {% if step == "step1" %}
+    {% if step == "initial" %}
     <div class="main-array-row item-activated" >
     {% else %}
     <div class="main-array-row item-disabled">
@@ -102,7 +102,7 @@
         </div>
         <div class="text-content">
             선생님 목록에서 수업을 신청할 나에게 맞는 선생님을 찾습니다.
-            {% if step == "step1" %}
+            {% if step == "initial" %}
             &nbsp;
             <a href="{% url 'profileapp:list' %}"  class="link-nav">
             선생님 찾기 >
@@ -111,7 +111,7 @@
         </div>
     </div>
     <div class="material-icons item-arrow">arrow_drop_down</div>
-    {% if step == "step2" %}
+    {% if step == "applying" %}
     <div class="main-array-row item-activated" >
     {% else %}
     <div class="main-array-row item-disabled">
@@ -123,7 +123,7 @@
         </div>
         <div class="text-content">
             선택한 선생님의 프로필에서 양식에 맞게 신청서를 작성합니다
-            {% if step == "step2" %}
+            {% if step == "applying" %}
             &nbsp;
             <a href="{% url 'applicationapp:create' pk=target_user.pk %}" class="link-nav">
             신청서 작성 >
@@ -132,7 +132,7 @@
         </div>
     </div>
     <div class="material-icons item-arrow">arrow_drop_down</div>
-    {% if step == "step3" %}
+    {% if step == "applied" %}
     <div class="main-array-row item-activated" >
     {% else %}
     <div class="main-array-row item-disabled">
@@ -144,7 +144,7 @@
         </div>
         <div class="text-content">
             신청서가 수락되기 전까지 신청서 수정, 삭제가 가능합니다
-            {% if step == "step3" %}
+            {% if step == "applied" %}
             &nbsp;
             <a href="{% url 'applicationapp:detail' pk=user.application_student.pk %}" class="link-nav">
             신청서 상세 >
@@ -153,7 +153,7 @@
         </div>
     </div>
     <div class="material-icons item-arrow">arrow_drop_down</div>
-    {% if step == "step4" %}
+    {% if step == "matching" %}
     <div class="main-array-row item-activated" >
     {% else %}
     <div class="main-array-row item-disabled">
@@ -165,7 +165,7 @@
         </div>
         <div class="text-content">
             공개된 연락처를 통해 1주일 내로 자유롭게 시범 수업을 진행하고 수업을 성사합니다
-            {% if step == "step4" %}
+            {% if step == "matching" %}
             &nbsp;
             <a href="{% url 'applicationapp:detail' pk=user.application_student.pk %}" class="link-nav">
             연락처 확인 >
@@ -174,7 +174,7 @@
         </div>
     </div>
     <div class="material-icons item-arrow">arrow_drop_down</div>
-    {% if step == "step5" %}
+    {% if step == "new" %}
     <div class="main-array-row item-activated" >
     {% else %}
     <div class="main-array-row item-disabled">
@@ -186,9 +186,9 @@
         </div>
         <div class="text-content">
             신규 수업이 개설되고 3일 내로 수업료를 입금하면 수업이 시작됩니다!.
-            {% if step == "step5" %}
+            {% if step == "new" %}
             &nbsp;
-            <a href="{% url 'paymentapp:create' pk=target_consult_pk %}" class="link-nav">
+            <a href="{% url 'paymentapp:create' pk=user.consult_student.pk %}" class="link-nav">
             수업료 입금 >
             </a>
             {% endif %}

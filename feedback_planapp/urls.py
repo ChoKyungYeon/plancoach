@@ -1,5 +1,4 @@
 from django.urls import path
-
 from feedback_planapp.views import Feedback_planUpdateView
 
 app_name = 'feedback_planapp'

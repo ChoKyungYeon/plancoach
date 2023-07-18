@@ -2,7 +2,7 @@
 <a href="{% url 'salaryapp:detail' pk=salary.pk %}" class="main-container-dashboard" >
     <div class="item-content">
         <span class="main-text-content">{{salary.salaryday|date:"Y년 m월 d일" }}</span>
-        <div class="main-array-row array-info" >
+        <div class="main-array-row interval-top" >
             <span class="main-text-content text-content">지급액</span>
             <span class="main-text-index">{{salary.paid_amount}}원</span>
         </div>

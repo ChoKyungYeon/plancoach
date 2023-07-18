@@ -2,70 +2,76 @@
 {% load bootstrap4 %}
 {% block content %}
 <style>
+    .account-login .text-logo {
+        color: black;
+        margin-bottom: 1.5rem;
+        font-size: 3.5rem;
+        text-shadow: 0 0 1.2px black;
+        margin-right: 0;
+    }
 
-.account-login .text-logo{
-    color:black;
-    margin-bottom:1.5rem;
-    font-size: 3.5rem;
-    text-shadow: 0 0 1.2px black;
-    margin-right: 0;
-}
-.account-login .text-logo .text-and{
-    text-shadow: 0 2px 2px black;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-}
+    .account-login .text-logo .text-and {
+        text-shadow: 0 2px 2px black;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
 
-.container-login{
-    justify-content:center;
-    align-items: center;
-    padding-top:3rem;
-    padding-bottom:3rem;
-}
+    .container-login {
+        justify-content: center;
+        align-items: center;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
 
-.account-login-form-username{
-    margin-top:0rem;
-}
-.account-login-form-password{
-    margin-top:1.5rem;
-}
-.account-login .text-login{
-    font-size: 1.7rem;
-    font-weight: var(--fontweight-index);
-    color: var(--black);
-    margin-right: auto;
-    margin-left: 0.5rem;
-    margin-bottom:2.5rem;
-}
-@media screen and (min-width: 500px) {
-  :root {
-    --main-padding:25%;
-  }
-}
-@media screen and (min-width: 1000px) {
-  :root {
-    --main-padding:33%;
-  }
-}
+    .account-login-form-username {
+        margin-top: 0rem;
+    }
 
+    .account-login-form-password {
+        margin-top: 1.5rem;
+    }
+
+    .account-login .text-login {
+        font-size: 1.7rem;
+        font-weight: var(--fontweight-index);
+        color: var(--black);
+        margin-right: auto;
+        margin-left: 0.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    @media screen and (min-width: 500px) {
+        :root {
+            --main-padding: 25%;
+        }
+    }
+
+    @media screen and (min-width: 1000px) {
+        :root {
+            --main-padding: 33%;
+        }
+    }
 </style>
+
 <header class="header-white">
 </header>
-<main class="main-guide account-login" >
+
+<main class="main-guide account-login">
     {% include 'headersnippets/logo.html' %}
-  <div class="main-container-form container-login" style="margin-bottom: 2rem">
-      <div class="text-login">로그인하세요!</div>
-      <form action="{% url 'accountapp:login' %}" method="post" >{% csrf_token %}{% bootstrap_form form %}
-        <div class="main-link-help">
-            <span class="text-help">비밀번호를 잊어버리셨나요?</span>
-            <a  href="{% url 'phonenumberapp:searchcreate' %}" class="text-link">비밀번호 찾기</a>
-        </div>
-        <div class="main-link-help" style="margin-top:0.3rem;">
-            <span class="text-help">계정이 없으신가요?</span>
-            <a  href="{% url 'phonenumberapp:signupcreate' %}" class="text-link">회원가입</a>
-        </div>
-         <input type="submit" class="btn-submit btn-submit-short" value="로그인">
-      </form>
-  </div>
+    <div class="main-container-form container-login" style="margin-bottom: 2rem">
+        <div class="text-login">로그인하세요!</div>
+        <form action="{% url 'accountapp:login' %}" method="post">{% csrf_token %}{% bootstrap_form form %}
+            <div class="main-link-help">
+                <span class="text-help">비밀번호를 잊어버리셨나요?</span>
+                <a href="{% url 'phonenumberapp:searchcreate' %}" class="text-link">비밀번호 찾기</a>
+            </div>
+            <div class="main-link-help" style="margin-top:0.3rem;">
+                <span class="text-help">계정이 없으신가요?</span>
+                <a href="{% url 'phonenumberapp:signupcreate' %}" class="text-link">회원가입</a>
+            </div>
+            <input type="submit" class="btn-submit btn-submit-short" value="로그인">
+        </form>
+    </div>
 </main>
+
 {% endblock %}

@@ -2,16 +2,13 @@
 
 
 .container-application .text-matching{
-    color:var(--color-positive);
+    color:var(--green);
 }
 
 .container-application .text-applied{
-    color:var(--color-pending);
+    color:var(--middleblue);
 }
 
-.container-application .text-waiting{
-    color:var(--color-negative);
-}
 
 
 </style>
@@ -20,10 +17,8 @@
     <div  class="main-array-column" >
             {% if target_application.state == 'applied' %}
             <span class="main-text-content text-applied">{{target_application.expire_applied}} 내 확인</span>
-            {% elif target_application.state == 'matching' %}
+            {% else %}
             <span class="main-text-content text-matching">{{target_application.expire_matching}} 내 시범 수업 진행</span>
-            {% elif target_application.state == 'waiting' %}
-            <span class="main-text-content text-waiting">{{target_application.expire_waiting }}내 입금</span>
             {% endif %}
             <span class="main-text-index" style="margin-top:0.3rem;">{{target_application.student.userrealname}}&nbsp;학생 </span>
             <span class="main-text-content">{{target_application.belong}}&nbsp;{{target_application.get_age_display}}</span>

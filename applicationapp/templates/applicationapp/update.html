@@ -3,20 +3,22 @@
 {% block content %}
 
 <header class="header-black">
-        {% with title="신청서 수정" %}
-        {% include 'headersnippets/title.html' %}
-        {% endwith %}
-        {% url 'applicationapp:detail' pk=target_application.pk as url %}
-        {% include 'headersnippets/exit.html' with url=url %}
+    {% with title="신청서 수정" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
+    {% url 'applicationapp:detail' pk=target_application.pk as url %}
+    {% include 'headersnippets/exit.html' with url=url %}
 </header>
+
 <main>
-  <div class="main-box">
-      <div class="main-container-form">
-          <form action="{% url 'applicationapp:update' pk=target_application.pk %}" method="post"  >
-            {% csrf_token %}{% bootstrap_form form %}
-            <input type="submit" class="btn-submit" value="신청서 수정">
-          </form>
-      </div>
-  </div>
+    <div class="main-box">
+        <div class="main-container-form">
+            <form action="{% url 'applicationapp:update' pk=target_application.pk %}" method="post">
+                {% csrf_token %}{% bootstrap_form form %}
+                <input type="submit" class="btn-submit" value="신청서 수정">
+            </form>
+        </div>
+    </div>
 </main>
+
 {% endblock %}

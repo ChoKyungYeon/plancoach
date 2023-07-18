@@ -6,7 +6,8 @@ from documentapp.models import Document
 class DocumentAdminForm(forms.ModelForm):
     class Meta:
         model = Document
-        fields = ('refund', 'termofuse','privacypolicy','kakaotalk','refund_updated','termofuse_updated','privacypolicy_updated')
+        fields = ('refund', 'termofuse', 'privacypolicy', 'kakaotalk', 'refund_updated', 'termofuse_updated',
+                  'privacypolicy_updated')
         labels = {
             'refund': '환불 정책',
             'termofuse': '이용약관',

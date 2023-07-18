@@ -2,21 +2,17 @@
 {% load bootstrap4 %}
 {% block content %}
 
-
-
-
 <header class="header-black">
-        {% with title="수업 개설" %}
-        {% include 'headersnippets/title.html' %}
-        {% endwith %}
-        {% url 'applicationapp:detail' pk=target_user.application_student.pk as url %}
-        {% include 'headersnippets/exit.html' with url=url %}
+    {% with title="수업 개설" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
+    {% url 'applicationapp:detail' pk=target_user.application_student.pk as url %}
+    {% include 'headersnippets/exit.html' with url=url %}
 </header>
-
 
 <main class="consult-create ">
     <div class="main-box">
-        <div class="main-text-title-guideform" >* 수업 개설 주의 사항</div>
+        <div class="main-text-title-guideform">* 수업 개설 주의 사항</div>
         <div class="main-container-guideform">
             <div class="item-guide">
                 <span class="text-content">수업 개설 이후 학생 정보를 변경할 수 있습니다.</span>
@@ -30,8 +26,8 @@
         </div>
     </div>
     <div class="main-box" style="padding-top:2rem;">
-        <div class="main-text-title-guideform" >다음 정보로 수업이 개설됩니다</div>
-        <div class="main-container-guideform" >
+        <div class="main-text-title-guideform">다음 정보로 수업이 개설됩니다</div>
+        <div class="main-container-guideform">
             <div class="item-info">
                 <span class="text-content">담당 선생님</span>
                 <span class="main-text-rowindex">{{ user.userrealname}} 선생님</span>
@@ -48,11 +44,11 @@
             </div>
             <div class="item-info">
                 <span class="text-content">4주 수업료</span>
-                <span class="main-text-rowindex">{{ user.profile.tuition }}0000</span>
+                <span class="main-text-rowindex">{{ user.profile.tuition }}원</span>
             </div>
             <form action="{% url 'consultapp:create' pk=target_user.pk %}"
                   method="post" onsubmit="return confirmCreateConsult()">{% csrf_token %}{% bootstrap_form form %}
-            <input type="submit" class="btn-submit" value="수업개설">
+                <input type="submit" class="btn-submit" value="수업개설">
             </form>
         </div>
     </div>
@@ -64,4 +60,5 @@
         return confirm(confirmMessage);
     }
 </script>
+
 {% endblock %}

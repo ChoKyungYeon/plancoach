@@ -102,6 +102,3 @@ bankdictionary={
 subjectdictionary={
     subject: f'/static/subjects/{subject}.png' for subject in subjectlist
 }
-weekdaydictionary={
-    weekday: f'/static/weekdays/{weekday}.png' for weekday in weekdaylist
-}

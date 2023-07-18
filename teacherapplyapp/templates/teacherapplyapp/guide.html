@@ -3,17 +3,17 @@
 {% block content %}
 
 <header class="header-white">
-         {% include 'headersnippets/back.html' %}
+    {% include 'headersnippets/back.html' %}
 </header>
 
 
 <main class="main-guide">
-    {% if teacherapply_step == 'step1' %}
-        {% include 'teacherapplyapp/guidesnippets/step1.html' %}
-    {% elif teacherapply_step == 'step2' %}
-        {% include 'teacherapplyapp/guidesnippets/step2.html' %}
-    {% elif teacherapply_step == 'step3' %}
-        {% include 'teacherapplyapp/guidesnippets/step3.html' %}
+    {% if target_step == 'initial' %}
+    {% include 'teacherapplyapp/guidesnippets/initial.html' %}
+    {% elif target_step == 'applied' %}
+    {% include 'teacherapplyapp/guidesnippets/applied.html' %}
+    {% elif target_step == 'end' %}
+    {% include 'teacherapplyapp/guidesnippets/end.html' %}
     {% endif %}
 </main>
 {% endblock %}

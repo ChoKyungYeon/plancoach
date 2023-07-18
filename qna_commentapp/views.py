@@ -24,6 +24,7 @@ class Qna_commentCreateView(CreateView):
         target_qna=get_object_or_404(Consult_qna, pk=self.kwargs['pk'])
         target_user=self.request.user
         with transaction.atomic():
+            # form instacne
             form.instance.consult_qna= target_qna
             form.instance.customuser= self.request.user
             form.instance.save()

@@ -1,10 +1,8 @@
-
-
-<button class="image-button" onclick="showlist2()" >
-    <img class="image-short" src='/static/images/homescreen2.png' >
+<button class="image-button" onclick="showlist2()">
+    <img class="image-short" src='/static/images/homescreen2.png'>
     <div class="emoji-click">&#128070;</div>
 </button>
-<div id="list2-fullscreen" class="fullscreenimage container-fullscreen" >
+<div id="list2-fullscreen" class="fullscreenimage container-fullscreen">
     <button onclick="closelist2()"
             class="btn-exit material-icons">close
     </button>
@@ -12,33 +10,33 @@
         <div class="text-title-fullscreen">서울대 의대생 위주의</div>
         <div class="text-title-fullscreen">상위 1%의 선생님들이 수업을 진행합니다</div>
     </div>
-    <img class="item-image-fullscreen" src='/static/images/homescreen1.png' >
+    <img class="item-image-fullscreen" src='/static/images/homescreen1.png'>
     <div class="item-guide">
         <div class="text-title-fullscreen">자체적인 교육 시스템을 통해</div>
         <div class="text-title-fullscreen">선생님들이 학습 툴 사용법을 숙지합니다.</div>
     </div>
-    <img class="item-image-fullscreen" src='/static/images/homescreen1.png' >
+    <img class="item-image-fullscreen" src='/static/images/homescreen1.png'>
 </div>
-        
-<script>
-function showlist2() {
-    var element = document.getElementById("list2-fullscreen");
-    element.style.display = "flex";
-    element.style.opacity = 0;
-    document.body.style.overflow = 'hidden'; // Add this line to disable scrolling
-    setTimeout(function() {
-        element.style.transition = 'opacity 0.2s ease-in-out';
-        element.style.opacity = 1;
-    }, 10);
-}
 
-function closelist2() {
-    var element = document.getElementById("list2-fullscreen");
-    element.style.transition = 'opacity 0.4s ease-in-out';
-    element.style.opacity = 0;
-    setTimeout(function() {
-        element.style.display = "none";
-        document.body.style.overflow = 'auto'; // Add this line to re-enable scrolling
-    }, 400);
-}
+<script>
+    function showlist2() {
+        var element = document.getElementById("list2-fullscreen");
+        element.style.display = "flex";
+        element.style.opacity = 0;
+        document.body.style.overflow = 'hidden'; // Add this line to disable scrolling
+        setTimeout(function () {
+            element.style.transition = 'opacity 0.2s ease-in-out';
+            element.style.opacity = 1;
+        }, 10);
+    }
+
+    function closelist2() {
+        var element = document.getElementById("list2-fullscreen");
+        element.style.transition = 'opacity 0.4s ease-in-out';
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.display = "none";
+            document.body.style.overflow = 'auto'; // Add this line to re-enable scrolling
+        }, 400);
+    }
 </script>        

@@ -1,34 +1,20 @@
-<div class="main-box" >
+<div class="main-box">
     <div class="main-array-title">
         <span class="main-text-title">계정 관리</span>
     </div>
-    <div class="container-setting" >
-        <a  href="{% url 'accountapp:passwordupdate' pk=target_user.pk %}" class="item-content">
+    <div class="container-setting">
+        <a href="{% url 'accountapp:passwordupdate' pk=target_user.pk %}" class="item-content">
             <span class="main-text-content text-content">비밀번호 변경</span>
-            <span class="material-icons icon-nav" >settings</span>
+            <span class="material-icons icon-nav">settings</span>
         </a>
         <a href="{% url 'accountapp:logout' %}" class="item-content">
             <span class="main-text-content text-content">로그아웃</span>
             <span class="material-icons icon-nav" style="font-weight:var(--fontweight-index);">logout</span>
         </a>
-        <form action="{% url 'profile_careerapp:delete' pk=target_user.pk %}" method="post" id="account-delete-form"
-        style="width:100%;">
-            {% csrf_token %}
-            <input style="display:none" type="submit" name="next" value="{% url 'accountapp:delete' pk=target_user.pk %}">
-            <button type="button" onclick="confirmaccountDelete()" class="item-content" style="border-bottom: None">
-                <span class="main-text-content text-content">계정 삭제</span>
-                <span class="material-icons icon-nav" style="font-size:1.8rem;" >delete_forever</span>
-            </button>
-        </form>
+        <a href="{% url 'accountapp:delete' pk=target_user.pk %}" class="item-content" style="border-bottom:none">
+            <span class="main-text-content text-content">계정 삭제</span>
+            <span class="material-icons icon-nav" style="font-size:1.8rem;">delete_forever</span>
+        </a>
     </div>
 </div>
 
-
-
-<script>
-    function confirmaccountDelete() {
-        if (confirm("계정 삭제 이후 복구가 불가능합니다.")) {
-            document.getElementById("account-delete-form").submit();
-        }
-    }
-</script>

@@ -1,43 +1,36 @@
+from datetime import timedelta
 from django.db import models, transaction
-
 from accountapp.models import CustomUser
-from plancoach.choice import agechoice, applicationstatechoice, sexchoice
-from plancoach.sms import Send_SMS
-from plancoach.utils import time_converter_expire
-
+from plancoach.choice import agechoice, applicationstatechoice
+from plancoach.utils import time_expire, create_refusal
+from plancoach.variables import current_datetime
 
 
 class Application(models.Model):
-    student = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='application_student')
-    teacher = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='application_teacher')
-    age= models.CharField(max_length=20, choices=agechoice)
-    belong = models.CharField(max_length=10)
+    student = models.OneToOneField(CustomUser, on_delete=models.CASCADE,related_name='application_student')
+    teacher = models.ForeignKey(CustomUser,on_delete=models.CASCADE,related_name='application_teacher')
+    age = models.CharField(max_length=20, choices=agechoice)
+    belong = models.CharField(max_length=8)
     want = models.TextField(max_length=500)
     problem = models.TextField(max_length=500)
     strategy = models.TextField(max_length=500)
-    state= models.CharField(max_length=20, choices=applicationstatechoice, default='applied')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(null=True, blank=True)
+    state = models.CharField(max_length=20,choices=applicationstatechoice,default='applied')
+    updated_at = models.DateTimeField()
 
-    def expire_waiting(self):
-        return time_converter_expire(self.updated_at, 48) if self.updated_at else None
 
     def expire_matching(self):
-        return time_converter_expire(self.updated_at, 168) if self.updated_at else None
+        return time_expire(self.updated_at, 168)
 
     def expire_applied(self):
-        return time_converter_expire(self.created_at, 24)
+        return time_expire(self.updated_at, 24)
 
-    def __str__(self):
-        return f"{self.student.username}({self.student.userrealname}) 신청서"
-
-
-    def save(self, *args, **kwargs):
-        created = not self.pk
-        if created:
-            with transaction.atomic():
-                teacher = self.teacher
-                content = f'{self.student.userrealname} 학생이 수업을 신청했습니다. 신청서를 확인해주세요'
-                Send_SMS(teacher.username, content, teacher.can_receive_notification)
-        super().save(*args, **kwargs)
+    def updater(self):
+        with transaction.atomic():
+            target_state = self.state
+            updated_at = self.updated_at
+            updated_interval = current_datetime - updated_at
+            if target_state == 'applied' and updated_interval > timedelta(hours=24):
+                create_refusal(self,'기간 내 신청이 확인되지 않았습니다.')
+            elif target_state == 'matching' and updated_interval > timedelta(hours=168):
+                create_refusal(self,'기간 내 수업이 성사되지 않았습니다.')
 

@@ -1,18 +1,14 @@
 from django.db import models
-
 from consultapp.models import Consult
 from plancoach.choice import weekdatechoice
-from datetime import date
-
 from plancoach.variables import weekdaylist, current_date
 
 
-# Create your models here.
 
 class Consult_classlink(models.Model):
     consult = models.OneToOneField(Consult, on_delete=models.CASCADE, related_name='consult_classlink')
     weekdate = models.CharField(max_length=20, choices=weekdatechoice)
-    classtime = models.CharField(max_length=15)
+    classtime = models.CharField(max_length=10)
     link = models.TextField(max_length=100)
 
     def weekdate_left(self):

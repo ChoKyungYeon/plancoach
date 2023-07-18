@@ -7,7 +7,7 @@
         {% with title="선생님 등록" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
-        {% url 'superuserapp:dashboard' %}
+        {% url 'superuserapp:dashboard' as url %}
         {% include 'headersnippets/exit.html' with url=url %}
 </header>
 

@@ -11,26 +11,22 @@ try:#deploy check
 except:
     from plancoach.settings.deploy import PORTONE_SHOP_ID
 
-from plancoach.updaters import request_user_updater
 from paymentapp.forms import PaymentForm
 from paymentapp.models import Payment
 
 
-# Create your views here.
-@request_user_updater
 def PaymentCreateView(request, pk):
     target_consult = get_object_or_404(Consult, pk=pk)
     if request.method == 'POST':
         form = PaymentForm(request.POST)
         if form.is_valid():
-            target_consult.payment.filter(is_paid_ok =False).delete()
             with transaction.atomic():
-                payment = form.save(commit=False)
-                payment.classname = target_consult.consult_name()
-                payment.amount = target_consult.tuition * 10 #deploy check
-                payment.consult = target_consult
-                payment.save()
-                return redirect('paymentapp:pay', pk=payment.pk)
+                target_consult.payment.filter(is_paid_ok=False).delete()
+                form.instance.classname = target_consult.consult_name()
+                form.instance.amount = target_consult.tuition
+                form.instance.consult = target_consult
+                form.instance.save()
+                return redirect('paymentapp:pay', pk=form.instance.pk)
     else:
         form = PaymentForm()
 
@@ -43,14 +39,14 @@ def PaymentCreateView(request, pk):
 
     return render(request, 'paymentapp/create.html', context)
 
-@request_user_updater
+
 def PaymentPayView(request, pk):
-    user=request.user
+    target_user=request.user
     payment = get_object_or_404(Payment, pk=pk)
     payment_props = {
         "merchant_uid": payment.merchant_uid,
-        'buyer_email': user.email,
-        'buyer_name': user.userrealname,
+        'buyer_email': target_user.email,
+        'buyer_name': target_user.userrealname,
         "name": payment.classname,
         "amount": payment.amount,
     }
@@ -67,7 +63,7 @@ def PaymentPayView(request, pk):
               )
 
 
-@request_user_updater
+
 def PaymentCheckView(request, pk):
     payment = get_object_or_404(Payment, pk=pk)
     payment.portone_check()
@@ -75,19 +71,18 @@ def PaymentCheckView(request, pk):
     return redirect('paymentapp:result', pk=payment.pk)
 
 
-@request_user_updater
+
 def PaymentResultView(request, pk):
     payment = get_object_or_404(Payment, pk=pk)
     context = {
         'payment': payment,
         'extenddate': payment.consult.extenddate() if payment.consult.extenddate() else None,
-
     }
     return render(request, 'paymentapp/result.html', context)
 
 
 
-@method_decorator(request_user_updater, 'get')
+
 class PaymentContactView(TemplateView):
     template_name = 'paymentapp/contact.html'
     def get_context_data(self, **kwargs):

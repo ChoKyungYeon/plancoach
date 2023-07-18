@@ -10,7 +10,7 @@ from profileapp.models import Profile
 class Profile_consulttype(models.Model):
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='profile_consulttype')
     consulttype = MultiSelectField(max_length=20, choices=consulttypechoice)
-    content = models.TextField(max_length=1000)
+    content = models.TextField(max_length=300)
 
 
     def consulttype_name(self):

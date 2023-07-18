@@ -17,28 +17,32 @@
     flex-shrink: 0;
 }
 
-.teacher-applicationlist .icon-help{
-    font-size: 2rem;
-    color: var(--white);
-    font-weight: 600;
-}
 
-.teacher-applicationlist .border-tounched-step3,
+
+
 .teacher-applicationlist .border-tounched-step2,
 .teacher-applicationlist .border-tounched-step1{
-    background: var(--orange);
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    bottom:0;
     position: relative;
-    height:1rem;
-    width:20%;
+    bottom:1.5rem;
+    height:4rem;
+    width:32%;
+    margin-left: 4%;
+    border-bottom:1rem solid var(--orange);
+    font-size: var(--fontsize-content);
+    font-weight: var(--fontweight-content);
+    color: var(--black);
     flex-shrink: 0;
 }
 .teacher-applicationlist .border-tounched-step2{
-    margin-left:40%;
+    margin-right:4%;
+    margin-left:auto;
 }
 
-.teacher-applicationlist .border-tounched-step3{
-    margin-left:80%;
-}
 
 
 
@@ -51,7 +55,7 @@
 <header class="header-black">
     {%  url 'teacherapp:dashboard' pk=target_user.pk as url %}
     {% include 'headersnippets/navback.html' with url=url %}
-    {% with title="신청 내역" %}
+    {% with title="수업 매칭" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
 </header>
@@ -61,23 +65,24 @@
     <div class="teacher-applicationlist-slide1" style="display:block">
         <div class="border">
             <div class="border-tounched-step1">
+                신청서 수락
+            </div>
+            <div class="border-tounched-step2" style="border-bottom:1rem solid var(--whitegray); color:#cfcfd8;">
+                시범 수업
             </div>
         </div>
-    {% include 'teacherapp/applicationlistsnippets/step1.html' %}
+    {% include 'teacherapp/applicationlistsnippets/applied.html' %}
     </div>
     <div class="teacher-applicationlist-slide2" style="display:none;">
         <div class="border">
+            <div class="border-tounched-step1" style="border-bottom:1rem solid var(--whitegray); color:#cfcfd8;">
+                신청서 수락
+            </div>
             <div class="border-tounched-step2">
+                시범 수업
             </div>
         </div>
-        {% include 'teacherapp/applicationlistsnippets/step2.html' %}
-    </div>
-    <div class="teacher-applicationlist-slide3" style="display:none;">
-        <div class="border">
-            <div class="border-tounched-step3">
-            </div>
-        </div>
-        {% include 'teacherapp/applicationlistsnippets/step3.html' %}
+        {% include 'teacherapp/applicationlistsnippets/matching.html' %}
     </div>
     <button onclick="showhelp_application()"  class="material-icons main-icon-help">question_mark</button>
     {% include 'teacherapp/applicationlistsnippets/help_application.html' %}

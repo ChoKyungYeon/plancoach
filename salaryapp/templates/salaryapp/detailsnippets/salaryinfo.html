@@ -1,7 +1,9 @@
-<div class="main-text-title-guideform" >
-  {% if target_salary.is_given %}
-  {{ target_salary.salaryday|date:"y.m.d"}} 지급 완료
-  {% else %}
-  {{ target_salary.salaryday|date:"y.m.d"}} 지급 예정
-  {% endif %}
+<div class="main-array-title">
+  <div class="main-text-title" >
+    {% if target_salary.is_given %}
+    {{ target_salary.given_at|date:"y.m.d"}} 지급 완료
+    {% else %}
+    {{ target_salary.salaryday|date:"y.m.d"}} 지급 예정
+    {% endif %}
+  </div>
 </div>

@@ -1,16 +1,13 @@
 from django import forms
 from django.forms import ModelForm
-
 from feedback_planapp.models import Feedback_plan
 
-
 class Feedback_planUpdateForm(ModelForm):
-
     class Meta:
         model = Feedback_plan
         fields = ('content',)
         labels = {
-            'content':'학습 계획',
+            'content': '학습 계획',
         }
 
         widgets = {

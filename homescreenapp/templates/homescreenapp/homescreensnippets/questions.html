@@ -1,86 +1,110 @@
-
 <style>
+    .container-questions {
+        background: linear-gradient(0deg, #e7e7ef, #eaeaf1, #e7e7ef);
+        align-items: flex-start;
+    }
 
-.container-questions{
-    background: linear-gradient(0deg, #e7e7ef,#eaeaf1,#e7e7ef);
-    align-items: flex-start;
-}
+    .container-questions .item-question {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 2.5rem 7%;
+        width: 100%;
+        border-radius: 1.3rem;
+        background: var(--white);
+        margin-top: 3rem;
+    }
 
+    .container-questions .text-question {
+        color: var(--orange);
+    }
 
-.container-questions .item-question{
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    justify-content:flex-start;
-    align-items:flex-start;
-    padding:2.5rem 7%;
-    width: 100%;
-    border-radius: 1.3rem;
-    background: var(--white);
-    margin-top: 3rem;
-}
-.container-questions .text-question{
-    color: var(--orange);
-}
-.container-questions .text-answer{
-    margin-top:1rem;
-}
-.container-questions .triangle-right,
-.container-questions .triangle-left{
-    position: absolute;
-    color: var(--white);
-    font-weight: 400;
-    top: 0px;
-    font-size: 5rem;
-    flex-shrink: 0;
-}
-.container-questions .triangle-left{
-    left: -2.8rem;
-}
-.container-questions .triangle-right{
-    right: -2.8rem;
-}
-.container-questions .icon-question{
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction:row;
-    justify-content:center;
-    align-items: center;
-    width:1.8rem;
-    height:1.8rem;
-    background: var(--orange);
-    font-size: 1.3rem;
-    color: var(--white);
-    font-weight: var(--fontweight-index);
-    margin-right:0.8rem;
-}
-.container-questions .text-link{
-    display: inline-block;
-    font-weight:var(--fontweight-index);
-    font-size:1.45rem;
-    color:var(--darkblue);
-    text-decoration: underline;
-    text-decoration-color:var(--darkblue);
-    text-decoration-thickness: 1.5px;
-    margin-right: 0.5rem;
-}
+    .container-questions .text-answer {
+        margin-top: 1rem;
+    }
+
+    .container-questions .triangle-right,
+    .container-questions .triangle-left {
+        position: absolute;
+        color: var(--white);
+        font-weight: 400;
+        top: 0px;
+        font-size: 5rem;
+        flex-shrink: 0;
+    }
+
+    .container-questions .triangle-left {
+        left: -2.8rem;
+    }
+
+    .container-questions .triangle-right {
+        right: -2.8rem;
+    }
+
+    .container-questions .icon-question {
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 1.8rem;
+        height: 1.8rem;
+        background: var(--orange);
+        font-size: 1.3rem;
+        color: var(--white);
+        font-weight: var(--fontweight-index);
+        margin-right: 0.8rem;
+    }
+
+    .container-questions .text-link {
+        display: inline-block;
+        font-weight: var(--fontweight-index);
+        font-size: 1.45rem;
+        color: var(--darkblue);
+        text-decoration: underline;
+        text-decoration-color: var(--darkblue);
+        text-decoration-thickness: 1.5px;
+        margin-right: 0.5rem;
+    }
 </style>
+
 <div class="main-container-homescreen container-questions">
     <div class="text-title">
         Q&A 어떤게 궁금하신가요?
     </div>
-    <div class="item-question" >
+    {% if target_step == 'unauthenticated' or request.user.can_apply %}
+    <div class="item-question">
+        <div class="triangle-right material-icons">arrow_right</div>
+        <div class="main-array-row">
+            <span class="icon-question material-icons">question_mark</span>
+            <span class="text-question text-index">선생님 신청은 어떻게 하나요?</span>
+        </div>
+        <div class="text-content text-answer">
+            {% if target_step == 'unauthenticated' %}
+            <a href="{% url 'accountapp:login' %}" class="text-link">
+                {% else %}
+                <a href="{% url 'teacherapplyapp:guide' pk=user.pk %}" class="text-link">
+                    {% endif %}
+                    계정 전환
+                </a>
+                에서 절차에 따라 선생님으로 등록하고 활동하세요!
+        </div>
+    </div>
+    {% endif %}
+    <div class="item-question">
         <div class="triangle-left material-icons">arrow_left</div>
         <div class="main-array-row">
             <span class="icon-question material-icons">question_mark</span>
             <span class="text-question text-index">운영진과 대표는 누구인가요?</span>
         </div>
         <div class="text-content text-answer">
-                충남대학교 의예과 조경연/ 서울대학교 사범대학교 홍진영입니다!
+            충남대학교 의예과 조경연/ 서울대학교 사범대학교 홍진영입니다!
             <a href="{% url 'homescreenapp:aboutus' %}" class="text-link">AboutUs</a>에서 확인하세요!
         </div>
     </div>
-    <div class="item-question" >
+    <div class="item-question">
         <div class="triangle-right material-icons">arrow_right</div>
         <div class="main-array-row">
             <span class="icon-question material-icons">question_mark</span>
@@ -91,14 +115,14 @@
             <a href="{% url 'homescreenapp:refund' %}" class="text-link">환불규정</a>에 따라 수업을 종료하고 그만둘 수 있습니다!
         </div>
     </div>
-    <div class="item-question" >
+    <div class="item-question">
         <div class="triangle-left material-icons">arrow_left</div>
         <div class="main-array-row">
             <span class="icon-question material-icons">question_mark</span>
             <span class="text-question text-index">제 개인 정보는 안전하겠죠?</span>
         </div>
         <div class="text-content text-answer">
-                개인정보는 법적으로 보호되니 걱정하지 마세요!
+            개인정보는 법적으로 보호되니 걱정하지 마세요!
             <a href="{% url 'homescreenapp:termofuse' %}" class="text-link">이용약관</a> 과
             <a href="{% url 'homescreenapp:privacypolicy' %}" class="text-link">개인정보 처리방침</a> 을 참고하세요!
         </div>

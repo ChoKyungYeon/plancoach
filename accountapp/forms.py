@@ -1,13 +1,10 @@
-
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, UserChangeForm, \
-    PasswordChangeForm
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, UserChangeForm
 from django import forms
 from django.core.validators import MaxLengthValidator
 from django.forms import ModelForm
-
 from accountapp.models import CustomUser
 
-#1 placeholder 문구 정하기, 2 label (필수*) 3 제대로 된 필드인지 확인
 
 class AccountLoginForm(AuthenticationForm):
     username = UsernameField(
@@ -18,7 +15,7 @@ class AccountLoginForm(AuthenticationForm):
             'autofocus': True,
             'oninput': 'this.value = this.value.slice(0, 11);'
         }),
-        validators = [MaxLengthValidator(11)],
+        validators=[MaxLengthValidator(11)],
         max_length=11
     )
     password = forms.CharField(
@@ -30,6 +27,20 @@ class AccountLoginForm(AuthenticationForm):
             'autocomplete': 'current-password'
         })
     )
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+
+        if username is not None and password:
+            self.user_cache = authenticate(self.request, username=username, password=password)
+            if self.user_cache is None:
+                self.add_error('username', '')  # Add field-level error.
+                self.add_error('password', '잘못된 전화번호 또는 비밀번호입니다.')  # Add field-level error.
+            else:
+                self.confirm_login_allowed(self.user_cache)
+
+        return self.cleaned_data
+
 
 class AccountCreateForm(UserCreationForm):
     password1 = forms.CharField(
@@ -52,7 +63,6 @@ class AccountCreateForm(UserCreationForm):
         }),
     )
 
-
     class Meta:
         model = CustomUser
         fields = ('email', 'userrealname', 'password1', 'password2')
@@ -62,8 +72,8 @@ class AccountCreateForm(UserCreationForm):
         }
 
         widgets = {
-            'userrealname': forms.TextInput(attrs={'placeholder': '실명을 입력하세요', 'class': 'textinput',}),
-            'email': forms.EmailInput(attrs={'placeholder': '수업 결제 영수증이 입력한 이메일로 전송됩니다', 'class': 'textinput',}),
+            'userrealname': forms.TextInput(attrs={'placeholder': '실명을 입력하세요', 'class': 'textinput', }),
+            'email': forms.EmailInput(attrs={'placeholder': '수업 결제 영수증이 입력한 이메일로 전송됩니다', 'class': 'textinput', }),
         }
 
 
@@ -77,8 +87,8 @@ class AccountInfoUpdateForm(ModelForm):
         }
 
         widgets = {
-            'userrealname': forms.TextInput(attrs={'placeholder': '실명을 입력하세요', 'class': 'textinput',}),
-            'email': forms.EmailInput(attrs={'placeholder': '수업 결제 영수증이 입력한 이메일로 전송됩니다', 'class': 'textinput',}),
+            'userrealname': forms.TextInput(attrs={'placeholder': '실명을 입력하세요', 'class': 'textinput', }),
+            'email': forms.EmailInput(attrs={'placeholder': '수업 결제 영수증이 입력한 이메일로 전송됩니다', 'class': 'textinput', }),
         }
 
 
@@ -107,7 +117,8 @@ class AccountPasswordUpdateForm(UserCreationForm):
         super().__init__(*args, **kwargs)
         self.fields.pop('username')
 
+
 class AccountCreateFormAdmin(UserChangeForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'userrealname', 'email', 'state','can_receive_notification')
+        fields = ('username', 'userrealname', 'email', 'state', 'can_receive_notification')

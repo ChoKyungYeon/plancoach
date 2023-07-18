@@ -1,10 +1,8 @@
-
-
 <div class="main-box" style="padding-top:1rem">
-    <a href="{% url 'consult:paymentlist' pk=target_consult.pk %}"  class="main-container-dashboard" >
+    <a href="{% url 'consultapp:paymentlist' pk=target_consult.pk %}" class="main-container-dashboard">
         <div class="item-content">
             <span class="main-text-content">수업 입금 내역이 궁금하신가요?</span>
-            <div class="main-array-row array-info" >
+            <div class="main-array-row interval-top">
                 <span class="main-text-content text-content">입금 내역</span>
                 <span class="main-text-index">
                     {{payments}}개

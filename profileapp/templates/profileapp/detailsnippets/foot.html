@@ -31,7 +31,7 @@
     margin-right: 0.5rem;
 }
 .profile-detail-foot .icon-nav {
-    font-size: 1.5rem;
+    font-size: var(--fontsize-title);
     font-weight:var(--fontweight-title);
     color: var(--white);
     margin-left: 0.5rem;
@@ -39,7 +39,7 @@
 </style>
 
 
-{% if can_user_apply == True %}
+{% if user.is_authenticated and request.user.can_apply %}
 <a href="{% url 'applicationapp:guide' pk=target_profile.teacher.pk %}"
    class="profile-detail-foot" id="profile-detail-foot">
     <span class="text-application">수업 신청서</span>

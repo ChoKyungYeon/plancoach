@@ -1,48 +1,45 @@
 <style>
-.container-qna .item-btn{
-    background:var(--color-btn-submit);
-    border-radius: 0.7rem;
-    height: 3.5rem;
-    width: 22%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.25rem;
-    color: var(--white);
-    font-weight: var(--fontweight-content);
+    .container-qna .item-btn {
+        background: var(--color-btn-submit);
+        border-radius: 0.7rem;
+        height: 3.5rem;
+        width: 22%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.25rem;
+        color: var(--white);
+        font-weight: var(--fontweight-content);
 
-}
-
-
+    }
 </style>
-
 
 <div class="main-box">
     <div class="main-array-title">
         <span class="main-text-title">질문 답변</span>
     </div>
-    <div class="main-container-dashboard container-qna" >
+    <div class="main-container-dashboard container-qna">
         <div class="main-array-column">
-        <div class="item-content">
-            <div class="main-array-row " >
-                {% if qnas_answered_length %}
-                <span class="main-text-index text-content">
+            <div class="item-content">
+                <div class="main-array-row ">
+                    {% if qnas_answered_length %}
+                    <span class="main-text-index text-content">
                     {{qnas_answered_length}}개의
                 </span>
-                <span class="main-text-content">대기 질문이 있습니다.</span>
-                {% else %}
-                <span class="main-text-content text-content">대기 중인 질문이 없습니다.</span>
-                {% endif %}
-            </div>
-            <div class="main-array-row array-info" >
-                <span class="main-text-content text-content">전체 질문</span>
-                <span class="main-text-index">
+                    <span class="main-text-content">대기 질문이 있습니다.</span>
+                    {% else %}
+                    <span class="main-text-content text-content">대기 중인 질문이 없습니다.</span>
+                    {% endif %}
+                </div>
+                <div class="main-array-row interval-top">
+                    <span class="main-text-content text-content">전체 질문</span>
+                    <span class="main-text-index">
                     {{qnas_length}}개
                 </span>
+                </div>
             </div>
         </div>
-        </div>
-         <a  href="{% url 'consult_qnaapp:list' pk=target_consult.pk %}"  class="item-btn">목록</a>
+        <a href="{% url 'consult_qnaapp:list' pk=target_consult.pk %}" class="item-btn">목록</a>
     </div>
 </div>

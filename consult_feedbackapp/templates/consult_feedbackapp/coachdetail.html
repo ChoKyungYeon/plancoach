@@ -2,17 +2,16 @@
 {% load bootstrap4 %}
 {% block content %}
 
-
 {% with index="coach" %}
 {% include 'consult_feedbackapp/detailsnippets/header.html' %}
-
 <main>
-        {% include 'consult_feedbackapp/detailsnippets/head.html' %}
-        {% include 'consult_feedbackapp/detailsnippets/navbar.html' %}
-        {% include 'consult_feedbackapp/detailsnippets/analyze.html' %}
-        {% include 'consult_feedbackapp/detailsnippets/coach.html' %}
-        {% include 'consult_feedbackapp/detailsnippets/foot.html' %}
+    {% include 'consult_feedbackapp/detailsnippets/head.html' %}
+    {% include 'consult_feedbackapp/detailsnippets/navbar.html' %}
+    {% include 'consult_feedbackapp/detailsnippets/analyze.html' %}
+    {% include 'consult_feedbackapp/detailsnippets/coach.html' %}
+    {% include 'consult_feedbackapp/detailsnippets/foot.html' %}
 </main>
 {% endwith %}
+
 {% endblock %}
 

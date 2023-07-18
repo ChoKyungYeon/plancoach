@@ -1,10 +1,8 @@
-
-
-<button class="image-button" onclick="showlist1()" >
-    <img class="image-long" src='/static/images/homescreen1.png' >
+<button class="image-button" onclick="showlist1()">
+    <img class="image-long" src='/static/images/homescreen1.png'>
     <div class="emoji-click">&#128070;</div>
 </button>
-<div id="list1-fullscreen" class="fullscreenimage container-fullscreen" >
+<div id="list1-fullscreen" class="fullscreenimage container-fullscreen">
     <button onclick="closelist1()"
             class="btn-exit material-icons">close
     </button>
@@ -12,37 +10,37 @@
         <div class="text-title-fullscreen">대치동 학습 컨설팅을 기반으로</div>
         <div class="text-title-fullscreen">직접 연구 제작한 학습 툴을 사용합니다</div>
     </div>
-    <img class="item-image-fullscreen" src='/static/images/homescreen1.png' >
+    <img class="item-image-fullscreen" src='/static/images/homescreen1.png'>
     <div class="item-guide">
         <div class="text-title-fullscreen">1주일 단위의 공부 플래너부터</div>
         <div class="text-title-fullscreen">인강, 교재 분석과 계획 작성까지</div>
     </div>
-    <img class="item-image-fullscreen" src='/static/images/homescreen1.png' >
+    <img class="item-image-fullscreen" src='/static/images/homescreen1.png'>
     <div class="item-guide">
         <div class="text-title-fullscreen">매주 학습 컨설팅(피드백)을 진행합니다</div>
     </div>
-    <img class="item-image-fullscreen" src='/static/images/homescreen1.png' >
+    <img class="item-image-fullscreen" src='/static/images/homescreen1.png'>
 </div>
-        
-<script>
-function showlist1() {
-    var element = document.getElementById("list1-fullscreen");
-    element.style.display = "flex";
-    element.style.opacity = 0;
-    document.body.style.overflow = 'hidden'; // Add this line to disable scrolling
-    setTimeout(function() {
-        element.style.transition = 'opacity 0.2s ease-in-out';
-        element.style.opacity = 1;
-    }, 10);
-}
 
-function closelist1() {
-    var element = document.getElementById("list1-fullscreen");
-    element.style.transition = 'opacity 0.4s ease-in-out';
-    element.style.opacity = 0;
-    setTimeout(function() {
-        element.style.display = "none";
-        document.body.style.overflow = 'auto'; // Add this line to re-enable scrolling
-    }, 400);
-}
+<script>
+    function showlist1() {
+        var element = document.getElementById("list1-fullscreen");
+        element.style.display = "flex";
+        element.style.opacity = 0;
+        document.body.style.overflow = 'hidden'; // Add this line to disable scrolling
+        setTimeout(function () {
+            element.style.transition = 'opacity 0.2s ease-in-out';
+            element.style.opacity = 1;
+        }, 10);
+    }
+
+    function closelist1() {
+        var element = document.getElementById("list1-fullscreen");
+        element.style.transition = 'opacity 0.4s ease-in-out';
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.display = "none";
+            document.body.style.overflow = 'auto'; // Add this line to re-enable scrolling
+        }, 400);
+    }
 </script>        

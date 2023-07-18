@@ -5,7 +5,7 @@ from django.contrib.admin import ModelAdmin
 
 class ProfileAdmin(ModelAdmin):
     form = ProfileCreateForm
-    list_display = ['pk','teacher']
+    list_display = ['pk','teacher','state','tuition']
 admin.site.register(Profile, ProfileAdmin)
 
 

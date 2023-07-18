@@ -1,24 +1,24 @@
 <style>
-
-.btn-add{
-    display: flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    border:2px dashed var(--gray);
-    font-size: 2.2rem;
-    font-weight: var(--fontweight-emphasize);
-    height: 3.8rem;
-    width: 3.8rem;
-    background: var(--whitegray);
-    border-radius: 50%;
-    color: var(--gray);
-    margin:1rem auto 0 auto;
-}
+    .btn-add {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 2px dashed var(--gray);
+        font-size: 2.2rem;
+        font-weight: var(--fontweight-emphasize);
+        height: 3.8rem;
+        width: 3.8rem;
+        background: var(--whitegray);
+        border-radius: 50%;
+        color: var(--gray);
+        margin: 1rem auto 0 auto;
+    }
 </style>
-<div class="main-box" >
-  {% for comment in comments %}
-  {% include 'snippets/comment.html' %}
-  {% endfor %}
-  <a href="{% url 'qna_commentapp:create' pk=target_qna.pk %}" class="btn-add material-icons">add</a>
+
+<div class="main-box">
+    {% for comment in comments %}
+    {% include 'snippets/comment.html' %}
+    {% endfor %}
+    <a href="{% url 'qna_commentapp:create' pk=target_qna.pk %}" class="btn-add material-icons">add</a>
 </div>

@@ -1,59 +1,63 @@
 <style>
-:root {
-    --padding-nav:0%;
-}
-@media screen and (min-width: 500px) {
-  :root {
-    --padding-nav:32%;
-  }
-}
+    :root {
+        --padding-nav: 0%;
+    }
 
-.item-nav{
-    width: 100%;
-    padding:0;
-    display: flex;
-    flex-direction:row;
-    justify-content: space-between;
-    align-items: flex-end;
-    background: var(--color-base);
-}
+    @media screen and (min-width: 500px) {
+        :root {
+            --padding-nav: 32%;
+        }
+    }
 
-.nav-untouched-plan,
-.nav-untouched-coach,
-.nav-touched-plan,
-.nav-touched-coach{
-    display: flex;
-    flex-direction:row;
-    justify-content: center;
-    align-items:center;
-    height:4rem;
-    width: 50%;
-    padding-left: var(--padding-nav);
-    font-size:var(--fontsize-index);
-    color:var(--black);
-    background: var(--white);
-    font-weight:var(--fontweight-title);
-}
-.nav-untouched-plan,
-.nav-touched-plan{
-    padding-left:0;
-    padding-right: var(--padding-nav);
-    background: var(--color-base);
-}
-.nav-untouched-plan,
-.nav-untouched-coach{
-    color:var(--gray);
-    background: var(--blackblue);
-}
+    .item-nav {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+        background: var(--color-base);
+    }
+
+    .nav-untouched-plan,
+    .nav-untouched-coach,
+    .nav-touched-plan,
+    .nav-touched-coach {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 4rem;
+        width: 50%;
+        padding-left: var(--padding-nav);
+        font-size: var(--fontsize-index);
+        color: var(--black);
+        background: var(--white);
+        font-weight: var(--fontweight-title);
+    }
+
+    .nav-untouched-plan,
+    .nav-touched-plan {
+        padding-left: 0;
+        padding-right: var(--padding-nav);
+        background: var(--color-base);
+    }
+
+    .nav-untouched-plan,
+    .nav-untouched-coach {
+        color: var(--gray);
+        background: var(--blackblue);
+    }
 </style>
 
 <div class="item-nav">
-{% if index == "plan" %}
-<a href="{% url 'consult_feedbackapp:coachdetail' pk=target_feedback.pk %}" class="nav-untouched-coach">학습 코칭 &#128218;</a>
-<a class="nav-touched-plan">학습 플랜 &#x1F4DD;</a>
-{% else %}
-<a class="nav-touched-coach">학습 코칭 &#128218;</a>
-<a  href="{% url 'consult_feedbackapp:plandetail' pk=target_feedback.pk %}"
-    class="nav-untouched-plan">학습 플랜 &#x1F4DD;</a>
-{% endif %}
+    {% if index == "plan" %}
+    <a href="{% url 'consult_feedbackapp:coachdetail' pk=target_feedback.pk %}" class="nav-untouched-coach">학습 코칭
+        &#128218;</a>
+    <a class="nav-touched-plan">학습 플랜 &#x1F4DD;</a>
+    {% else %}
+    <a class="nav-touched-coach">학습 코칭 &#128218;</a>
+    <a href="{% url 'consult_feedbackapp:plandetail' pk=target_feedback.pk %}"
+       class="nav-untouched-plan">학습 플랜 &#x1F4DD;</a>
+    {% endif %}
 </div>

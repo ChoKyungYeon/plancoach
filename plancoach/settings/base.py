@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 
 
     'applicationapp',
-    'application_refusalapp',
+    'refusalapp',
     'teacherapplyapp',
 
     'consultapp',

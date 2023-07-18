@@ -21,9 +21,10 @@ class Consult_qnaCreateView(CreateView):
         return context
 
     def form_valid(self, form):
-        target_consult=get_object_or_404(Consult, pk=self.kwargs['pk'])
+        consult=get_object_or_404(Consult, pk=self.kwargs['pk'])
         with transaction.atomic():
-            form.instance.consult = target_consult
+            # form valid
+            form.instance.consult = consult
             form.instance.save()
             return super().form_valid(form)
 
@@ -63,7 +64,6 @@ class Consult_qnaUpdateView(UpdateView):
     form_class = Consult_qnaCreateForm
     context_object_name = 'target_consult_qna'
     template_name = 'consult_qnaapp/update.html'
-
 
     def get_success_url(self):
         return reverse_lazy('consult_qnaapp:detail', kwargs={'pk': self.object.pk})

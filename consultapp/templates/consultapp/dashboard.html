@@ -1,27 +1,24 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-<style>
 
-</style>
-
-<header class="header-black" >
+<header class="header-black">
     {% if user.state == 'student' %}
-        {% include 'headersnippets/home.html'  %}
-        {% include 'headersnippets/account.html'  %}
+    {% include 'headersnippets/home.html' %}
+    {% include 'headersnippets/account.html' %}
     {% else %}
-        {% include 'headersnippets/home.html'  %}
-        <a class="btn-dashboard material-icons"
-           href="{% url 'teacherapp:dashboard' pk=target_consult.teacher.pk  %}">dashboard</a>
+    {% include 'headersnippets/home.html' %}
+    <a class="btn-dashboard material-icons"
+       href="{% url 'teacherapp:dashboard' pk=target_consult.teacher.pk  %}">dashboard</a>
     {% endif %}
 </header>
+
 <main>
     {% include 'consultapp/dashboardsnippets/head.html' %}
     <div class="consult-dashboard-slide1" style="display:block">
         {% include 'consultapp/dashboardsnippets/classlink.html' %}
         {% include 'consultapp/dashboardsnippets/consulting.html' %}
         {% include 'consultapp/dashboardsnippets/qna.html' %}
-
     </div>
     <div class="consult-dashboard-slide2" style="display:none">
         {% include 'consultapp/dashboardsnippets/teacher.html' %}
@@ -34,5 +31,6 @@
         {% include 'consultapp/dashboardsnippets/refund.html' %}
     </div>
 </main>
+
 {% endblock %}
 

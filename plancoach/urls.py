@@ -54,7 +54,7 @@ urlpatterns = [
     path('qna_comments/', include('qna_commentapp.urls')),
 
     path('applications/', include('applicationapp.urls')),
-    path('application_refusals/', include('application_refusalapp.urls')),
+    path('refusals/', include('refusalapp.urls')),
 
     path('payments/', include('paymentapp.urls')),
 

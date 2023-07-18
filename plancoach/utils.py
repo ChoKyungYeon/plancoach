@@ -1,20 +1,10 @@
-
-from datetime import timedelta
-
+from datetime import timedelta, date
 from plancoach.variables import current_datetime
+from refusalapp.models import Refusal
 
-
-def time_converter_before(time):
-    interval_hours = round((current_datetime - time) / timedelta(hours=1))
-    if interval_hours >= 24:
-        return f'{interval_hours // 24}일 전'
-    elif interval_hours == 0:
-        return '방금 전'
-    return f'{interval_hours}시간 전'
 
 def time_before(time):
     delta = current_datetime - time
-
     if delta.total_seconds() < 300:
         return '방금전'
     elif delta.total_seconds() < 3600:
@@ -30,7 +20,8 @@ def time_before(time):
         months = round(delta.total_seconds() / 2592000)
         return f'{months}달 전'
 
-def time_converter_expire(time, expire_duration):
+
+def time_expire(time, expire_duration):
     interval_hours = expire_duration - round((current_datetime - time) / timedelta(hours=1))
     if interval_hours <= 0:
         return '1시간'
@@ -51,3 +42,35 @@ def update_field_choices(value, instances, self):
         if choice[0] not in existing_values
     ]
     self.fields[value].choices = choices
+
+
+def profile_completeness_calculator(user):
+    target_profile = user.profile
+    profile_instance = {
+        '학력': hasattr(target_profile, 'profile_scholarship'),
+        '고교 성적': hasattr(target_profile, 'profile_gpa'),
+        '수능 성적': target_profile.profile_sat.exists(),
+        '경력': target_profile.profile_career.exists(),
+        '교과목': target_profile.profile_subject.exists(),
+        '담당 수업': hasattr(target_profile, 'profile_consulttype'),
+        '사진': hasattr(target_profile, 'profile_profileimage'),
+        '자기 소개': hasattr(target_profile, 'profile_introduction'),
+    }
+    profile_completed = [key for key, value in profile_instance.items() if value]
+    profile_uncompleted = [key for key, value in profile_instance.items() if not value]
+    ratio = round(len(profile_completed) * 100 / len(profile_instance)) if profile_instance else 0
+    return profile_completed, profile_uncompleted, ratio
+
+
+def salaryday_calculator(target_date):
+    month_diff = (target_date.day > 10)
+    target_month=target_date.month - 1 + month_diff
+    new_month = target_month % 12 + 1
+    new_year = target_date.year + (target_month // 12)
+    if new_month == 12 and target_date.month != 12:
+        new_year += 1
+    return date(new_year, new_month, 10)
+
+def create_refusal(object, message):
+    Refusal.objects.create(student=object.student, content=message)
+    object.delete()

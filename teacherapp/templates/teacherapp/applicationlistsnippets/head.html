@@ -3,8 +3,8 @@
     background: var(--white);
     padding-left: var(--main-padding);
     padding-right:var(--main-padding);
-    padding-top:2rem;
-    padding-bottom: 1rem;
+    padding-top:3rem;
+    padding-bottom: 3.7rem;
 }
 
 .teacher-applicationlist-head .container-head{
@@ -13,16 +13,13 @@
     justify-content:space-between;
     align-items: center;
     width:100%;
-    margin-bottom: 1rem;
-    margin-top: 1.5rem;
 }
 
 
 
 .container-head .btn-touched,
 .container-head .btn-untouched{
-    width:20%;
-    height:6rem;
+    width:40%;
     display: flex;
     flex-direction:row;
     justify-content:center;
@@ -35,8 +32,8 @@
 
 .container-head .btn-touched .item-circle,
 .container-head .btn-untouched .item-circle{
-    height:4.2rem;
-    width:4.2rem;
+    height:4.3rem;
+    width:4.3rem;
     border-radius:50%;
     display: flex;
     flex-direction:row;
@@ -53,14 +50,14 @@
     font-size: var(--fontsize-detail);
     background:var(--orange);
     box-shadow: var(--shadow-btn);
-    height:5.5rem;
-    width:5.5rem;
+    height:5.2rem;
+    width:5.2rem;
 }
 
 
 .container-head .icon-right{
-    color:var(--gray);
-    font-size:2.7rem;
+    color:var(--orange);
+    font-size:3.5rem;
     width:20%;
     height:6rem;
     display: flex;
@@ -84,10 +81,6 @@
         <div class="material-icons icon-right">arrow_right</div>
         <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched">
             <div class="item-circle">{{applications_matching|length}}개</div>
-        </button>
-        <div class="material-icons icon-right">arrow_right</div>
-        <button onclick="showSlide(3)" id="btn-slide3" class="btn-untouched">
-            <div class="item-circle">{{applications_waiting|length}}개</div>
         </button>
     </div>
 </div>

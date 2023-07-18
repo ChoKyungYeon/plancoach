@@ -1,5 +1,6 @@
 from audioop import reverse
 
+from django.db import transaction
 from django.urls import reverse_lazy
 from django.views.generic import DetailView, RedirectView
 
@@ -33,18 +34,20 @@ class SalaryPayView(DetailView):
 
 class SalaryStateUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
-        salary = Salary.objects.get(pk=self.request.GET.get('salary_pk'))
-        target_teacher=salary.teacher
-        content = f'{salary.salaryday}급여 {salary.paid_amount}원 입금이 완료되었습니다'
-        Send_SMS(target_teacher.username, content, target_teacher.can_receive_notification)
         return reverse_lazy('superuserapp:dashboard')
 
     def get(self, request, *args, **kwargs):
         salary = Salary.objects.get(pk=self.request.GET.get('salary_pk'))
-        target_bank=salary.teacher.profile.profile_bank
-        salary.is_given = True
-        salary.bank=target_bank.bank
-        salary.accountnumber=target_bank.accountnumber
-        salary.depositor=target_bank.depositor
-        salary.save()
-        return super(SalaryStateUpdateView, self).get(request, *args, **kwargs)
+        teacher = salary.teacher
+        bank = teacher.profile.profile_bank
+        with transaction.atomic():
+            # form instacne
+            salary.is_given = True
+            salary.bank=bank.bank
+            salary.accountnumber=bank.accountnumber
+            salary.depositor=bank.depositor
+            salary.save()
+            # sendsms
+            content = f'{salary.salaryday}급여 {salary.paid_amount}원 입금이 완료되었습니다'
+            Send_SMS(teacher.username, content, teacher.can_receive_notification)
+            return super(SalaryStateUpdateView, self).get(request, *args, **kwargs)

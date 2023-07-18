@@ -1,46 +1,39 @@
-from datetime import timedelta, date, datetime
+from datetime import timedelta
 from django.db import models, transaction
-
 from accountapp.models import CustomUser
-from applicationapp.models import Application
+from refusalapp.models import Refusal
 from plancoach.choice import consultstatechoice, agechoice
-from plancoach.sms import Send_SMS
+from plancoach.utils import time_expire, create_refusal
 from plancoach.variables import current_date, current_datetime
 
 
 class Consult(models.Model):
-    application = models.OneToOneField(Application, on_delete=models.CASCADE, related_name='consult', null=True, blank=True)
     student = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='consult_student')
-    teacher= models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='consult_teacher')
+    teacher = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='consult_teacher')
     state = models.CharField(max_length=20, choices=consultstatechoice, default='new')
-    age= models.CharField(max_length=20, choices=agechoice)
-    belong = models.CharField(max_length=10)
+    age = models.CharField(max_length=20, choices=agechoice)
+    belong = models.CharField(max_length=8)
     tuition = models.IntegerField()
-    startdate = models.DateField(null=True, blank=True)
+    startdate = models.DateField(null=True, blank=True)  #수업 시작 첫날
     created_at = models.DateTimeField(auto_now_add=True)
+    want = models.TextField(max_length=500,default='')
+    problem = models.TextField(max_length=500,default='')
+    strategy = models.TextField(max_length=500,default='')
 
-    def enddate(self):
+    def expire_new(self):
+        return time_expire(self.created_at, 48)
+
+    def enddate(self): #수업 일자에 포함
         return self.startdate + timedelta(days=28) if self.startdate else None
 
-    def extenddate(self):
+    def extenddate(self): #수업 일자 종료 다음날, 연장 첫날
         return self.startdate + timedelta(days=29) if self.startdate else None
 
-    def extend_enddate(self):
+    def extend_enddate(self): #수업 연장날 끝나는 날, 이날까지 포함
         return self.startdate + timedelta(days=57) if self.startdate else None
 
-    def refund_amount(self):
-        today = current_date
-        tuition = self.tuition * 10000
-        interval = today - self.startdate
-        if interval <= timedelta(days=7):
-            return int(round(tuition * 3 / 4, -2))
-        elif timedelta(days=7) < interval <= timedelta(days=14):
-            return int(round(tuition / 2, -2))
-        else:
-            return 0
-
     def refund_entire_amount(self):
-        return self.refund_amount()+self.tuition*10000 if self.state=='extended' else self.refund_amount()
+        return self.refund_amount() + self.tuition if self.state == 'extended' else self.refund_amount()
 
     def __str__(self):
         return f"{self.student}( {self.belong} ) 수업 ({self.startdate}~{self.enddate()})"
@@ -48,10 +41,19 @@ class Consult(models.Model):
     def consult_name(self):
         return f"{self.teacher.userrealname}T: {self.student.userrealname} 수업"
 
+    def refund_amount(self):
+        if self.startdate:
+            interval = current_date - self.startdate
+            tuition = self.tuition
+            refund_rates = [(timedelta(days=7), 3 / 4), (timedelta(days=14), 1 / 2)]
+            for days, rate in refund_rates:
+                if interval <= days:
+                    return int(round(tuition * rate, -2))
+        return 0
+
     def remaining_day(self):
-        now = current_date
         if self.enddate():
-            interval = (self.enddate() - now).days
+            interval = (self.enddate() - current_date).days
             if interval > 0:
                 remaining_day = f'{"연장" if self.state != "unextended" else "종료"} {interval}일 전'
             elif interval == 0:
@@ -61,17 +63,20 @@ class Consult(models.Model):
             return remaining_day
 
 
-    def save(self, *args, **kwargs):
-        created = not self.pk
-        if created:
-            with transaction.atomic():
-                application = self.application
-                application.state = 'waiting'
-                application.updated_at = current_datetime
-                application.save()
-                content = '신규 수업이 생성되었습니다. 입금을 완료하고 수업을 시작하세요!'
-                student = self.student
-                Send_SMS(student.username, content, student.can_receive_notification)
-        super().save(*args, **kwargs)
-
-
+    def updater(self):
+        today = current_date
+        extenddate = self.extenddate()
+        extend_enddate = self.extend_enddate()
+        target_state = self.state
+        created_interval=current_datetime - self.created_at
+        if target_state == 'new' and created_interval > timedelta(hours=48):
+            create_refusal(self, '기간 내 입금이 완료되지 않았습니다.')
+        elif target_state == 'unextended' and extenddate <= today:
+            create_refusal(self, '수업 기간이 종료 되었습니다.')
+        elif target_state == 'extended':
+            if extend_enddate < today:
+                create_refusal(self, '수업 기간이 종료 되었습니다.')
+            elif extenddate <= today <= extend_enddate:
+                self.startdate = extenddate
+                self.state = 'unextended'
+                self.save()

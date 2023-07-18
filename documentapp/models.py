@@ -3,10 +3,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 
-
-
-
-
 class Document(models.Model):
     refund = models.FileField(upload_to='document/')
     termofuse = models.FileField(upload_to='document/')

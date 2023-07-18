@@ -1,44 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>{% extends 'base.html' %}
+{% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
 
-
 <header class="header-black">
-        {% include 'headersnippets/back.html' %}
-        {% with title="수업료 납부 내역" %}
-        {% include 'headersnippets/title.html' %}
-        {% endwith %}
+    {% include 'headersnippets/back.html' %}
+    {% with title="수업료 납부 내역" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
 </header>
 
 <main>
-<div class="main-box" >
-    {% if payments %}
+    <div class="main-box">
+        {% if payments %}
         <div class="main-container-snippetitem">
-        {% for payment in payments %}
+            {% for payment in payments %}
             {% include 'snippets/payment.html' %}
             {% if not forloop.last %}
             <div class="main-interval-line"></div>
             {% endif %}
-        {% endfor %}
+            {% endfor %}
         </div>
-    {% else %}
+        {% else %}
         <div class="main-container-empty">
         <span class="text-empty">
         수업료 납부 내역이 없습니다.
         </span>
         </div>
-    {% endif %}
-</div>
-
+        {% endif %}
+    </div>
 </main>
+
 {% endblock %}
 

@@ -5,6 +5,6 @@ from django.contrib.admin import ModelAdmin
 
 class RefundAdmin(ModelAdmin):
     form = RefundCreateFormAdmin
-    list_display = ('classname','created_at','salary')
+    list_display = ('classname','created_at','amount','salary')
 admin.site.register(Refund, RefundAdmin)
 

@@ -1,0 +1,21 @@
+
+
+<div class="main-container-guide" >
+    <div class="item-title" >
+        <div class="text-emphasize">&nbsp;수업 매칭</div>
+        <span class="text-title">종료&nbsp;&#128546;</span>
+    </div>
+    <div class="item-subtitle">
+        사유:
+    {% if user.application_student.refusal %}
+        {{user.application_student.refusal.content}}&nbsp;
+    {% else %}
+        기간 내 수업이 성사되지 않았습니다.
+    {% endif %}
+    </div>
+    <span class="item-content">기존 신청서는 삭제되며 자유롭게 매칭을 진행할 수 있습니다.
+        <a href="{% url 'profileapp:list' %}" class="link-nav">
+        선생님 찾기 >
+        </a>
+    </span>
+</div>

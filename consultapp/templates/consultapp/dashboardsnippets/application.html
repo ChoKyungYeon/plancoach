@@ -1,19 +1,16 @@
-
-
 <div class="main-box" style="padding-top:1rem;">
-    <a href="{% url 'applicationapp:detail' pk=target_consult.student.application_student.pk %}"  class="main-container-dashboard">
+    <a href="{% url 'consultapp:applydetail' pk=target_consult.pk %}" class="main-container-dashboard">
         <div class="item-content">
-            <div class="main-array-row" >
+            <div class="main-array-row">
                 <span class="main-text-content text-content">수업 신청서</span>
                 <span class="main-text-index">
                     확인하기
                 </span>
             </div>
-
         </div>
         <div class="material-icons item-nav" style="font-size:1.9rem;">zoom_in</div>
     </a>
-        <div class="main-link-help">
+    <div class="main-link-help">
         <span class="text-help">* 개인정보가 노출되지 않도록 조심해주세요</span>
     </div>
 </div>

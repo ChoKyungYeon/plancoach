@@ -1,26 +1,27 @@
 <style>
-header .btn-back{
-    margin-right: auto;
-}
+    header .btn-back {
+        margin-right: auto;
+    }
 </style>
 
 <header class="header-black">
-        {% url 'consult_feedbackapp:list' pk=target_consult.pk as url %}
-        {% include 'headersnippets/navback.html' with url=url %}
-        {% if user == target_consult.student %}
-            {% if not like %}
-            <a href="{% url 'feedback_likeapp:like' %}?feedback_pk={{ target_feedback.pk }}"
-                    class="btn-like-false material-icons">favorite</a>
-            {% else %}
-            <a href="{% url 'feedback_likeapp:like' %}?feedback_pk={{ target_feedback.pk }}"
-                    class="btn-like-true material-icons">favorite</a>
-            {% endif %}
-        {% endif %}
+    {% url 'consult_feedbackapp:list' pk=target_consult.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
+    {% if user == target_consult.student %}
+    {% if not like %}
+    <a href="{% url 'feedback_likeapp:like' %}?feedback_pk={{ target_feedback.pk }}"
+       class="btn-like-false material-icons">favorite</a>
+    {% else %}
+    <a href="{% url 'feedback_likeapp:like' %}?feedback_pk={{ target_feedback.pk }}"
+       class="btn-like-true material-icons">favorite</a>
+    {% endif %}
+    {% endif %}
 </header>
+
 <script>
     function confirmfeedbackDelete() {
-    if (confirm("선택하신 컨설팅을 삭제하시겠습니까?")) {
-        document.getElementById("feedback-delete-form").submit();
+        if (confirm("선택하신 컨설팅을 삭제하시겠습니까?")) {
+            document.getElementById("feedback-delete-form").submit();
+        }
     }
-}
 </script>

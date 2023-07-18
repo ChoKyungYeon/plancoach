@@ -9,18 +9,18 @@
 
 
 <main class="main-guide">
-    {% if target_step == 'step5' %}
-        {% include 'studentapp/dashboardsnippets/step5.html' %}
-    {% elif target_step == 'step1' %}
-        {% include 'studentapp/dashboardsnippets/step1.html' %}
+    {% if target_step == 'initial' %}
+        {% include 'studentapp/dashboardsnippets/initial.html' %}
+    {% elif target_step == 'applied' %}
+        {% include 'studentapp/dashboardsnippets/applied.html' %}
+    {% elif target_step == 'matching' %}
+        {% include 'studentapp/dashboardsnippets/matching.html' %}
+    {% elif target_step == 'new' %}
+        {% include 'studentapp/dashboardsnippets/new.html' %}
     {% elif target_step == 'refund' %}
         {% include 'studentapp/dashboardsnippets/refund.html' %}
-    {% elif target_step == 'step3' %}
-        {% include 'studentapp/dashboardsnippets/step3.html' %}
-    {% elif target_step == 'step4' %}
-        {% include 'studentapp/dashboardsnippets/step4.html' %}
-    {% elif target_step == 'denied' %}
-        {% include 'studentapp/dashboardsnippets/denied.html' %}
+    {% elif target_step == 'end' %}
+        {% include 'studentapp/dashboardsnippets/end.html' %}
     {% endif %}
 </main>
 {% endblock %}

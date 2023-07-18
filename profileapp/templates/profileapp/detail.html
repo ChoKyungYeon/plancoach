@@ -4,12 +4,12 @@
 
 <style>
 
-.container-{
+.container-info{
     display: flex;
     flex-direction:column;
     justify-content:flex-start;
     align-items:flex-start;
-    box-shadow:var(--shadow-itembox-);
+    box-shadow:var(--shadow-itembox);
     padding:2rem var(--content-padding) ;
     width:100%;
     background:var(--white);
@@ -36,25 +36,11 @@
 </style>
 
 <header class="header-black">
-    {% if not user.is_authenticated %}
-        {% url 'profileapp:list' as url %}
-        {% include 'headersnippets/list.html' with url=url %}
-        {% include 'headersnippets/share.html' %}
-    {% else%}
-        {% if user.state == 'student' %}
-            {% url 'profileapp:list' as url %}
-            {% include 'headersnippets/list.html' with url=url %}
-            {% include 'headersnippets/share.html' %}
-            {% include 'headersnippets/like.html' %}
-        {% elif user.state == 'superuser' %}
-            {% url 'superuserapp:dashboard' as url %}
-            {% include 'headersnippets/list.html' with url=url %}
-            {% include 'headersnippets/share.html' %}
-        {% else%}
-            {% url 'profileapp:list' as url %}
-            {% include 'headersnippets/list.html' with url=url %}
-            {% include 'headersnippets/share.html' %}
-        {% endif %}
+    {% url 'profileapp:list' as url %}
+    {% include 'headersnippets/list.html' with url=url %}
+    {% include 'headersnippets/share.html' %}
+    {% if user.state == 'student' %}
+        {% include 'headersnippets/like.html' %}
     {% endif %}
 </header>
 <main class="profile-detail ">

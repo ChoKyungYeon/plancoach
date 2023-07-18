@@ -3,22 +3,24 @@
 
 {% block content %}
 <style>
-.container-refund{
-    flex-direction: column;
+    .container-refund {
+        flex-direction: column;
+    }
 
-}
-.container-refund .text-message{
-    margin-bottom:3rem;
-    color: var(--black);
-}
-.container-refund .img-refund{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-.container-refund .fullscreenrefund{
-    max-width: 90vw;
-}
+    .container-refund .text-message {
+        margin-bottom: 3rem;
+        color: var(--black);
+    }
+
+    .container-refund .img-refund {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .container-refund .fullscreenrefund {
+        max-width: 90vw;
+    }
 
 </style>
 
@@ -41,10 +43,10 @@
             이와 같은 지연의 경우 회사는 책임을 지지 않습니다.
         </span>
 
-        <button style="width: 100%" onclick="showrefund()" >
-            <img class="img-refund" src='/static/images/refund.png' >
+        <button style="width: 100%" onclick="showrefund()">
+            <img class="img-refund" src='/static/images/refund.png'>
         </button>
-        <div id="refund-fullscreen" class="fullscreenimage" >
+        <div id="refund-fullscreen" class="fullscreenimage">
             <button onclick="closerefund()"
                     class="btn-exit material-icons">close
             </button>
@@ -52,25 +54,26 @@
         </div>
     </div>
 </main>
+
 <script>
-function showrefund() {
-    var element = document.getElementById("refund-fullscreen");
-    element.style.display = "flex";
-    element.style.opacity = 0;
-    setTimeout(function() {
-        element.style.transition = 'opacity 0.2s ease-in-out';
-        element.style.opacity = 1;
-    }, 10);
-}
+    function showrefund() {
+        var element = document.getElementById("refund-fullscreen");
+        element.style.display = "flex";
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.transition = 'opacity 0.2s ease-in-out';
+            element.style.opacity = 1;
+        }, 10);
+    }
 
-function closerefund() {
-    var element = document.getElementById("refund-fullscreen");
-    element.style.transition = 'opacity 0.4s ease-in-out';
-    element.style.opacity = 0;
-    setTimeout(function() {
-        element.style.display = "none";
-    }, 400);
-}
+    function closerefund() {
+        var element = document.getElementById("refund-fullscreen");
+        element.style.transition = 'opacity 0.4s ease-in-out';
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.display = "none";
+        }, 400);
+    }
+</script>
 
-</script>        
 {% endblock %}

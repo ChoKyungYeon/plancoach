@@ -1,87 +1,89 @@
-
 <style>
+    .container-introduce {
+        background: linear-gradient(0deg, #f0f3ff, white, #f0f3ff);
+    }
 
-.container-introduce{
-    background: linear-gradient(0deg, #f0f3ff, white, #f0f3ff);
-}
+    .container-introduce .item-image {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+    }
 
+    .container-introduce .array-image {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 47%;
+    }
 
+    .container-introduce .image-short,
+    .container-introduce .image-long {
+        object-fit: cover;
+        width: 100%;
+        border-radius: 0.7rem;
+        box-shadow: 0px 3px 10px #a7abbe;
+        border: 1px solid var(--darkgray);
+        height: 10rem;
+        margin-top: 3rem;
+    }
 
-.container-introduce .item-image{
-    display: flex;
-    flex-direction:row;
-    justify-content:space-between;
-    align-items:flex-start;
-    width: 100%;
-}
+    .container-introduce .image-long {
+        height: 12rem;
+    }
 
-.container-introduce .array-image{
-    display: flex;
-    flex-direction:column;
-    justify-content:flex-start;
-    align-items:center;
-    width: 47%;
-}
-.container-introduce .image-short,
-.container-introduce .image-long{
-    object-fit: cover;
-    width:100%;
-    border-radius: 0.7rem;
-    box-shadow: 0px 3px 10px #a7abbe;
-    border:1px solid var(--darkgray);
-    height:10rem;
-    margin-top: 3rem;
+    .container-introduce .emoji-click {
+        font-size: 2rem;
+        position: absolute;
+        bottom: -11px;
+        right: -11px;
+    }
 
+    .container-introduce .image-button {
+        position: relative;
+        width: 100%;
+        flex-shrink: 0;
+    }
 
-}
-.container-introduce .image-long{
-    height:12rem;
-}
-.container-introduce .emoji-click{
-    font-size: 2rem;
-    position: absolute;
-    bottom: -11px;
-    right: -11px;
-}
-.container-introduce .image-button{
-    position: relative;
-    width:100%;
-    flex-shrink: 0;
-}
-.container-fullscreen{
-    opacitiy:0;
-    justify-content:flex-start;
-    padding:8rem var(--homescreen-padding);
-    display:none;
-    background: rgba(29, 33, 52, 0.95);
-    overflow-y: auto;
-}
-.container-fullscreen .text-title-fullscreen{
-    color: var(--white);
-    font-size:1.75rem;
-    margin-bottom: 0.5rem;
-    font-weight: var(--fontweight-index);
-}
-.container-fullscreen .item-guide{
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    width: 100%;
-    display: flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:flex-start;
-}
-.container-fullscreen .item-image-fullscreen{
-    object-fit: cover;
-    width:100%;
-    border-radius: 0.5rem;
-    box-shadow: 0px 3px 10px var(--darkblue);
-    border:1px solid var(--darkblue);
-    height:20rem;
-    margin-bottom: 3rem;
-}
+    .container-fullscreen {
+        opacitiy: 0;
+        justify-content: flex-start;
+        padding: 8rem var(--homescreen-padding);
+        display: none;
+        background: rgba(29, 33, 52, 0.95);
+        overflow-y: auto;
+    }
 
+    .container-fullscreen .text-title-fullscreen {
+        color: var(--white);
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+        font-weight: var(--fontweight-index);
+    }
+
+    .container-fullscreen .item-guide {
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .container-fullscreen .item-image-fullscreen {
+        object-fit: cover;
+        width: 100%;
+        border-radius: 0.5rem;
+        box-shadow: 0px 3px 10px var(--darkblue);
+        border: 1px solid var(--darkblue);
+        height: 20rem;
+        margin-bottom: 3rem;
+    }
 </style>
+
 <div class="main-container-homescreen container-introduce">
     <div class="text-title">
         서울대, 의대 출신 선생님들이 연구. 개발한 학습 컨설팅 프로그램을 만나보세요
@@ -91,9 +93,9 @@
             {% include 'homescreenapp/homescreensnippets/list1.html' %}
             {% include 'homescreenapp/homescreensnippets/list2.html' %}
         </div>
-    <div class="array-image" >
+        <div class="array-image">
             {% include 'homescreenapp/homescreensnippets/list3.html' %}
             {% include 'homescreenapp/homescreensnippets/list4.html' %}
-    </div>
+        </div>
     </div>
 </div>
