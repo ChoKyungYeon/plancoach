@@ -84,7 +84,9 @@
         </div>
         {% include 'teacherapp/applicationlistsnippets/matching.html' %}
     </div>
+    {% if user == target_user %}
     <button onclick="showhelp_application()"  class="material-icons main-icon-help">question_mark</button>
     {% include 'teacherapp/applicationlistsnippets/help_application.html' %}
+    {% endif %}
 </main>
 {% endblock %}

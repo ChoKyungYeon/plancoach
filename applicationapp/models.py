@@ -1,9 +1,8 @@
-from datetime import timedelta
+from datetime import timedelta, datetime
 from django.db import models, transaction
 from accountapp.models import CustomUser
 from plancoach.choice import agechoice, applicationstatechoice
 from plancoach.utils import time_expire, create_refusal
-from plancoach.variables import current_datetime
 
 
 class Application(models.Model):
@@ -28,7 +27,7 @@ class Application(models.Model):
         with transaction.atomic():
             target_state = self.state
             updated_at = self.updated_at
-            updated_interval = current_datetime - updated_at
+            updated_interval = datetime.now() - updated_at
             if target_state == 'applied' and updated_interval > timedelta(hours=24):
                 create_refusal(self,'기간 내 신청이 확인되지 않았습니다.')
             elif target_state == 'matching' and updated_interval > timedelta(hours=168):

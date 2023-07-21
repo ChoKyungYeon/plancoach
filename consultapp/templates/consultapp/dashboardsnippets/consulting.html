@@ -28,10 +28,19 @@
 
 <div class="main-box" style="padding-top:1rem;">
     <div class="main-container-dashboard container-consulting">
+        {% if today_plan %}
+        <a href="{% url 'consult_feedbackapp:plandetail' pk=today_plan.consult_feedback.pk %}" class="main-text-index">
+            {{today_plan.plantime|date:"m월 d일 학습계획"}} >
+        </a>
+        <span class="main-text-content text-latest">
+            {{ today_plan.content|safe|linebreaksbr}}
+        </span>
+        {% else %}
         <span class="main-text-index">오늘의 학습 계획</span>
         <span class="main-text-content text-latest">
-            {{target_plan_content}}
+            오늘 예정된 학습 계획이 없습니다
         </span>
+        {% endif %}
         <div class="main-array-row">
             <span class="main-text-content text-content">전체 수업</span>
             <span class="main-text-index">

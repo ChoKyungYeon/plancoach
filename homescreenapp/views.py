@@ -7,10 +7,7 @@ class HomescreenView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if self.request.user.is_authenticated:
-            context['target_step'] = self.request.user.student_step()
-        else:
-            context['target_step'] = 'unauthenticated'
+        context['target_step'] = self.request.user.step() if self.request.user.is_authenticated else 'unauthenticated'
         return context
 
 

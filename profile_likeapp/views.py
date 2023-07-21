@@ -4,7 +4,8 @@ from django.urls import reverse
 from django.views.generic import RedirectView
 from profile_likeapp.models import Profile_like
 from profileapp.models import Profile
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 class Profile_likeView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):

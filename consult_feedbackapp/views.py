@@ -1,9 +1,11 @@
+from datetime import datetime
+
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, DeleteView, UpdateView
 from consult_feedbackapp.forms import Consult_feedbackCreateForm, Consult_feedbackUpdateForm, \
-    Consult_feedbackUpdateContentForm
+    Consult_feedbackContentUpdateForm
 from consult_feedbackapp.models import Consult_feedback
 from consult_feedbackapp.utils import planatime_calulator
 from consultapp.models import Consult
@@ -11,8 +13,8 @@ from feedback_coachapp.models import Feedback_coach
 from feedback_likeapp.models import Feedback_like
 from feedback_planapp.models import Feedback_plan
 from plancoach.choice import subjectchoice
-from plancoach.variables import current_date
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 class Consult_feedbackCreateView(CreateView):
     model = Consult_feedback
@@ -31,7 +33,7 @@ class Consult_feedbackCreateView(CreateView):
         classtime = form.cleaned_data['classtime']
         with transaction.atomic():
             # form error
-            if classtime > current_date:
+            if classtime > datetime.now().date():
                 form.add_error('classtime', '컨설팅 기록은 수업 후에 등록해주세요')
                 return self.form_invalid(form)
             elif classtime in classtimes:
@@ -97,7 +99,7 @@ class Consult_feedbackUpdateView(UpdateView):
         classtime = form.cleaned_data['classtime']
         with transaction.atomic():
             # form invalid
-            if classtime > current_date:
+            if classtime > datetime.now().date():
                 form.add_error('classtime', '컨설팅 기록은 수업 후에 등록해주세요')
                 return self.form_invalid(form)
             elif classtime in classtimes:
@@ -115,11 +117,11 @@ class Consult_feedbackUpdateView(UpdateView):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.pk})
 
 #updaterneeded
-class Consult_feedbackUpdateContentView(UpdateView):
+class Consult_feedbackContentUpdateView(UpdateView):
     model = Consult_feedback
-    form_class = Consult_feedbackUpdateContentForm
+    form_class = Consult_feedbackContentUpdateForm
     context_object_name = 'target_consult_feedback'
-    template_name = 'consult_feedbackapp/updatecontent.html'
+    template_name = 'consult_feedbackapp/contentupdate.html'
 
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.pk})

@@ -2,10 +2,9 @@
 {% load bootstrap4 %}
 {% block content %}
 
-
-
 <header class="header-black">
-        {% include 'headersnippets/back.html' %}
+        {% url 'consultapp:dashboard' pk=target_consult.pk as url %}
+        {% include 'headersnippets/navback.html' with url=url %}
         {% with title="환불 신청" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}

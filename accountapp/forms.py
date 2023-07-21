@@ -118,7 +118,10 @@ class AccountPasswordUpdateForm(UserCreationForm):
         self.fields.pop('username')
 
 
-class AccountCreateFormAdmin(UserChangeForm):
+class AccountAdminForm(ModelForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'userrealname', 'email', 'state', 'can_receive_notification')
+        fields = ('state',)
+        labels = {
+            'state': '계정 상태',
+        }

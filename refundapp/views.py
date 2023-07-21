@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
@@ -5,9 +6,10 @@ from django.views.generic import CreateView, RedirectView, DetailView
 from consultapp.models import Consult
 from plancoach.sms import Send_SMS
 from plancoach.utils import salaryday_calculator
-from plancoach.variables import current_datetime
 from refundapp.forms import RefundCreateForm
 from refundapp.models import Refund
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 class RefundGuideView(DetailView):
     model = Consult
@@ -69,7 +71,7 @@ class RefundStateUpdateView(RedirectView):
         student = refund.student
         with transaction.atomic():
             refund.is_given= True
-            refund.given_at= current_datetime
+            refund.given_at= datetime.now()
             refund.save()
             content = f'({refund.classname}) 수업이 환불 완료되었습니다.'
             Send_SMS(student.username, content, student.can_receive_notification)
@@ -81,7 +83,8 @@ class RefundDetailView(DetailView):
     context_object_name = 'target_refund'
     template_name = 'refundapp/detail.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+class RefundPayView(DetailView):
+    model = Refund
+    context_object_name = 'target_refund'
+    template_name = 'refundapp/pay.html'
 

@@ -58,7 +58,7 @@
     width:100%;
     background:var(--color-btn-submit);
     color:var(--white);
-    height: 4.2rem;
+    height: 4.5rem;
     font-size:1.4rem;
     border-radius:1rem;
     border:none;
@@ -69,6 +69,7 @@
 .main-container-form .btn-submit-short,
 .main-container-guideform .btn-submit{
     margin-top:2.5rem;
+    height: 4.2rem;
 }
 /*폼 관리*/
 
@@ -283,3 +284,14 @@ input[type="file"]::-ms-browse {
     display: none;
 }
 
+.main-container-form .container-verify{
+    position: relative;
+}
+.container-verify .text-countdown{
+    position: absolute;
+    color: var(--red);
+    font-size: var(--fontsize-detail);
+    font-weight: var(--fontweight-index);
+    top:2.6rem;
+    left:6.5rem;
+}

@@ -1,172 +1,17 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-<style>
-    .teacherapply-detail .btn-verification {
-        color: var(--green);
-        font-size: 1.8rem;
-        font-weight: var(--fontweight-content);
-        padding-right: 1rem;
-        padding-left: 0.7rem;
-    }
-</style>
 
 <header class="header-black">
-    {% include 'headersnippets/back.html' %}
-    {% with title="선생님 등록" %}
+    {%  url 'studentapp:dashboard' pk=target_teacherapply.customuser.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
+    {% with title="신청서 상세" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
 </header>
 <main class="teacherapply-detail">
-
     <div class="main-box">
-        {% if user.state == 'superuser' %}
-        <form action="{% url 'teacherapplyapp:delete' pk=target_teacherapply.pk %}"
-              method="post" id="teacherapply-delete-form">
-            {% csrf_token %}
-            <input style="display:none" type="submit" name="next" value="{% url 'superuserapp:dashboard' %}">
-            <button class="main-icon-negative material-icons" type="button" onclick="confirmteacherapplyDelete()">
-                close
-            </button>
-        </form>
-        <a id="toprofilecreate" href="{% url 'profileapp:create' pk=target_teacherapply.pk %}"
-           class="main-icon-positive material-icons" style="right: 6rem">done
-        </a>
-        {% endif %}
-        <div class="main-array-title-table">
-            <div class="main-text-title-table">신청자 정보</div>
-            <button onclick="showuserimage()" class="material-icons btn-verification">verified</button>
-            <div id="userimage-fullscreen" class="fullscreenimage">
-                <button onclick="closeuserimage()" class="btn-exit material-icons">close</button>
-                <img class="fullscreenimage-image" src="{{ target_teacherapply.userimage.url }}">
-            </div>
-        </div>
-        <div class="main-container-table">
-            <div class="main-array-row">
-                <div class="row-index border1">이름</div>
-                <div class="row-content-full border2">
-                    {{ target_teacherapply.customuser.userrealname}}
-                </div>
-            </div>
-            <div class="main-array-row">
-                <div class="row-index">연락처</div>
-                <div class="row-content-full ">
-                    {{ target_teacherapply.customuser.username}}
-                </div>
-            </div>
-            <div class="main-array-row">
-                <div class="row-index border4">수업</div>
-                <div class="row-content-full border3">
-                    {{ target_teacherapply.consulttype }}
-                </div>
-            </div>
-        </div>
-        <div class="main-array-title-table">
-            <div class="main-text-title-table">학력 상세 사항</div>
-            <button onclick="showschoolimage()" class="material-icons btn-verification">verified</button>
-            <div id="schoolimage-fullscreen" class="fullscreenimage">
-                <button onclick="closeschoolimage()" class="btn-exit material-icons">close</button>
-                <img class="fullscreenimage-image" src="{{ target_teacherapply.schoolimage.url }}">
-            </div>
-        </div>
-        <div class="main-container-table">
-            <div class="main-array-row">
-                <div class="row-index border1">학번</div>
-                <div class="row-content-half">{{ target_teacherapply.studentid}}</div>
-                <div class="row-index">전형</div>
-                <div class="row-content-half border2">{{ target_teacherapply.accepttype}}</div>
-            </div>
-            <div class="main-array-row">
-                <div class="row-index">학교</div>
-                <div class="row-content-full ">
-                    {{ target_teacherapply.school }}
-                </div>
-            </div>
-            <div class="main-array-row">
-                <div class="row-index border4">학과</div>
-                <div class="row-content-full border3">
-                    {{ target_teacherapply.major }}
-                </div>
-            </div>
-        </div>
-        <div class="main-array-title-table">
-            <div class="main-text-title-table">급여계좌</div>
-        </div>
-        <div class="main-container-table">
-            <div class="main-array-row">
-                <div class="row-index border1">은행</div>
-                <div class="row-content-half">{{ target_teacherapply.bank }}</div>
-                <div class="row-index">예금주</div>
-                <div class="row-content-half border2">{{ target_teacherapply.depositor}}</div>
-            </div>
-            <div class="main-array-row">
-                <div class="row-index border4">계좌</div>
-                <div class="row-content-full border3">
-                    {{ target_teacherapply.accountnumber }}
-                </div>
-            </div>
-        </div>
-
+        {% include 'teacherapplyapp/detailsnippets/info.html' %}
     </div>
 </main>
-<script>
-
-    function showschoolimage() {
-        var element = document.getElementById("schoolimage-fullscreen");
-        element.style.display = "flex";
-        element.style.opacity = 0;
-        setTimeout(function () {
-            element.style.transition = 'opacity 0.2s ease-in-out';
-            element.style.opacity = 1;
-        }, 10);
-    }
-
-    function closeschoolimage() {
-        var element = document.getElementById("schoolimage-fullscreen");
-        element.style.transition = 'opacity 0.4s ease-in-out';
-        element.style.opacity = 0;
-        setTimeout(function () {
-            element.style.display = "none";
-        }, 400);
-    }
-
-    function showuserimage() {
-        var element = document.getElementById("userimage-fullscreen");
-        element.style.display = "flex";
-        element.style.opacity = 0;
-        setTimeout(function () {
-            element.style.transition = 'opacity 0.2s ease-in-out';
-            element.style.opacity = 1;
-        }, 10);
-    }
-
-    function closeuserimage() {
-        var element = document.getElementById("userimage-fullscreen");
-        element.style.transition = 'opacity 0.4s ease-in-out';
-        element.style.opacity = 0;
-        setTimeout(function () {
-            element.style.display = "none";
-        }, 400);
-    }
-
-
-    function confirmtoprofilecreate(event) {
-        if (confirm("선생님 등록 화면으로 이동하시겠습니까?")) {
-            window.location.href = event.target.href;
-        } else {
-            event.preventDefault();
-        }
-    }
-
-    const toprofilecreate = document.getElementById('toprofilecreate');
-    if (toprofilecreate) {
-        toprofilecreate.addEventListener('click', confirmtoprofilecreate);
-    }
-
-    function confirmteacherapplyDelete() {
-        if (confirm("현재 신청서를 정말로 삭제하시겠습니까?")) {
-            document.getElementById("teacherapply-delete-form").submit();
-        }
-    }
-</script>
 {% endblock %}

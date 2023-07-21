@@ -1,5 +1,5 @@
-from django.urls import reverse_lazy
-from django.views.generic import UpdateView
+from django.urls import reverse_lazy, reverse
+from django.views.generic import UpdateView, RedirectView
 from feedback_planapp.forms import Feedback_planUpdateForm
 from feedback_planapp.models import Feedback_plan
 
@@ -12,3 +12,15 @@ class Feedback_planUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:plandetail', kwargs={'pk': self.object.consult_feedback.pk})
+
+
+class Feedback_planStateUpdateView(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        plan = Feedback_plan.objects.get(pk=self.request.GET.get('plan_pk'))
+        return reverse('consult_feedbackapp:plandetail', kwargs={'pk': plan.consult_feedback.pk})
+
+    def get(self, request, *args, **kwargs):
+        plan = Feedback_plan.objects.get(pk=self.request.GET.get('plan_pk'))
+        plan.is_done = True if plan.is_done == False else False
+        plan.save()
+        return super(Feedback_planStateUpdateView, self).get(request, *args, **kwargs)

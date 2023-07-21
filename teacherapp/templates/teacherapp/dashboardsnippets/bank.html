@@ -15,6 +15,7 @@
     justify-content:flex-start;
     align-items: flex-start;
     margin-right: auto;
+    width: 100%;
 }
 
 
@@ -28,7 +29,7 @@
 
 
 {% if user.state == 'superuser' %}
-    <a href="{% url 'profile_bankapp:update' pk=target_bank.pk %}"  class="main-container-snippets container-bank">
+    <a href="{% url 'profile_bankapp:update' pk=target_bank.pk %}"  class="main-container-dashboard container-bank">
 {% else %}
     <a  class=" main-container-dashboard container-bank">
 {% endif %}
@@ -44,9 +45,11 @@
     <div class="item-nav material-icons" style="font-size: 1.5rem">edit</div>
     {% endif %}
 </a>
+    {% if user == target_user %}
     <div class="main-link-help">
         <span class="text-help">등록 계좌를 변경하고 싶으신가요?</span>
         <a href="{% url 'homescreenapp:contact' %}" class="text-link">고객센터</a>
     </div>
+    {% endif %}
 </div>
 

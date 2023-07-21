@@ -1,13 +1,13 @@
-from datetime import date
+from datetime import date, datetime
 
-from plancoach.variables import banklist, schoollist, subjectlist, current_date
+from plancoach.variables import banklist, schoollist, subjectlist
 
 schoolyearchoice = []
-for i in range(12, int(current_date.strftime("%y")) + 1):
+for i in range(12, int(datetime.now().date().strftime("%y")) + 1):
     schoolyearchoice.append((i, i))
 
 yearchoice = []
-for i in range(2015, int(current_date.strftime("%Y")) + 1):
+for i in range(2015, int(datetime.now().date().strftime("%Y")) + 1):
     yearchoice.append((i, i))
 
 durationchoice = (
@@ -99,7 +99,7 @@ consulttypechoice=(
     ('정시', '정시'),
     ('내신', '내신'),
     ('학생부', '학생부'),
-    ('논술', '논술'),
+    ('중등', '중등'),
 )
 
 #deploy check

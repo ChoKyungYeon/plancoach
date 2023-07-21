@@ -1,13 +1,9 @@
-from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView, DeleteView
-
-from plancoach.decorators import is_teacher
-from profile_consulttypeapp.decorators import profile_consulttype_ownership_required
 from profile_consulttypeapp.forms import Profile_consulttypeCreateForm
 from profile_consulttypeapp.models import Profile_consulttype
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 
 

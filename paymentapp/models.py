@@ -33,7 +33,6 @@ class Payment(models.Model):
     is_initial_payment = models.BooleanField(default=False)
     amount = models.PositiveIntegerField()
 
-
     @property
     def merchant_uid(self) -> str:
         return self.uid.hex

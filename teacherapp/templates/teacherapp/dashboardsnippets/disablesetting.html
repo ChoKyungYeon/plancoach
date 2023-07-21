@@ -5,8 +5,12 @@
         <span class="main-text-title">프로필 설정</span>
     </div>
     {% if target_user.profile.state == 'abled' %}
+    {% if user == target_user %}
     <a id="tostateimpossible" href="{% url 'profileapp:stateupdate' %}?user_pk={{ target_user.pk }}"
        class="main-container-dashboard" >
+    {% else %}
+    <a class="main-container-dashboard" >
+    {% endif %}
         <script>
         const tostateimpossible = document.getElementById('tostateimpossible');
         tostateimpossible.addEventListener('click', confirmtoStateImpossible);
@@ -30,10 +34,17 @@
                 </span>
             </div>
         </div>
+        {% if user == target_user %}
         <div class="material-icons item-nav" >person_add</div>
+        {% endif %}
+    </a>
     {% else %}
+    {% if user == target_user %}
     <a id="tostatepossible" href="{% url 'profileapp:stateupdate' %}?user_pk={{ target_user.pk }}"
        class="main-container-dashboard" >
+    {% else %}
+    <a class="main-container-dashboard" >
+    {% endif %}
         <script>
         const tostatepossible = document.getElementById('tostatepossible');
         tostatepossible.addEventListener('click', confirmtostatepossible);
@@ -57,9 +68,11 @@
                 </span>
             </div>
         </div>
+        {% if user == target_user %}
         <div class="material-icons item-nav" >person_add_disabled </div>
-    {% endif %}
+        {% endif %}
     </a>
+    {% endif %}
 </div>
 
 

@@ -62,6 +62,7 @@ urlpatterns = [
     path('salarys/', include('salaryapp.urls')),
     path('refunds/', include('refundapp.urls')),
     path('teacherapplys/', include('teacherapplyapp.urls')),
+    path('documents/', include('documentapp.urls')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

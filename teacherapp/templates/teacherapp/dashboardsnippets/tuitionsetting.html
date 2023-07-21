@@ -1,7 +1,11 @@
 
 
 <div class="main-box" style="padding-top: 1rem;">
+    {% if target_user.profile.is_payment_updated_possible == True and user == target_user %}
     <a href="{% url 'profileapp:tuitionupdate' pk=target_user.profile.pk %}" class="main-container-dashboard" >
+    {% else %}
+    <a class="main-container-dashboard" >
+    {% endif %}
         <div class="item-content">
             {% if target_user.profile.is_payment_updated_possible == True %}
             <span class="main-text-content">수업료 변경이 가능합니다</span>
@@ -17,7 +21,9 @@
                 </span>
             </div>
         </div>
+        {% if target_user.profile.is_payment_updated_possible == True and user == target_user %}
         <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
+        {% endif %}
     </a>
 </div>
 

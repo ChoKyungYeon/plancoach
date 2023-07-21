@@ -1,15 +1,11 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DeleteView, UpdateView
-
-from plancoach.decorators import is_teacher
-from profile_satapp.decorators import profile_sat_ownership_required
 from profile_satapp.forms import Profile_satCreateForm
 from profile_satapp.models import Profile_sat
 from profileapp.models import Profile
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 class Profile_satCreateView(CreateView):
     model = Profile_sat

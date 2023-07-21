@@ -2,11 +2,11 @@ from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-
 from accountapp.models import CustomUser
-from plancoach.sms import Send_SMS
 from refusalapp.forms import RefusalCreateForm
 from refusalapp.models import Refusal
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 
 class RefusalCreateView(CreateView):

@@ -1,6 +1,7 @@
 {% extends 'base_noback.html' %}
 {% load bootstrap4 %}
 {% block content %}
+{% load static %}
 <style>
 
 </style>
@@ -16,11 +17,14 @@
 <main class="main-white">
   <div class="main-box">
       <div class="main-container-form" >
-          <form id="phone-number-form" action="{% url 'phonenumberapp:updateverify' pk=phonenumber.pk  %}" method="post" >
-            {% csrf_token %}{% bootstrap_form form %}
+          <form id="phone-number-form" action="{% url 'phonenumberapp:updateverify' pk=phonenumber.pk  %}" method="post" class="container-verify">
+            <div id="countdown" class="text-countdown">{{remaining_time}}</div>
+              <span id="remainingTime" style="display:none;">{{ remaining_time }}</span>
+              <span id="redirectUrl" style="display:none;">{{ redirect_url }}</span>
+              {% csrf_token %}{% bootstrap_form form %}
               <div class="main-link-help">
                 <span class="text-help">* 인증 메세지가 도착하지 않나요?</span>
-                <a href="{% url 'phonenumberapp:updatecreate' pk=phonenumber.customuser.pk %}" class="text-link">재인증</a>
+                <a href="{% url 'phonenumberapp:updatecreate' %}" class="text-link">재인증</a>
               </div>
             <input type="submit" class="btn-submit btn-submit-short"  value="휴대폰 인증">
           </form>
@@ -38,4 +42,5 @@
     }
   });
 </script>
+<script src="{% static 'js/countdown.js' %}"></script>
 {% endblock %}

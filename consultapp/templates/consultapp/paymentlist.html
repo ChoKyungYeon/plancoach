@@ -3,7 +3,8 @@
 {% block content %}
 
 <header class="header-black">
-    {% include 'headersnippets/back.html' %}
+    {% url 'consultapp:dashboard' pk=target_consult.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
     {% with title="수업료 납부 내역" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}

@@ -3,7 +3,8 @@ from django.urls import reverse
 from django.views.generic import RedirectView
 from consult_feedbackapp.models import Consult_feedback
 from feedback_likeapp.models import Feedback_like
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 class Feedback_likeView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):

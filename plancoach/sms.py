@@ -41,9 +41,9 @@ def Send_SMS(to, contents, can_receive):
             }
         ]
     }
-    try:  #deploy check
+    try:  # deploy check
         import plancoach.settings.local
-        can_receive =False
+        can_receive = False
     except:
         pass
     if can_receive:

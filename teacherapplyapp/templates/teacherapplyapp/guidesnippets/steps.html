@@ -83,7 +83,7 @@
 
 
 <div class="teacherapply-guidesnippets-steps">
-    {% if step == "step1" %}
+    {% if step == "initial" %}
     <div class="main-array-row state-ongoing" >
     {% else %}
     <div class="main-array-row state-normal">
@@ -92,17 +92,21 @@
             <div class="item-bar"></div>
         </div>
         <div class="item-info">
+            {% if user.can_apply %}
             정해진 양식에 따라 학력 증명, 신원 인증, 급여 계좌를 등록합니다.
-            {% if step == "step1" %}
+            {% if step == "initial" %}
             &nbsp;
             <a href="{% url 'teacherapplyapp:schoolimagecreate' pk=target_user.pk %}" class="link-nav">
-            학력사항 작성 >
+            선생님 신청 >
             </a>
+            {% endif %}
+            {% else %}
+            수업 매칭 또는 진행 중에는 선생님 등록이 불가능합니다.
             {% endif %}
         </div>
     </div>
     <div class="material-icons icon-down">arrow_drop_down</div>
-    {% if step == "step2" %}
+    {% if step == "applied" %}
     <div class="main-array-row state-ongoing" >
     {% else %}
     <div class="main-array-row state-normal">
@@ -111,8 +115,8 @@
             <div class="item-bar"></div>
         </div>
         <div class="item-info">
-            신청서를 관리자가 확인하고 이후 승인하기 전까지 1,2일간 대기합니다.
-            {% if step == "step2" %}
+            신청서를 관리자가 확인하고 이후 승인하기 전까지 대기합니다.
+            {% if step == "applied" %}
             &nbsp;
             <a href="{% url 'teacherapplyapp:detail' pk=target_user.teacherapply.pk %}" class="link-nav">
             신청 상세 >
@@ -121,11 +125,7 @@
         </div>
     </div>
     <div class="material-icons icon-down">arrow_drop_down</div>
-    {% if step == "step3" %}
-    <div class="main-array-row state-ongoing" >
-    {% else %}
     <div class="main-array-row state-normal">
-    {% endif %}
         <div class="item-index">
             <div class="item-bar"></div>
         </div>

@@ -1,10 +1,5 @@
-from datetime import datetime, timedelta
-
 from django.db import models
-from multiselectfield import MultiSelectField
-import calendar
 from consultapp.models import Consult
-from plancoach.choice import subjectchoice
 from plancoach.utils import time_before
 
 

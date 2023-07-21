@@ -1,7 +1,9 @@
+from datetime import datetime
+
 from django.db import models
 from consultapp.models import Consult
 from plancoach.choice import weekdatechoice
-from plancoach.variables import weekdaylist, current_date
+from plancoach.variables import weekdaylist
 
 
 
@@ -12,7 +14,7 @@ class Consult_classlink(models.Model):
     link = models.TextField(max_length=100)
 
     def weekdate_left(self):
-        today = current_date.strftime('%A')
+        today = datetime.now().date().strftime('%A')
         current_index = weekdaylist.index(today)
         target_index = [choice[0] for choice in weekdatechoice].index(self.weekdate)
         if current_index <= target_index:

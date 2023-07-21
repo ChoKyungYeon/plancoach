@@ -26,3 +26,10 @@ class Consult_feedback(models.Model):
         startdate = plans.first().plantime
         lastdate = plans.last().plantime
         return [startdate, lastdate]
+
+    def plan_done_ratio(self):
+        plans = self.feedback_plan.all().order_by('plantime')
+        plan_done = sum(plan.is_done for plan in plans)
+        ratio = round(plan_done / 7 * 100)
+        return [plan_done, ratio] if plan_done != 0 else [0,0]
+

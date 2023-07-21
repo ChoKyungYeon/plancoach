@@ -1,26 +1,22 @@
 <style>
-
+.box-plan{
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items:center;
+    margin-bottom: 3rem;
+}
 .container-plan{
     flex-direction:column;
     justify-content:flex-start;
     align-items:flex-start;
     position: relative;
     box-shadow: var(--shadow-itembox-info);
-    margin-bottom: 3rem;
 }
 .container-plan .text-content{
     margin-top:1rem;
 }
-.container-plan .text-weekdate{
-    padding:0.3rem 0.6rem;
-    background: var(--darkblue);
-    color: var(--white);
-    font-size: var(--fontsize-detail);
-    font-weight: var(--fontweight-content);
-    border-radius: 0.5rem;
-    flex-shrink: 0;
 
-}
 .container-plan .text-subcontent{
     font-size: var(--fontsize-detail);
     color: var(--darkgray);
@@ -28,34 +24,71 @@
     margin-left:0.7rem;
 }
 
-</style>
-<div class="container-plan main-container-snippets">
-    <div class="item-btn">
-     {% if user == target_consult.teacher %}
-     <a href="{% url 'feedback_planapp:update' pk=plan.pk %}" class="main-btn-edit material-icons">edit</a>
-    {% endif %}
-    </div>
-    <div class="main-array-row">
-        <div class="text-weekdate">
-        {{plan.plantime|date:"m.d"}}
-        </div>
-        <div class="text-subcontent">
-        {{plan.plantime|date:"D"}}
-        </div>
-    </div>
-    <span class="main-text-content text-content" >
-    {% if plan.content %}
-        {{plan.content|safe|linebreaksbr}}
-    {% else %}
-        학습 플랜 작성
-    {% endif %}
-    </span>
-</div>
-<script>
-
-function confirmplanDelete(counter) {
-    if (confirm("선택한 과목 피드백을 삭제하시겠습니까?")) {
-        document.getElementById("plan-delete-form"+ counter).submit();
-    }
+.box-plan .item-undone,
+.box-plan .item-done{
+    color: #fad047;
+    font-weight: var(--fontweight-index);
+    font-size: 1.55rem;
+    background: var(--darkblue);
+    border:2px solid var(--gray);
+    margin-right:4%;
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    border-radius:0.5rem;
 }
-</script>
+.box-plan .item-undone{
+    border:2px solid var(--darkgray);
+    background:none;
+    color:var(--darkgray);
+    font-weight: var(--fontweight-emphasize);
+}
+
+</style>
+<div class="box-plan">
+    {% if plan.is_done %}
+        {% if not user == target_consult.student %}
+        <div class="item-done material-icons">check</div>
+        {% elif plan.can_check_plan %}
+        <a href="{% url 'feedback_planapp:stateupdate' %}?plan_pk={{ plan.pk }}"
+           class="item-done material-icons">check</a>
+        {% else %}
+        <div onclick="alert('학습 완료를 체크 가능한 시간은 학습 당일부터 다음날까지입니다.')"
+             class="item-done material-icons">check</div>
+        {% endif %}
+    {% else %}
+        {% if not user == target_consult.student %}
+        <div class="item-undone material-icons">check</div>
+        {% elif plan.can_check_plan %}
+        <a href="{% url 'feedback_planapp:stateupdate' %}?plan_pk={{ plan.pk }}"
+           class="item-undone material-icons">check</a>
+        {% else %}
+        <div onclick="alert('학습 완료를 체크 가능한 시간은 학습 당일부터 다음날까지입니다.')"
+           class="item-undone material-icons">check</div>
+        {% endif %}
+    {% endif %}
+    <div class="container-plan main-container-snippets">
+        <div class="item-btn">
+         {% if user == target_consult.teacher %}
+         <a href="{% url 'feedback_planapp:update' pk=plan.pk %}" class="main-btn-edit material-icons">edit</a>
+        {% endif %}
+        </div>
+        <div class="main-array-row">
+            <span class="text-title">{{plan.plantime|date:"m.d"}}</span>
+            <div class="text-subcontent">
+            {{plan.plantime|date:"D"}}
+            </div>
+        </div>
+        <span class="main-text-content text-content" >
+        {% if plan.content %}
+            {{plan.content|safe|linebreaksbr}}
+        {% else %}
+            학습 플랜 작성
+        {% endif %}
+        </span>
+    </div>
+</div>

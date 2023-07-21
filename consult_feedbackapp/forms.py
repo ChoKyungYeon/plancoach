@@ -30,7 +30,7 @@ class Consult_feedbackUpdateForm(ModelForm):
         }
 
 
-class Consult_feedbackUpdateContentForm(ModelForm):
+class Consult_feedbackContentUpdateForm(ModelForm):
     class Meta:
         model = Consult_feedback
         fields = ('content',)

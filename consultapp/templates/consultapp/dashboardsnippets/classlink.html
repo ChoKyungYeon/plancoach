@@ -1,7 +1,7 @@
 <style>
     .container-link .img-meet {
-        width: 3.1rem;
-        height: 3.1rem;
+        width: 3rem;
+        height: 3rem;
         object-fit: cover;
         border-radius: 1rem;
         margin-right: 7%;
@@ -29,14 +29,19 @@
         <div class="material-icons item-nav">arrow_forward_ios</div>
     </a>
     {% else %}
-    <a href="{% url 'consult_classlinkapp:create' pk=target_consult.pk %}"
-       class="main-container-dashboard container-link">
-        <div class="item-content">
-            <span class="main-text-content text-content">수업 정보가 없습니다</span>
-        </div>
         {% if user == target_consult.teacher %}
-        <div class="material-icons item-nav" style="font-size:1.9rem;">add</div>
+        <a href="{% url 'consult_classlinkapp:create' pk=target_consult.pk %}"
+           class="main-container-dashboard container-link">
+        {% else %}
+        <a class="main-container-dashboard container-link">
         {% endif %}
-    </a>
+            <img class="img-meet" src='/static/icons/meet.png'>
+            <div class="item-content">
+                <span class="main-text-content">등록된 수업이 없습니다.</span>
+            </div>
+            {% if user == target_consult.teacher %}
+            <div class="material-icons item-nav" style="font-size:1.9rem;">add</div>
+            {% endif %}
+        </a>
     {% endif %}
 </div>

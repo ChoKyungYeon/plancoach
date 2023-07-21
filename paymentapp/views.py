@@ -1,10 +1,13 @@
+from datetime import datetime
+
 from django.db import transaction
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, TemplateView
 from consultapp.models import Consult
-from plancoach.variables import current_date
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 try:#deploy check
     from plancoach.settings.local import PORTONE_SHOP_ID
@@ -33,7 +36,7 @@ def PaymentCreateView(request, pk):
     context = {
         'form': form,
         'target_consult': target_consult,
-        'startdate' : current_date,
+        'startdate' : datetime.now().date(),
         'extenddate': target_consult.extenddate() if target_consult.extenddate() else None
     }
 

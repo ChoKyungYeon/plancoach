@@ -1,15 +1,11 @@
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView, DeleteView
-
-from plancoach.decorators import is_teacher
-from profile_introductionapp.decorators import profile_introduction_ownership_required
 from profile_introductionapp.forms import Profile_introductionCreateForm
 from profile_introductionapp.models import Profile_introduction
 from profileapp.models import Profile
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 class Profile_introductionCreateView(CreateView):
     model = Profile_introduction

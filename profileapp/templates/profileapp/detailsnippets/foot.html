@@ -1,6 +1,6 @@
 <style>
 
-.profile-detail-foot{
+.container-foot{
     display:flex;
     flex-direction:row;
     justify-content:center;
@@ -9,7 +9,7 @@
     position: fixed;
     left: var(--main-padding);
     right: var(--main-padding);
-    height:5.5rem;
+    height:5.3rem;
     background:var(--blackblue);
     padding-top:1.7rem;
     padding-bottom:1.7rem;
@@ -18,34 +18,26 @@
 }
 
 
-.profile-detail-foot .text-application{
+.container-foot .text-application{
     color:var(--whitegreen);
     font-weight:var(--fontweight-index);
-    font-size: 1.4rem;
+    font-size: 1.45rem;
     margin-right: 0.5rem;
 }
-.profile-detail-foot .text-nav{
+.container-foot .text-nav{
     color:var(--white);
     font-weight:var(--fontweight-index);
-    font-size: 1.4rem;
+    font-size: 1.45rem;
     margin-right: 0.5rem;
 }
-.profile-detail-foot .icon-nav {
-    font-size: var(--fontsize-title);
-    font-weight:var(--fontweight-title);
-    color: var(--white);
-    margin-left: 0.5rem;
-}
+
 </style>
 
 
 {% if user.is_authenticated and request.user.can_apply %}
 <a href="{% url 'applicationapp:guide' pk=target_profile.teacher.pk %}"
-   class="profile-detail-foot" id="profile-detail-foot">
+   class="container-foot">
     <span class="text-application">수업 신청서</span>
-    <span class="text-nav">작성하러 가기</span>
-      <span class="material-icons icon-nav">
-          arrow_forward_ios
-      </span>
+    <span class="text-nav">작성하러 가기 ></span>
 </a>
 {% endif  %}

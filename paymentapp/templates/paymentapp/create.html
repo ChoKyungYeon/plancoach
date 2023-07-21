@@ -5,13 +5,12 @@
 
 
 <header class="header-black">
-        {% include 'headersnippets/back.html' %}
+        {% url 'consultapp:dashboard' pk=target_consult.pk as url %}
+        {% include 'headersnippets/navback.html' with url=url %}
         {% with title="신규 수업료 입금" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
 </header>
-
-
 
 <main class="payment-new">
     <div class="main-box">

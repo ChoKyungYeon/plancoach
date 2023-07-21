@@ -20,5 +20,7 @@
     {% for comment in comments %}
     {% include 'snippets/comment.html' %}
     {% endfor %}
+    {% if user == target_consult.student or user == target_consult.teacher %}
     <a href="{% url 'qna_commentapp:create' pk=target_qna.pk %}" class="btn-add material-icons">add</a>
+    {% endif %}
 </div>

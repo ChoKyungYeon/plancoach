@@ -1,7 +1,3 @@
-from datetime import datetime
-
-current_datetime =datetime.now()
-current_date = current_datetime.date()
 
 weekdaylist = [
     'Monday',

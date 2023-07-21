@@ -1,5 +1,6 @@
 {% extends 'base_noback.html' %}
 {% load bootstrap4 %}
+{% load static %}
 {% block content %}
 <header class="header-black">
         {% with title="휴대폰 인증" %}
@@ -11,10 +12,10 @@
 <main>
   <div class="main-box">
       <div class="main-container-form" >
-          <div id="countdown">0:10</div>
-
-          <form action="{% url 'phonenumberapp:signupverify' pk=phonenumber.pk  %}" method="post" >
-
+          <form action="{% url 'phonenumberapp:signupverify' pk=phonenumber.pk  %}" method="post"  class="container-verify">
+              <div id="countdown" class="text-countdown">{{remaining_time}}</div>
+              <span id="remainingTime" style="display:none;">{{ remaining_time }}</span>
+              <span id="redirectUrl" style="display:none;">{{ redirect_url }}</span>
             {% csrf_token %}{% bootstrap_form form %}
               <div class="main-link-help">
                 <span class="text-help">* 인증 메세지가 도착하지 않나요?</span>
@@ -26,28 +27,6 @@
 
   </div>
 </main>
-<script>
-    let minutes = 0;
-    let seconds = 10;
-    function startTimer() {
-        let timer = setInterval(function() {
-            if (seconds < 0) {
-                minutes--;
-                seconds = 59;
-            }
-
-            if (minutes < 0) {
-                clearInterval(timer);
-                window.location.href = "/accounts/login";
-            } else {
-                document.getElementById('countdown').innerText = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
-                seconds--;
-            }
-        }, 1000);
-    }
-    startTimer();
-
-</script>
-
+<script src="{% static 'js/countdown.js' %}"></script>
 {% endblock %}
 

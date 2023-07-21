@@ -1,0 +1,11 @@
+        <form action="{% url 'teacherapplyapp:delete' pk=target_teacherapply.pk %}"
+              method="post" id="teacherapply-delete-form">
+            {% csrf_token %}
+            <input style="display:none" type="submit" name="next" value="{% url 'superuserapp:dashboard' %}">
+            <button class="main-icon-negative material-icons" type="button" onclick="confirmteacherapplyDelete()">
+                close
+            </button>
+        </form>
+        <a id="toprofilecreate" href="{% url 'profileapp:create' pk=target_teacherapply.pk %}"
+           class="main-icon-positive material-icons" style="right: 6rem">done
+        </a>

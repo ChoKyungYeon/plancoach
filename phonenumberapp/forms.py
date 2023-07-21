@@ -16,7 +16,17 @@ class PhonenumberCreateForm(ModelForm):
         widgets = {
             'phonenumber': forms.NumberInput(attrs={'placeholder': '- 제외 전화번호 11자',
                                                     'class': 'textinput','oninput': 'this.value = this.value.slice(0, 11);'}),
-
+        }
+class PhonenumberUpdateForm(ModelForm):
+    class Meta:
+        model = Phonenumber
+        fields = ('phonenumber',)
+        labels = {
+            'phonenumber': '새로운 전화번호'
+        }
+        widgets = {
+            'phonenumber': forms.NumberInput(attrs={'placeholder': '- 제외 전화번호 11자',
+                                                    'class': 'textinput','oninput': 'this.value = this.value.slice(0, 11);'}),
         }
 
 class PhoneNumberVerifyForm(forms.Form):

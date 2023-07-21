@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<header class="header-black">
+    {%  url 'superuserapp:detail' as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
+    {% with title="선생님 등록" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
+</header>
+<main class="teacherapply-detail">
+    <div class="main-box">
+        {% include 'teacherapplyapp/detailsnippets/btn.html' %}
+        {% include 'teacherapplyapp/detailsnippets/info.html' %}
+    </div>
+</main>
+{% endblock %}

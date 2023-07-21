@@ -3,7 +3,7 @@
         <span class="main-text-title">급여 관리</span>
     </div>
     {% if target_salary %}
-    <a href="{% url 'salaryapp:detail' pk=target_salary.pk %}" class="main-container-dashboard" >
+    <a href="{% url 'salaryapp:expected' pk=target_salary.pk %}" class="main-container-dashboard" >
         <div class="item-content">
             <span class="main-text-content">{{target_salary.salaryday|date:"Y년 m월 d일" }}</span>
             <div class="main-array-row interval-top" >

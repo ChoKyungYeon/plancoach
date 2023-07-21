@@ -2,7 +2,8 @@ from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 from consult_qnaapp.forms import Consult_qnaCreateForm
 from consult_qnaapp.models import Consult_qna
 from consultapp.models import Consult

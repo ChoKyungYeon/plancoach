@@ -6,21 +6,18 @@
     {% if user.state == 'student' %}
     {% url 'studentapp:dashboard' pk=target_application.student.pk  as url %}
     {% include 'headersnippets/navback.html' with url=url %}
-    {% with title="신청서 확인" %}
-    {% include 'headersnippets/title.html' %}
-    {% endwith %}
     {% else %}
     {% url 'teacherapp:applicationlist' pk=target_application.teacher.pk as url %}
     {% include 'headersnippets/navback.html' with url=url %}
+    {% endif %}
     {% with title="신청서 확인" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
-    {% endif %}
 </header>
 
 <main class="application-detail">
     <div class="main-box ">
-        {% if not user == target_application.student and state != 'applied' %}
+        {% if user == target_application.student and state == 'applied' %}
         <a href="{% url 'applicationapp:update' pk=target_application.student.pk %}"
            class="main-icon-positive material-icons" style="right: 6rem">
             edit
@@ -57,7 +54,7 @@
         </div>
         <div class="main-container-table">
             <div class="main-array-row">
-                <div class="row-index border1">담임</div>
+                <div class="row-index border1">담당</div>
                 <div class="row-content-full border2">{{ target_application.teacher.userrealname}} 선생님</div>
             </div>
             <div class="main-array-row">
@@ -104,7 +101,7 @@
             </div>
         </div>
         <div class="main-array-title-table">
-            <div class="main-text-title-table">신청 수업 내용</div>
+            <div class="main-text-title-table">수업 신청 내용</div>
         </div>
         <div class="main-container-table">
             <div class="main-array-row">

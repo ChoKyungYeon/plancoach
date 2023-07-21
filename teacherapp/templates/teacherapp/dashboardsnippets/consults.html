@@ -7,7 +7,7 @@
     justify-content:space-between;
     align-items: center;
 }
-}    
+
 </style>
 <div class="main-box" >
     <div class="main-array-title">
@@ -21,7 +21,9 @@
             {% endif %}
         {% endfor %}
     {% else %}
-        <div class="main-container-empty"><span class="text-empty">진행중인 수업이 없습니다.&#128549;</span></div>
+        <div class="main-container-empty">
+            <span class="text-empty">진행중인 수업이 없습니다. &#128549;</span>
+        </div>
     {% endif %}
     </div>
 </div>

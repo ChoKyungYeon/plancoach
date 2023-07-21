@@ -32,7 +32,7 @@
         padding-left: var(--padding-nav);
         font-size: var(--fontsize-index);
         color: var(--black);
-        background: var(--white);
+        background: var(--whiteblue);
         font-weight: var(--fontweight-title);
     }
 
@@ -52,12 +52,11 @@
 
 <div class="item-nav">
     {% if index == "plan" %}
-    <a href="{% url 'consult_feedbackapp:coachdetail' pk=target_feedback.pk %}" class="nav-untouched-coach">학습 코칭
-        &#128218;</a>
-    <a class="nav-touched-plan">학습 플랜 &#x1F4DD;</a>
+    <a href="{% url 'consult_feedbackapp:coachdetail' pk=target_feedback.pk %}" class="nav-untouched-coach">학습 코칭</a>
+    <a class="nav-touched-plan">학습 플랜</a>
     {% else %}
-    <a class="nav-touched-coach">학습 코칭 &#128218;</a>
+    <a class="nav-touched-coach">학습 코칭</a>
     <a href="{% url 'consult_feedbackapp:plandetail' pk=target_feedback.pk %}"
-       class="nav-untouched-plan">학습 플랜 &#x1F4DD;</a>
+       class="nav-untouched-plan">학습 플랜</a>
     {% endif %}
 </div>

@@ -11,5 +11,5 @@ urlpatterns = [
     path('searchverify/<int:pk>',PhonenumberSearchVerifyView.as_view(), name='searchverify'),
     path('searchcreate/',PhonenumberSearchCreateView.as_view(), name='searchcreate'),
     path('updateverify/<int:pk>',PhonenumberUpdateVerifyView.as_view(), name='updateverify'),
-    path('updatecreate/<int:pk>',PhonenumberUpdateCreateView.as_view(), name='updatecreate'),
+    path('updatecreate/',PhonenumberUpdateCreateView.as_view(), name='updatecreate'),
 ]

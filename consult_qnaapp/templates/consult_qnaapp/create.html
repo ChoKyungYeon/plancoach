@@ -3,11 +3,11 @@
 {% block content %}
 
 <header class="header-black">
+    {% url 'consult_qnaapp:list' pk=target_consult.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}    
     {% with title="질문 작성" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
-    {% url 'consult_qnaapp:list' pk=target_consult.pk as url %}
-    {% include 'headersnippets/exit.html' with url=url %}
 </header>
 
 <main>

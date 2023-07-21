@@ -1,37 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base_noback.html' %}
 {% load bootstrap4 %}
 {% block content %}
 
-<style>
-
-
-.container-bankaccount{
-    display: flex;
-    flex-direction:row;
-    justify-content:flex-start;
-    align-items: flex-start;
-    box-shadow: none;
-    padding:0;
-    margin-bottom: 2rem;
-}
-
-.container-bankaccount .item-bank{
-    width:3.7rem;
-    height:3.7rem;
-    border-radius:50%;
-    object-fit: cover;
-    margin-right:5%;
-}
-.container-bankaccount .item-accountinfo{
-    display: flex;
-    flex-direction:column;
-    justify-content:flex-start;
-    align-items: flex-start;
-}
-</style>
 
 <header class="header-black">
-        {% include 'headersnippets/back.html' %}
+        {% url 'superuserapp:dashboard'  as url %}
+        {% include 'headersnippets/navback.html' with url=url %}
         {% with title="수익 상세" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}

@@ -15,12 +15,12 @@
     color:var(--white);
     font-size:1.35rem;
     font-weight:var(--fontweight-index);
-    margin-right:1rem;
-
+    margin-right: 0;
 }
 
 .superuser-dashboard-head .head-box-nav{
     margin-top:3rem;
+    justify-content: space-between;
 }
 
 .superuser-dashboard-head .btn-untouched{
@@ -37,9 +37,10 @@
     </div>
     <div class="head-box-nav">
         <button onclick="showSlide(1)" id="btn-slide1" class="btn-touched">급여</button>
-        <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched">선생님 신청</button>
+        <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched">계정 전환</button>
         <button onclick="showSlide(3)" id="btn-slide3" class="btn-untouched">환불 신청</button>
         <button onclick="showSlide(4)" id="btn-slide4" class="btn-untouched">선생님</button>
+        <button onclick="showSlide(5)" id="btn-slide5" class="btn-untouched">문서</button>
     </div>
 </div>
 

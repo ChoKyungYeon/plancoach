@@ -2,8 +2,6 @@
 {% load bootstrap4 %}
 {% block content %}
 
-
-
 <header class="header-black">
     {% include 'headersnippets/home.html' %}
     {% include 'headersnippets/account.html'  %}
@@ -22,6 +20,9 @@
     </div>
     <div class="superuser-dashboard-slide4" style="display:none">
         {% include 'superuserapp/dashboardsnippets/teacher.html' %}
+    </div>
+    <div class="superuser-dashboard-slide5" style="display:none">
+        {% include 'superuserapp/dashboardsnippets/documents.html' %}
     </div>
 </main>
 {% endblock %}

@@ -29,9 +29,6 @@
 <a href="{% url 'teacherapp:dashboard' pk=user.pk  %}" class="main-container-homescreen container-apply">
 {% elif target_step == 'superuser' %}
 <a href="{% url 'superuserapp:dashboard' %}" class="main-container-homescreen container-apply">
-{% elif target_step == 'ongoing' %}
-<a href="{% url 'consultapp:dashboard' pk=user.consult_student.pk %}"
-class="main-container-homescreen container-apply">
 {% else %}
 <a href="{% url 'studentapp:dashboard' pk=user.pk %}" class="main-container-homescreen container-apply">
 {% endif %}

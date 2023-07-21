@@ -3,11 +3,11 @@
 {% block content %}
 
 <header class="header-black">
+    {% url 'applicationapp:detail' pk=target_application.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
     {% with title="신청서 수정" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
-    {% url 'applicationapp:detail' pk=target_application.pk as url %}
-    {% include 'headersnippets/exit.html' with url=url %}
 </header>
 
 <main>

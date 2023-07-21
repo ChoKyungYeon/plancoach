@@ -2,11 +2,11 @@ from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
-
 from consult_qnaapp.models import Consult_qna
 from qna_commentapp.forms import Qna_commentCreateForm
 from qna_commentapp.models import Qna_comment
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 # Create your views here.
 class Qna_commentCreateView(CreateView):

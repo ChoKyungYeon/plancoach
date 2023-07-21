@@ -3,18 +3,13 @@
 {% block content %}
 
 <header class="header-white">
-    {% include 'headersnippets/back.html' %}
+    {%  url 'studentapp:dashboard' pk=target_user.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
 </header>
 
 
-<main class="main-guide">
-    {% if target_step == 'initial' %}
+<main class="main-guide" style="padding-left: var(--guide-padding); padding-right: var(--guide-padding);">
     {% include 'teacherapplyapp/guidesnippets/initial.html' %}
-    {% elif target_step == 'applied' %}
-    {% include 'teacherapplyapp/guidesnippets/applied.html' %}
-    {% elif target_step == 'end' %}
-    {% include 'teacherapplyapp/guidesnippets/end.html' %}
-    {% endif %}
 </main>
 {% endblock %}
 

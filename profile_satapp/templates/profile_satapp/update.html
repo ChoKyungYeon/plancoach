@@ -3,11 +3,11 @@
 {% block content %}
 
 <header class="header-black">
+        {% url 'profileapp:detail' pk=target_profile_sat.profile.pk as url %}
+        {% include 'headersnippets/navback.html' with url=url %}    
         {% with title="수능 성적 수정" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
-        {% url 'profileapp:detail' pk=target_profile_sat.profile.pk as url %}
-        {% include 'headersnippets/exit.html' with url=url %}
 </header>
 
 <main>

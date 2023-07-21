@@ -3,11 +3,11 @@
 {% block content %}
 
 <header class="header-black">
+    {% url 'consultapp:dashboard' pk=target_consult.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
     {% with title="수업 링크 등록" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
-    {% url 'consultapp:dashboard' pk=target_consult.pk as url %}
-    {% include 'headersnippets/exit.html' with url=url %}
 </header>
 
 <main>

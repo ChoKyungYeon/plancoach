@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
@@ -9,9 +11,9 @@ from consultapp.models import Consult
 from feedback_planapp.models import Feedback_plan
 from plancoach.sms import Send_SMS
 from paymentapp.models import Payment
-from plancoach.variables import current_date
 from profileapp.models import Profile
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 class ConsultCreateView(CreateView):
     model = Consult
@@ -75,17 +77,15 @@ class ConsultDashboardView(DetailView):
         qnas_unanswered = qnas.filter(is_answered=False)
         qnas_length = len(qnas)
         qnas_unanswered_length = len(qnas_unanswered)
-        today = current_date
+        today = datetime.now().date()
         feedbacks = target_consult.consult_feedback.all()
 
         today_plan = Feedback_plan.objects.filter(consult_feedback__in=feedbacks, plantime=today).order_by(
             '-created_at').first()
-        target_plan_content = today_plan.content if today_plan and today_plan.content else '오늘 예정된 학습 계획이 없습니다'
-
         context['qnas_answered_length'] = qnas_unanswered_length
         context['qnas_length'] = qnas_length
         context['feedbacks_length'] = len(feedbacks)
-        context['target_plan_content'] = target_plan_content
+        context['today_plan'] = today_plan if today_plan and today_plan.content else None
 
         context['profile'] = Profile.objects.get(teacher=teacher)
         context['target_consult_classlink'] = target_consult_classlink

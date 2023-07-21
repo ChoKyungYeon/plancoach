@@ -1,17 +1,17 @@
-    {% if payments %}
-    <div class="main-container-snippetitem">
-        {% for payment in payments %}
-            {% include 'snippets/payment.html' %}
-            {% if not forloop.last %}
-            <div class="main-interval-line"></div>
-            {% endif %}
-        {% endfor %}
-        {% for refund in refunds %}
-            <div class="main-interval-line"></div>
-            {% include 'snippets/refund.html' %}
-            {% if not forloop.last %}
-            <div class="main-interval-line"></div>
-            {% endif %}
-        {% endfor %}
-    </div>
-    {% endif %}
+{% if payments %}
+<div class="main-container-snippetitem">
+    {% for payment in payments %}
+        {% include 'snippets/payment.html' %}
+        {% if not forloop.last %}
+        <div class="main-interval-line"></div>
+        {% endif %}
+    {% endfor %}
+    {% for refund in refunds %}
+        <div class="main-interval-line"></div>
+        {% include 'snippets/refund.html' %}
+        {% if not forloop.last %}
+        <div class="main-interval-line"></div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endif %}

@@ -3,11 +3,11 @@
 {% block content %}
 
 <header class="header-black">
+        {% url 'profileapp:detail' pk=target_profile_consulttype.profile.pk as url %}
+        {% include 'headersnippets/navback.html' with url=url %}    
         {% with title="담당 수업 소개" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
-        {% url 'profileapp:detail' pk=target_profile_consulttype.profile.pk as url %}
-        {% include 'headersnippets/exit.html' with url=url %}
 </header>
 
 <main>

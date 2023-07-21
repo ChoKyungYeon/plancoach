@@ -5,11 +5,11 @@
 
 
 <header class="header-black">
+        {%  url 'teacherapplyapp:guide' pk=target_user.pk as url %}
+        {% include 'headersnippets/navback.html' with url=url %}
         {% with title="학력 증명" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
-        {% url 'accountapp:setting' pk=target_user.pk as url %}
-        {% include 'headersnippets/exit.html' with url=url %}
 </header>
 
 

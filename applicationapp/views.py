@@ -1,16 +1,19 @@
+from datetime import datetime
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, RedirectView, TemplateView
-from accountapp.models import CustomUser
+from applicationapp.decorators import application_create_decorater
+from plancoach.updaters import *
 from refusalapp.models import Refusal
 from applicationapp.forms import ApplicationCreateForm
 from applicationapp.models import Application
 from plancoach.sms import Send_SMS
-from plancoach.variables import current_datetime
 
 
-#updaterneeded
+@method_decorator(login_required, name='dispatch')
+@method_decorator(user_updater, name='dispatch')
 class ApplicationCreateView(CreateView):
     model = Application
     form_class = ApplicationCreateForm
@@ -28,7 +31,7 @@ class ApplicationCreateView(CreateView):
             #form instance
             form.instance.student = student
             form.instance.teacher = teacher
-            form.instance.updated_at = current_datetime
+            form.instance.updated_at = datetime.now()
             form.instance.save()
             # object 지우기
             Application.objects.filter(student=student).delete()
@@ -41,7 +44,9 @@ class ApplicationCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('applicationapp:result')
 
-#updaterneeded
+@method_decorator(login_required, name='dispatch')
+@method_decorator(application_updater, name='dispatch')
+@method_decorator(application_create_decorater, name='dispatch')
 class ApplicationDeleteView(DeleteView):
     model = Application
     context_object_name = 'target_application'
@@ -53,7 +58,8 @@ class ApplicationDeleteView(DeleteView):
         else:
             return reverse_lazy('accountapp:studentdguide', kwargs={'pk': self.object.student.pk})
 
-#updaterneeded
+@method_decorator(login_required, name='dispatch')
+@method_decorator(application_updater, name='dispatch')
 class ApplicationUpdateView(UpdateView):
     model = Application
     form_class = ApplicationCreateForm
@@ -63,7 +69,8 @@ class ApplicationUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('applicationapp:detail', kwargs={'pk': self.object.pk})
 
-#updaterneeded
+@method_decorator(login_required, name='dispatch')
+@method_decorator(application_updater, name='dispatch')
 class ApplicationDetailView(DetailView):
     model = Application
     context_object_name = 'target_application'
@@ -74,7 +81,7 @@ class ApplicationDetailView(DetailView):
         context['state'] = self.object.state
         return context
 
-#updaterneeded
+
 class ApplicationStateUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         application = Application.objects.get(pk=self.request.GET.get('application_pk'))
@@ -86,20 +93,22 @@ class ApplicationStateUpdateView(RedirectView):
         with transaction.atomic():
             # application 상태 변경
             application.state = 'matching'
-            application.updated_at = current_datetime
+            application.updated_at = datetime.now()
             application.save()
             # sendsms
             content = '신청서가 수락되었습니다. 연락처를 확인하고 시범 수업을 진행해주세요.'
             Send_SMS(student.username, content, student.can_receive_notification)
             return super(ApplicationStateUpdateView, self).get(request, *args, **kwargs)
 
-#updaterneeded
+@method_decorator(login_required, name='dispatch')
+@method_decorator(request_user_updater, name='dispatch')
 class ApplicationGuideView(DetailView):
     model = CustomUser
     context_object_name = 'target_user'
     template_name = 'applicationapp/guide.html'
 
-#updaterneeded
+@method_decorator(login_required, name='dispatch')
+@method_decorator(request_user_updater, name='dispatch')
 class ApplicationResultView(TemplateView):
     model = CustomUser
     template_name = 'applicationapp/result.html'

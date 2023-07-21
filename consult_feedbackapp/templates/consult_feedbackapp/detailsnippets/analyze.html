@@ -1,38 +1,12 @@
 <style>
-    .container-analyze {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 5rem calc(var(--main-padding-snippet) + 0.5rem);
-        background: var(--white);
-        position: relative;
-    }
-
-    .container-analyze .text-question {
-        font-size: var(--fontsize-index);
-        font-weight: var(--fontweight-content);
-        color: #454854;
-        margin-top: 1.5rem;
-    }
-
-    .container-analyze .text-title {
-        font-size: 1.55rem;
-        color: var(--black);
-        font-weight: var(--fontweight-emphasize);
+    .box-analyze{
+        border-bottom:1px solid #e0e0eb;
+        background: var(--whiteblue);
     }
 </style>
 
-<div class="container-analyze">
-    <div class="main-array-row">
-        <span class="text-title">
-            학생 종합 분석/ 과제
-        </span>
-        {% if user == target_consult.teacher %}
-        <a href="{% url 'consult_feedbackapp:updatecontent' pk=target_feedback.pk %}"
-           class="main-btn-edit material-icons" style="margin-left: 1rem">edit</a>
-        {% endif %}
+<div class="main-box box-analyze">
+    <div class="main-array-title">
     </div>
-    <span class="text-question">{{target_feedback.content|safe|linebreaksbr}}</span>
+    {% include 'snippets/analyze.html' %}
 </div>

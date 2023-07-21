@@ -10,11 +10,11 @@
 </style>
 
 <header class="header-black">
-    {% with title="수업 내용 작성" %}
+    {% url 'consult_feedbackapp:list' pk=target_consult.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}    
+    {% with title="수업 등록" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
-    {% url 'consult_feedbackapp:list' pk=target_consult.pk as url %}
-    {% include 'headersnippets/exit.html' with url=url %}
 </header>
 
 <main>

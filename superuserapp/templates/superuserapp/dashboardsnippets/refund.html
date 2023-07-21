@@ -1,13 +1,10 @@
-
-
-
 <div class="main-box" >
     <div class="main-array-title">
-        <span class="main-text-title">환불 목록</span>
+        <span class="main-text-title">환불 신청 목록</span>
     </div>
     {% if refunds %}
         {% for refund in refunds %}
-        {% include 'snippets/checkrefund.html' %}
+        {% include 'snippets/refundpay.html' %}
         {% if not forloop.last %}
         <div class="main-interval-items"></div>
         {% endif %}

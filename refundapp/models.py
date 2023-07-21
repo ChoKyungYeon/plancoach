@@ -15,6 +15,7 @@ class Refund(models.Model):
     bank = models.CharField(max_length=20, choices=bankchoice)
     accountnumber = models.CharField(max_length=30)
     depositor = models.CharField(max_length=6)
+    given_at = models.DateTimeField(null=True)
 
     def bankimage(self):
         return bankdictionary[self.bank] if self.bank else None

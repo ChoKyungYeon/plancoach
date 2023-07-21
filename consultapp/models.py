@@ -1,11 +1,8 @@
-from datetime import timedelta
-from django.db import models, transaction
+from datetime import timedelta, datetime
+from django.db import models
 from accountapp.models import CustomUser
-from refusalapp.models import Refusal
 from plancoach.choice import consultstatechoice, agechoice
 from plancoach.utils import time_expire, create_refusal
-from plancoach.variables import current_date, current_datetime
-
 
 class Consult(models.Model):
     student = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='consult_student')
@@ -35,15 +32,12 @@ class Consult(models.Model):
     def refund_entire_amount(self):
         return self.refund_amount() + self.tuition if self.state == 'extended' else self.refund_amount()
 
-    def __str__(self):
-        return f"{self.student}( {self.belong} ) 수업 ({self.startdate}~{self.enddate()})"
-
     def consult_name(self):
-        return f"{self.teacher.userrealname}T: {self.student.userrealname} 수업"
+        return f"[{self.teacher.userrealname}T] {self.student.userrealname} 수업"
 
     def refund_amount(self):
         if self.startdate:
-            interval = current_date - self.startdate
+            interval = datetime.now().date() - self.startdate
             tuition = self.tuition
             refund_rates = [(timedelta(days=7), 3 / 4), (timedelta(days=14), 1 / 2)]
             for days, rate in refund_rates:
@@ -53,7 +47,7 @@ class Consult(models.Model):
 
     def remaining_day(self):
         if self.enddate():
-            interval = (self.enddate() - current_date).days
+            interval = (self.enddate() - datetime.now().date()).days
             if interval > 0:
                 remaining_day = f'{"연장" if self.state != "unextended" else "종료"} {interval}일 전'
             elif interval == 0:
@@ -64,11 +58,11 @@ class Consult(models.Model):
 
 
     def updater(self):
-        today = current_date
+        today = datetime.now().date()
         extenddate = self.extenddate()
         extend_enddate = self.extend_enddate()
         target_state = self.state
-        created_interval=current_datetime - self.created_at
+        created_interval=datetime.now() - self.created_at
         if target_state == 'new' and created_interval > timedelta(hours=48):
             create_refusal(self, '기간 내 입금이 완료되지 않았습니다.')
         elif target_state == 'unextended' and extenddate <= today:

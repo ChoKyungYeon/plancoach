@@ -2,12 +2,14 @@
 {% load bootstrap4 %}
 {% block content %}
 
+
+
 <header class="header-black">
+    {% url 'accountapp:setting' pk=user.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
     {% with title="계정 삭제" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
-    {% url 'accountapp:setting' pk=user.pk as url %}
-    {% include 'headersnippets/exit.html' with url=url %}
 </header>
 
 <main class="consult-create ">
@@ -32,7 +34,11 @@
         <div class="main-container-guideform" >
         <form action="{% url 'accountapp:delete' pk=target_user.pk %}" method="post" onsubmit="return confirmDeleteAccount()">
             {% csrf_token %}
-            <input type="submit" class="btn-submit" style="background:var(--red); margin-top:0rem" value="계정 삭제">
+            {% if user.can_delete %}
+            <input type="submit" class="btn-submit" style="background: var(--red); margin-top:0" value="계정 삭제">
+            {% else %}
+            <div class="btn-submit" style="background:#6c7084; margin-top:0; color: var(--white)" >계정 삭제 불가</div>
+            {% endif %}
         </form>
         </div>
     </div>

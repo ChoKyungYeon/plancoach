@@ -5,7 +5,8 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from consult_feedbackapp.models import Consult_feedback
 from feedback_coachapp.forms import Feedback_coachCreateForm, Feedback_coachUpdateForm
 from feedback_coachapp.models import Feedback_coach
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 
 class Feedback_coachCreateView(CreateView):

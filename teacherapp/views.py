@@ -2,8 +2,8 @@ from datetime import datetime, timedelta
 from django.views.generic import DetailView
 from accountapp.models import CustomUser
 from plancoach.utils import profile_completeness_calculator, salaryday_calculator
-from plancoach.variables import current_date
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 class TeacherDashboardView(DetailView):
     model = CustomUser
@@ -26,7 +26,7 @@ class TeacherDashboardView(DetailView):
         context['profiles_uncompleted']=profiles_uncompleted
         context['profile_completeness']=ratio
         context['salary_length'] = len(self.object.salary.filter(is_given=True))
-        context['target_salary']= target_user.salary.filter(salaryday=salaryday_calculator(current_date)).first()
+        context['target_salary']= target_user.salary.filter(salaryday=salaryday_calculator(datetime.now().date())).first()
         return context
 
 

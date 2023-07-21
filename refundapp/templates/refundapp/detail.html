@@ -1,9 +1,10 @@
-{% extends 'base_noback.html' %}
+{% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
 
 <header class="header-black">
-        {% include 'headersnippets/back.html' %}
+        {% url 'studentapp:refundlist' pk=target_refund.student.pk as url %}
+        {% include 'headersnippets/navback.html' with url=url %}
         {% with title="환불 상세" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
@@ -11,31 +12,21 @@
 
 <main>
 <div class="main-box">
+    <div class="main-array-title">
+      <div class="main-text-title" >
+        {% if target_refund.is_given %}
+        {{ target_refund.given_at|date:"y.m.d"}} 환급 완료
+        {% else %}
+        환급 대기중
+        {% endif %}
+      </div>
+    </div>
     <div class="main-container-info" >
         {% include 'refundapp/detailsnippets/bank.html' %}
         {% include 'refundapp/detailsnippets/amountinfo.html' %}
-        {% if user.state == 'superuser' %}
-        <a id="tostategiven" href="{% url 'refundapp:stateupdate' %}?refund_pk={{ target_refund.pk }}"
-           class="btn-submit">지급 완료
-        </a>
-        {% endif %}
     </div>
 </div>
 </main>
-<script>
-function confirmtostategiven(event) {
-    if (confirm("환불액을 지급 완료하셨나요?.")) {
-        window.location.href = event.target.href;
-    } else {
-        event.preventDefault();
-    }
-}
-
-const tostategiven = document.getElementById('tostategiven');
-if (tostategiven) {
-    tostategiven.addEventListener('click', confirmtostategiven);
-}
-</script>
 {% endblock %}
 
 

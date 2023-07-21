@@ -1,10 +1,10 @@
 from django.db import transaction
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
 from consult_classlinkapp.forms import Consult_classlinkCreateForm
 from consult_classlinkapp.models import Consult_classlink
-from consultapp.models import Consult
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 #updaterneeded
 class Consult_classlinkCreateView(CreateView):

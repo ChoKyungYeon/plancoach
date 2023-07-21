@@ -1,11 +1,10 @@
-
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views.generic import RedirectView
-
 from consult_qnaapp.models import Consult_qna
 from qna_likeapp.models import Qna_like
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 

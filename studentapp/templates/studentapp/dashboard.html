@@ -7,8 +7,7 @@
         {% include 'headersnippets/account.html'  %}
 </header>
 
-
-<main class="main-guide">
+<main class="main-guide" style="padding-left: var(--guide-padding); padding-right: var(--guide-padding);">
     {% if target_step == 'initial' %}
         {% include 'studentapp/dashboardsnippets/initial.html' %}
     {% elif target_step == 'applied' %}
@@ -21,7 +20,10 @@
         {% include 'studentapp/dashboardsnippets/refund.html' %}
     {% elif target_step == 'end' %}
         {% include 'studentapp/dashboardsnippets/end.html' %}
+    {% elif target_step == 'teacherapplied' %}
+        {% include 'studentapp/dashboardsnippets/teacherapplied.html' %}
     {% endif %}
 </main>
+
 {% endblock %}
 

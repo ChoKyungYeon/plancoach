@@ -7,59 +7,53 @@
             <span class="main-text-content text-content">내 정보 수정</span>
             <span class="material-icons icon-nav">edit</span>
         </a>
-        {% if target_user.state == 'superuser' %}
-        <a class="item-content">
-            {% else %}
-            <a href="{% url 'teacherapplyapp:guide' pk=target_user.pk %}" class="item-content">
-                {% endif %}
-                <span class="main-text-content text-content">계정 상태 전환</span>
-                <span class="material-icons icon-arrow">navigate_next</span>
-            </a>
-            {% if target_user.can_receive_notification == True %}
-            <a id="tonotificationdisable" href="{% url 'accountapp:notificationupdate' %}?user_pk={{ target_user.pk }}"
-               class="item-content" style="border-bottom:none">
-                <span class="main-text-content text-content">알림 수신중</span>
-                <span class="material-icons icon-nav">notifications</span>
-            </a>
+        <a href="{% url 'phonenumberapp:updatecreate' %}" class="item-content">
+            <span class="main-text-content text-content">연락처 변경</span>
+            <span class="material-icons icon-nav">call</span>
+        </a>
+        {% if target_user.can_receive_notification == True %}
+        <a id="tonotificationdisable" href="{% url 'accountapp:notificationupdate' %}?user_pk={{ target_user.pk }}"
+           class="item-content" style="border-bottom:none">
+            <span class="main-text-content text-content">알림 수신중</span>
+            <span class="material-icons icon-nav">notifications</span>
+        </a>
+        <script>
+            const tonotificationdisable = document.getElementById('tonotificationdisable');
+            tonotificationdisable.addEventListener('click', confirmtonotificationdisable);
 
-            <script>
-                const tonotificationdisable = document.getElementById('tonotificationdisable');
-                tonotificationdisable.addEventListener('click', confirmtonotificationdisable);
-
-                function confirmtonotificationdisable(event) {
-                    if (confirm("문자 알람을 수신 중단 하시겠습니까?")) {
-                        // Allow the navigation to proceed
-                        window.location.href = event.target.href;
-                    } else {
-                        // Prevent the default navigation behavior
-                        event.preventDefault();
-                    }
+            function confirmtonotificationdisable(event) {
+                if (confirm("문자 알람을 수신 중단 하시겠습니까?")) {
+                    // Allow the navigation to proceed
+                    window.location.href = event.target.href;
+                } else {
+                    // Prevent the default navigation behavior
+                    event.preventDefault();
                 }
-            </script>
+            }
+        </script>
 
-            {% else %}
-            <a id="tonotificationable" href="{% url 'accountapp:notificationupdate' %}?user_pk={{ target_user.pk }}"
-               class="item-content" style="border-bottom:none">
-                <span class="main-text-content text-content">알림 수신 중지</span>
-                <span class="material-icons icon-nav">notifications_off</span>
-            </a>
+        {% else %}
+        <a id="tonotificationable" href="{% url 'accountapp:notificationupdate' %}?user_pk={{ target_user.pk }}"
+           class="item-content" style="border-bottom:none">
+            <span class="main-text-content text-content">알림 수신 중지</span>
+            <span class="material-icons icon-nav">notifications_off</span>
+        </a>
 
-            <script>
-                const tonotificationable = document.getElementById('tonotificationable');
-                tonotificationable.addEventListener('click', confirmtonotificationable);
+        <script>
+            const tonotificationable = document.getElementById('tonotificationable');
+            tonotificationable.addEventListener('click', confirmtonotificationable);
 
-                function confirmtonotificationable(event) {
-                    if (confirm("문자 알람을 수신하시겠습니까?")) {
-                        // Allow the navigation to proceed
-                        window.location.href = event.target.href;
-                    } else {
-                        // Prevent the default navigation behavior
-                        event.preventDefault();
-                    }
+            function confirmtonotificationable(event) {
+                if (confirm("문자 알람을 수신하시겠습니까?")) {
+                    // Allow the navigation to proceed
+                    window.location.href = event.target.href;
+                } else {
+                    // Prevent the default navigation behavior
+                    event.preventDefault();
                 }
-            </script>
-
-            {% endif %}
+            }
+        </script>
+        {% endif %}
     </div>
 </div>
 

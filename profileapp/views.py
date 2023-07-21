@@ -1,3 +1,4 @@
+from datetime import datetime
 
 from django.db import transaction
 from django.db.models import Count, F
@@ -6,7 +7,6 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView, DetailView, RedirectView, TemplateView, DeleteView
 from accountapp.models import CustomUser
 from plancoach.choice import subjectchoice, schoolyearchoice
-from plancoach.variables import current_date
 from profile_bankapp.models import Profile_bank
 from plancoach.sms import Send_SMS
 from profile_consulttypeapp.models import Profile_consulttype
@@ -15,7 +15,8 @@ from profile_scholarshipapp.models import Profile_scholarship
 from profileapp.forms import ProfileTuitionUpdateForm, ProfileCreateForm
 from profileapp.models import Profile
 from teacherapplyapp.models import Teacherapply
-
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 class ProfileCreateView(CreateView):
     model = Profile
@@ -86,7 +87,7 @@ class ProfileTuitionUpdateView(UpdateView):
 
     def form_valid(self, form):
         with transaction.atomic():
-            self.object.payment_updated_at = current_date
+            self.object.payment_updated_at = datetime.now().date()
             self.object.save()
             return super().form_valid(form)
 
@@ -116,7 +117,7 @@ class ProfileDetailView(DetailView):
         context['gpa'] = getattr(target_profile, 'profile_gpa', None)
         context['subjects'] = subjects
         context['consulttype'] = getattr(target_profile, 'profile_consulttype', None)
-        context['schoolyear_length'] = int(current_date.strftime("%y")) + 2 - 12
+        context['schoolyear_length'] = int(datetime.now().date().strftime("%y")) + 2 - 12
         context['can_add_subject'] = len(subjectchoice) != len(subjects)
         context['can_add_sat'] = len(schoolyearchoice) != len(sats)
         context['tuition'] = str(target_profile.tuition)[:2]
@@ -146,7 +147,7 @@ class ProfileListView(TemplateView):
             profiles_like = profiles.filter(profile_like__student=target_user)
             context['profiles_like'] = profiles_like
 
-        profiles_dict = {'정시': [], '내신': [], '학생부': [], '논술': []}
+        profiles_dict = {'정시': [], '내신': [], '학생부': [], '중등': []}
 
         for profile in profiles:
             for consulttype in profile.profile_consulttype.consulttype:
@@ -156,7 +157,7 @@ class ProfileListView(TemplateView):
         context['profiles_sat'] = profiles_dict['정시']
         context['profiles_gpa'] = profiles_dict['내신']
         context['profiles_extra'] = profiles_dict['학생부']
-        context['profiles_essay'] = profiles_dict['논술']
+        context['profiles_middelschool'] = profiles_dict['중등']
         return context
 
 

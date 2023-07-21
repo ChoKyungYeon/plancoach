@@ -7,7 +7,8 @@
 </style>
 
 <header class="header-black">
-        {% include 'headersnippets/back.html' %}
+        {% url 'accountapp:setting' target_user.pk as url %}
+        {% include 'headersnippets/navback.html' with url=url %}
         {% with title="환불 내역" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
@@ -17,7 +18,7 @@
   <div class="main-box" >
       {% if refunds %}
           {% for refund in refunds %}
-          {% include 'snippets/checkrefund.html' %}
+          {% include 'snippets/refundpay.html' %}
           {% if not forloop.last %}
           <div class="main-interval-items"></div>
           {% endif %}

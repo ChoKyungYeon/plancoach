@@ -1,0 +1,42 @@
+{% if document %}
+<a href="{% url 'documentapp:update' pk=document.pk %}"  class=" main-container-snippets">
+    <div  class="main-array-column" >
+        <div class="main-array-row">
+            <span class="main-text-index interval-right"  >
+                개인정보 처리방침
+            </span>
+            <span class="main-text-content" >
+               {{ document.privacypolicy_updated|date:"y.m.d 등록" }}
+            </span>
+        </div>
+        <div class="main-array-row interval-top">
+            <span class="main-text-index interval-right"  >
+                이용 약관
+            </span>
+            <span class="main-text-content"  >
+              {{ document.termofuse_updated|date:"y.m.d 등록" }}
+            </span>
+        </div>
+        <div class="main-array-row interval-top">
+            <span class="main-text-index interval-right"  >
+                카카오톡 링크
+            </span>
+            <span class="main-text-content"  >
+               등록 완료
+            </span>
+        </div>
+    </div>
+    <div class="item-amount">
+        수정
+    </div>
+</a>
+{% else %}
+<a href="{% url 'documentapp:create' %}"  class=" main-container-snippets">
+    <span class="main-text-content">
+       등록 문서가 없습니다
+    </span>
+    <div class="item-amount">
+        등록
+    </div>
+</a>
+{% endif %}

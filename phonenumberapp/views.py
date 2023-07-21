@@ -6,15 +6,15 @@ from django.views.generic import CreateView, FormView
 from django.contrib.auth import login
 from accountapp.models import CustomUser
 from plancoach.sms import Send_SMS
-from phonenumberapp.forms import PhonenumberCreateForm, PhoneNumberVerifyForm
+from phonenumberapp.forms import PhonenumberCreateForm, PhoneNumberVerifyForm, PhonenumberUpdateForm
 from phonenumberapp.models import Phonenumber
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ObjectDoesNotExist
+from plancoach.updaters import *
+from django.utils.decorators import method_decorator
 
 class PhonenumberCreateMixin(CreateView):
     model = Phonenumber
     form_class = PhonenumberCreateForm
-
     def form_valid(self, form):
         for phonenumber in Phonenumber.objects.all():
             phonenumber.updater()
@@ -28,13 +28,7 @@ class PhonenumberCreateMixin(CreateView):
             if self.condition(phonenumber, usernames):
                 form.add_error('phonenumber', self.error_message)
                 return self.form_invalid(form)
-            try:
-                # updater
-                customuser = get_object_or_404(CustomUser, pk=self.kwargs['pk'])
-                form.instance.customuser = customuser
-                form.instance.save()
-            except:
-                pass
+
             form.instance.verification_code='111111'#deploy check random.randint(100000, 999999)
             form.instance.save()
             to = form.instance.phonenumber
@@ -60,14 +54,11 @@ class PhonenumberSignupCreateView(PhonenumberCreateMixin):
         return phonenumber in usernames
 
 class PhonenumberUpdateCreateView(PhonenumberCreateMixin):
+    form_class = PhonenumberUpdateForm
     template_name = 'phonenumberapp/updatecreate.html'
     reverse_url = 'phonenumberapp:updateverify'
     sms_message = 'Plan & Coach 인증번호'
     error_message = '이미 존재하는 전화번호입니다.'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['target_user'] = get_object_or_404(CustomUser, pk=self.kwargs['pk'])
-        return context
 
     def condition(self, phonenumber, usernames):
         return phonenumber in usernames
@@ -88,22 +79,23 @@ class PhonenumberVerifyMixin(FormView):
     form_class = PhoneNumberVerifyForm
 
     def dispatch(self, request, *args, **kwargs):
-        try:
-            phonenumber = self.model.objects.get(pk=self.kwargs['pk'])
-        except ObjectDoesNotExist:
-            return redirect(reverse('accountapp:login'))
-
+        phonenumber= get_object_or_404(Phonenumber, pk=self.kwargs['pk'])
+        if phonenumber.timeout() <3:
+            phonenumber.delete()
+            return redirect(self.redirect_url)
         return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        phonenumber = self.model.objects.get(pk=self.kwargs['pk'])
+        phonenumber= get_object_or_404(Phonenumber, pk=self.kwargs['pk'])
         context['phonenumber'] = phonenumber
+        context['remaining_time'] = phonenumber.timeout()
+        context['redirect_url'] = reverse(self.redirect_url)
         return context
 
     def form_valid(self, form):
         compare_code = form.cleaned_data['compare_code']
-        phonenumber = self.model.objects.get(pk=self.kwargs['pk'])
+        phonenumber= get_object_or_404(Phonenumber, pk=self.kwargs['pk'])
         error_count = phonenumber.error_count
         with transaction.atomic():
             if len(compare_code) < 6:
@@ -153,23 +145,19 @@ class PhonenumberSearchVerifyView(PhonenumberVerifyMixin):
         phonenumber.delete()
 
     def get_success_url(self):
-        phonenumber = Phonenumber.objects.get(pk=self.kwargs['pk'])
-        user = CustomUser.objects.get(username=phonenumber.phonenumber)
-        return reverse_lazy('accountapp:passwordreset', kwargs={'pk': user.pk})
+        return reverse_lazy('accountapp:passwordreset', kwargs={'pk': self.request.user.pk})
 
 class PhonenumberUpdateVerifyView(PhonenumberVerifyMixin):
     template_name = 'phonenumberapp/updateverify.html'
     redirect_url = 'phonenumberapp:updatecreate'
 
     def success_action(self, phonenumber):
+        target_user=self.request.user
         phonenumber.is_verified = True
         phonenumber.save()
-        phonenumber.customuser.username = phonenumber.phonenumber
-        phonenumber.customuser.save()
-        phonenumber.delete()
+        target_user.username = phonenumber.phonenumber
+        target_user.save()
 
     def get_success_url(self):
-        phonenumber = Phonenumber.objects.get(pk=self.kwargs['pk'])
-        user = CustomUser.objects.get(username=phonenumber.phonenumber)
-        return reverse_lazy('accountapp:setting',  kwargs={'pk': user.pk})
+        return reverse_lazy('accountapp:setting',  kwargs={'pk': self.request.user.pk})
 

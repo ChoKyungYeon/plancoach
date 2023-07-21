@@ -1,10 +1,9 @@
-from datetime import timedelta, date
-from plancoach.variables import current_datetime
+from datetime import timedelta, date, datetime
 from refusalapp.models import Refusal
 
 
 def time_before(time):
-    delta = current_datetime - time
+    delta = datetime.now() - time
     if delta.total_seconds() < 300:
         return '방금전'
     elif delta.total_seconds() < 3600:
@@ -22,7 +21,7 @@ def time_before(time):
 
 
 def time_expire(time, expire_duration):
-    interval_hours = expire_duration - round((current_datetime - time) / timedelta(hours=1))
+    interval_hours = expire_duration - round((datetime.now() - time) / timedelta(hours=1))
     if interval_hours <= 0:
         return '1시간'
     days, hours = divmod(interval_hours, 24)
@@ -74,3 +73,4 @@ def salaryday_calculator(target_date):
 def create_refusal(object, message):
     Refusal.objects.create(student=object.student, content=message)
     object.delete()
+

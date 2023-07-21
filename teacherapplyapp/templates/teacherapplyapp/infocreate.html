@@ -8,7 +8,7 @@
         {% with title="선생님 정보 작성" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
-        {% url 'accountapp:setting' pk=target_teacherapply.customuser.pk as url %}
+        {% url 'teacherapplyapp:guide' pk=target_teacherapply.customuser.pk as url %}
         {% include 'headersnippets/exit.html' with url=url %}
 </header>
 
