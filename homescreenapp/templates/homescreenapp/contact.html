@@ -9,8 +9,8 @@
         object-fit: cover;
     }
 
-    .container-contact .btn-kakaotalk,
-    .container-contact .btn-email {
+    .container-contact .btn-openkakako,
+    .container-contact .btn-mail {
         margin-left: 2rem;
         width: 100%;
         height: 4rem;
@@ -24,12 +24,12 @@
         color: var(--black);
     }
 
-    .container-contact .btn-kakaotalk {
+    .container-contact .btn-openkakako {
         background: #FFEB3B;
         font-size: 1.25rem;
     }
 
-    .container-contact .btn-email {
+    .container-contact .btn-mail {
         background:#4CAF50;
         color: var(--white);
     }
@@ -64,11 +64,11 @@
         </div>
         <div class="item-contact">
             <img class="img-contact" src='/static/icons/email.png'>
-            <a href={{document.email_link}} class="btn-email" >메일로 문의하기</a>
+            <a href={{document.email_link}} class="btn-mail" >메일로 문의하기</a>
         </div>
         <div class="item-contact">
             <img class="img-contact" src='/static/icons/kakaotalk.png'>
-            <a href={{document.kakaotalk}} class="btn-kakaotalk">카카오톡 문의하기</a>
+            <a href={{document.kakaotalk}} class="btn-openkakako">카카오톡 문의하기</a>
         </div>
     </div>
 </main>

@@ -5,5 +5,5 @@ app_name = 'documentapp'
 
 urlpatterns = [
     path('update/<int:pk>',DocumentUpdateView.as_view(), name='update'),
-    path('create/<int:pk>',DocumentCreateView.as_view(), name='create'),
+    path('create',DocumentCreateView.as_view(), name='create'),
 ]
