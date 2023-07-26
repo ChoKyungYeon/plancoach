@@ -38,7 +38,7 @@ class AccountCreateView(CreateView):
         phonenumber = get_object_or_404(Phonenumber, pk=self.kwargs['pk'])
         phone = phonenumber.phonenumber
         with transaction.atomic():
-            form.instance.username= self.request.session.get('verified_phonenumber')
+            form.instance.username= phone
             form.instance.save()
             phonenumber.delete()
             return super().form_valid(form)

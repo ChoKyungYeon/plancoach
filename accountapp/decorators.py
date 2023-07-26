@@ -11,7 +11,7 @@ def AccountCreateDecorater(func):
         phonenumber=get_object_or_404(Phonenumber, pk=kwargs['pk'])
         if phonenumber.is_verified == False:
             return HttpResponseForbidden()
-        if request.session.get('verification_code') != str(phonenumber.verification_code):
+        if request.session['verification_code'] != str(phonenumber.verification_code):
             return HttpResponseForbidden()
         return func(request, *args, **kwargs)
     return decorated
