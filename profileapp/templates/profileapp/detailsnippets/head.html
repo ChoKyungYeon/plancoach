@@ -71,7 +71,7 @@
 
 
 .profile-detail-head .icon-headinfo{
-    color:var(--whitegreen);
+    color:var(--lightblue);
     margin-right:0.6rem;
     font-size:1.2rem;
     font-weight:var(--fontweight-index);
@@ -99,7 +99,7 @@
 
 </style>
 
-<div class="profile-detail-head head-detail" >
+<div class="profile-detail-head container-head-profile" >
     <div class="box-info">
         <div class="item-image">
         <button onclick="showprofileheaderimage()" class="btn-zoom-image"></button>
@@ -144,7 +144,7 @@
             </div>
             <div class="array-detail" style="marign-bottom:0rem; marign-top:0rem;">
                 <span class="material-icons icon-headinfo" style="font-weight: 500">account_balance</span>
-                <span class="head-text-content">4주/ {{tuition}}만원</span>
+                <span class="head-text-content">4주 {{target_profile.tuition_million}}만원</span>
             </div>
         </div>
     </div>
@@ -169,7 +169,7 @@
             </span>
         {% endif %}
     </div>
-    <div class="head-box-nav">
+    <div class="item-nav">
          <button onclick="showSlide(1)" id="btn-slide1" class="btn-touched">선생님 정보</button>
          <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched">수업 설명</button>
     </div>

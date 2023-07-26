@@ -1,9 +1,9 @@
 from django.urls import path
 
-from profile_bankapp.views import Profile_bankUpdateView
+from profile_bankapp.views import Profile_bankManageView
 
 app_name = 'profile_bankapp'
 
 urlpatterns = [
-    path('update/<int:pk>',Profile_bankUpdateView.as_view(), name='update'),
+    path('manage/<int:pk>',Profile_bankManageView.as_view(), name='manage'),
 ]

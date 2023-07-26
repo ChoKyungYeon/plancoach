@@ -1,3 +1,40 @@
+<style>
 
-<a href="{% url 'teacherapplyapp:guide' pk=target_user.pk %}"
-        class="main-icon-help material-icons" style="font-weight:400;">school</a>
+    .container-foot{
+        position:fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        background: var(--white);
+        padding:1rem 1rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .container-foot .text-teacher{
+        color: var(--gray);
+        font-weight: var(--fontweight-content);
+        font-size: var(--fontsize-content);
+    }
+
+    .container-foot .icon-teacher{
+        color: var(--white);
+        background: var(--orange);
+        padding:0.4rem;
+        border-radius: 0.5rem;
+        font-weight: 400;
+        font-size: 1.4rem;
+        margin-right: 0.7rem;
+    }
+</style>
+<a href="{% url 'teacherapplyapp:guide' pk=target_user.pk %}" class="container-foot">
+    <div class="icon-teacher material-icons">
+    school
+    </div>
+    <div class="text-teacher">
+        선생님이신가요?
+    </div>
+
+</a>

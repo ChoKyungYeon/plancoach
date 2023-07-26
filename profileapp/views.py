@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.db.models import Count, F
 from django.shortcuts import get_object_or_404
@@ -12,12 +13,14 @@ from plancoach.sms import Send_SMS
 from profile_consulttypeapp.models import Profile_consulttype
 from profile_likeapp.models import Profile_like
 from profile_scholarshipapp.models import Profile_scholarship
+from profileapp.decorators import *
 from profileapp.forms import ProfileTuitionUpdateForm, ProfileCreateForm
 from profileapp.models import Profile
 from teacherapplyapp.models import Teacherapply
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(ProfileCreateDecorater, name='dispatch')
 class ProfileCreateView(CreateView):
     model = Profile
     form_class = ProfileCreateForm
@@ -69,7 +72,8 @@ class ProfileCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('superuserapp:dashboard')
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(ProfileDeleteDecorater, name='dispatch')
 class ProfileDeleteView(DeleteView):
     model =Profile
     context_object_name = 'target_profile'
@@ -78,7 +82,8 @@ class ProfileDeleteView(DeleteView):
         return reverse_lazy('superuserapp:dashboard')
 
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(ProfileTuitionUpdateDecorater, name='dispatch')
 class ProfileTuitionUpdateView(UpdateView):
     model = Profile
     context_object_name = 'target_profile'
@@ -95,8 +100,7 @@ class ProfileTuitionUpdateView(UpdateView):
         return reverse_lazy('teacherapp:dashboard', kwargs={'pk': self.object.teacher.pk})
 
 
-
-#모두 확인 가능
+@method_decorator(ProfileDetailDecorater, name='dispatch')
 class ProfileDetailView(DetailView):
     model = Profile
     context_object_name = 'target_profile'
@@ -120,10 +124,8 @@ class ProfileDetailView(DetailView):
         context['schoolyear_length'] = int(datetime.now().date().strftime("%y")) + 2 - 12
         context['can_add_subject'] = len(subjectchoice) != len(subjects)
         context['can_add_sat'] = len(schoolyearchoice) != len(sats)
-        context['tuition'] = str(target_profile.tuition)[:2]
         return context
 
-#모두 확인 가능)
 class ProfileListView(TemplateView):
     model = Profile
     template_name = 'profileapp/list.html'
@@ -163,7 +165,8 @@ class ProfileListView(TemplateView):
 
 
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(ProfileStateUpdateDecorater, name='dispatch')
 class ProfileStateUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return reverse('teacherapp:dashboard', kwargs={'pk': self.request.GET.get('user_pk')})

@@ -1,6 +1,7 @@
-from django.db import models
+from django.db import models, transaction
 from accountapp.models import CustomUser
 from plancoach.choice import schoolyearchoice, accepttypechoice, bankchoice, consulttypechoice, schoolchoice
+from plancoach.utils import create_refusal
 from plancoach.variables import bankdictionary
 from multiselectfield import MultiSelectField
 
@@ -18,9 +19,14 @@ class Teacherapply(models.Model):
     depositor = models.CharField(max_length=6, null=True)
     consulttype = MultiSelectField(max_length=20, choices=consulttypechoice, null=True)
     is_done = models.BooleanField(default=False)
+    has_userimage = models.BooleanField(default=False)
+    has_bank = models.BooleanField(default=False)
+
 
     def bankimage(self):
         return bankdictionary[self.bank] if self.bank else None
 
     def scholarship_name(self):
         return f"{self.school} {self.major} {self.studentid}"
+
+

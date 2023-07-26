@@ -24,3 +24,6 @@ class Profile(models.Model):
             self.teacher.state = 'student'
             self.teacher.save()
             super().delete(*args, **kwargs)
+
+    def tuition_million(self):
+        return str(self.tuition)[:2]

@@ -1,27 +1,27 @@
 from datetime import datetime
-
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.utils.decorators import method_decorator
-from django.views.generic import DetailView, TemplateView
-from consultapp.models import Consult
-from plancoach.updaters import *
+from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 
+from documentapp.models import Document
+from paymentapp.decorators import *
 try:#deploy check
     from plancoach.settings.local import PORTONE_SHOP_ID
 except:
     from plancoach.settings.deploy import PORTONE_SHOP_ID
 
-from paymentapp.forms import PaymentForm
+from paymentapp.forms import PaymentCreateForm
 from paymentapp.models import Payment
 
-
+@login_required
+@PaymentCreateDecorater
 def PaymentCreateView(request, pk):
     target_consult = get_object_or_404(Consult, pk=pk)
     if request.method == 'POST':
-        form = PaymentForm(request.POST)
+        form = PaymentCreateForm(request.POST)
         if form.is_valid():
             with transaction.atomic():
                 target_consult.payment.filter(is_paid_ok=False).delete()
@@ -31,7 +31,7 @@ def PaymentCreateView(request, pk):
                 form.instance.save()
                 return redirect('paymentapp:pay', pk=form.instance.pk)
     else:
-        form = PaymentForm()
+        form = PaymentCreateForm()
 
     context = {
         'form': form,
@@ -39,10 +39,11 @@ def PaymentCreateView(request, pk):
         'startdate' : datetime.now().date(),
         'extenddate': target_consult.extenddate() if target_consult.extenddate() else None
     }
-
     return render(request, 'paymentapp/create.html', context)
 
 
+@login_required
+@PaymentPayDecorater
 def PaymentPayView(request, pk):
     target_user=request.user
     payment = get_object_or_404(Payment, pk=pk)
@@ -66,7 +67,8 @@ def PaymentPayView(request, pk):
               )
 
 
-
+@login_required
+@PaymentPayDecorater
 def PaymentCheckView(request, pk):
     payment = get_object_or_404(Payment, pk=pk)
     payment.portone_check()
@@ -74,7 +76,8 @@ def PaymentCheckView(request, pk):
     return redirect('paymentapp:result', pk=payment.pk)
 
 
-
+@login_required
+@PaymentResultDecorater
 def PaymentResultView(request, pk):
     payment = get_object_or_404(Payment, pk=pk)
     context = {
@@ -85,11 +88,14 @@ def PaymentResultView(request, pk):
 
 
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(PaymentContactDecorater, name='dispatch')
 class PaymentContactView(TemplateView):
     template_name = 'paymentapp/contact.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        target_payment = get_object_or_404(Payment, pk=self.kwargs['pk'])
-        context['target_consult'] = target_payment.consult
+        document = Document.objects.all().first()
+        context['target_payment'] = get_object_or_404(Payment, pk=self.kwargs['pk'])
+        context['document']=Document.objects.all().first()
         return context

@@ -29,7 +29,7 @@
 
 
 {% if user.state == 'superuser' %}
-    <a href="{% url 'profile_bankapp:update' pk=target_bank.pk %}"  class="main-container-dashboard container-bank">
+    <a href="{% url 'profile_bankapp:manage' pk=target_bank.pk %}"  class="main-container-dashboard container-bank">
 {% else %}
     <a  class=" main-container-dashboard container-bank">
 {% endif %}

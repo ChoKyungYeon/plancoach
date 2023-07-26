@@ -134,9 +134,16 @@
         toprofilecreate.addEventListener('click', confirmtoprofilecreate);
     }
 
-    function confirmteacherapplyDelete() {
-        if (confirm("현재 신청서를 정말로 삭제하시겠습니까?")) {
-            document.getElementById("teacherapply-delete-form").submit();
+    function confirmtoprefusalcreate(event) {
+        if (confirm("선책하신 신청서를 삭제하시겠습니까?")) {
+            window.location.href = event.target.href;
+        } else {
+            event.preventDefault();
         }
+    }
+
+    const toprefusalcreate = document.getElementById('toprefusalcreate');
+    if (toprefusalcreate) {
+        toprefusalcreate.addEventListener('click', confirmtoprefusalcreate);
     }
 </script>

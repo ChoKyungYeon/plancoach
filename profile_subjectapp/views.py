@@ -1,12 +1,17 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
+
+from profile_subjectapp.decorators import Profile_subjectEditDecorater
 from profile_subjectapp.forms import Profile_subjectCreateForm
 from profile_subjectapp.models import Profile_subject
+from profileapp.decorators import Profile_instanceCreateDecorater
 from profileapp.models import Profile
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Profile_instanceCreateDecorater, name='dispatch')
 class Profile_subjectCreateView(CreateView):
     model = Profile_subject
     form_class = Profile_subjectCreateForm
@@ -33,7 +38,8 @@ class Profile_subjectCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('profileapp:detail', kwargs={'pk': self.kwargs['pk']})
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Profile_subjectEditDecorater, name='dispatch')
 class Profile_subjectUpdateView(UpdateView):
     model = Profile_subject
     context_object_name = 'target_profile_subject'
@@ -42,7 +48,7 @@ class Profile_subjectUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('profileapp:detail', kwargs={'pk': self.object.profile.pk})
 
-
+@method_decorator(login_required, name='dispatch')
 class Profile_subjectDeleteView(DeleteView):
     model =Profile_subject
     context_object_name = 'target_profile_subject'

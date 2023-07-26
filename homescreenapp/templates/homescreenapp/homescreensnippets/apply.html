@@ -1,6 +1,9 @@
 <style>
     .container-apply {
-        background: linear-gradient(0deg, #33364d, #292b3d, #33364d);
+        background: linear-gradient(135deg,
+        #4e5165,#1d2134,#1d2134,#4e5165);
+        box-shadow: 0 0 2px #303550;
+        position: relative;
     }
 
     .container-apply .text-class {
@@ -13,26 +16,26 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         color: var(--black);
         font-weight: var(--fontweight-title);
-        padding: 1rem 5rem;
+        padding: 1rem 4rem;
         margin-top: 2rem;
         border-radius: 1rem;
         background: var(--white);
     }
 </style>
 
-{% if target_step == 'unauthenticated' %}
+{% if not request.user.is_authenticated %}
 <a href="{% url 'accountapp:login' %}" class="main-container-homescreen container-apply">
-{% elif target_step == 'teacher' %}
+{% elif request.user.state == 'teacher' %}
 <a href="{% url 'teacherapp:dashboard' pk=user.pk  %}" class="main-container-homescreen container-apply">
-{% elif target_step == 'superuser' %}
+{% elif request.user.state == 'superuser' %}
 <a href="{% url 'superuserapp:dashboard' %}" class="main-container-homescreen container-apply">
 {% else %}
 <a href="{% url 'studentapp:dashboard' pk=user.pk %}" class="main-container-homescreen container-apply">
 {% endif %}
-    {% if target_step == 'teacher' or target_step == 'superuser' or target_step == 'ongoing' %}
+    {% if request.user.state == 'teacher' or request.user.state == 'superuser' or request.user.student_step == 'ongoing' %}
     <div class="text-index text-class">
         수업을 매칭 또는 진행 중이신가요?
     </div>
@@ -40,7 +43,7 @@
         현재 내 수업 현황을 확인하세요
     </div>
     <div class="btn-apply">
-        내 수업 현황 확인 &#128073;
+        내 수업 현황 확인 >
     </div>
     {% else %}
     <div class="text-index text-class">
@@ -50,7 +53,7 @@
         지금 바로 수업을 신청해보세요
     </div>
     <div class="btn-apply">
-        수업 신청하러 가기 &#128073;
+        수업 신청하러 가기 >
     </div>
 {% endif %}
 </a>

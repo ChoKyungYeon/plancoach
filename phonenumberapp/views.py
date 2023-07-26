@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
@@ -5,23 +6,21 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, FormView
 from django.contrib.auth import login
 from accountapp.models import CustomUser
+from phonenumberapp.decorators import *
 from plancoach.sms import Send_SMS
 from phonenumberapp.forms import PhonenumberCreateForm, PhoneNumberVerifyForm, PhonenumberUpdateForm
 from phonenumberapp.models import Phonenumber
 from django.contrib.auth import get_user_model
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
+@method_decorator(PhonenumberCreateDecorater, name='dispatch')
 class PhonenumberCreateMixin(CreateView):
     model = Phonenumber
     form_class = PhonenumberCreateForm
     def form_valid(self, form):
-        for phonenumber in Phonenumber.objects.all():
-            phonenumber.updater()
         phonenumber = form.cleaned_data['phonenumber']
         usernames = get_user_model().objects.values_list('username', flat=True)
         with transaction.atomic():
-            # form invalid
             if len(phonenumber) <11 or phonenumber[:3] != '010':
                 form.add_error('phonenumber', '정확한 전화번호를 입력해주세요')
                 return self.form_invalid(form)
@@ -53,6 +52,8 @@ class PhonenumberSignupCreateView(PhonenumberCreateMixin):
     def condition(self, phonenumber, usernames):
         return phonenumber in usernames
 
+
+@method_decorator(login_required, name='dispatch')
 class PhonenumberUpdateCreateView(PhonenumberCreateMixin):
     form_class = PhonenumberUpdateForm
     template_name = 'phonenumberapp/updatecreate.html'
@@ -73,18 +74,10 @@ class PhonenumberSearchCreateView(PhonenumberCreateMixin):
     def condition(self, phonenumber, usernames):
         return phonenumber not in usernames
 
-#없으면 redirect하도록, 시작할때 업데이트
+@method_decorator(PhonenumberVerifyDecorater, name='dispatch')
 class PhonenumberVerifyMixin(FormView):
     model = Phonenumber
     form_class = PhoneNumberVerifyForm
-
-    def dispatch(self, request, *args, **kwargs):
-        phonenumber= get_object_or_404(Phonenumber, pk=self.kwargs['pk'])
-        if phonenumber.timeout() <3:
-            phonenumber.delete()
-            return redirect(self.redirect_url)
-        return super().dispatch(request, *args, **kwargs)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         phonenumber= get_object_or_404(Phonenumber, pk=self.kwargs['pk'])
@@ -130,6 +123,8 @@ class PhonenumberSignupVerifyView(PhonenumberVerifyMixin):
     def success_action(self, phonenumber):
         phonenumber.is_verified = True
         phonenumber.save()
+        self.request.session['verification_code'] = phonenumber.verification_code
+
 
 
 class PhonenumberSearchVerifyView(PhonenumberVerifyMixin):
@@ -137,8 +132,6 @@ class PhonenumberSearchVerifyView(PhonenumberVerifyMixin):
     redirect_url = 'phonenumberapp:searchcreate'
 
     def success_action(self, phonenumber):
-        phonenumber.is_verified = True
-        phonenumber.save()
         user = CustomUser.objects.get(username=phonenumber.phonenumber)
         if user is not None:
             login(self.request, user)
@@ -147,16 +140,16 @@ class PhonenumberSearchVerifyView(PhonenumberVerifyMixin):
     def get_success_url(self):
         return reverse_lazy('accountapp:passwordreset', kwargs={'pk': self.request.user.pk})
 
+@method_decorator(login_required, name='dispatch')
 class PhonenumberUpdateVerifyView(PhonenumberVerifyMixin):
     template_name = 'phonenumberapp/updateverify.html'
     redirect_url = 'phonenumberapp:updatecreate'
 
     def success_action(self, phonenumber):
         target_user=self.request.user
-        phonenumber.is_verified = True
-        phonenumber.save()
         target_user.username = phonenumber.phonenumber
         target_user.save()
+        phonenumber.delete()
 
     def get_success_url(self):
         return reverse_lazy('accountapp:setting',  kwargs={'pk': self.request.user.pk})

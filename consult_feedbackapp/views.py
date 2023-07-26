@@ -1,9 +1,12 @@
 from datetime import datetime
 
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, DeleteView, UpdateView
+
+from consult_feedbackapp.decorators import *
 from consult_feedbackapp.forms import Consult_feedbackCreateForm, Consult_feedbackUpdateForm, \
     Consult_feedbackContentUpdateForm
 from consult_feedbackapp.models import Consult_feedback
@@ -13,9 +16,11 @@ from feedback_coachapp.models import Feedback_coach
 from feedback_likeapp.models import Feedback_like
 from feedback_planapp.models import Feedback_plan
 from plancoach.choice import subjectchoice
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
+
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Consult_feedbackCreateDecorater, name='dispatch')
 class Consult_feedbackCreateView(CreateView):
     model = Consult_feedback
     form_class = Consult_feedbackCreateForm
@@ -56,7 +61,8 @@ class Consult_feedbackCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.pk})
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Consult_feedbackListDecorater, name='dispatch')
 class Consult_feedbackListView(DetailView):
     model = Consult
     context_object_name = 'target_consult'
@@ -75,7 +81,8 @@ class Consult_feedbackListView(DetailView):
         context['latest_feedback'] = feedbacks.first()
         return context
 
-#updaterneeded
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Consult_feedbackDeleteDecorater, name='dispatch')
 class Consult_feedbackDeleteView(DeleteView):
     model = Consult_feedback
     context_object_name = 'target_consult_feedback'
@@ -84,7 +91,8 @@ class Consult_feedbackDeleteView(DeleteView):
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:list', kwargs={'pk': self.object.consult.pk})
 
-#updaterneeded
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Consult_feedbackUpdateDecorater, name='dispatch')
 class Consult_feedbackUpdateView(UpdateView):
     model = Consult_feedback
     form_class = Consult_feedbackUpdateForm
@@ -116,7 +124,8 @@ class Consult_feedbackUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.pk})
 
-#updaterneeded
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Consult_feedbackContentUpdateDecorater, name='dispatch')
 class Consult_feedbackContentUpdateView(UpdateView):
     model = Consult_feedback
     form_class = Consult_feedbackContentUpdateForm
@@ -126,7 +135,8 @@ class Consult_feedbackContentUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.pk})
 
-#updaterneeded
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Consult_feedbackBaseDetailDecorater, name='dispatch')
 class ConsultFeedbackBaseDetailView(DetailView):
     model = Consult_feedback
     context_object_name = 'target_consult_feedback'
@@ -150,24 +160,24 @@ class ConsultFeedbackBaseDetailView(DetailView):
         context['target_consult'] = target_consult
         return context
 
-#updaterneeded
+
 class Consult_feedbackPlanDetailView(ConsultFeedbackBaseDetailView):
     template_name = 'consult_feedbackapp/plandetail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        target_feedback = Consult_feedback.objects.get(pk=self.kwargs['pk'])
+        target_feedback = get_object_or_404(Consult_feedback, pk=self.kwargs['pk'])
         plans = target_feedback.feedback_plan.all().order_by('plantime')
         context['plans'] = plans
         return context
 
-#updaterneeded
+
 class Consult_feedbackCoachDetailView(ConsultFeedbackBaseDetailView):
     template_name = 'consult_feedbackapp/coachdetail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        target_feedback = Consult_feedback.objects.get(pk=self.kwargs['pk'])
+        target_feedback = get_object_or_404(Consult_feedback, pk=self.kwargs['pk'])
         coaches = target_feedback.feedback_coach.all()
         context['coaches'] = coaches
         context['can_add_coaches'] = len(coaches) != len(subjectchoice)

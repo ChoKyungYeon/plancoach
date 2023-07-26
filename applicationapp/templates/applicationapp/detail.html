@@ -18,7 +18,7 @@
 <main class="application-detail">
     <div class="main-box ">
         {% if user == target_application.student and state == 'applied' %}
-        <a href="{% url 'applicationapp:update' pk=target_application.student.pk %}"
+        <a href="{% url 'applicationapp:update' pk=target_application.pk %}"
            class="main-icon-positive material-icons" style="right: 6rem">
             edit
         </a>
@@ -35,16 +35,16 @@
         {% if user == target_application.teacher %}
         {% if state == 'applied' %}
         <a id="tostatebreak" class="main-icon-negative material-icons"
-           href="{% url 'refusalapp:create' pk=target_application.student.pk %}">close
+           href="{% url 'refusalapp:applicationrefuse' pk=target_application.pk %}">close
         </a>
         <a id="tostatematching" href="{% url 'applicationapp:stateupdate' %}?application_pk={{ target_application.pk }}"
            class="main-icon-positive material-icons" style="right:6rem;">done
         </a>
         {% elif state == 'matching' %}
         <a id="tostaterefsual" class="main-icon-negative material-icons"
-           href="{% url 'refusalapp:create' pk=target_application.student.pk %}">close
+           href="{% url 'refusalapp:applicationrefuse' pk=target_application.pk %}">close
         </a>
-        <a id="toconsultcreate" href="{% url 'consultapp:create' pk=target_application.student.pk %}"
+        <a id="toconsultcreate" href="{% url 'consultapp:create' pk=target_application.pk %}"
            class="main-icon-positive material-icons" style="right:6rem;">done
         </a>
         {% endif %}

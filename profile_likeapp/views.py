@@ -1,12 +1,15 @@
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import RedirectView
+
+from profile_likeapp.decorators import Profile_likeDecorater
 from profile_likeapp.models import Profile_like
 from profileapp.models import Profile
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Profile_likeDecorater, name='dispatch')
 class Profile_likeView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return reverse('profileapp:detail', kwargs={'pk':self.request.GET.get('profile_pk')})

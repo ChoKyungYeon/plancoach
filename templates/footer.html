@@ -6,30 +6,44 @@ footer{
     flex-direction:column;
     justify-content:flex-start;
     align-items: center;
-    padding: 4rem var(--homescreen-padding) 8rem var(--homescreen-padding);
+    padding: 5.5rem var(--main-padding) 8rem var(--main-padding);
     background:#3d4257;
 }
 
+footer .array-info{
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:flex-start;
+    width: 100%;  
+}
+footer .item-info{
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:flex-start;
+    width: 50%;
+}
 
-footer .text-buisiness{
-      display: flex;
-      flex-direction:row;
-      justify-content:center;
-      align-items: center;
+footer .text-buisinessinfo{
       font-weight:var(--fontweight-content);
       font-size:1.3rem;
       color:var(--white);
-      width:100%;
+      margin-bottom:0.5rem;
+}
+footer .link-etc{
+      font-weight:var(--fontweight-content);
+      font-size:1.3rem;
+      color:var(--white);
       margin-bottom:1rem;
-      margin-top:1.5rem;
 }
 
 
-footer .text-footerdetail{
+footer .text-buisinessdetail{
       width:100%;
-      color:var(--whitegray);
-      font-size:1.23rem;
-      font-weight:400;
+      color:#e0e0eb;
+      font-size:1.15rem;
+      font-weight:300;
 
 }
 footer .text-copyright{
@@ -43,19 +57,36 @@ footer .text-copyright{
       align-items: center;
       color:var(--white);
 }
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
+      footer{
+          padding: 4rem 27% 8rem 27%;
+      }
+}
 
+@media screen and (min-width: 1100px) {
       footer{
           padding: 4rem 34% 8rem 34%;
       }
 }
+
 </style>
 <footer>
-      <div class="text-buisiness">Plan & Coach 사업자 정보</div>
-      <div class="text-footerdetail" >
-      서비스명 : plan&coach / 사업자 분류 : 개인 사업자 / 등록일 : 2023년 06월 08일 /
-      사업자등록번호 :305-38-92150 / 대표 : 조경연 / 책임자 : 조경연, 홍진영
-      법인 위치 : 서울특별시 동작구 만양로14마길 5-1(노량진동) / 전화번호 : 010-3158-5834 / 대표이메일 : peter135268@gmail.com
+      <div class="array-info">
+            <div class="item-info">
+                  <a href="{% url 'homescreenapp:privacypolicy' %}" class="link-etc">개인정보 처리방침</a>
+                  <a href="{% url 'homescreenapp:termofuse' %}" class="link-etc">이용약관</a>
+                  <a href="{% url 'homescreenapp:refund' %}" class="link-etc">환불규정</a>
+                  <a href="{% url 'homescreenapp:aboutus' %}" class="link-etc">AboutUs</a>
+                  <a href="{% url 'homescreenapp:contact' %}" class="link-etc">Contact</a>
+            </div>
+            <div class="item-info">
+                  <div class="text-buisinessinfo">Plan & Coach 사업자 정보</div>
+                  <div class="text-buisinessdetail">
+                        서비스명 : plan&coach / 사업자 분류 : 개인 사업자 / 등록일 : 2023년 06월 08일 /
+                        사업자등록번호 :305-38-92150 / 대표 : 조경연 / 책임자 : 조경연, 홍진영
+                        법인 위치 : 서울특별시 동작구 만양로14마길 5-1(노량진동) / 전화번호 : 010-3158-5834 / 대표이메일 : peter135268@gmail.com
+                  </div>
+            </div>
       </div>
       <div class="text-copyright">Copyrights 2023 Plan & Coach All Rights Reserved</div>
 </footer>

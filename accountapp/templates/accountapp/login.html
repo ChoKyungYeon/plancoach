@@ -37,20 +37,9 @@
         color: var(--black);
         margin-right: auto;
         margin-left: 0.5rem;
-        margin-bottom: 2.5rem;
+        margin-bottom: 2rem;
     }
 
-    @media screen and (min-width: 500px) {
-        :root {
-            --main-padding: 25%;
-        }
-    }
-
-    @media screen and (min-width: 1000px) {
-        :root {
-            --main-padding: 33%;
-        }
-    }
 </style>
 
 <header class="header-white">
@@ -69,7 +58,7 @@
                 <span class="text-help">계정이 없으신가요?</span>
                 <a href="{% url 'phonenumberapp:signupcreate' %}" class="text-link">회원가입</a>
             </div>
-            <input type="submit" class="btn-submit" style="margin-top:3.5rem" value="로그인">
+            <input type="submit" class="btn-submit" style="margin-top:3rem" value="로그인">
         </form>
     </div>
 </main>

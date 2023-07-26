@@ -5,7 +5,7 @@ from profile_bankapp.models import Profile_bank
 from plancoach.widgets import CustomSelect
 
 
-class Profile_bankUpdateForm(ModelForm):
+class Profile_bankManageForm(ModelForm):
     class Meta:
         model = Profile_bank
         fields = ('bank','accountnumber','depositor')

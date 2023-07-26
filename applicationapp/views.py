@@ -1,11 +1,13 @@
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, RedirectView, TemplateView
-from applicationapp.decorators import application_create_decorater
-from plancoach.updaters import *
+
+from accountapp.models import CustomUser
+from applicationapp.decorators import *
 from refusalapp.models import Refusal
 from applicationapp.forms import ApplicationCreateForm
 from applicationapp.models import Application
@@ -13,7 +15,7 @@ from plancoach.sms import Send_SMS
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(user_updater, name='dispatch')
+@method_decorator(ApplicationCreateDecorater, name='dispatch')
 class ApplicationCreateView(CreateView):
     model = Application
     form_class = ApplicationCreateForm
@@ -45,8 +47,7 @@ class ApplicationCreateView(CreateView):
         return reverse_lazy('applicationapp:result')
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(application_updater, name='dispatch')
-@method_decorator(application_create_decorater, name='dispatch')
+@method_decorator(ApplicationDeleteDecorater, name='dispatch')
 class ApplicationDeleteView(DeleteView):
     model = Application
     context_object_name = 'target_application'
@@ -59,7 +60,7 @@ class ApplicationDeleteView(DeleteView):
             return reverse_lazy('accountapp:studentdguide', kwargs={'pk': self.object.student.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(application_updater, name='dispatch')
+@method_decorator(ApplicationUpdateDecorater, name='dispatch')
 class ApplicationUpdateView(UpdateView):
     model = Application
     form_class = ApplicationCreateForm
@@ -70,7 +71,7 @@ class ApplicationUpdateView(UpdateView):
         return reverse_lazy('applicationapp:detail', kwargs={'pk': self.object.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(application_updater, name='dispatch')
+@method_decorator(ApplicationDetailDecorater, name='dispatch')
 class ApplicationDetailView(DetailView):
     model = Application
     context_object_name = 'target_application'
@@ -81,7 +82,8 @@ class ApplicationDetailView(DetailView):
         context['state'] = self.object.state
         return context
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(ApplicationStateUpdateDecorater, name='dispatch')
 class ApplicationStateUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         application = Application.objects.get(pk=self.request.GET.get('application_pk'))
@@ -101,14 +103,15 @@ class ApplicationStateUpdateView(RedirectView):
             return super(ApplicationStateUpdateView, self).get(request, *args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(request_user_updater, name='dispatch')
+@method_decorator(ApplicationGuideDecorater, name='dispatch')
 class ApplicationGuideView(DetailView):
     model = CustomUser
     context_object_name = 'target_user'
     template_name = 'applicationapp/guide.html'
 
+
 @method_decorator(login_required, name='dispatch')
-@method_decorator(request_user_updater, name='dispatch')
+@method_decorator(ApplicationResultDecorater, name='dispatch')
 class ApplicationResultView(TemplateView):
     model = CustomUser
     template_name = 'applicationapp/result.html'

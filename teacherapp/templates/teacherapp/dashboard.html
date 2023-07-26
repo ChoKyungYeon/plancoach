@@ -8,12 +8,14 @@
 <header class="header-black">
     {% if user.state == 'superuser' %}
         {% url 'superuserapp:dashboard' as url %}
-        {% include 'headersnippets/list.html' with url=url %}
-        <form action="{% url 'profileapp:delete' pk=target_user.profile.pk %}" method="post" id="teacher-delete-form">
+        {% include 'headersnippets/navback.html' with url=url %}
+        {% if target_user.can_delete %}
+        <form style="margin-left:auto" action="{% url 'profileapp:delete' pk=target_user.profile.pk %}" method="post" id="teacher-delete-form">
             {% csrf_token %}
             <input style="display:none" type="submit" name="next" value="{% url 'superuserapp:dashboard' %}">
             <button type="button" onclick="confirmteacherDelete()" class=" btn-delete material-icons">delete_forever</button>
         </form>
+        {% endif %}
     {% else %}
         {% include 'headersnippets/home.html' %}
         {% include 'headersnippets/account.html'  %}

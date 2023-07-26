@@ -7,20 +7,20 @@ class DocumentCreateForm(forms.ModelForm):
     class Meta:
         model = Document
 
-        fields = ( 'termofuse', 'privacypolicy', 'kakaotalk',  'termofuse_updated',
-                  'privacypolicy_updated')
+        fields = ( 'termofuse_link', 'privacypolicy_link','aboutus_link','email', 'kakaotalk',)
 
         labels = {
-            'termofuse': '이용약관',
-            'privacypolicy': '개인정보 처리 방침',
-            'kakaotalk': '카카오톡 링크',
-            'termofuse_updated': '이용약관 수정일',
-            'privacypolicy_updated': '개인정보 처리 방침 수정일',
+            'termofuse_link': '이용약관 노션',
+            'privacypolicy_link': '개인정보 처리 방침 노션',
+            'aboutus_link': 'Aboutus 노션',
+            'kakaotalk': '오픈 카카오톡',
+            'email': '이메일 주소',
         }
 
         widgets = {
-            'termofuse': forms.FileInput(attrs={'class': 'fileinput'}),
-            'privacypolicy': forms.FileInput(attrs={'class': 'fileinput'}),
-            'termofuse_updated': forms.DateInput(attrs={'type': 'date', 'class': 'dateinput'}),
-            'privacypolicy_updated': forms.DateInput(attrs={'type': 'date', 'class': 'dateinput'}),
+            'termofuse_link': forms.Textarea(attrs={'class': 'textarea'}),
+            'privacypolicy_link': forms.Textarea(attrs={'class': 'textarea'}),
+            'aboutus_link': forms.Textarea(attrs={'class': 'textarea'}),
+            'kakaotalk': forms.Textarea(attrs={'class': 'textarea'}),
+            'email': forms.Textarea(attrs={'class': 'textarea'}),
         }

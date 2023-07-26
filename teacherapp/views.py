@@ -1,10 +1,16 @@
 from datetime import datetime, timedelta
+
+from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 from accountapp.models import CustomUser
 from plancoach.utils import profile_completeness_calculator, salaryday_calculator
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
+from teacherapp.decorators import *
+
+
+@method_decorator(login_required, name='dispatch')
+@method_decorator(TeacherDashboardDecorater, name='dispatch')
 class TeacherDashboardView(DetailView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -29,7 +35,8 @@ class TeacherDashboardView(DetailView):
         context['target_salary']= target_user.salary.filter(salaryday=salaryday_calculator(datetime.now().date())).first()
         return context
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(TeacherDashboardDecorater, name='dispatch')
 class TeacherSalaryListView(DetailView):
     model = CustomUser
     template_name = 'teacherapp/salarylist.html'
@@ -40,6 +47,8 @@ class TeacherSalaryListView(DetailView):
         context['salarys'] = self.object.salary.filter(is_given=True)
         return context
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(TeacherDashboardDecorater, name='dispatch')
 class TeacherApplicationListView(DetailView):
     model = CustomUser
     context_object_name = 'target_user'

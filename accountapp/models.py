@@ -18,11 +18,11 @@ class CustomUser(AbstractUser):
         username = self.username
         return f"{username[:3]}-{username[3:7]}-{username[7:]}"
 
-    def step(self):
-        self.user_updater()
-        if self.state in ['superuser', 'teacher']:
-            return self.state
 
+    def teacher_step(self):
+        return 'ongoing' if self.application_teacher.all() or self.consult_teacher.all() else 'end'
+
+    def student_step(self):
         application = getattr(self, 'application_student', None)
         if application:
             return 'applied' if application.state == 'applied' else 'matching'
@@ -45,22 +45,19 @@ class CustomUser(AbstractUser):
 
 
     def can_apply(self):
-        return self.step() in ('initial', 'end')
-
-    def can_delete(self):
-        if self.step() in ('initial', 'end', 'teacher'):
-            if self.step() == 'teacher':
-                return not any([self.application_teacher.all(), self.consult_teacher.all()])
-            return True
+        if self.state == 'student':
+            if self.student_step() in ['initial', 'end']:
+                return True
         return False
 
-    def user_updater(self):
-        applications = self.application_student.all() if self.state == 'student' else self.application_teacher.all()
-        consults = self.consult_student.all() if self.state == 'student' else self.consult_teacher.all()
-        for consult in consults:
-            consult.updater()
-        for application in applications:
-            application.updater()
+    def can_delete(self):
+        if self.state == 'student':
+            if self.student_step() in ['initial', 'end']:
+                return True
+        elif self.state == 'teacher':
+            if self.teacher_step() in ['end']:
+                return True
+        return False
 
 
     def delete(self, *args, **kwargs):

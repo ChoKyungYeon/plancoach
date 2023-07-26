@@ -1,17 +1,18 @@
-from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, UpdateView
-
-from accountapp.models import CustomUser
-from profile_bankapp.forms import Profile_bankUpdateForm
+from django.views.generic import UpdateView
+from profile_bankapp.forms import Profile_bankManageForm
 from profile_bankapp.models import Profile_bank
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
-# 1 비로그인조건 X 2 선생조건 x 3 3학생조건 X 4슈퍼유저 조건 o 5pk 조건 x
-class Profile_bankUpdateView(UpdateView):
+from profileapp.decorators import Profile_instanceManageDecorater
+
+
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Profile_instanceManageDecorater, name='dispatch')
+class Profile_bankManageView(UpdateView):
     model = Profile_bank
-    form_class = Profile_bankUpdateForm
+    form_class = Profile_bankManageForm
     context_object_name = 'target_profile_bank'
     template_name = 'profile_bankapp/update.html'
     def get_success_url(self):

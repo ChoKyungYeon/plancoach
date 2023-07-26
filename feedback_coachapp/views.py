@@ -1,14 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 from consult_feedbackapp.models import Consult_feedback
+from feedback_coachapp.decorators import *
 from feedback_coachapp.forms import Feedback_coachCreateForm, Feedback_coachUpdateForm
 from feedback_coachapp.models import Feedback_coach
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Feedback_coachCreateDecorater, name='dispatch')
 class Feedback_coachCreateView(CreateView):
     model = Feedback_coach
     form_class = Feedback_coachCreateForm
@@ -36,7 +38,8 @@ class Feedback_coachCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.consult_feedback.pk})
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Feedback_coachUpdateDecorater, name='dispatch')
 class Feedback_coachUpdateView(UpdateView):
     model = Feedback_coach
     form_class = Feedback_coachUpdateForm
@@ -47,6 +50,8 @@ class Feedback_coachUpdateView(UpdateView):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.consult_feedback.pk})
 
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Feedback_coachDeleteDecorater, name='dispatch')
 class Feedback_coachDeleteView(DeleteView):
     model = Feedback_coach
     context_object_name = 'target_feedback_coach'

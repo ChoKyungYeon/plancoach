@@ -1,13 +1,17 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, UpdateView
 
+from profile_careerapp.decorators import *
 from profile_careerapp.forms import Profile_careerCreateForm
 from profile_careerapp.models import Profile_career
+from profileapp.decorators import Profile_instanceCreateDecorater
 from profileapp.models import Profile
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Profile_instanceCreateDecorater, name='dispatch')
 class Profile_careerCreateView(CreateView):
     model = Profile_career
     form_class = Profile_careerCreateForm
@@ -28,6 +32,8 @@ class Profile_careerCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('profileapp:detail', kwargs={'pk': self.kwargs['pk']})
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Profile_careerEditDecorater, name='dispatch')
 class Profile_careerDeleteView(DeleteView):
     model = Profile_career
     context_object_name = 'target_profile_career'
@@ -35,7 +41,8 @@ class Profile_careerDeleteView(DeleteView):
     def get_success_url(self):
         return reverse_lazy('profileapp:detail', kwargs={'pk': self.object.profile.pk})
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Profile_careerEditDecorater, name='dispatch')
 class Profile_careerUpdateView(UpdateView):
     model = Profile_career
     form_class = Profile_careerCreateForm

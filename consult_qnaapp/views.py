@@ -1,15 +1,18 @@
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
+
+from consult_qnaapp.decorators import *
 from consult_qnaapp.forms import Consult_qnaCreateForm
 from consult_qnaapp.models import Consult_qna
 from consultapp.models import Consult
 from qna_likeapp.models import Qna_like
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Consult_qnaCreateDecorater, name='dispatch')
 class Consult_qnaCreateView(CreateView):
     model = Consult_qna
     form_class = Consult_qnaCreateForm
@@ -33,7 +36,8 @@ class Consult_qnaCreateView(CreateView):
         return reverse_lazy('consult_qnaapp:detail', kwargs={'pk': self.object.pk})
 
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Consult_qnaListDecorater, name='dispatch')
 class Consult_qnaListView(DetailView):
     model = Consult
     context_object_name = 'target_consult'
@@ -59,7 +63,8 @@ class Consult_qnaListView(DetailView):
         context['ratio'] = ratio
         return context
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Consult_qnaUpdateDecorater, name='dispatch')
 class Consult_qnaUpdateView(UpdateView):
     model = Consult_qna
     form_class = Consult_qnaCreateForm
@@ -69,7 +74,8 @@ class Consult_qnaUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('consult_qnaapp:detail', kwargs={'pk': self.object.pk})
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Consult_qnaDetailDecorater, name='dispatch')
 class Consult_qnaDetailView(DetailView):
     model = Consult_qna
     context_object_name = 'target_consult_qna'

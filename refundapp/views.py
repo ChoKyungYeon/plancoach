@@ -1,22 +1,30 @@
 from datetime import datetime
+
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, RedirectView, DetailView
 from consultapp.models import Consult
 from plancoach.sms import Send_SMS
-from plancoach.utils import salaryday_calculator
+from plancoach.utils import salaryday_calculator, create_refusal
+from refundapp.decorators import *
 from refundapp.forms import RefundCreateForm
 from refundapp.models import Refund
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
+from refusalapp.models import Refusal
+
+
+@method_decorator(login_required, name='dispatch')
+@method_decorator(RefundGuideDecorater, name='dispatch')
 class RefundGuideView(DetailView):
     model = Consult
     context_object_name = 'target_consult'
     template_name = 'refundapp/guide.html'
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(RefundCreateDecorater, name='dispatch')
 class RefundCreateView(CreateView):
     model = Refund
     form_class = RefundCreateForm
@@ -62,6 +70,8 @@ class RefundCreateView(CreateView):
     def get_success_url(self):
         return reverse('studentapp:dashboard', kwargs={'pk': self.request.user.pk})
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(RefundStateUpdateDecorater, name='dispatch')
 class RefundStateUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return reverse_lazy('superuserapp:dashboard')
@@ -75,14 +85,18 @@ class RefundStateUpdateView(RedirectView):
             refund.save()
             content = f'({refund.classname}) 수업이 환불 완료되었습니다.'
             Send_SMS(student.username, content, student.can_receive_notification)
+            Refusal.objects.create(student=student, type='refund')
             return super(RefundStateUpdateView, self).get(request, *args, **kwargs)
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(RefundDetailDecorater, name='dispatch')
 class RefundDetailView(DetailView):
     model = Refund
     context_object_name = 'target_refund'
     template_name = 'refundapp/detail.html'
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(RefundPayDecorater, name='dispatch')
 class RefundPayView(DetailView):
     model = Refund
     context_object_name = 'target_refund'

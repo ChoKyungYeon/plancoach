@@ -4,10 +4,11 @@ from django.db import transaction
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, RedirectView
+
+from accountapp.decorators import *
 from accountapp.forms import AccountLoginForm, AccountCreateForm, AccountInfoUpdateForm, AccountPasswordUpdateForm
 from accountapp.models import CustomUser
 from phonenumberapp.models import Phonenumber
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
 
@@ -21,8 +22,7 @@ class AccountLoginView(LoginView):
             return redirect('homescreenapp:homescreen')
         return super().dispatch(request, *args, **kwargs)
 
-@method_decorator(login_required, name='dispatch')
-@method_decorator(request_user_updater, name='dispatch')
+@method_decorator(AccountCreateDecorater, name='dispatch')
 class AccountCreateView(CreateView):
     model = CustomUser
     form_class = AccountCreateForm
@@ -38,11 +38,13 @@ class AccountCreateView(CreateView):
         phonenumber = get_object_or_404(Phonenumber, pk=self.kwargs['pk'])
         phone = phonenumber.phonenumber
         with transaction.atomic():
-            form.instance.username= phone
+            form.instance.username= self.request.session.get('verified_phonenumber')
             form.instance.save()
             phonenumber.delete()
             return super().form_valid(form)
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(AccountOwnerDecorater, name='dispatch')
 class AccountInfoUpdateView(UpdateView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -52,7 +54,8 @@ class AccountInfoUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('accountapp:setting', kwargs={'pk': self.object.pk})
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(AccountOwnerDecorater, name='dispatch')
 class AccountPasswordUpdateView(UpdateView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -60,7 +63,8 @@ class AccountPasswordUpdateView(UpdateView):
     success_url = reverse_lazy('accountapp:logout')
     template_name = 'accountapp/passwordupdate.html'
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(AccountOwnerDecorater, name='dispatch')
 class AccountPasswordResetView(UpdateView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -68,20 +72,23 @@ class AccountPasswordResetView(UpdateView):
     success_url = reverse_lazy('accountapp:logout')
     template_name = 'accountapp/passwordreset.html'
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(AccountDeleteDecorater, name='dispatch')
 class AccountDeleteView(DeleteView):
     model = CustomUser
     context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(AccountOwnerDecorater, name='dispatch')
 class AccountSettingView(DetailView):
     model = CustomUser
     context_object_name = 'target_user'
     template_name = 'accountapp/setting.html'
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(AccountNotificationUpdateDecorater, name='dispatch')
 class AccountNotificationUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return reverse('accountapp:setting', kwargs={'pk': self.request.GET.get('user_pk')})

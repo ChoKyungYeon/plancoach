@@ -11,10 +11,6 @@ class Phonenumber(models.Model):
     error_count=models.IntegerField(default=0)
     created_at =models.DateTimeField(auto_now_add=True)
 
-    def updater(self):
-        if datetime.now() - self.created_at > timedelta(minutes=3):
-           self.delete()
-
     def timeout(self):
         elapsed_time = datetime.now() - self.created_at
         remaining_time = timedelta(minutes=3) - elapsed_time

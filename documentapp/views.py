@@ -1,9 +1,14 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+
+from documentapp.decorators import *
 from documentapp.forms import DocumentCreateForm
 from documentapp.models import Document
 from django.views.generic import UpdateView, CreateView
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(DocumentCreateDecorater, name='dispatch')
 class DocumentCreateView(CreateView):
     model = Document
     form_class = DocumentCreateForm
@@ -11,6 +16,8 @@ class DocumentCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('superuserapp:dashboard')
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(DocumentCreateDecorater, name='dispatch')
 class DocumentUpdateView(UpdateView):
     model = Document
     form_class = DocumentCreateForm

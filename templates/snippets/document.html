@@ -1,28 +1,74 @@
+<style>
+.container-document .interval-top{
+    margin-top: 0.7rem;
+}
+.container-document .text-done{
+    font-size: inherit;
+    color: var(--orange);
+    font-weight: inherit;
+}
+</style>
 {% if document %}
-<a href="{% url 'documentapp:update' pk=document.pk %}"  class=" main-container-snippets">
+<a href="{% url 'documentapp:update' pk=document.pk %}"  class="main-container-snippets container-document">
     <div  class="main-array-column" >
         <div class="main-array-row">
             <span class="main-text-index interval-right"  >
                 개인정보 처리방침
             </span>
             <span class="main-text-content" >
-               {{ document.privacypolicy_updated|date:"y.m.d 등록" }}
+                {% if document.privacypolicy_link %}
+                    <span class="text-done">등록 완료</span>
+                {% else %}
+                    미등록
+                {% endif %}
             </span>
         </div>
         <div class="main-array-row interval-top">
             <span class="main-text-index interval-right"  >
                 이용 약관
             </span>
-            <span class="main-text-content"  >
-              {{ document.termofuse_updated|date:"y.m.d 등록" }}
+            <span class="main-text-content" >
+                {% if document.termofuse_link %}
+                    <span class="text-done">등록 완료</span>
+                {% else %}
+                    미등록
+                {% endif %}
             </span>
         </div>
         <div class="main-array-row interval-top">
             <span class="main-text-index interval-right"  >
-                카카오톡 링크
+                aboutus
             </span>
-            <span class="main-text-content"  >
-               등록 완료
+            <span class="main-text-content" >
+                {% if document.aboutus_link %}
+                    <span class="text-done">등록 완료</span>
+                {% else %}
+                    미등록
+                {% endif %}
+            </span>
+        </div>
+        <div class="main-array-row interval-top">
+            <span class="main-text-index interval-right"  >
+                오픈 카카오톡
+            </span>
+            <span class="main-text-content" >
+                {% if document.kakaotalk %}
+                    <span class="text-done">등록 완료</span>
+                {% else %}
+                    미등록
+                {% endif %}
+            </span>
+        </div>
+        <div class="main-array-row interval-top">
+            <span class="main-text-index interval-right"  >
+                문의 이메일
+            </span>
+            <span class="main-text-content" >
+                {% if document.email %}
+                    <span class="text-done">등록 완료</span>
+                {% else %}
+                    미등록
+                {% endif %}
             </span>
         </div>
     </div>

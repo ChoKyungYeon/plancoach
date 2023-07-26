@@ -1,11 +1,14 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.views.generic import RedirectView
 from consult_feedbackapp.models import Consult_feedback
+from feedback_likeapp.decorators import Feedback_likeDecorater
 from feedback_likeapp.models import Feedback_like
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Feedback_likeDecorater, name='dispatch')
 class Feedback_likeView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return reverse('consult_feedbackapp:coachdetail', kwargs={'pk': self.request.GET.get('feedback_pk')})

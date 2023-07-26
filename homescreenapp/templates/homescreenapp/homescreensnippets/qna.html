@@ -1,0 +1,85 @@
+<style>
+    .container-qna {
+      background: linear-gradient(30deg,white, white, #faf7fd, white,#faf7fd);
+        align-items: flex-start;
+      padding-top:2.5rem;
+    }
+
+    .container-qna .text-subtitle{
+        color:#7022bf;
+        font-size:1.4rem;
+        font-weight: var(--fontweight-content);
+        margin-right: auto;
+        background: #ede0fa;
+        border-radius: 0.7rem;
+        padding:0.5rem 0.6rem;
+        margin-bottom: 1rem;
+}
+    .container-qna .item-image{
+        width:100%;
+        border-radius: 0.7rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-top:3rem;
+        border:1px solid #dae4f1;
+        box-shadow: 0px 3px 10px #a7abbe;
+}
+    .container-qna .image-dark{
+        background: #201a3d;
+        border:1px solid #c5b5e3;
+
+}.container-qna .image-bright{
+        background:#e8e5f5;
+        border:1px solid #c5b5e3;
+}
+    .item-image .image-left,
+    .item-image .image-right{
+        width: 70%;
+        height: 11rem;
+}    .item-image .image-left{
+        margin-right: auto;
+        border-top-right-radius: 1rem;
+        border-bottom-left-radius: 0.7rem;
+} .item-image .image-right{
+        margin-left: auto;
+        border-top-left-radius: 1rem;
+        border-bottom-right-radius: 0.7rem;
+}
+    .item-image .text-explain{
+    font-weight: 400;
+    font-size: 1.4rem;
+    color:var(--white);
+        margin:2.5rem auto 3rem var(--content-padding);
+
+}    .item-image .text-explain-dark{
+    font-weight: var(--fontweight-content);
+    font-size: 1.4rem;
+    color:var(--black);
+        margin:2.5rem var(--content-padding) 3rem auto
+
+}
+
+
+</style>
+
+<div class="main-container-homescreen container-qna">
+     <div class="text-subtitle">
+        학습 Q&A
+    </div>
+    <div class="text-index interval-title">
+        <span class="text-emphasize">Plan&Coach</span> 최고의 선생님들이<br>
+        진행하는 <span class="text-emphasize">질문 답변 서비스를</span> 만나보세요
+    </div>
+  <div class="item-image image-dark" style=" margin-top:2rem;">
+        <div class="text-explain">
+            수능, 내신 상위 1%<br>선생님들의 학습 코칭</div>
+        <img class="image-right" src='/static/images/homescreen1.png'>
+    </div>
+  <div class="item-image image-bright">
+        <div class="text-explain-dark">
+            24시간 %<br>선생님들의 학습 코칭</div>
+        <img class="image-left" src='/static/images/homescreen1.png'>
+    </div>
+</div>

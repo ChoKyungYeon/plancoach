@@ -37,7 +37,7 @@
 
 <header class="header-black">
     {% url 'profileapp:list' as url %}
-    {% include 'headersnippets/list.html' with url=url %}
+    {% include 'headersnippets/navback.html' with url=url %}
     {% include 'headersnippets/share.html' %}
     {% if user.state == 'student' %}
         {% include 'headersnippets/like.html' %}

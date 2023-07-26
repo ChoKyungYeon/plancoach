@@ -8,6 +8,9 @@
     z-index:99;
     padding: 3rem var(--main-padding) 0 var(--main-padding);
 }
+
+
+
 .container-head-detail,
 .container-head-list{
     display: flex;
@@ -31,7 +34,7 @@
     font-weight:var(--fontweight-index);
 }
 .main-container-head .text-subtitle{
-    color:var(--whitegreen);
+    color:var(--lightblue);
     margin-right: 0.5rem;
 }
 .main-container-head .text-subcontent,
@@ -128,7 +131,7 @@
     font-size:var(--fontsize-index);
 }
 .main-container-head .btn-touched .text-number{
-    color:var(--whitegreen);
+    color:var(--lightblue);
 }
 
 
@@ -155,3 +158,4 @@
     border-bottom:12px solid var(--blackblue);
     color:var(--gray);
 }
+

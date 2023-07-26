@@ -30,6 +30,12 @@ userstatechoice=(
     ('teacher', '선생님'),
     ('superuser', '관리자')
 )
+refusaltypechoice=(
+    ('matching', '매칭 종료'),
+    ('consult', '수업 종료'),
+    ('teacherapply', '수업 신청 종료'),
+    ('refund', '수업 환불 완료')
+)
 
 
 teacherstatechoice=(
@@ -68,6 +74,7 @@ agechoice=(
     ('grade3', '3학년'),
     ('grade2', '2학년'),
     ('grade1', '1학년'),
+    ('middle', '중등'),
 )
 teacheragechoice = []
 for i in range(19, 36):

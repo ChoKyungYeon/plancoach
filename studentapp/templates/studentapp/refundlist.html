@@ -18,7 +18,7 @@
   <div class="main-box" >
       {% if refunds %}
           {% for refund in refunds %}
-          {% include 'snippets/refundpay.html' %}
+          {% include 'snippets/refunddetail.html' %}
           {% if not forloop.last %}
           <div class="main-interval-items"></div>
           {% endif %}

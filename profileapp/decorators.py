@@ -1,13 +1,98 @@
 from django.http import HttpResponseForbidden
-
+from django.shortcuts import get_object_or_404
+from plancoach.decorators import Decorators
 from profileapp.models import Profile
+from teacherapplyapp.models import Teacherapply
 
 
-def profile_ownership_required(func):
-    def decorated(request,*args, **kwargs):
-        profile= Profile.objects.get(pk=kwargs['pk'])
-        if not profile.teacher == request.user:
-            return HttpResponseForbidden()
+def Profile_instanceCreateDecorater(func):
+    def decorated(request, *args, **kwargs):
+        decorators=Decorators(request.user, get_object_or_404(Profile, pk=kwargs['pk']))
+        permission_checks = [
+            decorators.member_filter(role='teacher', allow_superuser=False)
+        ]
+        for check in permission_checks:
+            if check is not None:
+                return check
         return func(request, *args, **kwargs)
     return decorated
 
+
+def Profile_instanceManageDecorater(func):
+    def decorated(request, *args, **kwargs):
+        decorators=Decorators(request.user, None)
+        permission_checks = [
+            decorators.step_filter( allow_teacher=[], allow_student=[], allow_superuser=True)
+        ]
+        for check in permission_checks:
+            if check is not None:
+                return check
+        return func(request, *args, **kwargs)
+    return decorated
+
+
+def ProfileCreateDecorater(func):
+    def decorated(request, *args, **kwargs):
+        teacherapply = get_object_or_404(Teacherapply, pk=kwargs['pk'])
+        if teacherapply.is_done == False:
+            return HttpResponseForbidden()
+        decorators=Decorators(request.user,None)
+        permission_checks = [
+            decorators.step_filter( allow_teacher=[], allow_student=[], allow_superuser=True)
+        ]
+        for check in permission_checks:
+            if check is not None:
+                return check
+        return func(request, *args, **kwargs)
+    return decorated
+
+def ProfileDeleteDecorater(func):
+    def decorated(request, *args, **kwargs):
+        teacher=get_object_or_404(Profile, pk=kwargs['pk']).teacher
+        decorators=Decorators(request.user, teacher)
+        decorators.update()
+        if teacher.can_delete() == False:
+            return HttpResponseForbidden()
+        permission_checks = [
+            decorators.step_filter(allow_teacher=[], allow_student=[], allow_superuser=True)
+        ]
+        for check in permission_checks:
+            if check is not None:
+                return check
+        return func(request, *args, **kwargs)
+    return decorated
+
+def ProfileTuitionUpdateDecorater(func):
+    def decorated(request, *args, **kwargs):
+        profile=get_object_or_404(Profile, pk=kwargs['pk'])
+        decorators=Decorators(request.user, profile)
+        if profile.is_payment_updated_possible() == False:
+            return HttpResponseForbidden()
+        permission_checks = [
+            decorators.member_filter(role='teacher', allow_superuser=False)
+        ]
+        for check in permission_checks:
+            if check is not None:
+                return check
+        return func(request, *args, **kwargs)
+    return decorated
+
+def ProfileDetailDecorater(func):
+    def decorated(request, *args, **kwargs):
+        if request.user.is_authenticated:
+            decorators=Decorators(request.user,None)
+            decorators.request_user_update()
+        return func(request, *args, **kwargs)
+    return decorated
+
+def ProfileStateUpdateDecorater(func):
+    def decorated(request, *args, **kwargs):
+        decorators=Decorators(request.user,get_object_or_404(Profile, pk=kwargs['pk']))
+        permission_checks = [
+            decorators.member_filter(role='teacher', allow_superuser=False)
+        ]
+        for check in permission_checks:
+            if check is not None:
+                return check
+        return func(request, *args, **kwargs)
+    return decorated

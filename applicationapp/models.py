@@ -23,13 +23,3 @@ class Application(models.Model):
     def expire_applied(self):
         return time_expire(self.updated_at, 24)
 
-    def updater(self):
-        with transaction.atomic():
-            target_state = self.state
-            updated_at = self.updated_at
-            updated_interval = datetime.now() - updated_at
-            if target_state == 'applied' and updated_interval > timedelta(hours=24):
-                create_refusal(self,'기간 내 신청이 확인되지 않았습니다.')
-            elif target_state == 'matching' and updated_interval > timedelta(hours=168):
-                create_refusal(self,'기간 내 수업이 성사되지 않았습니다.')
-

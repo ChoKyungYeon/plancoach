@@ -70,7 +70,7 @@ def salaryday_calculator(target_date):
         new_year += 1
     return date(new_year, new_month, 10)
 
-def create_refusal(object, message):
-    Refusal.objects.create(student=object.student, content=message)
+def create_refusal(object, message,type):
+    Refusal.objects.create(student=object.student, content=message,type=type)
     object.delete()
 

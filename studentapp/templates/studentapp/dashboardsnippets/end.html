@@ -1,5 +1,17 @@
+<style>
+.text-link{
+    display: inline-block;
+    font-weight:var(--fontweight-index);
+    font-size:1.6rem;
+    color:var(--darkblue);
+    text-decoration: underline;
+    text-decoration-color:var(--darkblue);
+    text-decoration-thickness: 1px;
+    margin-left:0.5rem;
+}
 
-
+</style>
+{% if user.refusal.type == 'matching' %}
 <div class="main-container-guide" >
     <div class="item-title" >
         <div class="text-emphasize">&nbsp;수업 매칭</div>
@@ -9,10 +21,55 @@
         사유:
     {{user.refusal.content}}&nbsp;
     </div>
-    <span class="item-content">기존 신청서는 삭제되며 자유롭게 매칭을 진행할 수 있습니다.
+    <span class="item-content">기존 신청서는 삭제되며 새로운 매칭을 진행할 수 있습니다.
         <a href="{% url 'profileapp:list' %}" class="link-nav">
         선생님 찾기 >
         </a>
     </span>
-    {% include 'studentapp/dashboardsnippets/foot.html' %}
 </div>
+{% elif user.refusal.type == 'refund' %}
+<div class="main-container-guide" >
+    <div class="item-title" >
+        <div class="text-emphasize">환불 금액</div>
+        <span class="text-title">지급 완료</span>
+    </div>
+    <span class="item-content">설정-> 환불 내역에서 내역을 확인할 수 있으며 새로운 매칭을 자유롭게 진행할 수 있습니다.
+        <a href="{% url 'profileapp:list' %}" class="link-nav">
+        선생님 찾기 >
+        </a>
+    </span>
+</div>
+{% elif user.refusal.type == 'teacherapply' %}
+<div class="main-container-guide" >
+    <div class="item-title" >
+        <div class="text-emphasize">&nbsp;선생님 신청</div>
+        <span class="text-title">거절&nbsp;&#128546;</span>
+    </div>
+    <div class="item-subtitle">
+        {{user.refusal.content}}&nbsp;
+    </div>
+    <span class="item-content">
+        <a href="{% url 'homescreenapp:contact' %}" class="text-link" style="margin-left: 0">고객 센터</a>
+        을 통해 문의 가능하며, 새로운 매칭이 가능합니다.
+        <a href="{% url 'profileapp:list' %}" class="link-nav">
+        선생님 찾기 >
+        </a>
+    </span>
+</div>
+{% elif user.refusal.type == 'consult' %}
+<div class="main-container-guide" >
+    <div class="item-title" >
+        <div class="text-emphasize">&nbsp;수업</div>
+        <span class="text-title">종료&nbsp;&#128546;</span>
+    </div>
+    <div class="item-subtitle">
+        기간내 수업이 연장되지 않았습니다.
+    </div>
+    <span class="item-content">기존 수업은 삭제되며 새로운 매칭을 진행할 수 있습니다.
+        <a href="{% url 'profileapp:list' %}" class="link-nav">
+        선생님 찾기 >
+        </a>
+    </span>
+</div>
+{% endif %}
+{% include 'studentapp/dashboardsnippets/foot.html' %}

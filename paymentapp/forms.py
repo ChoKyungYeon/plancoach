@@ -1,12 +1,8 @@
-
 from django import forms
-from django.forms import  ModelForm
-
 from paymentapp.models import Payment
 
 
-class PaymentForm(ModelForm):
-
+class PaymentCreateForm(forms.ModelForm):
     class Meta:
         model = Payment
         fields = ('classname', 'amount')
@@ -23,8 +19,3 @@ class PaymentForm(ModelForm):
         self.fields['classname'].required = False
         self.fields['amount'].required = False
 
-class PaymentCreateFormAdmin(ModelForm):
-
-    class Meta:
-        model = Payment
-        fields = ('classname', 'amount','consult','is_paid_ok')

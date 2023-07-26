@@ -10,10 +10,10 @@
     }
 
     .container-contact .btn-kakaotalk,
-    .container-contact .btn-phone {
+    .container-contact .btn-email {
         margin-left: 2rem;
         width: 100%;
-        height: 3.8rem;
+        height: 4rem;
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -26,10 +26,11 @@
 
     .container-contact .btn-kakaotalk {
         background: #FFEB3B;
+        font-size: 1.25rem;
     }
 
-    .container-contact .btn-phone {
-        background: #6AAF50;
+    .container-contact .btn-email {
+        background:#4CAF50;
         color: var(--white);
     }
 
@@ -62,12 +63,12 @@
             평균 1시간 내로 응답합니다.
         </div>
         <div class="item-contact">
-            <img class="img-contact" src='/static/icons/phone.png'>
-            <a class="btn-phone">고객센터로 문의하기</a>
+            <img class="img-contact" src='/static/icons/email.png'>
+            <a href={{document.email_link}} class="btn-email" >메일로 문의하기</a>
         </div>
         <div class="item-contact">
             <img class="img-contact" src='/static/icons/kakaotalk.png'>
-            <a class="btn-kakaotalk">카카오톡 문의하기</a>
+            <a href={{document.kakaotalk}} class="btn-kakaotalk">카카오톡 문의하기</a>
         </div>
     </div>
 </main>

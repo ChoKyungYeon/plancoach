@@ -99,12 +99,6 @@ header .btn-account{
     margin-left:auto;
 }
 
-header .btn-menu{
-    color:inherit;
-    font-size: 2.5rem;
-    var(--fontweight-Content);
-    margin-right:auto;
-}
 header .btn-exit{
     color:inherit;
     font-size: 2.5rem;

@@ -1,8 +1,12 @@
-{% if user == target_consult.student %}
+
 <div class="main-box">
     <div class="main-array-title"><span class="main-text-title">수업 환불</span>
     </div>
+    {% if target_consult.can_refund %}
     <a href="{% url 'refundapp:guide' pk=target_consult.pk %}" class="main-container-dashboard">
+    {% else %}
+    <a class="main-container-dashboard">
+    {% endif %}
         <div class="item-content">
             <span class="main-text-content">수업 환불을 진행하고 싶으신가요?</span>
             <div class="main-array-row interval-top">
@@ -16,7 +20,5 @@
         <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
     </a>
 </div>
-{% endif %}
-
 
 

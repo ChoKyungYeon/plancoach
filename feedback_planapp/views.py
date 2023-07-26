@@ -1,9 +1,15 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy, reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView, RedirectView
+
+from feedback_planapp.decorators import *
 from feedback_planapp.forms import Feedback_planUpdateForm
 from feedback_planapp.models import Feedback_plan
 
 
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Feedback_planUpdateDecorater, name='dispatch')
 class Feedback_planUpdateView(UpdateView):
     model = Feedback_plan
     form_class = Feedback_planUpdateForm
@@ -13,7 +19,8 @@ class Feedback_planUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:plandetail', kwargs={'pk': self.object.consult_feedback.pk})
 
-
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Feedback_planStateUpdateDecorater, name='dispatch')
 class Feedback_planStateUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         plan = Feedback_plan.objects.get(pk=self.request.GET.get('plan_pk'))

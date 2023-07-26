@@ -3,7 +3,7 @@
 {% block content %}
 
 <header class="header-black">
-    {% url 'applicationapp:detail' pk=target_user.application_student.pk as url %}
+    {% url 'applicationapp:detail' pk=target_application.pk as url %}
     {% include 'headersnippets/navback.html' with url=url %}    
     {% with title="수업 개설" %}
     {% include 'headersnippets/title.html' %}
@@ -30,23 +30,23 @@
         <div class="main-container-guideform">
             <div class="item-info">
                 <span class="text-content">담당 선생님</span>
-                <span class="main-text-rowindex">{{ user.userrealname}} 선생님</span>
+                <span class="main-text-rowindex">{{ target_application.teacher.userrealname}} 선생님</span>
             </div>
             <div class="item-info">
                 <span class="text-content">담당 학생</span>
-                <span class="main-text-rowindex">{{ target_user.userrealname}} 학생</span>
+                <span class="main-text-rowindex">{{ target_application.student.userrealname}} 학생</span>
             </div>
             <div class="item-info">
                 <span class="text-content">학생 정보</span>
                 <span class="main-text-rowindex">
-                    {{ target_user.application_student.belong }}, {{ target_user.application_student.get_age_display }}
+                    {{ target_application.belong }}, {{ target_application.get_age_display }}
                 </span>
             </div>
             <div class="item-info">
                 <span class="text-content">4주 수업료</span>
                 <span class="main-text-rowindex">{{ user.profile.tuition }}원</span>
             </div>
-            <form action="{% url 'consultapp:create' pk=target_user.pk %}"
+            <form action="{% url 'consultapp:create' pk=target_application.pk %}"
                   method="post" onsubmit="return confirmCreateConsult()">{% csrf_token %}{% bootstrap_form form %}
                 <input type="submit" class="btn-submit" value="수업개설">
             </form>

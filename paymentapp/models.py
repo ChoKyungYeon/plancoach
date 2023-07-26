@@ -32,32 +32,36 @@ class Payment(models.Model):
     is_paid_ok = models.BooleanField(default=False)
     is_initial_payment = models.BooleanField(default=False)
     amount = models.PositiveIntegerField()
+    is_checked = models.BooleanField(default=False)
 
     @property
     def merchant_uid(self) -> str:
         return self.uid.hex
 
-    def portone_check(self, commit=True):
-        api= Iamport(imp_key=PORTONE_API_KEY, imp_secret=PORTONE_API_SECRET )
+    def portone_check(self):
+        self.call_api()
+        with transaction.atomic():
+            if self.is_paid_ok == True:
+                consult = self.consult
+                teacher = consult.teacher
+                if consult.state == 'new':
+                    self.is_initial_payment = True
+                    self.new_payment_process(consult,teacher)
+                else:
+                    self.extend_payment_process(consult,teacher)
+            self.save()
+
+
+    def call_api(self):
+        api = Iamport(imp_key=PORTONE_API_KEY, imp_secret=PORTONE_API_SECRET)
         try:
             meta = api.find(merchant_uid=self.merchant_uid)
         except (Iamport.ResponseError, Iamport.HttpError) as e:
             logger.error(str(e), exc_info=e)
             raise Http404(str(e))
         self.status = meta['status']
-        self.is_paid_ok= meta['status'] == 'paid' and meta['amount'] == self.amount
-
-        if self.is_paid_ok == True:
-            consult = self.consult
-            teacher = consult.teacher
-            with transaction.atomic():
-                if consult.state == 'new':
-                    self.is_initial_payment = True
-                    self.new_payment_process(consult,teacher)
-                else:
-                    self.extend_payment_process(consult,teacher)
-        if commit:
-            self.save()
+        self.is_paid_ok = meta['status'] == 'paid' and meta['amount'] == self.amount
+        self.is_checked = True
 
     def new_payment_process(self, consult, teacher):
         consult.state = 'unextended'

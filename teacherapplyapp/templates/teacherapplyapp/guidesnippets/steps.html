@@ -92,16 +92,12 @@
             <div class="item-bar"></div>
         </div>
         <div class="item-info">
-            {% if user.can_apply %}
             정해진 양식에 따라 학력 증명, 신원 인증, 급여 계좌를 등록합니다.
             {% if step == "initial" %}
             &nbsp;
             <a href="{% url 'teacherapplyapp:schoolimagecreate' pk=target_user.pk %}" class="link-nav">
             선생님 신청 >
             </a>
-            {% endif %}
-            {% else %}
-            수업 매칭 또는 진행 중에는 선생님 등록이 불가능합니다.
             {% endif %}
         </div>
     </div>

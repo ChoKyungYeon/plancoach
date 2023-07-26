@@ -42,7 +42,7 @@
         {% include 'consult_qnaapp/listsnippets/list.html' %}
         {% endwith %}
     </div>
-    {% if user == target_consult.student %}
+    {% if user == target_consult.student and target_consult.state != 'new' %}
     <a href="{% url 'consult_qnaapp:create' pk=target_consult.pk %}" class="main-icon-positive material-icons">add</a>
     {% endif %}
 </main>

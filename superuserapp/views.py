@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Cast
 from django.db.models import IntegerField
 from django.views.generic import TemplateView
@@ -8,11 +9,13 @@ from documentapp.models import Document
 from profileapp.models import Profile
 from refundapp.models import Refund
 from salaryapp.models import Salary
+from superuserapp.decorators import SuperuserDashboardDecorater
 from teacherapplyapp.models import Teacherapply
-from plancoach.updaters import *
 from django.utils.decorators import method_decorator
 
 #1 로그인  3슈퍼유저
+@method_decorator(login_required, name='dispatch')
+@method_decorator(SuperuserDashboardDecorater, name='dispatch')
 class SuperuserDashboardView(TemplateView):
     model = CustomUser
     template_name = 'superuserapp/dashboard.html'

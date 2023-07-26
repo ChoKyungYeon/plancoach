@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="ko">
 {%  include 'head.html' %}
-<body onload="noBack();" onpageshow="if(event.persisted) noBack()">
+<body>
     {% block content %}
     {% endblock %}
 </body>
-</html>
+
 <script>
-window.history.forward(); function noBack(){
+window.addEventListener('load', function() {
+  history.pushState({}, '');
+});
+
+window.addEventListener('popstate', function(event) {
+  history.pushState({}, '');
+});
+
+function noBack(){
     window.history.forward();
 }
+
+window.onload = noBack;
+window.onpageshow = function(event) { if(event.persisted) noBack() };
+
 </script>
+</html>
