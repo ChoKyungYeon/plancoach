@@ -21,24 +21,24 @@ class Decorators:
         elif isinstance(self.obj, CustomUser):
             self.user_update(self.obj)
 
-    def application_update(self,application):
+    def application_update(self,application): #deploy check
         with transaction.atomic():
             target_state = application.state
             updated_at = application.updated_at
             updated_interval = datetime.now() - updated_at
-            if target_state == 'applied' and updated_interval > timedelta(hours=24):
+            if target_state == 'applied' and updated_interval > timedelta(minutes=1): #minute 24
                 create_refusal(application,'기간 내 신청이 확인되지 않았습니다.','matching')
-            elif target_state == 'matching' and updated_interval > timedelta(hours=168):
+            elif target_state == 'matching' and updated_interval > timedelta(minutes=2): #minute 168
                 create_refusal(application,'기간 내 수업이 성사되지 않았습니다.','matching')
 
-    def consult_update(self,consult):
+    def consult_update(self,consult): #deploy check
         with transaction.atomic():
             today = datetime.now().date()
             extenddate = consult.extenddate()
             extend_enddate = consult.extend_enddate()
             target_state = consult.state
             created_interval=datetime.now() - consult.created_at
-            if target_state == 'new' and created_interval > timedelta(hours=48):
+            if target_state == 'new' and created_interval > timedelta(minutes=1): #hour 48
                 create_refusal(consult, '기간 내 입금이 완료되지 않았습니다.','matching')
             elif target_state == 'unextended' and extenddate <= today:
                 create_refusal(consult, None,'consult')
