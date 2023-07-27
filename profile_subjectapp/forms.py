@@ -18,13 +18,13 @@ class Profile_subjectCreateForm(ModelForm):
         model = Profile_subject
         fields = ('subjectclassification','subjectdetail','content',)
         labels = {
-            'subjectclassification':'과목 분류',
-            'subjectdetail':'과목 분류 상세',
-            'content': '과목 소개, 강점'
+            'subjectclassification':'과목',
+            'subjectdetail':'과목 상세 (선택)',
+            'content': '과목 설명'
         }
 
         widgets = {
             'subjectclassification': CustomSelect(attrs={'id': 'id_scoretype', 'class': 'select'}),
-            'subjectdetail': forms.TextInput(attrs={'placeholder': '수학1/ 수학2 /미적','class': 'textinput' }),
-            'content': forms.Textarea(attrs={'placeholder': '과목별 강점, 어필', 'class': 'textarea'}),
+            'subjectdetail': forms.TextInput(attrs={'placeholder': '과학탐구 1,2 미적분/기하 등','class': 'textinput' }),
+            'content': forms.Textarea(attrs={'placeholder': '과목별 강점 요소', 'class': 'textarea'}),
         }

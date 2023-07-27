@@ -20,6 +20,7 @@
 
 .main-container-guideform{
     padding:2rem  var(--content-padding);
+    border:var(--border-container);
 }
 
 .main-container-guideform .item-guide{
@@ -45,6 +46,11 @@
     font-size:var(--fontsize-content);
     font-weight:var(--fontweight-content);
 }
+.main-container-guideform .text-emphasize{
+        font-size: 1.3rem;
+        color: var(--orange);
+        font-weight: var(--fontweight-index);
+    }
 
 
 .main-container-info .btn-submit,

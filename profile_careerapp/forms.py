@@ -13,17 +13,17 @@ class Profile_careerCreateForm(ModelForm):
         model = Profile_career
         fields = ('year','duration','subject','type','content')
         labels = {
-            'year':'시작 년도',
-            'duration':'지속 기간',
-            'content':'교습 내용',
-            'subject':'교습 과목',
+            'year':'활동 시기',
+            'duration':'기간',
+            'content':'활동 내용',
+            'subject':'과목',
             'type':'교습 종류',
         }
 
         widgets = {
             'year':CustomSelect(attrs={ 'class': 'select',}),
             'duration':CustomSelect(attrs={ 'class': 'select',}),
-            'type': forms.TextInput(attrs={'placeholder': '과외/조교/문제 제작등', 'class': 'textinput'}),
-            'content': forms.TextInput(attrs={'placeholder': '고등학교 3학년 내신& 수능 대비', 'class': 'textinput'}),
+            'type': forms.TextInput(attrs={'placeholder': '개인 교습, 학원 조교, 문제 제작 등', 'class': 'textinput'}),
+            'content': forms.TextInput(attrs={'placeholder': '활동 기관, 대상, 내용 등', 'class': 'textinput'}),
             'subject': CustomSelect(attrs={ 'class': 'select',}),
         }

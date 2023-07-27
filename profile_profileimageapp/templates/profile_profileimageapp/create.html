@@ -5,7 +5,7 @@
 <header class="header-black">
         {% url 'profileapp:detail' pk=target_profile.pk as url %}
         {% include 'headersnippets/navback.html' with url=url %}    
-        {% with title="프로필 이미지 등록" %}
+        {% with title="프로필 사진 등록" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
 </header>
@@ -15,7 +15,7 @@
       <div class="main-container-form">
          <form action="{% url 'profile_profileimageapp:create' pk=target_profile.pk %}" method="post" enctype="multipart/form-data" >
             {% csrf_token %}{% bootstrap_form form %}
-            <input type="submit" class="btn-submit btn-submit-short"   value="이미지 등록">
+            <input type="submit" class="btn-submit btn-submit-short"   value="사진 등록">
           </form>
       </div>
   </div>

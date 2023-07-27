@@ -17,19 +17,24 @@
 <main>
   <div class="main-box" >
       {% if refunds %}
+        <div class="main-container-snippetitem">
           {% for refund in refunds %}
           {% include 'snippets/refunddetail.html' %}
           {% if not forloop.last %}
-          <div class="main-interval-items"></div>
+          <div class="main-interval-line"></div>
           {% endif %}
           {% endfor %}
+            </div>
       {% else %}
           <div class="main-container-empty">
           <span class="text-empty">
-          환불 목록이 존재하지 않습니다.
+          환불 내역이 존재하지 않습니다.
           </span>
           </div>
       {% endif %}
+        <div class="main-link-help" style="margin-top:1.5rem;">
+        <span class="text-help">환불 규정이 궁금하신가요?</span>
+        <a href="{% url 'homescreenapp:refund' %}"  class="text-link">환불 규정</a>
   </div>
 </main>
 {% endblock %}

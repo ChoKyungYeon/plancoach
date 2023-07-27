@@ -73,7 +73,8 @@ class AccountPasswordResetView(UpdateView):
     template_name = 'accountapp/passwordreset.html'
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(AccountDeleteDecorater, name='dispatch')
+@method_decorator(AccountDeleteDecorater, name='delete')
+@method_decorator(AccountGetDeleteDecorater, name='get')
 class AccountDeleteView(DeleteView):
     model = CustomUser
     context_object_name = 'target_user'

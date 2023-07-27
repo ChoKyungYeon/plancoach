@@ -36,5 +36,5 @@ class Feedback_coachUpdateForm(ModelForm):
         }
 
         widgets = {
-            'content': forms.Textarea(attrs={'placeholder': '성적, 현 문제점, 교재 등', 'class': 'textarea-wide'}),
+            'content': forms.Textarea(attrs={'placeholder': '1 현재 진도 분석 2 과목별 공부법 3 교재 및 강의 4 과목별 로드맵 등', 'class': 'textarea-wide'}),
         }

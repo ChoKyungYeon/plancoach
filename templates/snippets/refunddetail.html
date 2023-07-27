@@ -1,5 +1,13 @@
-
-<a href="{% url 'refundapp:detail' pk=refund.pk %}"  class=" main-container-snippets">
+<style>
+.container-refund{
+    box-shadow: none;
+    border-radius: 0;
+    background: none;
+    padding-top:1.5rem;
+    padding-bottom:1.5rem;
+}
+</style>
+<a href="{% url 'refundapp:detail' pk=refund.pk %}"  class=" main-container-snippets container-refund">
     <div  class="main-array-column" >
         <div class="main-array-row">
             <span class="main-text-index interval-right"  >

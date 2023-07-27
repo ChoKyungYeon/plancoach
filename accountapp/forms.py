@@ -73,7 +73,7 @@ class AccountCreateForm(UserCreationForm):
 
         widgets = {
             'userrealname': forms.TextInput(attrs={'placeholder': '실명을 입력하세요', 'class': 'textinput', }),
-            'email': forms.EmailInput(attrs={'placeholder': '수업 결제 영수증이 입력한 이메일로 전송됩니다', 'class': 'textinput', }),
+            'email': forms.EmailInput(attrs={'placeholder': '결제 영수증 입력한 이메일로 전송됩니다', 'class': 'textinput', }),
         }
 
 
@@ -88,7 +88,7 @@ class AccountInfoUpdateForm(ModelForm):
 
         widgets = {
             'userrealname': forms.TextInput(attrs={'placeholder': '실명을 입력하세요', 'class': 'textinput', }),
-            'email': forms.EmailInput(attrs={'placeholder': '수업 결제 영수증이 입력한 이메일로 전송됩니다', 'class': 'textinput', }),
+            'email': forms.EmailInput(attrs={'placeholder': '결제 영수증이 입력한 이메일로 전송됩니다', 'class': 'textinput', }),
         }
 
 

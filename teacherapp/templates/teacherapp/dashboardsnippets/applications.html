@@ -1,7 +1,7 @@
 
 <div class="main-box ">
     <div class="main-array-title">
-        <span class="main-text-title">수업 신청</span>
+        <span class="main-text-title">컨설팅 신청</span>
     </div>
     <a href="{% url 'teacherapp:applicationlist' pk=target_user.pk %}" class="main-container-dashboard" >
             <div class="item-content" >
@@ -14,7 +14,7 @@
                 <span class="main-text-content text-content" >미확인 신청서가 없습니다</span>
                 {% endif %}
                 <div class="main-array-row interval-top" >
-                    <span class="main-text-content text-content">매칭중 신청서 </span>
+                    <span class="main-text-content text-content">매칭중 </span>
                     <span class="main-text-index">{{applications_matching|length}}개</span>
                 </div>
             </div>

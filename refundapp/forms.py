@@ -12,14 +12,14 @@ class RefundCreateForm(ModelForm):
         labels = {
             'bank': '은행',
             'accountnumber': '계좌 번호',
-            'depositor': '예금자명 (실명과 일치해야 합니다)',
+            'depositor': '예금주명',
         }
         widgets = {
             'classname': forms.HiddenInput(),
             'amount': forms.HiddenInput(),
             'bank': CustomSelect(attrs={'placeholder': '', 'class': 'select'}),
             'accountnumber': forms.NumberInput(attrs={'placeholder': '- 제외 숫자만 입력', 'class': 'textinput', }),
-            'depositor': forms.TextInput(attrs={'placeholder': '실명과 일치','class': 'select'}),
+            'depositor': forms.TextInput(attrs={'placeholder': '정확하게 입력해 주세요','class': 'select'}),
         }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

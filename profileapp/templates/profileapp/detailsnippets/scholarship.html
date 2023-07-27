@@ -15,7 +15,7 @@
 
 
 <div class="main-box profile-detail-scholarship">
-    <div class="main-array-title"><span class="main-text-title">학력 사항</span>
+    <div class="main-array-title"><span class="main-text-title">학력</span>
     </div>
         <div class="container-info">
             <div class="main-array-row">
@@ -23,12 +23,12 @@
                     {{scholarship.school}}&nbsp;{{scholarship.major}}&nbsp;{{scholarship.studentid}}학번
                 </span>
                     <button onclick="showscholarshipimage()" class="material-icons btn-verification">verified</button>
-                    <div id="scholarshipimage-fullscreen" class="fullscreenimage" >
-                    <button onclick="closescholarshipimage()"
+                    <button onclick="closescholarshipimage()" id="scholarshipimage-fullscreen" class="fullscreenimage" >
+                    <div
                             class="btn-exit material-icons">close
-                    </button>
-                    <img class="fullscreenimage-image" src="{{ scholarship.schoolverificationimage.url }}">
                     </div>
+                    <img class="fullscreenimage-image" src="{{ scholarship.schoolverificationimage.url }}">
+                    </button>
                 {% if user == target_profile.teacher %}
                 <div class="item-btn">
                 <a href="{% url 'profile_scholarshipapp:update' pk=scholarship.pk %}"
@@ -44,7 +44,11 @@
             </div>
             <div class="main-text-subindex">전형: {{ scholarship.accepttype }}</div>
             <div class="main-text-content">
-                {{scholarship.content|safe|linebreaksbr}}
+                {% if scholarship.content %}
+                {{ scholarship.content|safe|linebreaksbr }}
+                {% else %}
+                    합격 수기 작성
+                {% endif %}
             </div>
         </div>
 </div>

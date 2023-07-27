@@ -30,7 +30,7 @@
     --fontweight-title:700;
     --fontweight-emphasize:900;
 
-    --shadow-itembox:0px 4px 13px #bdc1d6;
+    --shadow-itembox:0px 3px 11px #bdc1d6;
     --shadow-itembox-info:0px 0px 4px #bdc1d6;
     --shadow-btn:0px 3px 10px #bdc1d6;
 
@@ -42,6 +42,8 @@
     --header-height:5.4rem;
     --body-minheight:calc(100vh - var(--header-height));
     --main-padding-bottom:12rem;
+
+    --border-container:2px solid #e3e3ed;
 }
 
 

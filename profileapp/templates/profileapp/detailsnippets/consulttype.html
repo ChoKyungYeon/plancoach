@@ -5,18 +5,25 @@
 .profile-detail-consulttype .text-subject{
     margin-right:1rem;
 }
-.profile-detail-consulttype .main-text-subindex{
-    margin-right:auto;
+
+.profile-detail-consulttype .icon-consulttpye{
+    background: var(--darkblue);
+    color: var(--white);
+    font-size: var(--fontsize-detail);
+    font-weight: var(--fontweight-content);
+    border-radius:  0.7rem;
+    margin-right: 0.5rem;
+    padding:0.5rem 1.4rem;
 }
 
 
 .profile-detail-consulttype .array-title{
-    margin-bottom:0.5rem
+    margin-bottom:1rem
 }
 
 </style>
 <div class="main-box profile-detail-consulttype">
-    <div class="main-array-title"><span class="main-text-title">담당 수업</span>
+    <div class="main-array-title"><span class="main-text-title">담당 컨설팅</span>
     </div>
     <div class="container-info">
             <div class="item-btn">
@@ -25,15 +32,16 @@
             {% endif %}
             </div>
             <div class="main-array-row array-title">
-                <span class="main-text-index text-subject">
-                    학습 컨설팅
-                </span>
-               <span class="main-text-subindex" >
-                    {{ consulttype.consulttype}}
-                </span>
+                {% for type in consulttype.consulttype %}
+                    <div class="icon-consulttpye">{{type}}</div>
+                {% endfor %}
             </div>
             <div class="main-text-content text-content">
+                {% if consulttype.content %}
                 {{ consulttype.content|safe|linebreaksbr }}
+                {% else %}
+                    상세 소개 작성
+                {% endif %}
             </div>
     </div>
 </div>

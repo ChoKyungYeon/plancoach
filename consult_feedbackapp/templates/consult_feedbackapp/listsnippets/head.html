@@ -4,7 +4,7 @@
             {% if target_classlink %}
             <span class="text-title">{{ target_classlink.weekdate_left }} 수업 예정</span>
             {% else %}
-            <span class="text-title">수업일을 등록하세요!</span>
+            <span class="text-title">수업일 미등록</span>
             {% endif %}
         </div>
         <div class="main-array-row interval-top">
@@ -23,7 +23,7 @@
         </button>
         <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched" style="margin-left: 1.3rem;">
             <span class="text-number">{{feedbacks_like|length}}개</span>
-            <span class="text-index">좋아요</span>
+            <span class="text-index">저장</span>
         </button>
     </div>
 </div>

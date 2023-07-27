@@ -10,11 +10,11 @@ class Qna_commentCreateForm(ModelForm):
         model = Qna_comment
         fields = ('image','content')
         labels = {
-            'content':'댓글 내용',
-            'image':'댓글 이미지',
+            'content':'답변 내용',
+            'image':'답변 이미지',
         }
 
         widgets = {
-            'content': forms.Textarea(attrs={'placeholder': '댓글 내용을 작성해주세요', 'class': 'textarea-wide'}),
-            'image':  forms.FileInput(attrs={'placeholder': '댓글 이미지', 'class': 'fileinput'}),
+            'content': forms.Textarea(attrs={'placeholder': '답변 작성 이후 삭제가 불가능합니다.', 'class': 'textarea-wide'}),
+            'image':  forms.FileInput(attrs={ 'class': 'fileinput'}),
         }

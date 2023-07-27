@@ -48,12 +48,12 @@
     <span class="text-title">
     {% if target_qna.image %}
     <button onclick="showquestionimage()" class="material-icons btn-image">photo_camera</button>
-    <div id="questionimage-fullscreen" class="fullscreenimage">
-    <button onclick="closequestionimage()"
+    <button onclick="closequestionimage()" id="questionimage-fullscreen" class="fullscreenimage">
+    <div
             class="btn-exit material-icons">close
-    </button>
+    </div>
     <img class="fullscreenimage-image" src="{{ target_qna.image.url }}">
-    </div>        
+    </button>
     {% endif %}
     {{target_qna.title}}
     </span>

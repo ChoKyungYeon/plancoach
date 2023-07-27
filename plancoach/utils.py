@@ -51,7 +51,7 @@ def profile_completeness_calculator(user):
         '수능 성적': target_profile.profile_sat.exists(),
         '경력': target_profile.profile_career.exists(),
         '교과목': target_profile.profile_subject.exists(),
-        '담당 수업': hasattr(target_profile, 'profile_consulttype'),
+        '담당 컨설팅': hasattr(target_profile, 'profile_consulttype'),
         '사진': hasattr(target_profile, 'profile_profileimage'),
         '자기 소개': hasattr(target_profile, 'profile_introduction'),
     }

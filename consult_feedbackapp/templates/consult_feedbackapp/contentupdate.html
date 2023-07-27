@@ -5,7 +5,7 @@
 <header class="header-black">
     {% url 'consult_feedbackapp:coachdetail' pk=target_consult_feedback.pk as url %}
     {% include 'headersnippets/navback.html' with url=url %}
-    {% with title="종합 분석/과제 작성" %}
+    {% with title="종합 " %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
 </header>

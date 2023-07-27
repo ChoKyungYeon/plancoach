@@ -6,7 +6,7 @@
 <header class="header-black">
         {% url 'profileapp:detail' pk=target_profile.pk as url %}
         {% include 'headersnippets/navback.html' with url=url %}    
-        {% with title="학원 및 교습 경력 작성" %}
+        {% with title="경력 추가" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
 </header>
@@ -16,7 +16,7 @@
       <div class="main-container-form">
           <form action="{% url 'profile_careerapp:create' pk=target_profile.pk %}" method="post" enctype="multipart/form-data" >
             {% csrf_token %}{% bootstrap_form form %}
-            <input type="submit" class="btn-submit" value="정보 작성">
+            <input type="submit" class="btn-submit" value="정보 추가">
           </form>
       </div>
   </div>

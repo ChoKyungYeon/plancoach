@@ -10,11 +10,11 @@ class Consult_qnaCreateForm(ModelForm):
         labels = {
             'title':'질문 제목',
             'content':'질문 내용',
-            'image':'문제 이미지',
+            'image':'질문 이미지',
         }
 
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': '제목을 작성해주세요','class': 'textinput'}),
-            'content': forms.Textarea(attrs={'placeholder': '질문 내용을 작성해주세요', 'class': 'textarea-wide'}),
-            'image':  forms.FileInput(attrs={'placeholder': '문제 이미지', 'class': 'fileinput'}),
+            'content': forms.Textarea(attrs={'placeholder': '질문 작성 이후 삭제가 불가능합니다.', 'class': 'textarea-wide'}),
+            'image':  forms.FileInput(attrs={'class': 'fileinput'}),
         }

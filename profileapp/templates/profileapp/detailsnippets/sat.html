@@ -40,12 +40,12 @@
                 {% if sat.satverificationimage %}
                     <button onclick="showsatscoreimage({{ forloop.counter }})"
                             class="material-icons btn-verification">verified</button>
-                    <div id="satscoreimage-fullscreen{{ forloop.counter }}" class="fullscreenimage" >
-                    <button onclick="closesatscoreimage({{ forloop.counter }})"
+                    <button onclick="closesatscoreimage({{ forloop.counter }})" id="satscoreimage-fullscreen{{ forloop.counter }}" class="fullscreenimage" >
+                    <div
                             class="btn-exit material-icons">close
-                    </button>
-                    <img class="fullscreenimage-image" src="{{ sat.satverificationimage.url }}">
                     </div>
+                    <img class="fullscreenimage-image" src="{{ sat.satverificationimage.url }}">
+                    </button>
                 {% endif %}
             </div>
             <div class="main-text-content">
@@ -62,7 +62,7 @@
             </div>
             <div class="main-container-empty">
                 <span class="text-empty">
-                수능 성적을 추가해주세요!
+                수능 성적을 추가해 주세요!
                 </span>
             </div>
         </div>
@@ -93,7 +93,7 @@ function closesatscoreimage(counter) {
 
 
 function confirmsatDelete(counter) {
-    if (confirm("선택한 성적을 정말 삭제하시겠습니까?")) {
+    if (confirm("선택한 수능 성적을 정말 삭제하시겠습니까?")) {
         document.getElementById("sat-delete-form"+ counter).submit();
     }
 }

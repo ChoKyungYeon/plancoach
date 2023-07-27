@@ -57,7 +57,7 @@
         <a href="{% url 'feedback_planapp:stateupdate' %}?plan_pk={{ plan.pk }}"
            class="item-done material-icons">check</a>
         {% else %}
-        <div onclick="alert('학습 완료를 체크 가능한 시간은 학습 당일부터 다음날까지입니다.')"
+        <div onclick="alert('체크 가능 시간은 계획일부터 다음날까지입니다.')"
              class="item-done material-icons">check</div>
         {% endif %}
     {% else %}
@@ -67,7 +67,7 @@
         <a href="{% url 'feedback_planapp:stateupdate' %}?plan_pk={{ plan.pk }}"
            class="item-undone material-icons">check</a>
         {% else %}
-        <div onclick="alert('학습 완료를 체크 가능한 시간은 학습 당일부터 다음날까지입니다.')"
+        <div onclick="alert('체크 가능 시간은 계획일부터 다음날까지입니다.')"
            class="item-undone material-icons">check</div>
         {% endif %}
     {% endif %}

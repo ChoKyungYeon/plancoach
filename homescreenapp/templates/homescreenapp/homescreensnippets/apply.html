@@ -37,23 +37,23 @@
 {% endif %}
     {% if request.user.state == 'teacher' or request.user.state == 'superuser' or request.user.student_step == 'ongoing' %}
     <div class="text-index text-class">
-        수업을 매칭 또는 진행 중이신가요?
+        컨설팅 매칭 또는 진행 중이신가요?
     </div>
     <div class="text-index text-class">
-        현재 내 수업 현황을 확인하세요
+        현재 내 컨설팅 현황을 확인하세요
     </div>
     <div class="btn-apply">
-        내 수업 현황 확인 >
+        내 컨설팅 현황 확인 >
     </div>
     {% else %}
     <div class="text-index text-class">
         아직 혼자 공부하시나요?
     </div>
     <div class="text-index text-class">
-        지금 바로 수업을 신청해보세요
+        지금 바로 컨설팅을 신청해보세요
     </div>
     <div class="btn-apply">
-        수업 신청하러 가기 >
+        컨설팅 신청하러 가기 >
     </div>
 {% endif %}
 </a>

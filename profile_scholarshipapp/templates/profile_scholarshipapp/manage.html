@@ -15,7 +15,7 @@
       <div class="main-container-form">
          <form action="{% url 'profile_scholarshipapp:manage' pk=target_profile_scholarship.pk %}" method="post"  enctype="multipart/form-data">
             {% csrf_token %}{% bootstrap_form form %}
-            <input type="submit" class="btn-submit" value="정보 수정">
+            <input type="submit" class="btn-submit" value="정보 관리">
           </form>
       </div>
   </div>

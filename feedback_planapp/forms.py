@@ -7,9 +7,9 @@ class Feedback_planUpdateForm(ModelForm):
         model = Feedback_plan
         fields = ('content',)
         labels = {
-            'content': '학습 계획',
+            'content': '학습 플랜',
         }
 
         widgets = {
-            'content': forms.Textarea(attrs={'placeholder': '인강, 교재, 내용 등', 'class': 'textarea-wide'}),
+            'content': forms.Textarea(attrs={'placeholder': '1 과목별 학습 시간 및 분량 2 교재/인강 학습 범위 3 기타 계획', 'class': 'textarea-wide'}),
         }

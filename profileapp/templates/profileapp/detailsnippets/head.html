@@ -120,16 +120,16 @@
             {% endif %}
         {% endif %}
         </div>
-        <div id="profileheaderimage-fullscreen" class="fullscreenimage" >
-            <button onclick="closeprofileheaderimage()"
+        <button onclick="closeprofileheaderimage()" id="profileheaderimage-fullscreen" class="fullscreenimage" >
+            <div
                     class="btn-exit material-icons">close
-            </button>
+            </div>
             {% if target_profile.profile_profileimage %}
             <img class="fullscreenimage-image" src="{{ target_profile.profile_profileimage.image.url }}">
             {% else %}
             <img class="fullscreenimage-image" src='/static/icons/user.png'>
             {% endif %}
-        </div>
+        </button>
         <div>
             <div class="array-name" >
                 <span class="text-name ">{{target_profile.teacher.userrealname}}&nbsp;선생님</span>
@@ -171,7 +171,7 @@
     </div>
     <div class="item-nav">
          <button onclick="showSlide(1)" id="btn-slide1" class="btn-touched">선생님 정보</button>
-         <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched">수업 설명</button>
+         <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched">컨설팅 소개</button>
     </div>
 </div>
 

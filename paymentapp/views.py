@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import render, redirect
@@ -37,6 +37,7 @@ def PaymentCreateView(request, pk):
         'form': form,
         'target_consult': target_consult,
         'startdate' : datetime.now().date(),
+        'enddate' : datetime.now().date()+timedelta(days=28),
         'extenddate': target_consult.extenddate() if target_consult.extenddate() else None
     }
     return render(request, 'paymentapp/create.html', context)

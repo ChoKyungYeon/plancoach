@@ -29,5 +29,9 @@
         <img class="item-image"  src='/static/icons/analyze.png'>
         <span class="text-title">학생 종합 분석</span>
     </div>
+    {% if target_feedback.content %}
     <span class="main-text-content text-content">{{target_feedback.content|safe|linebreaksbr}}</span>
+    {% else %}
+    <span class="main-text-content text-content">종합 분석</span>
+    {% endif %}
 </div>

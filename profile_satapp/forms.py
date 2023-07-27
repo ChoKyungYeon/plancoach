@@ -20,7 +20,7 @@ class Profile_satCreateForm(ModelForm):
         model = Profile_sat
         fields = ( 'satyear', 'score','satverificationimage')
         labels = {
-            'satyear':'응시 학년도 ( 내신 성적 기입시 공백 )',
+            'satyear':'응시 학년도',
             'score':'성적 기입' ,
             'satverificationimage':'성적 증명',
 
@@ -28,7 +28,7 @@ class Profile_satCreateForm(ModelForm):
 
         widgets = {
             'satyear': CustomSelect(attrs={ 'class': 'select',}),
-            'score':forms.Textarea(attrs={'placeholder': '원점수 위주로 기입 예시) 국어-언매:00점, 수학-미적분:00점', 'class': 'textarea'}),
+            'score':forms.Textarea(attrs={'placeholder': '과목별 원점수, 등급, 백분위 등', 'class': 'textarea'}),
             'satverificationimage': forms.FileInput(attrs={'class': 'fileinput', 'value': '파일 선택'}),
 
         }

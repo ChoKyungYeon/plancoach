@@ -113,8 +113,7 @@
     width:100%;
 }
 .main-interval-line{
-    height:2px;
-    background: var(--whitegray);
+    border-bottom: var(--border-container);
     width:100%;
 }
 

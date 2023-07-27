@@ -5,7 +5,7 @@
 <header class="header-black">
     {% url 'consultapp:dashboard' pk=target_consult.pk as url %}
     {% include 'headersnippets/navback.html' with url=url %}
-    {% with title="수업료 납부 내역" %}
+    {% with title="납부 내역" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
 </header>

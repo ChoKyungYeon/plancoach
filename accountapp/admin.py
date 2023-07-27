@@ -54,31 +54,31 @@ class CustomUserAdmin(admin.ModelAdmin):
         if obj.state == 'teacher':
             consults=obj.consult_teacher.all()
             consult_classname =", ".join("<{}>".format(consult.consult_name()) for consult in obj.consult_teacher.all()) \
-                if consults else '진행 수업이 없습니다'
+                if consults else '진행 컨설팅이 없습니다'
             return format_html(
                 "<strong>모집 정보:</strong> {}<br>"
-                "<strong>수업료:</strong> {}<br>"
-                "<strong>진행 수업 목록:</strong> {}",
+                "<strong>컨설팅료:</strong> {}<br>"
+                "<strong>진행 컨설팅 목록:</strong> {}",
                 obj.profile.get_state_display(),
                 obj.profile.tuition,
                 consult_classname
             )
         elif obj.state == 'student':
             consult = getattr(self, 'consult_student', None)
-            consult_classname = f'<{consult.consult_name()}>' if consult else '진행 수업이 없습니다'
+            consult_classname = f'<{consult.consult_name()}>' if consult else '진행 컨설팅이 없습니다'
             application = getattr(self, 'application_student', None)
             application_name = f'<{application.teacher.userrealname} 신청서>' if application else '신청서가 없습니다'
             return format_html(
                 "<strong>신청서:</strong> {}<br>"
-                "<strong>진행 수업:</strong> {}",
+                "<strong>진행 컨설팅:</strong> {}",
                 application_name,
                 consult_classname
             )
         else:
             return format_html(
-                "<strong>진행 수업:</strong> {}",
+                "<strong>진행 컨설팅:</strong> {}",
                 '관리자 계정'
             )
-    display_consult_info.short_description = '수업 정보'
+    display_consult_info.short_description = '컨설팅 정보'
 
 admin.site.register(CustomUser, CustomUserAdmin)

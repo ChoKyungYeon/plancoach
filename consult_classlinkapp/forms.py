@@ -11,11 +11,11 @@ class Consult_classlinkCreateForm(ModelForm):
         labels = {
             'weekdate': '수업 요일',
             'classtime': '수업 시간',
-            'link': '비대면 링크',
+            'link': '수업 링크 ',
         }
 
         widgets = {
             'weekdate': CustomSelect(attrs={'class': 'select', }),
-            'classtime': forms.TextInput(attrs={'placeholder': '구체적 시간 입력', 'class': 'textinput', }),
-            'link': forms.Textarea(attrs={'placeholder': '구글 미트 url 복사 후 입력', 'class': 'textarea', }),
+            'classtime': forms.TextInput(attrs={'placeholder': '오전/오후 00시', 'class': 'textinput', }),
+            'link': forms.Textarea(attrs={'placeholder': '구글 Meet 초대 링크를 입력해주세요', 'class': 'textarea', }),
         }

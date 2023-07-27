@@ -10,7 +10,7 @@
     {% url 'teacherapp:applicationlist' pk=target_application.teacher.pk as url %}
     {% include 'headersnippets/navback.html' with url=url %}
     {% endif %}
-    {% with title="신청서 확인" %}
+    {% with title="신청서 상세" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
 </header>
@@ -54,7 +54,7 @@
         </div>
         <div class="main-container-table">
             <div class="main-array-row">
-                <div class="row-index border1">담당</div>
+                <div class="row-index border1">이름</div>
                 <div class="row-content-full border2">{{ target_application.teacher.userrealname}} 선생님</div>
             </div>
             <div class="main-array-row">
@@ -101,7 +101,7 @@
             </div>
         </div>
         <div class="main-array-title-table">
-            <div class="main-text-title-table">수업 신청 내용</div>
+            <div class="main-text-title-table">신청 내용</div>
         </div>
         <div class="main-container-table">
             <div class="main-array-row">
@@ -111,13 +111,13 @@
         </div>
         <div class="main-container-table">
             <div class="column-index border1 border2">
-                현재 성적, 문제점
+                현재 성적 및 상황
             </div>
             <div class="column-content border3 border4">{{ target_application.problem|safe|linebreaksbr}}</div>
         </div>
         <div class="main-container-table">
             <div class="column-index border1 border2">
-                수업 진행 희망 사항
+                바라는 컨설팅 방식
             </div>
             <div class="column-content border3 border4">{{ target_application.want|safe|linebreaksbr}}</div>
         </div>
@@ -126,9 +126,14 @@
 </main>
 
 <script>
+    function confirmapplicationDelete() {
+    if (confirm("현재 신청서를 삭제하시겠습니까?")) {
+        document.getElementById("application-delete-form").submit();
+    }
+}
 
     function confirmtostatematching(event) {
-        if (confirm("수업 신청을 수락하시겠습니까?. 이후 취소하실 수 없습니다.")) {
+        if (confirm("현재 신청서를 수락하시겠습니까? 이후 취소할 수 없습니다.")) {
             window.location.href = event.target.href;
         } else {
             event.preventDefault();
@@ -142,7 +147,7 @@
 
 
     function confirmtoconsultcreate(event) {
-        if (confirm("수업이 성사되었나요?. 수업을 개설하세요.")) {
+        if (confirm("매칭이 성사되었나요? 컨설팅을 개설해주세요.")) {
             window.location.href = event.target.href;
         } else {
             event.preventDefault();
@@ -156,7 +161,7 @@
 
 
     function confirmtostatebreak(event) {
-        if (confirm("매칭이 종료되었나요?. 거절 사유를 작성하세요.")) {
+        if (confirm("매칭이 종료되었나요? 거절 사유를 작성하세요.")) {
             window.location.href = event.target.href;
         } else {
             event.preventDefault();
@@ -169,7 +174,7 @@
     }
 
     function confirmtostaterefsual(event) {
-        if (confirm("매칭이 종료되었나요?. 거절 사유를 작성하세요.")) {
+        if (confirm("매칭이 종료되었나요? 거절 사유를 작성하세요.")) {
             window.location.href = event.target.href;
         } else {
             event.preventDefault();

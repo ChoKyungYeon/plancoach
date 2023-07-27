@@ -18,7 +18,7 @@
 </style>
 {% if careers %}
 <div class="main-box profile-detail-career">
-    <div class="main-array-title"><span class="main-text-title">학원 및 교습 경력</span>
+    <div class="main-array-title"><span class="main-text-title">경력</span>
         {% if user == target_profile.teacher %}
         <a href="{% url 'profile_careerapp:create' pk=target_profile.pk %}" class="main-btn-add material-icons">add</a>
         {% endif %}
@@ -46,7 +46,7 @@
             </div>
             <span class="main-text-content">{{career.content|safe|linebreaksbr}}</span>
             <span class="main-text-subindex">
-                {{ career.year }}년도 ~
+                {{ career.year }}년,
                 {% if career.duration == '진행중' %}
                 현재까지
                 {% else %}
@@ -61,12 +61,12 @@
 {% else %}
     {% if user == target_profile.teacher %}
     <div class="main-box profile-detail-career">
-        <div class="main-array-title"><span class="main-text-title">학원 및 교습 경력</span>
+        <div class="main-array-title"><span class="main-text-title">경력</span>
             <a href="{% url 'profile_careerapp:create' pk=target_profile.pk %}" class="main-btn-add material-icons">add</a>
         </div>
         <div class="main-container-empty">
             <span class="text-empty">
-            경력 사항을 추가해주세요!
+            경력을 추가해 주세요!
             </span>
         </div>
     </div>
@@ -75,7 +75,7 @@
 
 <script>
     function confirmcareerDelete(counter) {
-        if (confirm("선택한 경력 사항을 정말 삭제하시겠습니까?")) {
+        if (confirm("선택한 경력을 삭제하시겠습니까?")) {
             document.getElementById("career-delete-form"+ counter).submit();
         }
     }

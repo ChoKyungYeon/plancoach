@@ -1,12 +1,14 @@
 from datetime import datetime, timedelta
 from django.db import transaction
 from django.http import HttpResponseForbidden
+from django.shortcuts import redirect, get_object_or_404
 
 from accountapp.models import CustomUser
 from applicationapp.models import Application
 from consultapp.models import Consult
 from phonenumberapp.models import Phonenumber
 from plancoach.utils import create_refusal
+
 
 class Decorators:
     def __init__(self, user, obj):
@@ -21,15 +23,16 @@ class Decorators:
         elif isinstance(self.obj, CustomUser):
             self.user_update(self.obj)
 
+
     def application_update(self,application): #deploy check
         with transaction.atomic():
             target_state = application.state
             updated_at = application.updated_at
             updated_interval = datetime.now() - updated_at
-            if target_state == 'applied' and updated_interval > timedelta(minutes=1): #minute 24
+            if target_state == 'applied' and updated_interval > timedelta(minutes=10): #minute 24
                 create_refusal(application,'기간 내 신청이 확인되지 않았습니다.','matching')
-            elif target_state == 'matching' and updated_interval > timedelta(minutes=2): #minute 168
-                create_refusal(application,'기간 내 수업이 성사되지 않았습니다.','matching')
+            elif target_state == 'matching' and updated_interval > timedelta(minutes=20): #minute 168
+                create_refusal(application,'기간 내 매칭이 성사되지 않았습니다.','matching')
 
     def consult_update(self,consult): #deploy check
         with transaction.atomic():
@@ -38,7 +41,7 @@ class Decorators:
             extend_enddate = consult.extend_enddate()
             target_state = consult.state
             created_interval=datetime.now() - consult.created_at
-            if target_state == 'new' and created_interval > timedelta(minutes=1): #hour 48
+            if target_state == 'new' and created_interval > timedelta(minutes=10): #hour 48
                 create_refusal(consult, '기간 내 입금이 완료되지 않았습니다.','matching')
             elif target_state == 'unextended' and extenddate <= today:
                 create_refusal(consult, None,'consult')
@@ -71,9 +74,9 @@ class Decorators:
     def request_user_update(self):
         self.user_update(self.user)
 
-    def phonenumber_update(self):
+    def phonenumber_update(self): #deploy check
         for phonenumber in Phonenumber.objects.filter(is_verified=False):
-            if datetime.now() - phonenumber.created_at > timedelta(minutes=1):
+            if datetime.now() - phonenumber.created_at > timedelta(minutes=3):
                 phonenumber.delete()
 
 
@@ -86,9 +89,9 @@ class Decorators:
     def step_filter(self, allow_teacher, allow_student, allow_superuser):
         if self.user.state == 'superuser' and not allow_superuser:
             return HttpResponseForbidden()
-        if self.user.state == 'teacher' and self.user.teacher_step() not in allow_teacher:
+        if not allow_teacher == 'all' and self.user.state == 'teacher' and self.user.teacher_step() not in allow_teacher:
             return HttpResponseForbidden()
-        if self.user.state == 'student' and self.user.student_step() not in allow_student:
+        if not allow_student == 'all' and self.user.state == 'student' and self.user.student_step() not in allow_student:
             return HttpResponseForbidden()
 
 
@@ -107,3 +110,4 @@ class Decorators:
         if not (allow_superuser and self.user.state == 'superuser'):
             if not self.user == self.obj:
                 return HttpResponseForbidden()
+

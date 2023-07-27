@@ -16,7 +16,7 @@
                 <div class="item-btn">
                 {% if user == target_profile.teacher %}
                 <a href="{% url 'profile_gpaapp:update' pk=gpa.pk %}" class="main-btn-edit material-icons">edit</a>
-                <form action="{% url 'profile_gpaapp:delete' pk=gpa.pk %}" method="post" id="gpa-delete-form{{ forloop.counter }}">
+                <form action="{% url 'profile_gpaapp:delete' pk=gpa.pk %}" method="post" id="gpa-delete-form">
                     {% csrf_token %}
                     <input style="display:none" type="submit" name="next" value="{% url 'profileapp:detail' pk=target_profile.pk %}">
                     <button type="button" onclick="confirmgpaDelete()" class="main-btn-delete material-icons">remove</button>
@@ -28,10 +28,10 @@
                         ({{gpa.schooltype}})</span>
                     {% if gpa.gpaverificationimage %}
                     <button onclick="showgpaimage()" class="material-icons btn-verification">verified</button>
-                    <div id="gpaimage-fullscreen" class="fullscreenimage" >
-                        <button onclick="closegpaimage()" class="btn-exit material-icons">close</button>
+                    <button onclick="closegpaimage()" id="gpaimage-fullscreen" class="fullscreenimage" >
+                        <div class="btn-exit material-icons">close</div>
                         <img class="fullscreenimage-image" src="{{ gpa.gpaverificationimage.url }}">
-                    </div>
+                    </button>
                     {% endif %}
                 </div>
                 <div class="main-text-content" >
@@ -79,7 +79,7 @@ function closegpaimage() {
 
 
 function confirmgpaDelete() {
-    if (confirm("선택한 고교 성적 및 활동을 정말 삭제하시겠습니까?")) {
+    if (confirm("선택한 출신 고교 및 성적/활동을 정말 삭제하시겠습니까?")) {
         document.getElementById("gpa-delete-form").submit();
     }
 }

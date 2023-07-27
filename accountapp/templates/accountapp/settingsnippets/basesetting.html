@@ -22,7 +22,7 @@
             tonotificationdisable.addEventListener('click', confirmtonotificationdisable);
 
             function confirmtonotificationdisable(event) {
-                if (confirm("문자 알람을 수신 중단 하시겠습니까?")) {
+                if (confirm("문자 알림을 수신 중단하시겠습니까?")) {
                     // Allow the navigation to proceed
                     window.location.href = event.target.href;
                 } else {
@@ -35,7 +35,7 @@
         {% else %}
         <a id="tonotificationable" href="{% url 'accountapp:notificationupdate' %}?user_pk={{ target_user.pk }}"
            class="item-content" style="border-bottom:none">
-            <span class="main-text-content text-content">알림 수신 중지</span>
+            <span class="main-text-content text-content">알림 받지 않음</span>
             <span class="material-icons icon-nav">notifications_off</span>
         </a>
 
@@ -44,7 +44,7 @@
             tonotificationable.addEventListener('click', confirmtonotificationable);
 
             function confirmtonotificationable(event) {
-                if (confirm("문자 알람을 수신하시겠습니까?")) {
+                if (confirm("문자 알림을 수신하시겠습니까?")) {
                     // Allow the navigation to proceed
                     window.location.href = event.target.href;
                 } else {

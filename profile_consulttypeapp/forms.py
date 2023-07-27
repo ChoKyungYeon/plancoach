@@ -13,10 +13,10 @@ class Profile_consulttypeCreateForm(ModelForm):
         model = Profile_consulttype
         fields = ('consulttype', 'content')
         labels = {
-            'consulttype': '가능 담당 수업',
-            'content': '수업 소개',
+            'consulttype': '가능 컨설팅',
+            'content': '컨설팅 소개',
         }
         widgets = {
             'consulttype': forms.CheckboxSelectMultiple(attrs={ 'class': 'selectmultiple'}),
-            'content': forms.Textarea(attrs={'placeholder': '컨설팅 대상 및 수업 방법 소개', 'class': 'textarea'}),
+            'content': forms.Textarea(attrs={'placeholder': '1 대상 학생 2 본인의 수업 방식 3 자신만의 노하우/차별점 ', 'class': 'textarea'}),
         }

@@ -14,11 +14,10 @@
 {% if user.refusal.type == 'matching' %}
 <div class="main-container-guide" >
     <div class="item-title" >
-        <div class="text-emphasize">&nbsp;수업 매칭</div>
+        <div class="text-emphasize">&nbsp;매칭</div>
         <span class="text-title">종료&nbsp;&#128546;</span>
     </div>
     <div class="item-subtitle">
-        사유:
     {{user.refusal.content}}&nbsp;
     </div>
     <span class="item-content">기존 신청서는 삭제되며 새로운 매칭을 진행할 수 있습니다.
@@ -33,7 +32,7 @@
         <div class="text-emphasize">환불 금액</div>
         <span class="text-title">지급 완료</span>
     </div>
-    <span class="item-content">설정-> 환불 내역에서 내역을 확인할 수 있으며 새로운 매칭을 자유롭게 진행할 수 있습니다.
+    <span class="item-content">설정 -> 환불 내역/규정에서 내역을 확인할 수 있으며, 새로운 매칭을 자유롭게 진행할 수 있습니다.
         <a href="{% url 'profileapp:list' %}" class="link-nav">
         선생님 찾기 >
         </a>
@@ -59,13 +58,13 @@
 {% elif user.refusal.type == 'consult' %}
 <div class="main-container-guide" >
     <div class="item-title" >
-        <div class="text-emphasize">&nbsp;수업</div>
+        <div class="text-emphasize">&nbsp;컨설팅</div>
         <span class="text-title">종료&nbsp;&#128546;</span>
     </div>
     <div class="item-subtitle">
-        기간내 수업이 연장되지 않았습니다.
+        기간내 컨설팅이 연장되지 않았습니다.
     </div>
-    <span class="item-content">기존 수업은 삭제되며 새로운 매칭을 진행할 수 있습니다.
+    <span class="item-content">기존 컨설팅은 삭제되며 새로운 매칭을 진행할 수 있습니다.
         <a href="{% url 'profileapp:list' %}" class="link-nav">
         선생님 찾기 >
         </a>

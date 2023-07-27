@@ -57,7 +57,7 @@ class ApplicationDeleteView(DeleteView):
         if self.request.user.state == 'teacher':
             return reverse_lazy('teacherapp:dashboard', kwargs={'pk': self.object.teacher.pk})
         else:
-            return reverse_lazy('accountapp:studentdguide', kwargs={'pk': self.object.student.pk})
+            return reverse_lazy('studentapp:dashboard', kwargs={'pk': self.object.student.pk})
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(ApplicationUpdateDecorater, name='dispatch')

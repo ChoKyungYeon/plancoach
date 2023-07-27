@@ -5,7 +5,7 @@
 <header class="header-black">
         {% url 'profileapp:detail' pk=target_profile_introduction.profile.pk as url %}
         {% include 'headersnippets/navback.html' with url=url %}    
-        {% with title="한줄 소개 수정" %}
+        {% with title="한 줄 소개 수정" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
 </header>

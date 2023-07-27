@@ -11,7 +11,7 @@ class TeacherapplyInfoCreateForm(ModelForm):
         model = Teacherapply
         fields = ('consulttype','school', 'major', 'studentid', 'accepttype')
         labels = {
-            'consulttype': '가능 담당 수업',
+            'consulttype': '담당 컨설팅',
             'school': '학교',
             'major': '전공',
             'studentid': '학번',
@@ -54,11 +54,11 @@ class TeacherapplyBankCreateForm(ModelForm):
         labels = {
             'bank':'은행',
             'accountnumber':'계좌 번호',
-            'depositor':'예금자명 (실명과 일치해야 합니다)',
+            'depositor':'예금주명 ',
         }
 
         widgets = {
             'bank': CustomSelect(attrs={'placeholder': '', 'class': 'select',}),
             'accountnumber': forms.NumberInput(attrs={'placeholder': '- 제외 숫자만 입력','class': 'textinput',}),
-            'depositor': forms.TextInput(attrs={'placeholder': '실명과 일치', 'class': 'textinput', }),
+            'depositor': forms.TextInput(attrs={'placeholder': '본인 명의의 계좌를 입력해 주세요', 'class': 'textinput', }),
         }

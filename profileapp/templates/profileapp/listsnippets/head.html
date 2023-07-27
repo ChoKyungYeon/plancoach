@@ -8,7 +8,7 @@
     right: 0;
     background: var(--blackblue);
     display: flex;
-    height:14.5rem;
+    height:15rem;
     flex-direction:column;
     justify-content:space-between;
     align-items:flex-start;
@@ -53,7 +53,8 @@
     justify-content:center;
     align-items:center;
     height:3rem;
-    width: 15%;
+    padding-left: 2%;
+    padding-right: 2%;
     color:var(--gray);
     font-weight:var(--fontweight-index);
     font-size:var(--fontsize-content);
@@ -75,7 +76,8 @@
 </style>
 <div class="profile-list-head">
     <div class="array-title">
-        <span class="text-teacher">대한민국 최고의</span>
+        <span class="text-teacher">대한민국</span>
+        <span class="text-scholarship">상위 1%</span>
     </div>
     <div class="array-title">
         <span class="text-scholarship">서울대, 의대생</span>
@@ -89,7 +91,7 @@
         <button onclick="showSlide(4)" id="btn-slide4" class="btn-untouched">학생부</button>
         <button onclick="showSlide(5)" id="btn-slide5" class="btn-untouched">중등</button>
         {% if user.state == 'student' %}
-        <button onclick="showSlide(6)" id="btn-slide6" class="btn-untouched">찜</button>
+        <button onclick="showSlide(6)" id="btn-slide6" class="btn-untouched ">찜</button>
         {% endif %}
     </div>
 </div>

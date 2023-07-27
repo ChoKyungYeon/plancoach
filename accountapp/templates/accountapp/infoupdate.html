@@ -1,3 +1,4 @@
+
 {% extends 'base_noback.html' %}
 {% load bootstrap4 %}
 {% block content %}
@@ -14,7 +15,7 @@
 <header class="header-black">
     {% url 'accountapp:setting' pk=user.pk as url %}
     {% include 'headersnippets/navback.html' with url=url %}
-    {% with title="기본 정보 수정" %}
+    {% with title="내 정보 수정" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
 </header>

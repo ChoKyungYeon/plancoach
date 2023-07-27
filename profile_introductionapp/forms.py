@@ -9,9 +9,9 @@ class Profile_introductionCreateForm(ModelForm):
         model = Profile_introduction
         fields = ('content',)
         labels = {
-            'content':'한줄소개',
+            'content':'한 줄 소개',
         }
 
         widgets = {
-            'content': forms.Textarea(attrs={'placeholder': '자기소개', 'class': 'textarea'}),
+            'content': forms.Textarea(attrs={'placeholder': '본인의 강점을 드러낼 수 있는 짧은 설명', 'class': 'textarea'}),
         }

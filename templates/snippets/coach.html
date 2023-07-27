@@ -36,7 +36,11 @@
         <span class="text-title">{{coach.subject}}</span>
         <span class="text-subcontent">피드백</span>
     </div>
+    {% if coach.content %}
     <span class="main-text-content text-content">{{coach.content|safe|linebreaksbr}}</span>
+    {% else %}
+    <span class="main-text-content text-content">과목별 상세 분석</span>
+    {% endif %}
 </div>
 <script>
 function confirmcoachDelete(counter) {

@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 from documentapp.models import Document
@@ -51,3 +51,7 @@ class PrivacypolicyView(TemplateView):
         if document.privacypolicy_link:
             return redirect(document.privacypolicy_link)
         return super().get(request, *args, **kwargs)
+
+
+class NotfoundView(TemplateView):
+    template_name = 'homescreenapp/notfound.html'

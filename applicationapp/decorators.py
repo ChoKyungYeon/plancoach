@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 
 from accountapp.models import CustomUser
 from applicationapp.models import Application
@@ -29,6 +29,10 @@ def ApplicationDeleteDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        try:
+            get_object_or_404(Application, pk=kwargs['pk'])
+        except:
+            return redirect('studentapp:dashboard', pk=request.user.pk)
         return func(request, *args, **kwargs)
     return decorated
 
@@ -43,6 +47,10 @@ def ApplicationUpdateDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        try:
+            get_object_or_404(Application, pk=kwargs['pk'])
+        except:
+            return redirect('studentapp:dashboard', pk=request.user.pk)
         return func(request, *args, **kwargs)
     return decorated
 
@@ -58,6 +66,10 @@ def ApplicationDetailDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        try:
+            get_object_or_404(Application, pk=kwargs['pk'])
+        except:
+            return redirect('studentapp:dashboard', pk=request.user.pk)
         return func(request, *args, **kwargs)
     return decorated
 
@@ -72,6 +84,10 @@ def ApplicationStateUpdateDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        try:
+            get_object_or_404(Application, pk=kwargs['pk'])
+        except:
+            return redirect('teacherapp:applicationlist', pk=request.user.pk)
         return func(request, *args, **kwargs)
     return decorated
 

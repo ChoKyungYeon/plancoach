@@ -37,7 +37,7 @@
 {% if user.is_authenticated and request.user.can_apply %}
 <a href="{% url 'applicationapp:guide' pk=target_profile.teacher.pk %}"
    class="container-foot">
-    <span class="text-application">수업 신청서</span>
+    <span class="text-application">컨설팅 신청서</span>
     <span class="text-nav">작성하러 가기 ></span>
 </a>
 {% endif  %}

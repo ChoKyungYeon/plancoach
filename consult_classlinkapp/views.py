@@ -29,9 +29,7 @@ class Consult_classlinkCreateView(CreateView):
         link = form.cleaned_data['link']
         consult = get_object_or_404(Consult, pk=self.kwargs['pk'])
         with transaction.atomic():
-            if 'https://meet.google' not in list(link):
-                form.add_error('link', '올바른 링크를 입력 해주세요')
-                return self.form_invalid(form)
+
             form.instance.consult = consult
             form.instance.save()
             return super().form_valid(form)
@@ -47,13 +45,6 @@ class Consult_classlinkUpdateView(UpdateView):
     form_class = Consult_classlinkCreateForm
     context_object_name = 'target_consult_classlink'
     template_name = 'consult_classlinkapp/update.html'
-
-    def form_valid(self, form):
-        link = form.cleaned_data['link']
-        if 'https://meet.google' not in list(link):
-            form.add_error('link', '올바른 링크를 입력 해주세요')
-            return self.form_invalid(form)
-        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('consultapp:dashboard', kwargs={'pk': self.object.consult.pk})

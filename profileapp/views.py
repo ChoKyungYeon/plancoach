@@ -47,7 +47,6 @@ class ProfileCreateView(CreateView):
                 profile=form.instance,
                 accepttype=teacherapply.accepttype,
                 studentid=teacherapply.studentid,
-                content='합격 수기 작성',
                 schoolverificationimage=teacherapply.schoolimage,
                 school=teacherapply.school,
                 major=teacherapply.major
@@ -61,7 +60,6 @@ class ProfileCreateView(CreateView):
             Profile_consulttype.objects.create(
                 profile=form.instance,
                 consulttype=teacherapply.consulttype,
-                content='수업 소개 작성'
             )
             teacherapply.delete()
             # sendsms

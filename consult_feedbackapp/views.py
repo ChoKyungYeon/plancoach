@@ -39,7 +39,7 @@ class Consult_feedbackCreateView(CreateView):
         with transaction.atomic():
             # form error
             if classtime > datetime.now().date():
-                form.add_error('classtime', '컨설팅 기록은 수업 후에 등록해주세요')
+                form.add_error('classtime', '수업 기록은 수업 진행 이후에 등록해주세요')
                 return self.form_invalid(form)
             elif classtime in classtimes:
                 form.add_error('classtime', '이미 등록된 수업 일자입니다')
@@ -54,7 +54,7 @@ class Consult_feedbackCreateView(CreateView):
                     subject=subject
                 )
             for date in planatime_calulator(classtime):
-                Feedback_plan.objects.create(consult_feedback=form.instance, plantime=date, content=None)
+                Feedback_plan.objects.create(consult_feedback=form.instance, plantime=date)
 
             return super().form_valid(form)
 
@@ -108,7 +108,7 @@ class Consult_feedbackUpdateView(UpdateView):
         with transaction.atomic():
             # form invalid
             if classtime > datetime.now().date():
-                form.add_error('classtime', '컨설팅 기록은 수업 후에 등록해주세요')
+                form.add_error('classtime', '수업 기록은 수업 후에 등록해주세요')
                 return self.form_invalid(form)
             elif classtime in classtimes:
                 form.add_error('classtime', '이미 등록된 수업 일자입니다')

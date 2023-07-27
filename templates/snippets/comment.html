@@ -48,12 +48,12 @@
     {% if comment.image %}
 
     <button onclick="showcommentimage({{ forloop.counter }})" class="material-icons btn-image">photo_camera</button>
-    <div id="commentimage-fullscreen{{ forloop.counter }}" class="fullscreenimage" >
-    <button onclick="closecommentimage({{ forloop.counter }})"
+    <button onclick="closecommentimage({{ forloop.counter }})" id="commentimage-fullscreen{{ forloop.counter }}" class="fullscreenimage" >
+    <div
             class="btn-exit material-icons">close
-    </button>
-    <img class="fullscreenimage-image" src="{{ comment.image.url }}">
     </div>
+    <img class="fullscreenimage-image" src="{{ comment.image.url }}">
+    </button>
     {% endif %}
     {{comment.content|safe|linebreaksbr}}
     </span>

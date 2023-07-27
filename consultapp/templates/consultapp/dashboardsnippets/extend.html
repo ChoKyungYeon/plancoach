@@ -1,17 +1,13 @@
 <div class="main-box consult-dashboard-setting">
-    <div class="main-array-title"><span class="main-text-title">수업 연장</span>
+    <div class="main-array-title"><span class="main-text-title">컨설팅 연장</span>
     </div>
     {% if target_consult.state == 'unextended'%}
     <a href="{% url 'paymentapp:create' pk=target_consult.pk %}" class="main-container-dashboard">
         <div class="item-content">
-            <span class="main-text-content">수업을 연장해주세요.</span>
+            <span class="main-text-content">컨설팅을 연장하시겠습니까?</span>
             <div class="main-array-row interval-top">
-                <span class="main-text-content text-content">수업 상태</span>
-                {% if target_consult.state == 'unextended'%}
+                <span class="main-text-content text-content">현재 상태</span>
                 <span class="main-text-index">미연장</span>
-                {% elif target_consult.state == 'extended'%}
-                <span class="main-text-index">연장완료</span>
-                {% endif %}
             </div>
         </div>
         <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
@@ -28,8 +24,8 @@
             </span>
             </div>
             <div class="main-array-row interval-top">
-                <span class="main-text-content text-content">수업 상태</span>
-                <span class="main-text-index">연장완료</span>
+                <span class="main-text-content text-content">현재 상태</span>
+                <span class="main-text-index">연장 완료</span>
             </div>
         </div>
     </div>

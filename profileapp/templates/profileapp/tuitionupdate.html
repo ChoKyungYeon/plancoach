@@ -3,6 +3,7 @@
 {% block content %}
 
 
+
 <header class="header-black">
         {% url 'teacherapp:dashboard' pk=target_profile.teacher.pk as url %}
         {% include 'headersnippets/navback.html' with url=url %}    
@@ -15,26 +16,30 @@
 
 <main>
     <div class="main-box">
-        <div class="main-text-title-guideform" >* 수업료 변경 주의 사항</div>
-        <div class="main-container-guideform">
+        <div class="main-text-title-guideform" >*수업료 변경 주의 사항</div>
+        <div class="main-container-guideform container-tuition">
             <div class="item-guide">
                 <span class="text-content">
-                수업료 변경은 60일 간격으로 가능하니 신중하게 결정해주세요!
+                    기존 컨설팅의 수업료는 변하지 않으며, 추후 추가되는 컨설팅의 수업료부터 변경됩니다.
             </span>
             </div>
             <div class="item-guide">
                 <span class="text-content">
-                매칭을 통한 새로운 수업의 수업료는 자동으로 프로필의 수업료로 설정됩니다.
+                    수업료 변경 이후 <span class="text-emphasize">60일 동안</span> 변경이 불가능합니다.
             </span>
             </div>
             <div class="item-guide">
                 <span class="text-content">
-                수업료를 너무 높게 설정하는 경우 매칭이 감소할 수 있으니 이를 고려하여 변경해주세요!
+                 금액을 너무 높게 설정하는 경우 매칭이 감소할 수 있습니다.
             </span>
             </div>
             <div class="item-guide">
                 <span class="text-content">
-                현재 수업료는 {{target_profile.tuition}}원 입니다
+                실제 급여는
+                <span class="text-emphasize">
+                세금/수수료를 차감
+                </span>
+                    하는 것에 유의해 주세요.
                 </span>
             </div>
             </div>
@@ -44,9 +49,7 @@
         <div class="main-container-guideform" >
         <form action="{% url 'profileapp:tuitionupdate' pk=target_profile.pk %}" method="post" onsubmit="return confirmUpdateProfile()">
             {% csrf_token %}{% bootstrap_form form %}
-            {% if target_profile.is_payment_updated_possible == True %}
             <input type="submit" class="btn-submit" value="수업료 변경">
-            {% endif %}
         </form>
         </div>
     </div>

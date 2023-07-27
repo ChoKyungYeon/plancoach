@@ -14,7 +14,7 @@ class Profile_scholarship(models.Model):
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='profile_scholarship')
     accepttype = models.CharField(max_length=20, choices=accepttypechoice)
     studentid = models.IntegerField(choices=schoolyearchoice)
-    content = models.TextField(max_length=300)
+    content = models.TextField(max_length=300, null=True)
     schoolverificationimage = models.ImageField(upload_to='profile_scholarship/')
     school = models.CharField(max_length=20, choices=schoolchoice)
     major = models.CharField(max_length=15)

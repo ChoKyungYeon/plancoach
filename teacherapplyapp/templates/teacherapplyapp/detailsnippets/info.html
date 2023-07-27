@@ -11,10 +11,10 @@
 <div class="main-array-title-table">
     <div class="main-text-title-table">신청자 정보</div>
     <button onclick="showuserimage()" class="material-icons btn-verification">verified</button>
-    <div id="userimage-fullscreen" class="fullscreenimage">
-        <button onclick="closeuserimage()" class="btn-exit material-icons">close</button>
+    <button onclick="closeuserimage()" id="userimage-fullscreen" class="fullscreenimage">
+        <div class="btn-exit material-icons">close</div>
         <img class="fullscreenimage-image" src="{{ target_teacherapply.userimage.url }}">
-    </div>
+    </button>
 </div>
 <div class="main-container-table">
     <div class="main-array-row">
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="main-array-row">
-        <div class="row-index border4">수업</div>
+        <div class="row-index border4">컨설팅</div>
         <div class="row-content-full border3">
             {{ target_teacherapply.consulttype }}
         </div>
@@ -39,10 +39,10 @@
 <div class="main-array-title-table">
     <div class="main-text-title-table">학력 상세 사항</div>
     <button onclick="showschoolimage()" class="material-icons btn-verification">verified</button>
-    <div id="schoolimage-fullscreen" class="fullscreenimage">
-        <button onclick="closeschoolimage()" class="btn-exit material-icons">close</button>
+    <button onclick="closeschoolimage()" id="schoolimage-fullscreen" class="fullscreenimage">
+        <div class="btn-exit material-icons">close</div>
         <img class="fullscreenimage-image" src="{{ target_teacherapply.schoolimage.url }}">
-    </div>
+    </button>
 </div>
 <div class="main-container-table">
     <div class="main-array-row">

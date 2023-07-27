@@ -7,7 +7,7 @@ class Consult_feedbackCreateForm(ModelForm):
         model = Consult_feedback
         fields = ('classtime', 'subjects')
         labels = {
-            'subjects': '피드백 과목',
+            'subjects': '대상 과목',
             'classtime': '수업 일자',
         }
 
@@ -35,10 +35,10 @@ class Consult_feedbackContentUpdateForm(ModelForm):
         model = Consult_feedback
         fields = ('content',)
         labels = {
-            'content': '학생 종합 분석/ 과제',
+            'content': '학생 종합 분석 및 과제',
         }
 
         widgets = {
             'content': forms.Textarea(
-                attrs={'placeholder': '분석: 학생 성적, 분석, 방향성 , 과제: 구매할 교재, 강의 등', 'class': 'textarea-wide'}),
+                attrs={'placeholder': '1 공부법 및 학습 조언 2 학생 시험, 성적 분석 3 교재 및 강의 4 기타 사항 등', 'class': 'textarea-wide'}),
         }

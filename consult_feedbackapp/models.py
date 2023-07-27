@@ -7,7 +7,7 @@ from plancoach.choice import subjectchoice
 class Consult_feedback(models.Model):
     consult = models.ForeignKey(Consult, on_delete=models.CASCADE, related_name='consult_feedback')
     subjects = MultiSelectField(max_length=100, choices=subjectchoice)
-    content = models.TextField(max_length=1000, default='학생 종합 분석 작성')
+    content = models.TextField(max_length=1000, null=True)
     classtime = models.DateField()
 
     class Meta:
