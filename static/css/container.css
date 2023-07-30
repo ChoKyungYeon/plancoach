@@ -349,9 +349,8 @@
     width:100%;
     padding:5rem var(--main-padding);
     background: var(--white);
-    z-index: -5;
-    position: relative;
 }
+
 
 .main-container-homescreen .text-emphasize-white,
 .main-container-homescreen .text-emphasize {

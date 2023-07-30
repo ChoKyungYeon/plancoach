@@ -22,7 +22,7 @@ PORTONE_API_SECRET= read_secret('PORTONE_API_SECRET')
 SENS_ACCESS_KEY= read_secret('SENS_ACCESS_KEY')
 SENS_SECRET_KEY= read_secret('SENS_SECRET_KEY')
 SENS_SERVICE_KEY= read_secret('SENS_SERVICE_KEY')
-DEBUG = True #마지막에 바꿔주기
+DEBUG = True #deploy check ,
 
 ALLOWED_HOSTS = ['*'] #모든 호스트를 허용
 

@@ -112,7 +112,7 @@ class ProfileDetailView(DetailView):
             like = Profile_like.objects.filter(student=target_user, profile=target_profile).first()
             context['like'] = like
         subjects=getattr(target_profile, 'profile_subject', None).all()
-        sats=getattr(target_profile, 'profile_sat', None).order_by('satyear').all()
+        sats=getattr(target_profile, 'profile_sat', None).order_by('-satyear').all()
         context['scholarship'] =getattr(target_profile, 'profile_scholarship', None)
         context['careers'] = getattr(target_profile, 'profile_career', None).order_by('year').all().all()
         context['sats'] = sats
