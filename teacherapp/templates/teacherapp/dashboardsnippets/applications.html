@@ -1,14 +1,24 @@
-
+<style>
+    .container-application .text-new{
+        color: var(--orange);
+        margin-left: 0.5rem;
+        font-size: var(--fontsize-content);
+        font-weight: var(--fontweight-index);
+    }
+</style>
 <div class="main-box ">
     <div class="main-array-title">
         <span class="main-text-title">컨설팅 신청</span>
     </div>
-    <a href="{% url 'teacherapp:applicationlist' pk=target_user.pk %}" class="main-container-dashboard" >
+    <a href="{% url 'teacherapp:applicationlist' pk=target_user.pk %}" class="main-container-dashboard container-application" >
             <div class="item-content" >
                 {% if applications_applied %}
                 <div class="main-array-row">
                 <span class="main-text-content text-content">미확인 신청서</span>
                 <span class="main-text-index">{{applications_applied|length}}개</span>
+                    <span class="text-new">
+                        New
+                    </span>
                 </div>
                 {% else %}
                 <span class="main-text-content text-content" >미확인 신청서가 없습니다</span>

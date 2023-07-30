@@ -11,6 +11,7 @@
 
 .container-comment .text-content{
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .container-comment  .text-before{
@@ -21,16 +22,9 @@
 }
 
 .container-comment .btn-image{
-    background: var(--darkblue);
-    padding:0.3rem 0.4rem;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: var(--fontweight-content);
-    color: var(--white);
-    display: inline-block;
-    position: relative;
-    bottom:0.1rem;
-    margin-right: 0.5rem;
+    font-weight: var(--fontweight-index);
+    font-size: var(--fontsize-content);
+    color: var(--middleblue);
 }
 </style>
 
@@ -45,9 +39,11 @@
         <span class="text-before">{{comment.created_before}}</span>
     </div>
     <span class="main-text-content text-content">
-    {% if comment.image %}
+    {{comment.content|safe|linebreaksbr}}
+    </span>
+     {% if comment.image %}
 
-    <button onclick="showcommentimage({{ forloop.counter }})" class="material-icons btn-image">photo_camera</button>
+    <button onclick="showcommentimage({{ forloop.counter }})" class=" btn-image">답변 이미지 ></button>
     <button onclick="closecommentimage({{ forloop.counter }})" id="commentimage-fullscreen{{ forloop.counter }}" class="fullscreenimage" >
     <div
             class="btn-exit material-icons">close
@@ -55,8 +51,6 @@
     <img class="fullscreenimage-image" src="{{ comment.image.url }}">
     </button>
     {% endif %}
-    {{comment.content|safe|linebreaksbr}}
-    </span>
 </div>
 
 <script>

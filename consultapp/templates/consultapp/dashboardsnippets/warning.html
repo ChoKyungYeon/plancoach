@@ -1,0 +1,36 @@
+<style>
+  .container-warning{
+    background: var(--red);
+      box-shadow: none;
+    transition: opacity 1s;
+
+  }
+  .container-warning .icon-warning{
+    color: var(--white);
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+</style>
+{% if target_consult.extend_warning and user ==  target_consult.student %}
+<a href="{% url 'paymentapp:create' pk=target_consult.pk %}" class="main-container-popup container-warning">
+    <div class="icon-warning material-icons">
+    notification_important
+    </div>
+    <span class="text-popup">{{target_consult.extend_warning}} 컨설팅이 종료됩니다</span>
+</a>
+{% endif %}
+
+<script>
+    window.onload = function() {
+        var popup = document.getElementsByClassName('main-container-popup')[0];
+        setTimeout(function() {
+            popup.style.opacity = "0";
+        }, 3000); // time until disappearing in milliseconds
+
+        setTimeout(function() {
+            popup.style.display = "none";
+        }, 4000); // time until removal from the layout
+    };
+</script>

@@ -22,12 +22,12 @@
 
 
 
-.container-consult .text-ongoing-noextend{
-    color:var(--green);
+.container-consult .text-ongoing{
+    color:var(--middleblue);
 }
 
 
-.container-consult .text-ongoing-extend{
+.container-consult .text-ongoing{
     color:var(--middleblue);
 }
 .container-consult .text-new{
@@ -44,9 +44,9 @@
         {% if consult.state == 'new'%}
         <span class="main-text-content text-new">신규 개설</span>
         {% elif consult.state == 'unextended'%}
-        <span class="main-text-content text-ongoing-noextend">{{consult.remaining_day}}</span>
+        <span class="main-text-content text-ongoing">{{consult.remaining_day}}</span>
         {% else %}
-        <span class="main-text-content text-ongoing-extend">{{consult.remaining_day}}</span>
+        <span class="main-text-content text-ongoing">{{consult.remaining_day}}</span>
         {% endif %}
 
         <span class="main-text-index interval-top">{{consult.student.userrealname}}&nbsp;학생</span>

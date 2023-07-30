@@ -1,11 +1,13 @@
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404
+
+from accountapp.models import CustomUser
 from plancoach.decorators import Decorators
 from profileapp.models import Profile
 from teacherapplyapp.models import Teacherapply
 
 
-def Profile_instanceCreateDecorater(func):
+def Profile_instanceCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(Profile, pk=kwargs['pk']))
         permission_checks = [
@@ -18,7 +20,7 @@ def Profile_instanceCreateDecorater(func):
     return decorated
 
 
-def Profile_instanceManageDecorater(func):
+def Profile_instanceManageDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, None)
         permission_checks = [
@@ -31,7 +33,7 @@ def Profile_instanceManageDecorater(func):
     return decorated
 
 
-def ProfileCreateDecorater(func):
+def ProfileCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         teacherapply = get_object_or_404(Teacherapply, pk=kwargs['pk'])
         if teacherapply.is_done == False:
@@ -46,7 +48,7 @@ def ProfileCreateDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def ProfileDeleteDecorater(func):
+def ProfileDeleteDecorator(func):
     def decorated(request, *args, **kwargs):
         teacher=get_object_or_404(Profile, pk=kwargs['pk']).teacher
         decorators=Decorators(request.user, teacher)
@@ -62,7 +64,7 @@ def ProfileDeleteDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def ProfileTuitionUpdateDecorater(func):
+def ProfileTuitionUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
         profile=get_object_or_404(Profile, pk=kwargs['pk'])
         decorators=Decorators(request.user, profile)
@@ -77,7 +79,7 @@ def ProfileTuitionUpdateDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def ProfileDetailDecorater(func):
+def ProfileDetailDecorator(func):
     def decorated(request, *args, **kwargs):
         if request.user.is_authenticated:
             decorators=Decorators(request.user,None)
@@ -85,9 +87,9 @@ def ProfileDetailDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def ProfileStateUpdateDecorater(func):
+def ProfileStateUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
-        decorators=Decorators(request.user,get_object_or_404(Profile, pk=kwargs['pk']))
+        decorators=Decorators(request.user,CustomUser.objects.get(pk=request.GET.get('user_pk')).profile)
         permission_checks = [
             decorators.member_filter(role='teacher', allow_superuser=False)
         ]

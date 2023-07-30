@@ -1,14 +1,3 @@
-{% extends "head.html" %}
-{% block og_image %}
-    {% if target_profile.profile_profileimage %}
-    {{ target_profile.profile_profileimage.image.url }}
-    {% else %}
-    {% static 'icons/user.png' %}
-    {% endif %}
-{% endblock %}
-{% block og_description %}
-    {{ target_profile.teacher.userrealname }} 선생님 컨설팅 프로필
-{% endblock %}
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}

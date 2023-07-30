@@ -6,7 +6,7 @@ from phonenumberapp.models import Phonenumber
 from plancoach.decorators import Decorators
 
 
-def AccountCreateDecorater(func):
+def AccountCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         phonenumber=get_object_or_404(Phonenumber, pk=kwargs['pk'])
         if phonenumber.is_verified == False:
@@ -17,7 +17,7 @@ def AccountCreateDecorater(func):
     return decorated
 
 
-def AccountNotificationUpdateDecorater(func):
+def AccountNotificationUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user,CustomUser.objects.get(pk=request.GET.get('user_pk')))
         permission_checks = [
@@ -30,7 +30,7 @@ def AccountNotificationUpdateDecorater(func):
     return decorated
 
 
-def AccountOwnerDecorater(func):
+def AccountOwnerDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user,get_object_or_404(CustomUser, pk=kwargs['pk']))
         permission_checks = [
@@ -42,7 +42,7 @@ def AccountOwnerDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def AccountDeleteDecorater(func):
+def AccountDeleteDecorator(func):
     def decorated(request, *args, **kwargs):
         target_user=get_object_or_404(CustomUser, pk=kwargs['pk'])
         decorators=Decorators(request.user,get_object_or_404(CustomUser, pk=kwargs['pk']))
@@ -58,7 +58,7 @@ def AccountDeleteDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def AccountGetDeleteDecorater(func):
+def AccountGetDeleteDecorator(func):
     def decorated(request, *args, **kwargs):
         target_user=get_object_or_404(CustomUser, pk=kwargs['pk'])
         decorators=Decorators(request.user,get_object_or_404(CustomUser, pk=kwargs['pk']))

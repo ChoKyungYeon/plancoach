@@ -26,18 +26,17 @@
 
 .box-plan .item-undone,
 .box-plan .item-done{
-    color: #fad047;
+    color: #8ee6c9;
     font-weight: var(--fontweight-index);
-    font-size: 1.55rem;
+    font-size:var(--fontsize-detail);
     background: var(--darkblue);
-    border:2px solid var(--gray);
-    margin-right:4%;
+    margin-right:3%;
     display: flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
     flex-shrink: 0;
     border-radius:0.5rem;
 }
@@ -50,7 +49,14 @@
 
 </style>
 <div class="box-plan">
-    {% if plan.is_done %}
+    <div class="container-plan main-container-snippets">
+        <div class="item-btn">
+         {% if user == target_consult.teacher %}
+         <a href="{% url 'feedback_planapp:update' pk=plan.pk %}" class="main-btn-edit material-icons">edit</a>
+        {% endif %}
+        </div>
+        <div class="main-array-row">
+                {% if plan.is_done %}
         {% if not user == target_consult.student %}
         <div class="item-done material-icons">check</div>
         {% elif plan.can_check_plan %}
@@ -71,13 +77,6 @@
            class="item-undone material-icons">check</div>
         {% endif %}
     {% endif %}
-    <div class="container-plan main-container-snippets">
-        <div class="item-btn">
-         {% if user == target_consult.teacher %}
-         <a href="{% url 'feedback_planapp:update' pk=plan.pk %}" class="main-btn-edit material-icons">edit</a>
-        {% endif %}
-        </div>
-        <div class="main-array-row">
             <span class="text-title">{{plan.plantime|date:"m.d"}}</span>
             <div class="text-subcontent">
             {{plan.plantime|date:"D"}}

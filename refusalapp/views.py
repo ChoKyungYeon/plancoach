@@ -14,7 +14,7 @@ from teacherapplyapp.models import Teacherapply
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(RefusalApplicationRefuseDecorater, name='dispatch')
+@method_decorator(RefusalApplicationRefuseDecorator, name='dispatch')
 class RefusalApplicationRefuseView(CreateView):
     model = Refusal
     form_class = RefusalCreateForm
@@ -40,7 +40,7 @@ class RefusalApplicationRefuseView(CreateView):
         return reverse_lazy('teacherapp:applicationlist', kwargs={'pk': self.request.user.pk})\
             
 @method_decorator(login_required, name='dispatch')
-@method_decorator(RefusalTeacherapplyRefuseDecorater, name='dispatch')
+@method_decorator(RefusalTeacherapplyRefuseDecorator, name='dispatch')
 class RefusalTeacherapplyRefuseView(CreateView):
     model = Refusal
     form_class = RefusalCreateForm

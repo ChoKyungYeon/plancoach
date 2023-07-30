@@ -1,10 +1,10 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import DetailView
+from django.views.generic import DetailView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView
 from accountapp.models import CustomUser
 from applicationapp.models import Application
@@ -19,7 +19,7 @@ from django.utils.decorators import method_decorator
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ConsultCreateDecorater, name='dispatch')
+@method_decorator(ConsultCreateDecorator, name='dispatch')
 class ConsultCreateView(CreateView):
     model = Consult
     form_class = ConsultCreateForm
@@ -56,7 +56,7 @@ class ConsultCreateView(CreateView):
         return reverse_lazy('teacherapp:applicationlist', kwargs={'pk': self.object.teacher.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ConsultInfoUpdateDecorater, name='dispatch')
+@method_decorator(ConsultInfoUpdateDecorator, name='dispatch')
 class ConsultInfoUpdateView(UpdateView):
     model = Consult
     context_object_name = 'target_consult'
@@ -67,7 +67,7 @@ class ConsultInfoUpdateView(UpdateView):
         return reverse_lazy('consultapp:dashboard', kwargs={'pk': self.object.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ConsultDashboardDecorater, name='dispatch')
+@method_decorator(ConsultDashboardDecorator, name='dispatch')
 class ConsultDashboardView(DetailView):
     model = Consult
     context_object_name = 'target_consult'
@@ -102,7 +102,7 @@ class ConsultDashboardView(DetailView):
         return context
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ConsultApplyDetailDecorater, name='dispatch')
+@method_decorator(ConsultApplyDetailDecorator, name='dispatch')
 class ConsultApplyDetailView(DetailView):
     model = Consult
     context_object_name = 'target_consult'
@@ -110,7 +110,7 @@ class ConsultApplyDetailView(DetailView):
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ConsultPaymentListDecorater, name='dispatch')
+@method_decorator(ConsultPaymentListDecorator, name='dispatch')
 class ConsultPaymentListView(DetailView):
     model = Consult
     context_object_name = 'target_consult'
@@ -120,3 +120,7 @@ class ConsultPaymentListView(DetailView):
         context = super().get_context_data(**kwargs)
         context['payments'] = Payment.objects.filter(consult=self.object, is_paid_ok=True).order_by('-created_at')
         return context
+
+@method_decorator(login_required, name='dispatch')
+class ConsultExpireView(TemplateView):
+    template_name = 'consultapp/expire.html'

@@ -4,11 +4,12 @@ from accountapp.models import CustomUser
 from plancoach.decorators import Decorators
 
 
-def StudentDashboardDecorater(func):
+def StudentDashboardDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user,get_object_or_404(CustomUser, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
+            decorators.step_filter(allow_teacher=[], allow_student='all', allow_superuser=False),
             decorators.owner_filter( allow_superuser=False)
         ]
         for check in permission_checks:
@@ -17,10 +18,11 @@ def StudentDashboardDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def StudentRefundListDecorater(func):
+def StudentRefundListDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user,get_object_or_404(CustomUser, pk=kwargs['pk']))
         permission_checks = [
+            decorators.step_filter(allow_teacher=[], allow_student='all', allow_superuser=False),
             decorators.owner_filter(allow_superuser=False)
         ]
         for check in permission_checks:

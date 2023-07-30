@@ -2,7 +2,7 @@ from plancoach.decorators import Decorators
 from profile_likeapp.models import Profile_like
 
 
-def Profile_likeDecorater(func):
+def Profile_likeDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, None)
         permission_checks = [

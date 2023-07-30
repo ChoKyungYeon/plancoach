@@ -2,12 +2,16 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404
 
 from consultapp.models import Consult
-from plancoach.decorators import Decorators
+from plancoach.decorators import *
 from refundapp.models import Refund
 
 
-def RefundCreateDecorater(func):
+def RefundCreateDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         consult = get_object_or_404(Consult, pk=kwargs['pk'])
         if consult.can_refund() == False:
             return HttpResponseForbidden()
@@ -21,11 +25,18 @@ def RefundCreateDecorater(func):
             if check is not None:
                 return check
 
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
         return func(request, *args, **kwargs)
     return decorated
 
-def RefundGuideDecorater(func):
+def RefundGuideDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         consult=get_object_or_404(Consult, pk=kwargs['pk'])
         if consult.can_refund() == False:
             return HttpResponseForbidden()
@@ -38,10 +49,14 @@ def RefundGuideDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 
-def RefundStateUpdateDecorater(func):
+def RefundStateUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
         refund = Refund.objects.get(pk=request.GET.get('refund_pk'))
         if refund.is_given == True:
@@ -53,14 +68,17 @@ def RefundStateUpdateDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+
         return func(request, *args, **kwargs)
     return decorated
 
 
-def RefundDetailDecorater(func):
+def RefundDetailDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(Refund, pk=kwargs['pk']))
+        print(get_object_or_404(Refund, pk=kwargs['pk']).student)
         permission_checks = [
+
             decorators.member_filter(role='student', allow_superuser=False),
         ]
         for check in permission_checks:
@@ -69,7 +87,7 @@ def RefundDetailDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def RefundPayDecorater(func):
+def RefundPayDecorator(func):
     def decorated(request, *args, **kwargs):
         refund = get_object_or_404(Refund, pk=kwargs['pk'])
         if refund.is_given == True:

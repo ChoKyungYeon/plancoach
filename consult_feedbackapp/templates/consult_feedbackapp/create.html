@@ -12,7 +12,7 @@
 <header class="header-black">
     {% url 'consult_feedbackapp:list' pk=target_consult.pk as url %}
     {% include 'headersnippets/navback.html' with url=url %}    
-    {% with title="수업 등록" %}
+    {% with title="수업 추가" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
 </header>
@@ -22,7 +22,7 @@
         <div class="main-container-form">
             <form action="{% url 'consult_feedbackapp:create' pk=target_consult.pk %}" method="post">
                 {% csrf_token %}{% bootstrap_form form %}
-                <input type="submit" class="btn-submit" value="수업 등록">
+                <input type="submit" class="btn-submit" value="수업 추가">
             </form>
         </div>
     </div>

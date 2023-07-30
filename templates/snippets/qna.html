@@ -29,8 +29,8 @@
     color: var(--orange);
 }
 .container-qna .text-qnacontent{
-    margin-bottom:0.5rem;
-    margin-top:0.5rem;
+    margin-bottom:0.7rem;
+    margin-top:0.7rem;
 }
 
 
@@ -60,7 +60,7 @@
 
     </div>
     <span class="main-text-content text-qnacontent">
-        {{ qna.content|truncatechars:55 }}
+        {{ qna.content|truncatechars:65 }}
     </span>
     <div class=" main-array-row" style="justify-content: space-between">
         {% if qna.is_answered %}

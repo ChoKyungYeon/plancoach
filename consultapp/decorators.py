@@ -3,11 +3,15 @@ from django.shortcuts import get_object_or_404
 from accountapp.models import CustomUser
 from applicationapp.models import Application
 from consultapp.models import Consult
-from plancoach.decorators import Decorators
+from plancoach.decorators import *
 
 
-def ConsultCreateDecorater(func):
+def ConsultCreateDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Application, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -17,11 +21,20 @@ def ConsultCreateDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+
+        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 
-def ConsultInfoUpdateDecorater(func):
+def ConsultInfoUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Consult, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -32,10 +45,19 @@ def ConsultInfoUpdateDecorater(func):
             if check is not None:
                 return check
         return func(request, *args, **kwargs)
+
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
     return decorated
 
-def ConsultDashboardDecorater(func):
+def ConsultDashboardDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Consult, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -45,11 +67,20 @@ def ConsultDashboardDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 
-def ConsultApplyDetailDecorater(func):
+def ConsultApplyDetailDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Consult, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -59,12 +90,20 @@ def ConsultApplyDetailDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 
 
-def ConsultPaymentListDecorater(func):
+def ConsultPaymentListDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Consult, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -74,6 +113,10 @@ def ConsultPaymentListDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 

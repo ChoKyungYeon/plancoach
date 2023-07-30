@@ -15,7 +15,7 @@ from plancoach.sms import Send_SMS
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ApplicationCreateDecorater, name='dispatch')
+@method_decorator(ApplicationCreateDecorator, name='dispatch')
 class ApplicationCreateView(CreateView):
     model = Application
     form_class = ApplicationCreateForm
@@ -47,7 +47,7 @@ class ApplicationCreateView(CreateView):
         return reverse_lazy('applicationapp:result')
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ApplicationDeleteDecorater, name='dispatch')
+@method_decorator(ApplicationDeleteDecorator, name='dispatch')
 class ApplicationDeleteView(DeleteView):
     model = Application
     context_object_name = 'target_application'
@@ -60,7 +60,7 @@ class ApplicationDeleteView(DeleteView):
             return reverse_lazy('studentapp:dashboard', kwargs={'pk': self.object.student.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ApplicationUpdateDecorater, name='dispatch')
+@method_decorator(ApplicationUpdateDecorator, name='dispatch')
 class ApplicationUpdateView(UpdateView):
     model = Application
     form_class = ApplicationCreateForm
@@ -71,7 +71,7 @@ class ApplicationUpdateView(UpdateView):
         return reverse_lazy('applicationapp:detail', kwargs={'pk': self.object.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ApplicationDetailDecorater, name='dispatch')
+@method_decorator(ApplicationDetailDecorator, name='dispatch')
 class ApplicationDetailView(DetailView):
     model = Application
     context_object_name = 'target_application'
@@ -83,7 +83,7 @@ class ApplicationDetailView(DetailView):
         return context
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ApplicationStateUpdateDecorater, name='dispatch')
+@method_decorator(ApplicationStateUpdateDecorator, name='dispatch')
 class ApplicationStateUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         application = Application.objects.get(pk=self.request.GET.get('application_pk'))
@@ -94,6 +94,7 @@ class ApplicationStateUpdateView(RedirectView):
         student = application.student
         with transaction.atomic():
             # application 상태 변경
+            print(application.state)
             application.state = 'matching'
             application.updated_at = datetime.now()
             application.save()
@@ -103,7 +104,7 @@ class ApplicationStateUpdateView(RedirectView):
             return super(ApplicationStateUpdateView, self).get(request, *args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ApplicationGuideDecorater, name='dispatch')
+@method_decorator(ApplicationGuideDecorator, name='dispatch')
 class ApplicationGuideView(DetailView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -111,7 +112,10 @@ class ApplicationGuideView(DetailView):
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ApplicationResultDecorater, name='dispatch')
+@method_decorator(ApplicationResultDecorator, name='dispatch')
 class ApplicationResultView(TemplateView):
-    model = CustomUser
     template_name = 'applicationapp/result.html'
+
+@method_decorator(login_required, name='dispatch')
+class ApplicationExpireView(TemplateView):
+    template_name = 'applicationapp/expire.html'

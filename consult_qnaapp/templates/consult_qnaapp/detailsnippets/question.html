@@ -14,6 +14,7 @@
         font-weight: var(--fontweight-content);
         color: #454854;
         margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
     }
 
     .container-quesiton .text-title {
@@ -22,42 +23,26 @@
         font-weight: var(--fontweight-emphasize);
     }
 
-    .container-quesiton .item-question {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        margin-left: auto;
-    }
 
     .container-quesiton .btn-image {
-        background: var(--darkblue);
-        padding: 0.3rem 0.4rem;
-        border-radius: 0.5rem;
-        font-size: 1.1rem;
-        font-weight: var(--fontweight-content);
-        color: var(--white);
-        display: inline-block;
-        margin-right: 0.5rem;
-        position: relative;
-        bottom: 0.1rem;
+        font-size: var(--fontsize-index);
+        font-weight: var(--fontweight-index);
+        color: var(--middleblue);
     }
 </style>
 
 <div class="container-quesiton">
     <span class="text-title">
-    {% if target_qna.image %}
-    <button onclick="showquestionimage()" class="material-icons btn-image">photo_camera</button>
-    <button onclick="closequestionimage()" id="questionimage-fullscreen" class="fullscreenimage">
-    <div
-            class="btn-exit material-icons">close
-    </div>
-    <img class="fullscreenimage-image" src="{{ target_qna.image.url }}">
-    </button>
-    {% endif %}
     {{target_qna.title}}
     </span>
     <span class="text-question">{{target_qna.content|safe|linebreaksbr}}</span>
+    {% if target_qna.image %}
+    <button onclick="showquestionimage()" class="btn-image">질문 이미지 ></button>
+    <button onclick="closequestionimage()" id="questionimage-fullscreen" class="fullscreenimage">
+        <div class="btn-exit material-icons">close </div>
+        <img class="fullscreenimage-image" src="{{ target_qna.image.url }}">
+    </button>
+    {% endif %}
 </div>
 
 <script>

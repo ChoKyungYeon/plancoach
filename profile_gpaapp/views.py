@@ -6,13 +6,13 @@ from django.views.generic import CreateView, DeleteView, UpdateView
 from profile_gpaapp.decorators import *
 from profile_gpaapp.forms import Profile_gpaCreateForm
 from profile_gpaapp.models import Profile_gpa
-from profileapp.decorators import Profile_instanceCreateDecorater
+from profileapp.decorators import Profile_instanceCreateDecorator
 from profileapp.models import Profile
 from django.utils.decorators import method_decorator
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Profile_instanceCreateDecorater, name='dispatch')
+@method_decorator(Profile_instanceCreateDecorator, name='dispatch')
 class Profile_gpaCreateView(CreateView):
     model = Profile_gpa
     form_class = Profile_gpaCreateForm
@@ -34,7 +34,7 @@ class Profile_gpaCreateView(CreateView):
         return reverse_lazy('profileapp:detail', kwargs={'pk': self.kwargs['pk']})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Profile_gpaEditDecorater, name='dispatch')
+@method_decorator(Profile_gpaEditDecorator, name='dispatch')
 class Profile_gpaDeleteView(DeleteView):
     model = Profile_gpa
     context_object_name = 'target_profile_gpa'
@@ -43,7 +43,7 @@ class Profile_gpaDeleteView(DeleteView):
         return reverse_lazy('profileapp:detail', kwargs={'pk': self.object.profile.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Profile_gpaEditDecorater, name='dispatch')
+@method_decorator(Profile_gpaEditDecorator, name='dispatch')
 class Profile_gpaUpdateView(UpdateView):
     model = Profile_gpa
     form_class = Profile_gpaCreateForm

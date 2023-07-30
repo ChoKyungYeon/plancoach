@@ -5,7 +5,7 @@ from plancoach.decorators import Decorators
 from profile_scholarshipapp.models import Profile_scholarship
 
 
-def Profile_scholarshipEditDecorater(func):
+def Profile_scholarshipEditDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(Profile_scholarship, pk=kwargs['pk']).profile)
         permission_checks = [

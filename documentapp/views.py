@@ -8,7 +8,7 @@ from documentapp.models import Document
 from django.views.generic import UpdateView, CreateView
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(DocumentCreateDecorater, name='dispatch')
+@method_decorator(DocumentCreateDecorator, name='dispatch')
 class DocumentCreateView(CreateView):
     model = Document
     form_class = DocumentCreateForm
@@ -17,7 +17,7 @@ class DocumentCreateView(CreateView):
         return reverse_lazy('superuserapp:dashboard')
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(DocumentCreateDecorater, name='dispatch')
+@method_decorator(DocumentCreateDecorator, name='dispatch')
 class DocumentUpdateView(UpdateView):
     model = Document
     form_class = DocumentCreateForm

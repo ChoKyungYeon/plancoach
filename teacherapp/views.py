@@ -10,7 +10,7 @@ from teacherapp.decorators import *
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(TeacherDashboardDecorater, name='dispatch')
+@method_decorator(TeacherDashboardDecorator, name='dispatch')
 class TeacherDashboardView(DetailView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -36,7 +36,7 @@ class TeacherDashboardView(DetailView):
         return context
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(TeacherDashboardDecorater, name='dispatch')
+@method_decorator(TeacherDashboardDecorator, name='dispatch')
 class TeacherSalaryListView(DetailView):
     model = CustomUser
     template_name = 'teacherapp/salarylist.html'
@@ -48,7 +48,7 @@ class TeacherSalaryListView(DetailView):
         return context
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(TeacherDashboardDecorater, name='dispatch')
+@method_decorator(TeacherDashboardDecorator, name='dispatch')
 class TeacherApplicationListView(DetailView):
     model = CustomUser
     context_object_name = 'target_user'

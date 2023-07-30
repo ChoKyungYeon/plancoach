@@ -1,7 +1,6 @@
 from django.db import models, transaction
 from accountapp.models import CustomUser
 from plancoach.choice import schoolyearchoice, accepttypechoice, bankchoice, consulttypechoice, schoolchoice
-from plancoach.utils import create_refusal
 from plancoach.variables import bankdictionary
 from multiselectfield import MultiSelectField
 

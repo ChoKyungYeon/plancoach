@@ -10,7 +10,7 @@
     --whitegray:#eaeaf1;
     --orange:#ea9143;
     --darkblue:#394065;
-    --middleblue:#3549ac;
+    --middleblue:#43529d;
     --red:#e96563;
     --green:#4aa184;
     --lightblue:#d6ddff;
@@ -34,10 +34,11 @@
     --shadow-itembox-info:0px 0px 4px #bdc1d6;
     --shadow-btn:0px 3px 10px #bdc1d6;
 
-    --main-padding:7.5%;
+    --main-padding:7%;
     --main-padding-snippet:9%;
     --header-padding:6%;
     --content-padding:7%;
+    --footer-padding:20%;
 
     --header-height:5.4rem;
     --body-minheight:calc(100vh - var(--header-height));
@@ -64,6 +65,7 @@
     --main-padding:26%;
     --main-padding-snippet:26%;
     --header-padding:25%;
+    --footer-padding:31%;
   }
 }
 
@@ -72,6 +74,7 @@
     --main-padding:34%;
     --main-padding-snippet:34%;
     --header-padding:33%;
+    --footer-padding:37%;
   }
 }
 

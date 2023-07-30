@@ -11,7 +11,7 @@ class Consult_classlink(models.Model):
     consult = models.OneToOneField(Consult, on_delete=models.CASCADE, related_name='consult_classlink')
     weekdate = models.CharField(max_length=20, choices=weekdatechoice)
     classtime = models.CharField(max_length=10)
-    link = models.TextField(max_length=100)
+    link = models.TextField(max_length=100, null=True,blank=True)
 
     def weekdate_left(self):
         today = datetime.now().date().strftime('%A')

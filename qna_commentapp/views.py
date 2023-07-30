@@ -12,7 +12,7 @@ from django.utils.decorators import method_decorator
 # Create your views here.
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Qna_commentCreateDecorater, name='dispatch')
+@method_decorator(Qna_commentCreateDecorator, name='dispatch')
 class Qna_commentCreateView(CreateView):
     model = Qna_comment
     form_class = Qna_commentCreateForm
@@ -42,7 +42,7 @@ class Qna_commentCreateView(CreateView):
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Qna_commentUpdateDecorater, name='dispatch')
+@method_decorator(Qna_commentUpdateDecorator, name='dispatch')
 class Qna_commentUpdateView(UpdateView):
     model = Qna_comment
     form_class = Qna_commentCreateForm

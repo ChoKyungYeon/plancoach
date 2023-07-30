@@ -4,7 +4,7 @@ from accountapp.models import CustomUser
 from applicationapp.models import Application
 from plancoach.decorators import *
 
-def ApplicationCreateDecorater(func):
+def ApplicationCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(CustomUser, pk=kwargs['pk']).profile)
         decorators.request_user_update()
@@ -18,8 +18,12 @@ def ApplicationCreateDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def ApplicationDeleteDecorater(func):
+def ApplicationDeleteDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Application, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -29,15 +33,18 @@ def ApplicationDeleteDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        try:
-            get_object_or_404(Application, pk=kwargs['pk'])
-        except:
-            return redirect('studentapp:dashboard', pk=request.user.pk)
+        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        if redirect:
+            return redirect
         return func(request, *args, **kwargs)
     return decorated
 
-def ApplicationUpdateDecorater(func):
+def ApplicationUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user,get_object_or_404(Application, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -47,16 +54,20 @@ def ApplicationUpdateDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        try:
-            get_object_or_404(Application, pk=kwargs['pk'])
-        except:
-            return redirect('studentapp:dashboard', pk=request.user.pk)
+        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 
 
-def ApplicationDetailDecorater(func):
+def ApplicationDetailDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user,get_object_or_404(Application, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -66,15 +77,18 @@ def ApplicationDetailDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        try:
-            get_object_or_404(Application, pk=kwargs['pk'])
-        except:
-            return redirect('studentapp:dashboard', pk=request.user.pk)
+        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 
-def ApplicationStateUpdateDecorater(func):
+def ApplicationStateUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user,request.GET.get('application_pk'), Application, 'application')
+        if redirect:
+            return redirect
         decorators=Decorators(request.user, Application.objects.get(pk=request.GET.get('application_pk')))
         decorators.update()
         permission_checks = [
@@ -84,14 +98,14 @@ def ApplicationStateUpdateDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        try:
-            get_object_or_404(Application, pk=kwargs['pk'])
-        except:
-            return redirect('teacherapp:applicationlist', pk=request.user.pk)
+
+        redirect = expire_redirector(request.user,request.GET.get('application_pk'), Application, 'application')
+        if redirect:
+            return redirect
         return func(request, *args, **kwargs)
     return decorated
 
-def ApplicationGuideDecorater(func):
+def ApplicationGuideDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators = Decorators(request.user, get_object_or_404(CustomUser, pk=kwargs['pk']).profile)
         decorators.request_user_update()
@@ -105,7 +119,7 @@ def ApplicationGuideDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def ApplicationResultDecorater(func):
+def ApplicationResultDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators = Decorators(request.user, None)
         decorators.request_user_update()

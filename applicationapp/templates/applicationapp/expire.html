@@ -1,0 +1,40 @@
+
+{% extends 'base_noback.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<style>
+.main-container-guide .text-emphasize,
+.main-container-guide .link-nav{
+    color:var(--red);
+}
+</style>
+
+<header class="header-white">
+</header>
+
+
+<main class="main-guide" >
+    <div class="main-container-guide" >
+        <div class="item-title" >
+            <span class="material-icons icon-disabled">hourglass_bottom</span>
+            <div class="text-emphasize">존재하지 않는 </div>
+            <span class="text-title">신청서입니다.</span>
+        </div>
+        <div class="item-content">
+            요청하신 신청서가 만료되었거나 존재하지 않습니다.
+        {% if user.state == 'student' %}
+            <a href="{% url 'studentapp:dashboard' pk=user.pk %}" class="link-nav">내 대시보드 ></a>
+            {% elif user.state == 'teacher' %}
+            <a href="{% url 'teacherapp:applicationlist' pk=user.pk %}" class="link-nav">신청서 목록 ></a>
+            {% else %}
+            <a href="{% url 'superuserapp:dashboard'%}" class="link-nav">내 대시보드 ></a>
+            {% endif %}
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+
+
+

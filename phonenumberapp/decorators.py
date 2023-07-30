@@ -5,7 +5,7 @@ from phonenumberapp.models import Phonenumber
 from plancoach.decorators import Decorators
 
 
-def PhonenumberCreateDecorater(func):
+def PhonenumberCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, None)
         decorators.phonenumber_update()
@@ -13,7 +13,7 @@ def PhonenumberCreateDecorater(func):
     return decorated
 
 
-def PhonenumberVerifyDecorater(func):
+def PhonenumberVerifyDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, None)
         decorators.phonenumber_update()

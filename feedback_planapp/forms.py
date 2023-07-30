@@ -7,7 +7,7 @@ class Feedback_planUpdateForm(ModelForm):
         model = Feedback_plan
         fields = ('content',)
         labels = {
-            'content': '학습 플랜',
+            'content': '학습 계획 작성',
         }
 
         widgets = {

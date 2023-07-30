@@ -43,7 +43,7 @@ class Decorators:
             created_interval=datetime.now() - consult.created_at
             if target_state == 'new' and created_interval > timedelta(minutes=10): #hour 48
                 create_refusal(consult, '기간 내 입금이 완료되지 않았습니다.','matching')
-            elif target_state == 'unextended' and extenddate <= today:
+            elif target_state == 'unextended' and extenddate <= today: # extenddate <= today
                 create_refusal(consult, None,'consult')
             elif target_state == 'extended':
                 if extend_enddate < today:
@@ -96,6 +96,8 @@ class Decorators:
 
 
     def member_filter(self, role, allow_superuser):
+        if not self.obj:
+            return HttpResponseForbidden()
         if not (allow_superuser and self.user.state == 'superuser'):
             if role == 'customuser' and self.user != self.obj.customuser:
                 return HttpResponseForbidden()
@@ -111,3 +113,18 @@ class Decorators:
             if not self.user == self.obj:
                 return HttpResponseForbidden()
 
+    def owner_filter(self, allow_superuser):
+        if not (allow_superuser and self.user.state == 'superuser'):
+            if not self.user == self.obj:
+                return HttpResponseForbidden()
+
+def expire_redirector(user, pk, model, type):
+    redirect_dict = {
+        'application': 'applicationapp:expire',
+        'consult': 'consultapp:expire'
+    }
+    try:
+        get_object_or_404(model, pk=pk)
+        return None
+    except:
+        return redirect(redirect_dict[type]) if type in redirect_dict else None

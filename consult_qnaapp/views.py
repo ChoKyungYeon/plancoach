@@ -12,7 +12,7 @@ from consultapp.models import Consult
 from qna_likeapp.models import Qna_like
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Consult_qnaCreateDecorater, name='dispatch')
+@method_decorator(Consult_qnaCreateDecorator, name='dispatch')
 class Consult_qnaCreateView(CreateView):
     model = Consult_qna
     form_class = Consult_qnaCreateForm
@@ -37,7 +37,7 @@ class Consult_qnaCreateView(CreateView):
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Consult_qnaListDecorater, name='dispatch')
+@method_decorator(Consult_qnaListDecorator, name='dispatch')
 class Consult_qnaListView(DetailView):
     model = Consult
     context_object_name = 'target_consult'
@@ -64,7 +64,7 @@ class Consult_qnaListView(DetailView):
         return context
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Consult_qnaUpdateDecorater, name='dispatch')
+@method_decorator(Consult_qnaUpdateDecorator, name='dispatch')
 class Consult_qnaUpdateView(UpdateView):
     model = Consult_qna
     form_class = Consult_qnaCreateForm
@@ -75,7 +75,7 @@ class Consult_qnaUpdateView(UpdateView):
         return reverse_lazy('consult_qnaapp:detail', kwargs={'pk': self.object.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Consult_qnaDetailDecorater, name='dispatch')
+@method_decorator(Consult_qnaDetailDecorator, name='dispatch')
 class Consult_qnaDetailView(DetailView):
     model = Consult_qna
     context_object_name = 'target_consult_qna'

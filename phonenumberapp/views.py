@@ -1,3 +1,5 @@
+import random
+
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import HttpResponseRedirect
@@ -13,7 +15,7 @@ from phonenumberapp.models import Phonenumber
 from django.contrib.auth import get_user_model
 from django.utils.decorators import method_decorator
 
-@method_decorator(PhonenumberCreateDecorater, name='dispatch')
+@method_decorator(PhonenumberCreateDecorator, name='dispatch')
 class PhonenumberCreateMixin(CreateView):
     model = Phonenumber
     form_class = PhonenumberCreateForm
@@ -28,7 +30,7 @@ class PhonenumberCreateMixin(CreateView):
                 form.add_error('phonenumber', self.error_message)
                 return self.form_invalid(form)
 
-            form.instance.verification_code='111111'#deploy check random.randint(100000, 999999)
+            form.instance.verification_code=random.randint(100000, 999999) #deploy check '111111'
             form.instance.save()
             to = form.instance.phonenumber
             content = f'{self.sms_message} {form.instance.verification_code}를 입력하세요'
@@ -74,7 +76,7 @@ class PhonenumberSearchCreateView(PhonenumberCreateMixin):
     def condition(self, phonenumber, usernames):
         return phonenumber not in usernames
 
-@method_decorator(PhonenumberVerifyDecorater, name='dispatch')
+@method_decorator(PhonenumberVerifyDecorator, name='dispatch')
 class PhonenumberVerifyMixin(FormView):
     model = Phonenumber
     form_class = PhoneNumberVerifyForm

@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<style>
+    .container-guide {
+        flex-direction: column;
+    }
+
+    .container-guide .text-title {
+        font-weight: var(--fontweight-index);
+        color: var(--red);
+        font-size: 1.6rem;
+    }
+
+    .container-guide .text-message {
+        color: var(--gray);
+        font-weight: var(--fontweight-content);
+        font-size: var(--fontsize-index);
+    }
+
+    .container-guide .text-emphasize {
+        font-size: var(--fontsize-index);
+        font-weight: var(--fontweight-index);
+        color: var(--black);
+    }
+
+    .container-guide .icon-warning {
+        font-size: 1.7rem;
+        font-weight: 400;
+        color: var(--red);
+        margin-right: 1rem;
+        margin-top: 0.5rem;
+    }
+    .container-guide .interval-message {
+        margin-top: 3rem;
+        align-items: flex-start;
+    }
+
+    .container-guide .btn-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        background: var(--color-btn-submit);
+        color: var(--white);
+        margin-top: 3.5rem;
+        height: 4.5rem;
+        font-size: 1.4rem;
+        border-radius: 1rem;
+        border: none;
+        box-shadow: var(--shadow-btn);
+        font-weight: var(--fontweight-content);
+    }
+</style>
+
+
+<header class="header-white">
+    {% url 'studentapp:dashboard' pk=target_consult.student.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
+</header>
+
+<main class="main-guide homescreen-refund ">
+    <div class="main-container-etc container-guide">
+        <span class="text-title">
+            주의 사항을 꼭 확인하세요!
+        </span>
+ <div class="main-array-row interval-message">
+            <div class="material-icons icon-warning">error</div>
+            <div class="text-message">
+                학습 컨설팅이란, 1) 24시간
+                <span class="text-emphasize">질문 답변</span>
+                , 2) 주 1회
+                <span class="text-emphasize">비대면 수업</span>
+                , 3) 각 수업에 진행하는
+                <span class="text-emphasize">학습 코칭, 학습 플랜 작성</span>
+                을 포괄하는 개념입니다.
+            </div>
+        </div>
+        <div class="main-array-row interval-message">
+            <div class="material-icons icon-warning">error</div>
+            <div class="text-message">
+                학습 컨설팅은
+                <span class="text-emphasize">결제일을</span>
+                기준으로
+                <span class="text-emphasize">28일간</span>
+                진행되며, 즉시
+                <span class="text-emphasize">질문 답변</span>이 가능합니다.
+            </div>
+        </div>
+        <div class="main-array-row interval-message">
+            <div class="material-icons icon-warning">error</div>
+            <div class="text-message">
+                비대면 수업은
+                <span class="text-emphasize">결제 당일</span>이 아닌, 선생님과 일정 조율 이후 1주일 내로 시작하는 것에 유의하세요.
+            </div>
+        </div>
+        <div class="main-array-row interval-message">
+            <div class="material-icons icon-warning">error</div>
+            <div class="text-message">
+                수업 진행 이후 수업 연장을 원하시는 경우,
+                <span class="text-emphasize">컨설팅 대시보드</span>에서 진행할 수 있습니다.
+            </div>
+        </div>
+        <a href="{% url 'paymentapp:create' pk=target_consult.pk %}" class="btn-nav">확인했습니다</a>
+    </div>
+</main>
+
+
+{% endblock %}

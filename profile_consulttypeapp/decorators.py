@@ -4,7 +4,7 @@ from plancoach.decorators import Decorators
 from profile_consulttypeapp.models import Profile_consulttype
 
 
-def Profile_consulttypeEditDecorater(func):
+def Profile_consulttypeEditDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(Profile_consulttype, pk=kwargs['pk']).profile)
         permission_checks = [

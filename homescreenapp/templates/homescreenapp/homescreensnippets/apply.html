@@ -1,28 +1,23 @@
 <style>
     .container-apply {
         background: linear-gradient(135deg,
-        #4e5165,#1d2134,#1d2134,#4e5165);
+        #4e5165, #1d2134, #1d2134, #4e5165);
         box-shadow: 0 0 2px #303550;
         position: relative;
+        align-items: center;
     }
 
-    .container-apply .text-class {
-        font-weight: var(--fontweight-content);
-        color: var(--white);
-    }
 
     .container-apply .btn-apply {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        font-size: 1.4rem;
-        color: var(--black);
-        font-weight: var(--fontweight-title);
-        padding: 1rem 4rem;
-        margin-top: 2rem;
-        border-radius: 1rem;
+        padding: 1rem 1.5rem;
         background: var(--white);
+        border-radius: 0.5rem;
+        width: 70%;
+        margin-top: 2rem;
     }
 </style>
 
@@ -35,25 +30,31 @@
 {% else %}
 <a href="{% url 'studentapp:dashboard' pk=user.pk %}" class="main-container-homescreen container-apply">
 {% endif %}
-    {% if request.user.state == 'teacher' or request.user.state == 'superuser' or request.user.student_step == 'ongoing' %}
-    <div class="text-index text-class">
-        컨설팅 매칭 또는 진행 중이신가요?
+{% if request.user.state == 'teacher' or request.user.state == 'superuser' or request.user.student_step == 'ongoing' %}
+    <div class="text-title-white">
+        <span class="text-emphasize-white">매칭 또는 진행 </span>
+        중이신가요?
     </div>
-    <div class="text-index text-class">
-        현재 내 컨설팅 현황을 확인하세요
+    <div class="text-title-white">
+        현재 내
+        <span class="text-emphasize-white">컨설팅 현황</span>을
+        확인하세요
     </div>
     <div class="btn-apply">
-        내 컨설팅 현황 확인 >
+        <span class="text-btn">내 컨설팅 현황 확인 ></span>
     </div>
     {% else %}
-    <div class="text-index text-class">
-        아직 혼자 공부하시나요?
+    <div class="text-title-white">
+        아직
+        <span class="text-emphasize-white">혼자</span> 공부하시나요?
     </div>
-    <div class="text-index text-class">
-        지금 바로 컨설팅을 신청해보세요
+    <div class="text-title-white">
+        지금 바로
+        <span class="text-emphasize-white">학습 컨설팅</span>을
+        신청해보세요
     </div>
     <div class="btn-apply">
-        컨설팅 신청하러 가기 >
+        <span class="text-btn">컨설팅 신청하러 가기 ></span>
     </div>
-{% endif %}
+    {% endif %}
 </a>

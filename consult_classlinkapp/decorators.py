@@ -2,11 +2,15 @@ from django.shortcuts import get_object_or_404
 
 from consult_classlinkapp.models import Consult_classlink
 from consultapp.models import Consult
-from plancoach.decorators import Decorators
+from plancoach.decorators import *
 
 
-def Consult_classlinkCreateDecorater(func):
+def Consult_classlinkCreateDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Consult, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -16,11 +20,18 @@ def Consult_classlinkCreateDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 
-def Consult_classlinkUpdateDecorater(func):
+def Consult_classlinkUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult_classlink, 'consult')
+        if redirect:
+            return redirect
         decorators=Decorators(request.user, get_object_or_404(Consult_classlink, pk=kwargs['pk']).consult)
         decorators.update()
         permission_checks = [
@@ -30,5 +41,8 @@ def Consult_classlinkUpdateDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult_classlink, 'consult')
+        if redirect:
+            return redirect
         return func(request, *args, **kwargs)
     return decorated

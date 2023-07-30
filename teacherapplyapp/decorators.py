@@ -6,7 +6,7 @@ from plancoach.decorators import Decorators
 from teacherapplyapp.models import Teacherapply
 
 
-def TeacherapplySchoolimageCreateDecorater(func):
+def TeacherapplySchoolimageCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(CustomUser, pk=kwargs['pk']))
         decorators.update()
@@ -20,7 +20,7 @@ def TeacherapplySchoolimageCreateDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def TeacherapplyUserimageCreateDecorater(func):
+def TeacherapplyUserimageCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         teacherapply=get_object_or_404(Teacherapply, pk=kwargs['pk'])
         if teacherapply.has_userimage == True:
@@ -37,7 +37,7 @@ def TeacherapplyUserimageCreateDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def TeacherapplyBankCreateDecorater(func):
+def TeacherapplyBankCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         teacherapply=get_object_or_404(Teacherapply, pk=kwargs['pk'])
         if teacherapply.has_userimage != True or teacherapply.has_bank == True:
@@ -54,7 +54,7 @@ def TeacherapplyBankCreateDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def TeacherapplyInfoCreateDecorater(func):
+def TeacherapplyInfoCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         teacherapply=get_object_or_404(Teacherapply, pk=kwargs['pk'])
         if teacherapply.has_bank != True or teacherapply.is_done == True:
@@ -71,7 +71,7 @@ def TeacherapplyInfoCreateDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def TeacherapplyGuideDecorater(func):
+def TeacherapplyGuideDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(CustomUser, pk=kwargs['pk']))
         decorators.update()
@@ -85,7 +85,7 @@ def TeacherapplyGuideDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def TeacherapplyDetailDecorater(func):
+def TeacherapplyDetailDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(Teacherapply, pk=kwargs['pk']).customuser)
         decorators.update()
@@ -99,7 +99,7 @@ def TeacherapplyDetailDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def TeacherapplyRegisterDecorater(func):
+def TeacherapplyRegisterDecorator(func):
     def decorated(request, *args, **kwargs):
         teacherapply=get_object_or_404(Teacherapply, pk=kwargs['pk'])
         if teacherapply.is_done != True:
@@ -114,7 +114,7 @@ def TeacherapplyRegisterDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def TeacherapplyDeleteDecorater(func):
+def TeacherapplyDeleteDecorator(func):
     def decorated(request, *args, **kwargs):
         teacherapply=get_object_or_404(Teacherapply, pk=kwargs['pk'])
         if teacherapply.is_done != True:

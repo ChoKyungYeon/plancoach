@@ -4,8 +4,8 @@
 
 <header class="header-black">
     {% url 'consult_feedbackapp:plandetail' pk=target_feedback_plan.consult_feedback.pk as url %}
-    {% include 'headersnippets/navback.html' with url=url %}    
-    {% with title="플랜 수정/작성" %}
+    {% include 'headersnippets/navback.html' with url=url %}
+    {% with title=target_feedback_plan.plantime|date:"m.d"|add:" 플랜" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
 </header>

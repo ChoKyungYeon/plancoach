@@ -31,7 +31,7 @@
     flex-direction:row;
     justify-content:center;
     align-items: center;
-    height:4rem;
+    height:3.5rem;
     width:20%;
 }
 
@@ -188,7 +188,7 @@
             신규 수업이 개설되고 3일 내로 수업료를 입금하면 수업이 시작됩니다!.
             {% if step == "new" %}
             &nbsp;
-            <a href="{% url 'paymentapp:create' pk=user.consult_student.pk %}" class="link-nav">
+            <a href="{% url 'paymentapp:guide' pk=user.consult_student.pk %}" class="link-nav">
             수업료 입금 >
             </a>
             {% endif %}

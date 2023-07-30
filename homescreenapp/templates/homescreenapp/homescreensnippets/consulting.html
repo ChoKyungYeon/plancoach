@@ -1,93 +1,223 @@
 <style>
     .container-consulting {
-        background: linear-gradient(30deg, white, white,#f5f7ff,white,#f5f7ff, #f5f7ff);
-        align-items: flex-start;
+        background: linear-gradient(5deg, var(--white), var(--whiteblue),
+        var(--whiteblue), var(--whiteblue), var(--white));
+
     }
 
-    .container-consulting .text-subtitle{
-        color: var(--middleblue);
-        font-size:1.4rem;
-        font-weight: var(--fontweight-content);
-        margin-right: auto;
-        background: #e5eaff;
-        border-radius: 0.7rem;
-        padding:0.5rem 0.6rem;
-        margin-bottom: 1rem;
-}
-    .container-consulting .item-image{
-        width:100%;
-        border-radius: 0.7rem;
+    .container-consulting .bg-conatiner-right,
+    .container-consulting .bg-conatiner-left {
+        background: #f2f5fc;
+        width: 40%;
+        height: 35%;
+        position: absolute;
+        z-index: -3;
+    }
+
+    .container-consulting .bg-conatiner-left {
+        background: var(--white);
+        border-top-right-radius: 100% 50%;
+        border-bottom-right-radius: 100% 50%;
+        left: 0;
+        top: 40%;
+    }
+
+    .container-consulting .bg-conatiner-right {
+        border-bottom-left-radius: 100% 100%;
+        right: 0;
+        top: 0;
+        width: 40%;
+        height: 15%;
+    }
+
+    .container-consulting .item-consulting {
+        width: 100%;
+        border-radius: 0.5rem;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        margin-top:3rem;
-        border:1px solid #dae4f1;
-        box-shadow: 0px 3px 10px #a7abbe;
-}
-.container-consulting .image-darkblue{
-        background: var(--blackblue);
-        border:1px solid #ced1e4;
+        margin-top: 3rem;
+        box-shadow: var(--shadow-itembox);
+        border: 1.5px solid #d1d6e0;
+        background: linear-gradient(45deg, #1d2135, #2a2f4c, #2a2f4c, #1d2135);
+    }
 
-}.container-consulting .image-darkpurple{
-        background: #1A3540;
-        border:1px solid #c9e0e9;
 
-}
-    .container-consulting .image-whiteblue{
-        background:#e1e8f4;
-        border:1px solid #c2d1f0;
-}
-    .item-image .image-left,
-    .item-image .image-right{
-        width: 70%;
-        height: 11rem;
-}    .item-image .image-left{
+    .container-consulting .item-consulting-whiteblue {
+        background: linear-gradient(-45deg, #e5ebfa, #f1f4fe, #f1f4fe, #e5ebfa);
+    }
+
+    .container-consulting .item-consulting-darkgreen {
+        background: linear-gradient(45deg, #1d2d35, #2a404c, #2a404c, #1d2d35);
+    }
+
+    .item-consulting .image-left,
+    .item-consulting .image-right {
+        width: 100%;
+        height: 13rem;
+        object-fit: cover;
+        object-position: top;
+        border: 1.5px solid #d1d6e0;
+    }
+
+    .item-consulting .image-left {
+        border-top-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.4rem;
+        border-left: none;
+        border-bottom: none;
+
+    }
+
+    .item-consulting .image-right {
+        border-top-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.4rem;
+        border-right: none;
+        border-bottom: none;
+    }
+
+    .item-consulting .btn-image-left,
+    .item-consulting .btn-image-right {
+        width: 57%;
+        border-radius: 1rem;
+        position: relative;
+    }
+
+    .item-consulting .btn-image-left {
         margin-right: auto;
-        border-top-right-radius: 1rem;
-        border-bottom-left-radius: 0.7rem;
-} .item-image .image-right{
+    }
+
+    .item-consulting .btn-image-right {
         margin-left: auto;
-        border-top-left-radius: 1rem;
-        border-bottom-right-radius: 0.7rem;
-}
-    .item-image .text-explain{
-    font-weight: 400;
-    font-size: 1.4rem;
-    color:var(--white);
-        margin:2.5rem auto 3rem var(--content-padding);
+    }
 
-}    .item-image .text-explain-dark{
-    font-weight: var(--fontweight-content);
-    font-size: 1.4rem;
-    color:var(--black);
-        margin:2.5rem var(--content-padding) 3rem auto
+    .item-consulting .icon-arrow {
+        color: var(--darkblue);
+        font-size: 2rem;
+        font-weight: 600;
+        position: absolute;
+        right: 0.5rem;
+        bottom: 0.5rem;
+    }
 
-}
+
+    .item-consulting .text-explain-white {
+
+        font-weight: var(--fontweight-content);
+        color: var(--white);
+        margin: 2.5rem auto 2.5rem var(--content-padding);
+    }
+
+
+    .item-consulting .array-explain-dark {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin: 2.5rem var(--content-padding) 2.5rem auto
+
+    }
+
+    @media screen and (min-width: 600px) {
+        .item-consulting .image-left,
+        .item-consulting .image-right {
+            height: 14rem;
+        }
+
+        .item-consulting .btn-image-left,
+        .item-consulting .btn-image-right {
+            width: 54%;
+        }
+
+        .container-consulting .bg-conatiner-left {
+            width: 15%;
+            height: 70%;
+
+        }
+
+        .container-consulting .bg-conatiner-right {
+            width: 25%;
+            height: 35%;
+        }
+
+    }
 
 
 </style>
 
 <div class="main-container-homescreen container-consulting">
-     <div class="text-subtitle">
-        학습 컨설팅
+    <div class="bg-conatiner-right"></div>
+    <div class="bg-conatiner-left"></div>
+    <div class="text-subtitle">
+        아직 혼자 공부하시나요?
     </div>
-    <div class="text-index interval-title">
-        <span class="text-emphasize">서울대, 의대</span> 선생님들이 1대1로<br> 진행하는
+    <div class="text-title">
+        <span class="text-emphasize">서울대, 의대</span> 선생님들이 1대1로<br> 담당하는
         <span class="text-emphasize">학습 컨설팅을</span> 만나보세요
     </div>
-    <div class="item-image image-darkblue" style="margin-top:2rem;">
-        <div class="text-explain">3단계의 간단한 매칭 과정과<br>16만원 대의 합리적 가격</div>
-        <img class="image-right" src='/static/images/homescreen1.png'>
+    <div class="item-consulting" style="margin-top:2rem;">
+        <div class="text-index text-explain-white">3단계의 간단한 매칭 과정과<br>16만원 대의 합리적 수업료</div>
+        <button onclick="showImage('consultingQnaimage');" class="btn-image-right">
+            <img class="image-right" src='/static/images/homescreen-consulting-1.jpg'>
+            <div class="icon-arrow material-icons">ads_click</div>
+        </button>
+        <button onclick="closeImage('consultingQnaimage');" id="consultingQnaimage-fullscreen" class="fullscreenimage">
+            <div class="btn-exit material-icons">close</div>
+            <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
+                 src='/static/images/homescreen-consulting-1.jpg'>
+        </button>
     </div>
-    <div class="item-image image-whiteblue"  >
-        <div class="text-explain-dark">
-            주1회 4주간 진행하는<br>학습 플랜 및 과목 피드백 </div>
-        <img class="image-left" src='/static/images/homescreen1.png'>
+    <div class="item-consulting item-consulting-whiteblue">
+        <div class="array-explain-dark">
+            <div class="text-index text-explain-dark">
+                주1회 50분간 진행하는
+            </div>
+            <div class="text-index text-explain-dark">
+                학습 플랜 작성과 과목별 학습 코칭
+            </div>
+        </div>
+        <button onclick="showImage('consultingPlanimage');" class="btn-image-left">
+            <img class="image-left" src='/static/images/homescreen-consulting-2.jpg'>
+            <div class="icon-arrow material-icons">ads_click</div>
+        </button>
+        <button onclick="closeImage('consultingPlanimage');" id="consultingPlanimage-fullscreen"
+                class="fullscreenimage">
+            <div class="btn-exit material-icons">close</div>
+            <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
+                 src='/static/images/homescreen-consulting-2.jpg'>
+        </button>
     </div>
-      <div class="item-image image-darkpurple" >
-        <div class="text-explain">
-            수능, 내신 상위 1%<br>선생님들의 학습 코칭</div>
-        <img class="image-right" src='/static/images/homescreen1.png'>
+    <div class="item-consulting item-consulting-darkgreen ">
+        <div class="text-index text-explain-white">24시간 언제든 가능한 <br>학습 질문 답변 시스템</div>
+        <button onclick="showImage('consultingMatchingimage');" class="btn-image-right">
+            <img class="image-right" src='/static/images/homescreen-consulting-3.jpg'>
+            <div class="icon-arrow material-icons">ads_click</div>
+        </button>
+        <button onclick="closeImage('consultingMatchingimage');" id="consultingMatchingimage-fullscreen"
+                class="fullscreenimage">
+            <div class="btn-exit material-icons">close</div>
+            <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
+                 src='/static/images/homescreen-consulting-3.jpg'>
+        </button>
     </div>
 </div>
+<script>
+    function showImage(imageId) {
+        var element = document.getElementById(imageId + "-fullscreen");
+        element.style.display = "flex";
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.transition = 'opacity 0.2s ease-in-out';
+            element.style.opacity = 1;
+        }, 10);
+    }
+
+    function closeImage(imageId) {
+        var element = document.getElementById(imageId + "-fullscreen");
+        element.style.transition = 'opacity 0.4s ease-in-out';
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.display = "none";
+        }, 400);
+    }
+</script>

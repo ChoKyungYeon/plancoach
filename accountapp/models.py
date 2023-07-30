@@ -63,3 +63,4 @@ class CustomUser(AbstractUser):
     def delete(self, *args, **kwargs):
         [refund.delete() for refund in self.refund.all() if not refund.salary]
         super().delete(*args, **kwargs)
+

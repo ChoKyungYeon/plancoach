@@ -10,7 +10,7 @@ from feedback_coachapp.models import Feedback_coach
 from django.utils.decorators import method_decorator
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Feedback_coachCreateDecorater, name='dispatch')
+@method_decorator(Feedback_coachCreateDecorator, name='dispatch')
 class Feedback_coachCreateView(CreateView):
     model = Feedback_coach
     form_class = Feedback_coachCreateForm
@@ -39,7 +39,7 @@ class Feedback_coachCreateView(CreateView):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.consult_feedback.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Feedback_coachUpdateDecorater, name='dispatch')
+@method_decorator(Feedback_coachUpdateDecorator, name='dispatch')
 class Feedback_coachUpdateView(UpdateView):
     model = Feedback_coach
     form_class = Feedback_coachUpdateForm
@@ -51,7 +51,7 @@ class Feedback_coachUpdateView(UpdateView):
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Feedback_coachDeleteDecorater, name='dispatch')
+@method_decorator(Feedback_coachDeleteDecorator, name='dispatch')
 class Feedback_coachDeleteView(DeleteView):
     model = Feedback_coach
     context_object_name = 'target_feedback_coach'

@@ -20,7 +20,7 @@ from teacherapplyapp.models import Teacherapply
 from django.utils.decorators import method_decorator
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ProfileCreateDecorater, name='dispatch')
+@method_decorator(ProfileCreateDecorator, name='dispatch')
 class ProfileCreateView(CreateView):
     model = Profile
     form_class = ProfileCreateForm
@@ -71,7 +71,7 @@ class ProfileCreateView(CreateView):
         return reverse_lazy('superuserapp:dashboard')
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ProfileDeleteDecorater, name='dispatch')
+@method_decorator(ProfileDeleteDecorator, name='dispatch')
 class ProfileDeleteView(DeleteView):
     model =Profile
     context_object_name = 'target_profile'
@@ -81,7 +81,7 @@ class ProfileDeleteView(DeleteView):
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ProfileTuitionUpdateDecorater, name='dispatch')
+@method_decorator(ProfileTuitionUpdateDecorator, name='dispatch')
 class ProfileTuitionUpdateView(UpdateView):
     model = Profile
     context_object_name = 'target_profile'
@@ -98,7 +98,7 @@ class ProfileTuitionUpdateView(UpdateView):
         return reverse_lazy('teacherapp:dashboard', kwargs={'pk': self.object.teacher.pk})
 
 
-@method_decorator(ProfileDetailDecorater, name='dispatch')
+@method_decorator(ProfileDetailDecorator, name='dispatch')
 class ProfileDetailView(DetailView):
     model = Profile
     context_object_name = 'target_profile'
@@ -164,7 +164,7 @@ class ProfileListView(TemplateView):
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(ProfileStateUpdateDecorater, name='dispatch')
+@method_decorator(ProfileStateUpdateDecorator, name='dispatch')
 class ProfileStateUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return reverse('teacherapp:dashboard', kwargs={'pk': self.request.GET.get('user_pk')})

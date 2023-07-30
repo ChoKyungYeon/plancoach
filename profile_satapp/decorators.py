@@ -4,7 +4,7 @@ from plancoach.decorators import Decorators
 from profile_satapp.models import Profile_sat
 
 
-def Profile_satEditDecorater(func):
+def Profile_satEditDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(Profile_sat, pk=kwargs['pk']).profile)
         permission_checks = [

@@ -2,8 +2,7 @@ from datetime import timedelta, datetime
 from django.db import models
 from accountapp.models import CustomUser
 from plancoach.choice import consultstatechoice, agechoice
-from plancoach.utils import time_expire, create_refusal
-
+from plancoach.utils import time_expire
 class Consult(models.Model):
     student = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='consult_student')
     teacher = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='consult_teacher')
@@ -37,7 +36,7 @@ class Consult(models.Model):
         if self.startdate:
             interval = datetime.now().date() - self.startdate
             tuition = self.tuition
-            refund_rates = [(timedelta(days=7), 3 / 4), (timedelta(days=14), 1 / 2)]
+            refund_rates = [(timedelta(days=1), 4 / 4),(timedelta(days=7), 3 / 4), (timedelta(days=14), 1 / 2)]
             for days, rate in refund_rates:
                 if interval < days:
                     return int(round(tuition * rate, -2))
@@ -48,6 +47,20 @@ class Consult(models.Model):
 
     def can_refund(self):
         return True if self.refund_entire_amount() != 0 else False
+
+    def extend_warning(self):
+        if self.enddate():
+            interval = (self.enddate() - datetime.now().date()).days
+            if self.state == 'unextended':
+                if interval <= 5:
+                    remaining_day = f'{interval}일 후'
+                elif interval == 0:
+                    remaining_day = '금일'
+                else:
+                    remaining_day = None
+            else:
+                remaining_day = None
+            return remaining_day
 
     def remaining_day(self):
         if self.enddate():

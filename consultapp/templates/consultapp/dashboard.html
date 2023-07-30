@@ -2,6 +2,7 @@
 {% load bootstrap4 %}
 {% block content %}
 
+
 <header class="header-black">
     {% if user.state == 'student' %}
     {% include 'headersnippets/home.html' %}
@@ -30,6 +31,7 @@
         {% include 'consultapp/dashboardsnippets/history.html' %}
         {% include 'consultapp/dashboardsnippets/refund.html' %}
     </div>
+    {% include 'consultapp/dashboardsnippets/warning.html' %}
 </main>
 
 {% endblock %}

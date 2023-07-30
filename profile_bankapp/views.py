@@ -5,11 +5,11 @@ from profile_bankapp.forms import Profile_bankManageForm
 from profile_bankapp.models import Profile_bank
 from django.utils.decorators import method_decorator
 
-from profileapp.decorators import Profile_instanceManageDecorater
+from profileapp.decorators import Profile_instanceManageDecorator
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Profile_instanceManageDecorater, name='dispatch')
+@method_decorator(Profile_instanceManageDecorator, name='dispatch')
 class Profile_bankManageView(UpdateView):
     model = Profile_bank
     form_class = Profile_bankManageForm

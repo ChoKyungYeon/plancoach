@@ -9,7 +9,7 @@ from django.utils.decorators import method_decorator
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Profile_consulttypeEditDecorater, name='dispatch')
+@method_decorator(Profile_consulttypeEditDecorator, name='dispatch')
 class Profile_consulttypeUpdateView(UpdateView):
     model = Profile_consulttype
     context_object_name = 'target_profile_consulttype'

@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from plancoach.decorators import Decorators
 from profile_gpaapp.models import Profile_gpa
 
-def Profile_gpaEditDecorater(func):
+def Profile_gpaEditDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(Profile_gpa, pk=kwargs['pk']).profile)
         permission_checks = [

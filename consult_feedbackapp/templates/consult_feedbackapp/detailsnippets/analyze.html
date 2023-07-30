@@ -1,12 +1,50 @@
 <style>
-    .box-analyze{
-        border-bottom:1px solid #e0e0eb;
-        background: var(--whiteblue);
+    .container-analyze {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 5rem calc(var(--main-padding-snippet) + 0.5rem);
+        background: var(--white);
+    }
+
+    .container-analyze .text-analyze {
+        font-size: var(--fontsize-index);
+        font-weight: var(--fontweight-content);
+        color: #454854;
+        margin-top: 1.5rem;
+    }
+
+    .container-analyze .text-title {
+        font-size: 1.55rem;
+        color: var(--black);
+        font-weight: var(--fontweight-emphasize);
+    }
+
+    .container-analyze .image-analyze {
+        width: 2.6rem;
+        height: 2.6rem;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 1rem;
     }
 </style>
 
-<div class="main-box box-analyze">
-    <div class="main-array-title">
+<div class="container-analyze ">
+    <div class="main-array-row">
+        <img class="image-analyze" src='/static/icons/analyze.png'>
+        <span class="text-title">
+    학생 종합 분석
+    </span>
+        {% if user == target_consult.teacher %}
+        <a href="{% url 'consult_feedbackapp:contentupdate' pk=target_feedback.pk %}"
+           class="main-btn-edit material-icons">edit</a>
+        {% endif %}
     </div>
-    {% include 'snippets/analyze.html' %}
+    {% if target_feedback.content %}
+    <span class="text-analyze">{{target_feedback.content|safe|linebreaksbr}}</span>
+    {% else %}
+    <span class="text-analyze">종합 분석 작성</span>
+    {% endif %}
 </div>

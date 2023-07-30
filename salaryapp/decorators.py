@@ -8,7 +8,7 @@ from plancoach.utils import salaryday_calculator
 from salaryapp.models import Salary
 
 
-def SalaryDetailDecorater(func):
+def SalaryDetailDecorator(func):
     def decorated(request, *args, **kwargs):
         salary=get_object_or_404(Salary, pk=kwargs['pk'])
         if not salary.is_given == True:
@@ -23,7 +23,7 @@ def SalaryDetailDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def SalaryExpectedDecorater(func):
+def SalaryExpectedDecorator(func):
     def decorated(request, *args, **kwargs):
         salary=get_object_or_404(Salary, pk=kwargs['pk'])
         if salary.is_given == True or salary.salaryday != salaryday_calculator(datetime.now().date()):
@@ -38,7 +38,7 @@ def SalaryExpectedDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def SalaryPayDecorater(func):
+def SalaryPayDecorator(func):
     def decorated(request, *args, **kwargs):
         salary=get_object_or_404(Salary, pk=kwargs['pk'])
         if salary.is_given == True or salary.salaryday > datetime.now().date():
@@ -53,7 +53,7 @@ def SalaryPayDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def SalaryStateUpdateDecorater(func):
+def SalaryStateUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
         salary=get_object_or_404(Salary, pk=kwargs['pk'])
         if salary.is_given == True or salary.salaryday > datetime.now().date():

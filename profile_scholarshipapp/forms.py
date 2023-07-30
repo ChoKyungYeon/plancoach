@@ -1,5 +1,7 @@
 from django import forms
 from django.forms import ModelForm
+
+from plancoach.widgets import CustomSelect
 from profile_scholarshipapp.models import Profile_scholarship
 
 
@@ -14,6 +16,13 @@ class Profile_scholarshipManageForm(ModelForm):
             'studentid':'학번',
             'accepttype':'합격 전형',
             'schoolverificationimage':'재학 증명 사진',
+        }
+        widgets = {
+            'school': CustomSelect(attrs={ 'class': 'select',}),
+            'major': forms.TextInput(attrs={'placeholder': 'oo과', 'class': 'textinput'}),
+            'studentid': CustomSelect(attrs={'class': 'select'}),
+            'accepttype': CustomSelect(attrs={ 'class': 'select'}),
+            'schoolverificationimage':forms.FileInput(attrs={'placeholder': '재학증명', 'class': 'fileinput'}),
         }
 
 

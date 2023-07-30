@@ -1,30 +1,27 @@
 <style>
     .container-head {
         padding-top: 8rem;
-        padding-bottom: 8rem;
+        padding-bottom: 8.5rem;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(-15deg, #1d2134,#363b59, #1d2134, #1d2134, #1d2134, #1d2134);
+        background: linear-gradient(-15deg, #1d2134, #30354f,#1d2134, #1d2134, #1d2134, #1d2134);
         box-shadow: 0 2px 2px #303550;
         position: relative;
     }
 
-    .container-head .text-teacher {
+    .container-head .text-intro {
         color: var(--white);
-        font-size: 1.9rem;
+        font-size: 1.83rem;
         font-weight: var(--fontweight-index);
     }
 
     .container-head .text-program {
-        color: var(--white);
-        font-size: 1.9rem;
-        font-weight: var(--fontweight-index);
         margin-bottom: 2rem;
         margin-top: 0.3rem;
     }
 
     .container-head .text-emphasize {
-        font-size: 2rem;
+        font-size: 1.85rem;
         font-weight: var(--fontweight-title);
         color: var(--lightblue);
     }
@@ -35,18 +32,22 @@
         justify-content: center;
         align-items: center;
         padding: 1rem 1.5rem;
-        background: var(--whiteblue);
-        border-radius: 1rem;
-        color: var(--black);
-        font-size: 1.5rem;
-        font-weight: var(--fontweight-title);
+        background: var(--white);
+        border-radius: 0.5rem;
     }
 </style>
 
 <div class="main-container-homescreen container-head">
-    <div class="text-teacher"><span class="text-emphasize">상위 1%</span> 선생님들의</div>
-    <div class="text-program">1:1 맞춤형 <span class="text-emphasize">학습 컨설팅</span> 프로그램</div>
+    <div class="text-intro text-teacher">
+        <span class="text-emphasize">상위 1%</span>
+        선생님들의
+    </div>
+    <div class="text-intro text-program">
+        1:1 맞춤형
+        <span class="text-emphasize">학습 컨설팅</span>
+        프로그램
+    </div>
     <a href="{% url 'profileapp:list' %}" class="btn-teacher">
-        &nbsp;Plan&Coach 선생님 확인하기 >
+        <span class="text-btn">&nbsp;Plan&Coach 선생님 확인하기 ></span>
     </a>
 </div>

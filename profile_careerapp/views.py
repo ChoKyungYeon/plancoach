@@ -6,12 +6,12 @@ from django.views.generic import CreateView, DeleteView, UpdateView
 from profile_careerapp.decorators import *
 from profile_careerapp.forms import Profile_careerCreateForm
 from profile_careerapp.models import Profile_career
-from profileapp.decorators import Profile_instanceCreateDecorater
+from profileapp.decorators import Profile_instanceCreateDecorator
 from profileapp.models import Profile
 from django.utils.decorators import method_decorator
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Profile_instanceCreateDecorater, name='dispatch')
+@method_decorator(Profile_instanceCreateDecorator, name='dispatch')
 class Profile_careerCreateView(CreateView):
     model = Profile_career
     form_class = Profile_careerCreateForm
@@ -33,7 +33,7 @@ class Profile_careerCreateView(CreateView):
         return reverse_lazy('profileapp:detail', kwargs={'pk': self.kwargs['pk']})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Profile_careerEditDecorater, name='dispatch')
+@method_decorator(Profile_careerEditDecorator, name='dispatch')
 class Profile_careerDeleteView(DeleteView):
     model = Profile_career
     context_object_name = 'target_profile_career'
@@ -42,7 +42,7 @@ class Profile_careerDeleteView(DeleteView):
         return reverse_lazy('profileapp:detail', kwargs={'pk': self.object.profile.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Profile_careerEditDecorater, name='dispatch')
+@method_decorator(Profile_careerEditDecorator, name='dispatch')
 class Profile_careerUpdateView(UpdateView):
     model = Profile_career
     form_class = Profile_careerCreateForm

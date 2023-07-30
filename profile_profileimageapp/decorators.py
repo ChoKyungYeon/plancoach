@@ -4,7 +4,7 @@ from plancoach.decorators import Decorators
 from profile_profileimageapp.models import Profile_profileimage
 
 
-def Profile_profileimageEditDecorater(func):
+def Profile_profileimageEditDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(Profile_profileimage, pk=kwargs['pk']).profile)
         permission_checks = [

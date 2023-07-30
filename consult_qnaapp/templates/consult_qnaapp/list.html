@@ -43,7 +43,14 @@
         {% endwith %}
     </div>
     {% if user == target_consult.student and target_consult.state != 'new' %}
-    <a href="{% url 'consult_qnaapp:create' pk=target_consult.pk %}" class="main-icon-positive material-icons">add</a>
+    <a href="{% url 'consult_qnaapp:create' pk=target_consult.pk %}" class="main-container-popup">
+        <div class="text-indicate">
+            학습 질문
+        </div>
+        <div class="text-popup">
+            작성하기
+        </div>
+    </a>
     {% endif %}
 </main>
 

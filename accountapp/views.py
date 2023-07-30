@@ -22,7 +22,7 @@ class AccountLoginView(LoginView):
             return redirect('homescreenapp:homescreen')
         return super().dispatch(request, *args, **kwargs)
 
-@method_decorator(AccountCreateDecorater, name='dispatch')
+@method_decorator(AccountCreateDecorator, name='dispatch')
 class AccountCreateView(CreateView):
     model = CustomUser
     form_class = AccountCreateForm
@@ -44,7 +44,7 @@ class AccountCreateView(CreateView):
             return super().form_valid(form)
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(AccountOwnerDecorater, name='dispatch')
+@method_decorator(AccountOwnerDecorator, name='dispatch')
 class AccountInfoUpdateView(UpdateView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -55,7 +55,7 @@ class AccountInfoUpdateView(UpdateView):
         return reverse_lazy('accountapp:setting', kwargs={'pk': self.object.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(AccountOwnerDecorater, name='dispatch')
+@method_decorator(AccountOwnerDecorator, name='dispatch')
 class AccountPasswordUpdateView(UpdateView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -64,7 +64,7 @@ class AccountPasswordUpdateView(UpdateView):
     template_name = 'accountapp/passwordupdate.html'
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(AccountOwnerDecorater, name='dispatch')
+@method_decorator(AccountOwnerDecorator, name='dispatch')
 class AccountPasswordResetView(UpdateView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -73,8 +73,8 @@ class AccountPasswordResetView(UpdateView):
     template_name = 'accountapp/passwordreset.html'
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(AccountDeleteDecorater, name='delete')
-@method_decorator(AccountGetDeleteDecorater, name='get')
+@method_decorator(AccountDeleteDecorator, name='delete')
+@method_decorator(AccountGetDeleteDecorator, name='get')
 class AccountDeleteView(DeleteView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -82,14 +82,14 @@ class AccountDeleteView(DeleteView):
     template_name = 'accountapp/delete.html'
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(AccountOwnerDecorater, name='dispatch')
+@method_decorator(AccountOwnerDecorator, name='dispatch')
 class AccountSettingView(DetailView):
     model = CustomUser
     context_object_name = 'target_user'
     template_name = 'accountapp/setting.html'
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(AccountNotificationUpdateDecorater, name='dispatch')
+@method_decorator(AccountNotificationUpdateDecorator, name='dispatch')
 class AccountNotificationUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return reverse('accountapp:setting', kwargs={'pk': self.request.GET.get('user_pk')})

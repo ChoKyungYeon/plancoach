@@ -20,7 +20,7 @@ from django.utils.decorators import method_decorator
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Consult_feedbackCreateDecorater, name='dispatch')
+@method_decorator(Consult_feedbackCreateDecorator, name='dispatch')
 class Consult_feedbackCreateView(CreateView):
     model = Consult_feedback
     form_class = Consult_feedbackCreateForm
@@ -62,7 +62,7 @@ class Consult_feedbackCreateView(CreateView):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Consult_feedbackListDecorater, name='dispatch')
+@method_decorator(Consult_feedbackListDecorator, name='dispatch')
 class Consult_feedbackListView(DetailView):
     model = Consult
     context_object_name = 'target_consult'
@@ -82,7 +82,7 @@ class Consult_feedbackListView(DetailView):
         return context
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Consult_feedbackDeleteDecorater, name='dispatch')
+@method_decorator(Consult_feedbackDeleteDecorator, name='dispatch')
 class Consult_feedbackDeleteView(DeleteView):
     model = Consult_feedback
     context_object_name = 'target_consult_feedback'
@@ -92,7 +92,7 @@ class Consult_feedbackDeleteView(DeleteView):
         return reverse_lazy('consult_feedbackapp:list', kwargs={'pk': self.object.consult.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Consult_feedbackUpdateDecorater, name='dispatch')
+@method_decorator(Consult_feedbackUpdateDecorator, name='dispatch')
 class Consult_feedbackUpdateView(UpdateView):
     model = Consult_feedback
     form_class = Consult_feedbackUpdateForm
@@ -125,7 +125,7 @@ class Consult_feedbackUpdateView(UpdateView):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Consult_feedbackContentUpdateDecorater, name='dispatch')
+@method_decorator(Consult_feedbackContentUpdateDecorator, name='dispatch')
 class Consult_feedbackContentUpdateView(UpdateView):
     model = Consult_feedback
     form_class = Consult_feedbackContentUpdateForm
@@ -136,7 +136,7 @@ class Consult_feedbackContentUpdateView(UpdateView):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Consult_feedbackBaseDetailDecorater, name='dispatch')
+@method_decorator(Consult_feedbackBaseDetailDecorator, name='dispatch')
 class ConsultFeedbackBaseDetailView(DetailView):
     model = Consult_feedback
     context_object_name = 'target_consult_feedback'

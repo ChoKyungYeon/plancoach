@@ -9,7 +9,7 @@ from studentapp.decorators import *
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(StudentDashboardDecorater, name='dispatch')
+@method_decorator(StudentDashboardDecorator, name='dispatch')
 class StudentDashboardView(DetailView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -29,7 +29,7 @@ class StudentDashboardView(DetailView):
         return context
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(StudentRefundListDecorater, name='dispatch')
+@method_decorator(StudentRefundListDecorator, name='dispatch')
 class StudentRefundListView(DetailView):
     model = CustomUser
     context_object_name = 'target_user'

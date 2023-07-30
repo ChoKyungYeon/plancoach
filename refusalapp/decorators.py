@@ -1,12 +1,15 @@
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404
 from applicationapp.models import Application
-from plancoach.decorators import Decorators
+from plancoach.decorators import *
 from teacherapplyapp.models import Teacherapply
 
 
-def RefusalApplicationRefuseDecorater(func):
+def RefusalApplicationRefuseDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        if redirect:
+            return redirect
         decorators=Decorators(request.user,get_object_or_404(Application, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -15,10 +18,13 @@ def RefusalApplicationRefuseDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        if redirect:
+            return redirect
         return func(request, *args, **kwargs)
     return decorated
 
-def RefusalTeacherapplyRefuseDecorater(func):
+def RefusalTeacherapplyRefuseDecorator(func):
     def decorated(request, *args, **kwargs):
         teacherapply = get_object_or_404(Teacherapply, pk=kwargs['pk'])
         if teacherapply.is_done == False:

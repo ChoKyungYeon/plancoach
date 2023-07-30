@@ -1,7 +1,7 @@
 from plancoach.decorators import Decorators
 
 
-def SuperuserDashboardDecorater(func):
+def SuperuserDashboardDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, None)
         permission_checks = [

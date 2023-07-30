@@ -1,7 +1,7 @@
 from plancoach.decorators import Decorators
 
 
-def HomescreenDecorater(func):
+def HomescreenDecorator(func):
     def decorated(request, *args, **kwargs):
         if request.user.is_authenticated:
             decorators=Decorators(request.user,None)

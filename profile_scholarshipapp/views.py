@@ -6,11 +6,11 @@ from profile_scholarshipapp.forms import Profile_scholarshipUpdateForm, Profile_
 from profile_scholarshipapp.models import Profile_scholarship
 from django.utils.decorators import method_decorator
 
-from profileapp.decorators import Profile_instanceManageDecorater
+from profileapp.decorators import Profile_instanceManageDecorator
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Profile_scholarshipEditDecorater, name='dispatch')
+@method_decorator(Profile_scholarshipEditDecorator, name='dispatch')
 class Profile_scholarshipUpdateView(UpdateView):
     model = Profile_scholarship
     form_class = Profile_scholarshipUpdateForm
@@ -21,7 +21,7 @@ class Profile_scholarshipUpdateView(UpdateView):
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Profile_instanceManageDecorater, name='dispatch')
+@method_decorator(Profile_instanceManageDecorator, name='dispatch')
 class Profile_scholarshipManageView(UpdateView):
     model = Profile_scholarship
     form_class = Profile_scholarshipManageForm

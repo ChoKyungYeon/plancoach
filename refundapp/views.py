@@ -7,7 +7,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, RedirectView, DetailView
 from consultapp.models import Consult
 from plancoach.sms import Send_SMS
-from plancoach.utils import salaryday_calculator, create_refusal
+from plancoach.utils import salaryday_calculator
 from refundapp.decorators import *
 from refundapp.forms import RefundCreateForm
 from refundapp.models import Refund
@@ -17,14 +17,14 @@ from refusalapp.models import Refusal
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(RefundGuideDecorater, name='dispatch')
+@method_decorator(RefundGuideDecorator, name='dispatch')
 class RefundGuideView(DetailView):
     model = Consult
     context_object_name = 'target_consult'
     template_name = 'refundapp/guide.html'
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(RefundCreateDecorater, name='dispatch')
+@method_decorator(RefundCreateDecorator, name='dispatch')
 class RefundCreateView(CreateView):
     model = Refund
     form_class = RefundCreateForm
@@ -71,7 +71,7 @@ class RefundCreateView(CreateView):
         return reverse('studentapp:dashboard', kwargs={'pk': self.request.user.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(RefundStateUpdateDecorater, name='dispatch')
+@method_decorator(RefundStateUpdateDecorator, name='dispatch')
 class RefundStateUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return reverse_lazy('superuserapp:dashboard')
@@ -90,14 +90,14 @@ class RefundStateUpdateView(RedirectView):
             return super(RefundStateUpdateView, self).get(request, *args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(RefundDetailDecorater, name='dispatch')
+@method_decorator(RefundDetailDecorator, name='dispatch')
 class RefundDetailView(DetailView):
     model = Refund
     context_object_name = 'target_refund'
     template_name = 'refundapp/detail.html'
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(RefundPayDecorater, name='dispatch')
+@method_decorator(RefundPayDecorator, name='dispatch')
 class RefundPayView(DetailView):
     model = Refund
     context_object_name = 'target_refund'

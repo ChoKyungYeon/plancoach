@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from plancoach.decorators import Decorators
 
 
-def DocumentCreateDecorater(func):
+def DocumentCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, None)
         permission_checks = [
@@ -15,7 +15,7 @@ def DocumentCreateDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def DocumentUpdateDecorater(func):
+def DocumentUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, None)
         permission_checks = [

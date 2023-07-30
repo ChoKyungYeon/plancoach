@@ -5,7 +5,7 @@ from profile_careerapp.models import Profile_career
 from profileapp.models import Profile
 
 
-def Profile_careerEditDecorater(func):
+def Profile_careerEditDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(Profile_career, pk=kwargs['pk']).profile)
         permission_checks = [

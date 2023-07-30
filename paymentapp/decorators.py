@@ -3,11 +3,15 @@ from django.shortcuts import get_object_or_404
 
 from consultapp.models import Consult
 from paymentapp.models import Payment
-from plancoach.decorators import Decorators
+from plancoach.decorators import *
 
 
-def PaymentCreateDecorater(func):
+def PaymentCreateDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Consult, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -17,10 +21,13 @@ def PaymentCreateDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
         return func(request, *args, **kwargs)
     return decorated
 
-def PaymentPayDecorater(func):
+def PaymentPayDecorator(func):
     def decorated(request, *args, **kwargs):
         payment=get_object_or_404(Payment, pk=kwargs['pk'])
         if payment.is_checked == True:
@@ -37,7 +44,9 @@ def PaymentPayDecorater(func):
         return func(request, *args, **kwargs)
     return decorated
 
-def PaymentResultDecorater(func):
+
+
+def PaymentResultDecorator(func):
     def decorated(request, *args, **kwargs):
         payment = get_object_or_404(Payment, pk=kwargs['pk'])
         if payment.is_checked == False:
@@ -56,7 +65,7 @@ def PaymentResultDecorater(func):
     return decorated
 
 
-def PaymentContactDecorater(func):
+def PaymentContactDecorator(func):
     def decorated(request, *args, **kwargs):
         payment = get_object_or_404(Payment, pk=kwargs['pk'])
         if payment.is_checked == False or payment.is_paid_ok == True:
@@ -72,4 +81,27 @@ def PaymentContactDecorater(func):
                 return check
         return func(request, *args, **kwargs)
 
+    return decorated
+
+
+def PaymentGuideDecorator(func):
+    def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
+        decorators=Decorators(request.user, get_object_or_404(Consult, pk=kwargs['pk']))
+        decorators.update()
+        permission_checks = [
+            decorators.object_filter(allow_object= ['new']),
+            decorators.member_filter(role='student', allow_superuser=False),
+        ]
+        for check in permission_checks:
+            if check is not None:
+                return check
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
+        return func(request, *args, **kwargs)
     return decorated

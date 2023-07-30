@@ -2,11 +2,15 @@ from django.shortcuts import get_object_or_404
 
 from consult_feedbackapp.models import Consult_feedback
 from consultapp.models import Consult
-from plancoach.decorators import Decorators
+from plancoach.decorators import *
 
 
-def Consult_feedbackCreateDecorater(func):
+def Consult_feedbackCreateDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Consult, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -16,11 +20,19 @@ def Consult_feedbackCreateDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 
-def Consult_feedbackListDecorater(func):
+def Consult_feedbackListDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Consult, pk=kwargs['pk']))
         decorators.update()
         permission_checks = [
@@ -30,12 +42,20 @@ def Consult_feedbackListDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 
 
-def Consult_feedbackDeleteDecorater(func):
+def Consult_feedbackDeleteDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Consult_feedback, pk=kwargs['pk']).consult)
         decorators.update()
         permission_checks = [
@@ -45,12 +65,22 @@ def Consult_feedbackDeleteDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 
 
-def Consult_feedbackUpdateDecorater(func):
+def Consult_feedbackUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        if redirect:
+            return redirect
+
+
         decorators=Decorators(request.user, get_object_or_404(Consult_feedback, pk=kwargs['pk']).consult)
         decorators.update()
         permission_checks = [
@@ -60,11 +90,20 @@ def Consult_feedbackUpdateDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 
-def Consult_feedbackContentUpdateDecorater(func):
+def Consult_feedbackContentUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Consult_feedback, pk=kwargs['pk']).consult)
         decorators.update()
         permission_checks = [
@@ -74,12 +113,21 @@ def Consult_feedbackContentUpdateDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 
 
-def Consult_feedbackBaseDetailDecorater(func):
+def Consult_feedbackBaseDetailDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        if redirect:
+            return redirect
+
         decorators=Decorators(request.user, get_object_or_404(Consult_feedback, pk=kwargs['pk']).consult)
         decorators.update()
         permission_checks = [
@@ -89,6 +137,10 @@ def Consult_feedbackBaseDetailDecorater(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        if redirect:
+            return redirect
+
         return func(request, *args, **kwargs)
     return decorated
 

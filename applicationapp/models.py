@@ -2,8 +2,7 @@ from datetime import timedelta, datetime
 from django.db import models, transaction
 from accountapp.models import CustomUser
 from plancoach.choice import agechoice, applicationstatechoice
-from plancoach.utils import time_expire, create_refusal
-
+from plancoach.utils import time_expire
 
 class Application(models.Model):
     student = models.OneToOneField(CustomUser, on_delete=models.CASCADE,related_name='application_student')

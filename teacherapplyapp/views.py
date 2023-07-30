@@ -12,7 +12,7 @@ from teacherapplyapp.models import Teacherapply
 from django.utils.decorators import method_decorator
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(TeacherapplySchoolimageCreateDecorater, name='dispatch')
+@method_decorator(TeacherapplySchoolimageCreateDecorator, name='dispatch')
 class TeacherapplySchoolimageCreateView(CreateView):
     model = Teacherapply
     form_class = TeacherapplySchoolimageCreateForm
@@ -37,7 +37,7 @@ class TeacherapplySchoolimageCreateView(CreateView):
         return reverse_lazy('teacherapplyapp:userimagecreate', kwargs={'pk': self.object.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(TeacherapplyBankCreateDecorater, name='dispatch')
+@method_decorator(TeacherapplyBankCreateDecorator, name='dispatch')
 class TeacherapplyBankCreateView(UpdateView):
     model = Teacherapply
     form_class = TeacherapplyBankCreateForm
@@ -53,7 +53,7 @@ class TeacherapplyBankCreateView(UpdateView):
         return reverse_lazy('teacherapplyapp:infocreate', kwargs={'pk':self.object.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(TeacherapplyUserimageCreateDecorater, name='dispatch')
+@method_decorator(TeacherapplyUserimageCreateDecorator, name='dispatch')
 class TeacherapplyUserimageCreateView(UpdateView):
     model = Teacherapply
     form_class = TeacherapplyUserimageCreateForm
@@ -69,7 +69,7 @@ class TeacherapplyUserimageCreateView(UpdateView):
         return reverse_lazy('teacherapplyapp:bankcreate', kwargs={'pk': self.object.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(TeacherapplyInfoCreateDecorater, name='dispatch')
+@method_decorator(TeacherapplyInfoCreateDecorator, name='dispatch')
 class TeacherapplyInfoCreateView(UpdateView):
     model = Teacherapply
     form_class = TeacherapplyInfoCreateForm
@@ -87,7 +87,7 @@ class TeacherapplyInfoCreateView(UpdateView):
         return reverse_lazy('studentapp:dashboard', kwargs={'pk': self.object.customuser.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(TeacherapplyGuideDecorater, name='dispatch')
+@method_decorator(TeacherapplyGuideDecorator, name='dispatch')
 class TeacherapplyGuideView(DetailView):
     model = CustomUser
     context_object_name = 'target_user'
@@ -95,7 +95,7 @@ class TeacherapplyGuideView(DetailView):
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(TeacherapplyDeleteDecorater, name='dispatch')
+@method_decorator(TeacherapplyDeleteDecorator, name='dispatch')
 class TeacherapplyDeleteView(DeleteView):
     model = Teacherapply
     context_object_name = 'target_teacherapply'
@@ -104,14 +104,14 @@ class TeacherapplyDeleteView(DeleteView):
         return reverse_lazy('superuserapp:dashboard')
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(TeacherapplyDetailDecorater, name='dispatch')
+@method_decorator(TeacherapplyDetailDecorator, name='dispatch')
 class TeacherapplyDetailView(DetailView):
     model = Teacherapply
     context_object_name = 'target_teacherapply'
     template_name = 'teacherapplyapp/detail.html'
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(TeacherapplyRegisterDecorater, name='dispatch')
+@method_decorator(TeacherapplyRegisterDecorator, name='dispatch')
 class TeacherapplyRegisterView(DetailView):
     model = Teacherapply
     context_object_name = 'target_teacherapply'

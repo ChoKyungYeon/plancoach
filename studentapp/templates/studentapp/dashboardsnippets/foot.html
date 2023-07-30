@@ -1,42 +1,43 @@
 <style>
-
-    .container-foot{
-        position:fixed;
-        bottom: 2rem;
-        right: 50%;
-        transform: translateX(50%);
+    .container-teacherguide{
         background: var(--white);
-        padding:1.2rem 2rem;
-        box-shadow: var(--shadow-btn);
-        border-radius: 1rem;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-
-    }
-    .container-foot .text-teacher{
-        color: var(--gray);
-        font-weight: var(--fontweight-content);
-        font-size: var(--fontsize-content);
+      height:4.5rem;
+      transition: opacity 1s;
     }
 
-    .container-foot .icon-teacher{
+    .container-teacherguide .icon-teacher {
         color: var(--white);
-        background: var(--orange);
-        padding:0.4rem;
+        padding: 0.4rem;
         border-radius: 0.5rem;
         font-weight: 400;
         font-size: 1.4rem;
         margin-right: 0.7rem;
+        background: var(--orange);
     }
+
+    .container-teacherguide .text-content {
+        color: var(--black);
+    }
+
 </style>
-<a href="{% url 'teacherapplyapp:guide' pk=target_user.pk %}" class="container-foot">
+<a href="{% url 'teacherapplyapp:guide' pk=target_user.pk %}" class="main-container-popup container-teacherguide">
     <div class="icon-teacher material-icons">
     school
     </div>
-    <div class="text-teacher">
+    <div class="text-popup text-content">
         선생님이신가요?
     </div>
-
 </a>
+
+<script>
+    window.onload = function() {
+        var popup = document.getElementsByClassName('container-teacherguide')[0];
+        setTimeout(function() {
+            popup.style.opacity = "0";
+        }, 3000); // time until disappearing in milliseconds
+
+        setTimeout(function() {
+            popup.style.display = "none";
+        }, 4000); // time until removal from the layout
+    };
+</script>

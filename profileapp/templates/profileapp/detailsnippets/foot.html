@@ -1,43 +1,19 @@
 <style>
 
 .container-foot{
-    display:flex;
-    flex-direction:row;
-    justify-content:center;
-    align-items:center;
-    bottom:2rem;
-    position: fixed;
-    left: var(--main-padding);
-    right: var(--main-padding);
     height:5.3rem;
-    background:var(--blackblue);
-    padding-top:1.7rem;
-    padding-bottom:1.7rem;
-    border-radius: 1rem;
-    box-shadow: var(--shadow-btn);
+    transform: none;
 }
 
 
-.container-foot .text-application{
-    color:var(--lightblue);
-    font-weight:var(--fontweight-index);
-    font-size: 1.45rem;
-    margin-right: 0.5rem;
-}
-.container-foot .text-nav{
-    color:var(--white);
-    font-weight:var(--fontweight-index);
-    font-size: 1.45rem;
-    margin-right: 0.5rem;
-}
 
 </style>
 
 
 {% if user.is_authenticated and request.user.can_apply %}
 <a href="{% url 'applicationapp:guide' pk=target_profile.teacher.pk %}"
-   class="container-foot">
-    <span class="text-application">컨설팅 신청서</span>
-    <span class="text-nav">작성하러 가기 ></span>
+   class="main-container-popup container-foot">
+    <span class="text-indicate">매칭 신청서</span>
+    <span class="text-popup">작성하러 가기</span>
 </a>
 {% endif  %}

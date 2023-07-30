@@ -9,7 +9,7 @@ from feedback_planapp.models import Feedback_plan
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Feedback_planUpdateDecorater, name='dispatch')
+@method_decorator(Feedback_planUpdateDecorator, name='dispatch')
 class Feedback_planUpdateView(UpdateView):
     model = Feedback_plan
     form_class = Feedback_planUpdateForm
@@ -20,7 +20,7 @@ class Feedback_planUpdateView(UpdateView):
         return reverse_lazy('consult_feedbackapp:plandetail', kwargs={'pk': self.object.consult_feedback.pk})
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Feedback_planStateUpdateDecorater, name='dispatch')
+@method_decorator(Feedback_planStateUpdateDecorator, name='dispatch')
 class Feedback_planStateUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         plan = Feedback_plan.objects.get(pk=self.request.GET.get('plan_pk'))

@@ -13,7 +13,7 @@ from consultapp.models import Consult
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Consult_classlinkCreateDecorater, name='dispatch')
+@method_decorator(Consult_classlinkCreateDecorator, name='dispatch')
 class Consult_classlinkCreateView(CreateView):
     model = Consult_classlink
     form_class = Consult_classlinkCreateForm
@@ -39,7 +39,7 @@ class Consult_classlinkCreateView(CreateView):
 
 
 @method_decorator(login_required, name='dispatch')
-@method_decorator(Consult_classlinkUpdateDecorater, name='dispatch')
+@method_decorator(Consult_classlinkUpdateDecorator, name='dispatch')
 class Consult_classlinkUpdateView(UpdateView):
     model = Consult_classlink
     form_class = Consult_classlinkCreateForm
