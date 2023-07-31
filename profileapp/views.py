@@ -63,7 +63,7 @@ class ProfileCreateView(CreateView):
             )
             teacherapply.delete()
             # sendsms
-            content = '선생님 프로필이 생성 되었습니다. 프로필을 완성하고 대시보드에서 활성화하세요!'
+            content = '선생님 등록이 완료되었습니다. 프로필을 완성하고 대시보드에서 활성화하세요!'
             Send_SMS( target_user.username, content,  target_user.can_receive_notification)
             return super().form_valid(form)
 

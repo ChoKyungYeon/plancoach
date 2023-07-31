@@ -5,7 +5,7 @@
 <header class="header-black">
         {% url 'teacherapp:dashboard' target_salary.teacher.pk as url %}
         {% include 'headersnippets/navback.html' with url=url %}
-        {% with title="수익 상세" %}
+        {% with title="예상 급여 상세" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
 </header>

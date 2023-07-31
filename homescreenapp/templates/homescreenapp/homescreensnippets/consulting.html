@@ -4,13 +4,14 @@
         var(--whiteblue), var(--whiteblue), var(--white));
     }
 
-    .container-consulting .bg-conatiner-right,
+    .container-consulting .bg-conatiner-top,
+    .container-consulting .bg-conatiner-bottom,
     .container-consulting .bg-conatiner-left {
         background: #f2f5fc;
         width: 40%;
         height: 35%;
         position: absolute;
-        z-index: -3;
+        z-index: -1;
     }
 
     .container-consulting .bg-conatiner-left {
@@ -20,13 +21,21 @@
         left: 0;
         top: 40%;
     }
+    .container-consulting .bg-conatiner-bottom{
+        background: #eef2fb;
+        border-top-left-radius: 100% 100%;
+        right: 0;
+        bottom: 0;
+        width: 30%;
+        height: 15%;
+    }
 
-    .container-consulting .bg-conatiner-right {
+    .container-consulting .bg-conatiner-top {
         border-bottom-left-radius: 100% 100%;
         right: 0;
         top: 0;
-        width: 40%;
-        height: 15%;
+        width: 37%;
+        height: 13%;
     }
 
     .container-consulting .item-consulting {
@@ -39,16 +48,17 @@
         margin-top: 3rem;
         box-shadow: var(--shadow-itembox);
         border: 1.5px solid #d1d6e0;
-        background: linear-gradient(45deg, #1d2135, #2a2f4c, #2a2f4c, #1d2135);
+        background: linear-gradient(45deg, #1d2135, #2d3352, #2d3352, #1d2135);
+
     }
 
 
     .container-consulting .item-consulting-whiteblue {
-        background: linear-gradient(-45deg, #e5ebfa, #f1f4fe, #f1f4fe, #e5ebfa);
+        background: linear-gradient(-45deg, #e6ecfa, #f0f3fe, #f0f3fe, #e6ecfa);
     }
 
     .container-consulting .item-consulting-darkgreen {
-        background: linear-gradient(45deg, #1d2d35, #2a404c, #2a404c, #1d2d35);
+        background: linear-gradient(45deg, #1d2d35, #2d4552, #2d4552, #1d2d35);
     }
 
     .item-consulting .image-left,
@@ -130,11 +140,16 @@
 
         .container-consulting .bg-conatiner-left {
             width: 15%;
-            height: 70%;
+            height: 50%;
+
+        }
+        .container-consulting .bg-conatiner-bottom {
+            width: 12%;
+            height: 17%;
 
         }
 
-        .container-consulting .bg-conatiner-right {
+        .container-consulting .bg-conatiner-top {
             width: 25%;
             height: 35%;
         }
@@ -143,46 +158,36 @@
 
 
 </style>
-<div class="main-container-homescreen container-consulting">
-            <div class="bg-conatiner-right"></div>
+<div class="main-container-homescreen container-consulting" id="container-consulting">
+    <div class="bg-conatiner-top"></div>
     <div class="bg-conatiner-left"></div>
+    <div class="bg-conatiner-bottom"></div>
     <div class="text-subtitle">
-        아직 혼자 공부하시나요?
+        올인원 학습 컨설팅이란?
     </div>
     <div class="text-title">
-        <span class="text-emphasize">서울대, 의대</span> 선생님들이 1대1로<br> 담당하는
-        <span class="text-emphasize">학습 컨설팅을</span> 만나보세요
+        <span class="text-emphasize">매칭부터 수업</span>까지의 모든 과정을<br>
+        <span class="text-emphasize">한 번에 </span>만나볼 수 있는 서비스입니다.
     </div>
     <div class="item-consulting" style="margin-top:2rem;">
-        <div class="text-index text-explain-white">3단계의 간단한 매칭 과정과<br>16만원 대의 합리적 수업료</div>
+        <div class="text-index text-explain-white">간단한 매칭을 통해 만나는<br>서울대, 의대생 선생님</div>
         <button onclick="showImage('consultingQnaimage');" class="btn-image-right">
             <img class="image-right" src='/static/images/homescreen-consulting-1.jpg'>
             <div class="icon-arrow material-icons">ads_click</div>
-        </button>
-        <button onclick="closeImage('consultingQnaimage');" id="consultingQnaimage-fullscreen" class="fullscreenimage">
-            <div class="btn-exit material-icons">close</div>
-            <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
-                 src='/static/images/homescreen-consulting-1.jpg'>
         </button>
     </div>
     <div class="item-consulting item-consulting-whiteblue">
         <div class="array-explain-dark">
             <div class="text-index text-explain-dark">
-                주1회 50분간 진행하는
+                주1회 50분, 비대면으로 진행하는
             </div>
             <div class="text-index text-explain-dark">
-                학습 플랜 작성과 과목별 학습 코칭
+                1:1 학습 코칭과 학습 플랜 작성
             </div>
         </div>
         <button onclick="showImage('consultingPlanimage');" class="btn-image-left">
             <img class="image-left" src='/static/images/homescreen-consulting-2.jpg'>
             <div class="icon-arrow material-icons">ads_click</div>
-        </button>
-        <button onclick="closeImage('consultingPlanimage');" id="consultingPlanimage-fullscreen"
-                class="fullscreenimage">
-            <div class="btn-exit material-icons">close</div>
-            <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
-                 src='/static/images/homescreen-consulting-2.jpg'>
         </button>
     </div>
     <div class="item-consulting item-consulting-darkgreen ">
@@ -191,14 +196,25 @@
             <img class="image-right" src='/static/images/homescreen-consulting-3.jpg'>
             <div class="icon-arrow material-icons">ads_click</div>
         </button>
-        <button onclick="closeImage('consultingMatchingimage');" id="consultingMatchingimage-fullscreen"
-                class="fullscreenimage">
-            <div class="btn-exit material-icons">close</div>
-            <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
-                 src='/static/images/homescreen-consulting-3.jpg'>
-        </button>
     </div>
 </div>
+<button onclick="closeImage('consultingQnaimage');" id="consultingQnaimage-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
+         src='/static/images/homescreen-consulting-1.jpg'>
+</button>
+<button onclick="closeImage('consultingPlanimage');" id="consultingPlanimage-fullscreen"
+        class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
+         src='/static/images/homescreen-consulting-2.jpg'>
+</button>
+<button onclick="closeImage('consultingMatchingimage');" id="consultingMatchingimage-fullscreen"
+        class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
+         src='/static/images/homescreen-consulting-3.jpg'>
+</button>
 <script>
     function showImage(imageId) {
         var element = document.getElementById(imageId + "-fullscreen");

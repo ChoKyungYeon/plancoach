@@ -39,7 +39,7 @@
     flex-shrink: 0;
 }
 .teacher-applicationlist .border-tounched-step2{
-    margin-right:4%;
+    margin-right:5%;
     margin-left:auto;
 }
 
@@ -65,10 +65,10 @@
     <div class="teacher-applicationlist-slide1" style="display:block">
         <div class="border">
             <div class="border-tounched-step1">
-                신청서 수락
+                신청서 확인
             </div>
             <div class="border-tounched-step2" style="border-bottom:1rem solid var(--whitegray); color:#cfcfd8;">
-                시범 수업
+                상담 대기
             </div>
         </div>
     {% include 'teacherapp/applicationlistsnippets/applied.html' %}
@@ -76,17 +76,15 @@
     <div class="teacher-applicationlist-slide2" style="display:none;">
         <div class="border">
             <div class="border-tounched-step1" style="border-bottom:1rem solid var(--whitegray); color:#cfcfd8;">
-                신청서 수락
+                신청서 확인
             </div>
             <div class="border-tounched-step2">
-                시범 수업
+                상담 대기
             </div>
         </div>
         {% include 'teacherapp/applicationlistsnippets/matching.html' %}
+
     </div>
-    {% if user == target_user %}
-    <button onclick="showhelp_application()"  class="material-icons main-icon-help">question_mark</button>
-    {% include 'teacherapp/applicationlistsnippets/help_application.html' %}
-    {% endif %}
+{% include 'teacherapp/applicationlistsnippets/foot.html' %}
 </main>
 {% endblock %}

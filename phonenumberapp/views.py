@@ -33,7 +33,7 @@ class PhonenumberCreateMixin(CreateView):
             form.instance.verification_code=random.randint(100000, 999999) #deploy check '111111'
             form.instance.save()
             to = form.instance.phonenumber
-            content = f'{self.sms_message} {form.instance.verification_code}를 입력하세요'
+            content = f'{self.sms_message} {form.instance.verification_code}를 3분 내에 입력해 주세요'
             Send_SMS(to, content, True)
             return super().form_valid(form)
 
@@ -48,7 +48,7 @@ class PhonenumberCreateMixin(CreateView):
 class PhonenumberSignupCreateView(PhonenumberCreateMixin):
     template_name = 'phonenumberapp/signupcreate.html'
     reverse_url = 'phonenumberapp:signupverify'
-    sms_message = 'Plan & Coach 인증번호'
+    sms_message = '인증번호'
     error_message = '이미 존재하는 전화번호입니다.'
 
     def condition(self, phonenumber, usernames):
@@ -60,7 +60,7 @@ class PhonenumberUpdateCreateView(PhonenumberCreateMixin):
     form_class = PhonenumberUpdateForm
     template_name = 'phonenumberapp/updatecreate.html'
     reverse_url = 'phonenumberapp:updateverify'
-    sms_message = 'Plan & Coach 인증번호'
+    sms_message = '인증번호'
     error_message = '이미 존재하는 전화번호입니다.'
 
     def condition(self, phonenumber, usernames):
@@ -70,7 +70,7 @@ class PhonenumberUpdateCreateView(PhonenumberCreateMixin):
 class PhonenumberSearchCreateView(PhonenumberCreateMixin):
     template_name = 'phonenumberapp/searchcreate.html'
     reverse_url = 'phonenumberapp:searchverify'
-    sms_message = 'Plan & Coach 인증번호'
+    sms_message = '인증번호'
     error_message = '가입되지 않은 전화번호 입니다.'
 
     def condition(self, phonenumber, usernames):

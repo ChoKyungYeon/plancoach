@@ -14,17 +14,6 @@ class HomescreenView(TemplateView):
     template_name = 'homescreenapp/homescreen.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        profiles = (
-            Profile.objects
-            .filter(state='abled')
-            .annotate(
-                num_likes=Count('profile_like'),
-                num_consults=Count('teacher__consult_teacher')
-            )
-            .annotate(total=F('num_likes') + F('num_consults'))
-            .order_by('-total', '-num_likes')
-        )
-        context['profiles_all'] = profiles[:3]
         return context
 
 class ContactView(TemplateView):

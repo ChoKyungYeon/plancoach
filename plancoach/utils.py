@@ -27,8 +27,6 @@ def time_expire(time, expire_duration):
     days, hours = divmod(interval_hours, 24)
     if days > 0:
         interval = f'{days}일'
-        if hours > 0:
-            interval += f' {hours}시간'
     else:
         interval = f'{hours}시간'
     return interval
@@ -51,9 +49,9 @@ def profile_completeness_calculator(user):
         '수능 성적': target_profile.profile_sat.exists(),
         '경력': target_profile.profile_career.exists(),
         '교과목': target_profile.profile_subject.exists(),
-        '담당 컨설팅': hasattr(target_profile, 'profile_consulttype'),
+        '컨설팅': hasattr(target_profile, 'profile_consulttype'),
         '사진': hasattr(target_profile, 'profile_profileimage'),
-        '자기 소개': hasattr(target_profile, 'profile_introduction'),
+        '한줄 소개': hasattr(target_profile, 'profile_introduction'),
     }
     profile_completed = [key for key, value in profile_instance.items() if value]
     profile_uncompleted = [key for key, value in profile_instance.items() if not value]

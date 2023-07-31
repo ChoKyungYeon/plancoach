@@ -92,7 +92,7 @@
             <div class="item-bar"></div>
         </div>
         <div class="item-info">
-            정해진 양식에 따라 학력 증명, 신원 인증, 급여 계좌를 등록합니다.
+            절차에 따라 학력과 신원을 인증하고, 급여 계좌 및 수업 정보를 등록합니다.
             {% if step == "initial" %}
             &nbsp;
             <a href="{% url 'teacherapplyapp:schoolimagecreate' pk=target_user.pk %}" class="link-nav">
@@ -111,7 +111,7 @@
             <div class="item-bar"></div>
         </div>
         <div class="item-info">
-            신청서를 관리자가 확인하고 이후 승인하기 전까지 대기합니다.
+            관리자가 등록한 정보를 확인하고 승인하기 전까지 대기합니다.
             {% if step == "applied" %}
             &nbsp;
             <a href="{% url 'teacherapplyapp:detail' pk=target_user.teacherapply.pk %}" class="link-nav">
@@ -126,7 +126,7 @@
             <div class="item-bar"></div>
         </div>
         <div class="item-info">
-            승인이 완료되면 관리자에게 안내사항을 전달받고 자유롭게 수업을 진행합니다.
+            승인이 완료되면, 필요에 따라 관리자에게 안내사항을 전달받고 자유롭게 수업을 진행합니다.
         </div>
     </div>
 </div>

@@ -16,7 +16,7 @@
     display: inline-block;
         color:var(--orange);
     font-weight:var(--fontweight-index);
-    font-size:1.3rem;
+    font-size:var(--fontweight-content);
 }
 
 
@@ -101,11 +101,11 @@
             </div>
         </div>
         <div class="text-content">
-            선생님 목록에서 수업을 신청할 나에게 맞는 선생님을 찾습니다.
+            프로필 목록에서 선생님들의 프로필을 확인하고 선택합니다.
             {% if step == "initial" %}
             &nbsp;
             <a href="{% url 'profileapp:list' %}"  class="link-nav">
-            선생님 찾기 >
+            프로필 목록 >
             </a>
             {% endif %}
         </div>
@@ -122,7 +122,7 @@
             </div>
         </div>
         <div class="text-content">
-            선택한 선생님의 프로필에서 양식에 맞게 신청서를 작성합니다
+            선택한 선생님에게 양식에 맞는 신청서를 작성합니다.
             {% if step == "applying" %}
             &nbsp;
             <a href="{% url 'applicationapp:create' pk=target_user.pk %}" class="link-nav">
@@ -143,7 +143,7 @@
             </div>
         </div>
         <div class="text-content">
-            신청서가 수락되기 전까지 신청서 수정, 삭제가 가능합니다
+            신청서가 확인될 때까지 대기하며 그 전까지 수정, 삭제가 가능합니다.
             {% if step == "applied" %}
             &nbsp;
             <a href="{% url 'applicationapp:detail' pk=user.application_student.pk %}" class="link-nav">
@@ -164,7 +164,7 @@
             </div>
         </div>
         <div class="text-content">
-            공개된 연락처를 통해 1주일 내로 자유롭게 시범 수업을 진행하고 수업을 성사합니다
+            수락 이후 양측의 연락처가 공개되며, 선생님과 상담을 진행하고 성사시에 컨설팅이 개설됩니다.
             {% if step == "matching" %}
             &nbsp;
             <a href="{% url 'applicationapp:detail' pk=user.application_student.pk %}" class="link-nav">
@@ -185,7 +185,7 @@
             </div>
         </div>
         <div class="text-content">
-            신규 수업이 개설되고 3일 내로 수업료를 입금하면 수업이 시작됩니다!.
+            개설된 컨설팅의 수업료를 입금하면 컨설팅이 시작됩니다.
             {% if step == "new" %}
             &nbsp;
             <a href="{% url 'paymentapp:guide' pk=user.consult_student.pk %}" class="link-nav">

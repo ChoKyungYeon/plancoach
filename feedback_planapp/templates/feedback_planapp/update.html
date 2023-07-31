@@ -15,7 +15,7 @@
         <div class="main-container-form">
             <form action="{% url 'feedback_planapp:update' pk=target_feedback_plan.pk %}" method="post">
                 {% csrf_token %}{% bootstrap_form form %}
-                <input type="submit" class="btn-submit btn-submit-short" value="계획 수정">
+                <input type="submit" class="btn-submit btn-submit-short" value="플랜 수정">
             </form>
         </div>
     </div>

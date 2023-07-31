@@ -1,0 +1,36 @@
+<style>
+    .container-matchingguide {
+        background: var(--white);
+        height: 4.5rem;
+        transition: opacity 1s;
+    }
+
+    .container-matchingguide .icon-teacher {
+        color: var(--white);
+        padding: 0.4rem;
+        border-radius: 0.5rem;
+        font-weight: 400;
+        font-size: 1.4rem;
+        margin-right: 0.7rem;
+        background: var(--orange);
+    }
+
+    .container-matchingguide .text-content {
+        color: var(--black);
+        margin-left:0.5rem;
+    }
+
+</style>
+
+{% if user == target_user %}
+<button onclick="showhelp_application()" class="main-container-popup container-matchingguide">
+    <div class="icon-teacher material-icons">
+        question_mark
+    </div>
+    <div class="text-popup text-content">
+        매칭 가이드
+    </div>
+</button>
+{% include 'teacherapp/applicationlistsnippets/help_application.html' %}
+{% endif %}
+

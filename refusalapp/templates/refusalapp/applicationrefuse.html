@@ -7,7 +7,7 @@
 
 
 <header class="header-black">
-        {% url 'applicationapp:detail' target_user.application_student.pk as url %}
+        {% url 'applicationapp:detail' target_application.pk as url %}
         {% include 'headersnippets/navback.html' with url=url %}
         {% with title="거절 사유 작성" %}
         {% include 'headersnippets/title.html' %}

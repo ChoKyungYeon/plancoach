@@ -91,7 +91,7 @@ def ProfileStateUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user,CustomUser.objects.get(pk=request.GET.get('user_pk')).profile)
         permission_checks = [
-            decorators.member_filter(role='teacher', allow_superuser=False)
+            decorators.member_filter(role='teacher', allow_superuser=True)
         ]
         for check in permission_checks:
             if check is not None:

@@ -9,7 +9,7 @@
 <header class="header-black">
         {%  url 'teacherapp:dashboard' pk=target_user.pk as url %}
         {% include 'headersnippets/navback.html' with url=url %}
-        {% with title="수익 지급 내역" %}
+        {% with title="급여 지급 내역" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
 </header>
@@ -26,7 +26,7 @@
     {% else %}
         <div class="main-container-empty">
         <span class="text-empty">
-        수익 지급 내역이 존재하지 않습니다.
+        급여 지급 내역이 존재하지 않습니다.
         </span>
         </div>
     {% endif %}

@@ -2,7 +2,6 @@ from django import forms
 from django.forms import ModelForm
 
 from plancoach.widgets import CustomSelect
-from refundapp.models import Refund
 from teacherapplyapp.models import Teacherapply
 
 
@@ -11,7 +10,7 @@ class TeacherapplyInfoCreateForm(ModelForm):
         model = Teacherapply
         fields = ('consulttype','school', 'major', 'studentid', 'accepttype')
         labels = {
-            'consulttype': '담당 컨설팅',
+            'consulttype': '가능 컨설팅 (중복 선택 가능)',
             'school': '학교',
             'major': '전공',
             'studentid': '학번',
@@ -19,7 +18,7 @@ class TeacherapplyInfoCreateForm(ModelForm):
         }
         widgets = {
             'school': CustomSelect(attrs={ 'class': 'select',}),
-            'major': forms.TextInput(attrs={'placeholder': 'oo과', 'class': 'textinput'}),
+            'major': forms.TextInput(attrs={'placeholder': 'ex) 의예과, 경영학과', 'class': 'textinput'}),
             'studentid': CustomSelect(attrs={'class': 'select'}),
             'accepttype': CustomSelect(attrs={ 'class': 'select'}),
             'consulttype': forms.CheckboxSelectMultiple(attrs={ 'class': 'selectmultiple'}),
@@ -60,5 +59,5 @@ class TeacherapplyBankCreateForm(ModelForm):
         widgets = {
             'bank': CustomSelect(attrs={'placeholder': '', 'class': 'select',}),
             'accountnumber': forms.NumberInput(attrs={'placeholder': '- 제외 숫자만 입력','class': 'textinput',}),
-            'depositor': forms.TextInput(attrs={'placeholder': '본인 명의의 계좌를 입력해 주세요', 'class': 'textinput', }),
+            'depositor': forms.TextInput(attrs={'placeholder': '정확하게 입력해 주세요', 'class': 'textinput', }),
         }

@@ -17,26 +17,26 @@
 
 <main class="profile-update ">
     <div class="main-box">
-        <div class="main-text-title-guideform" >* 학력 등록 주의 사항</div>
+        <div class="main-text-title-guideform" >* 학력 증명 주의 사항</div>
         <div class="main-container-guideform">
             <div class="item-guide">
                 <span class="text-content">
-                재학/휴학/재적 증명서는 3개월 이내에 발급한 서류만 제출해주세요
+                재학/휴학/재적 증명서는 3개월 이내에 발급한 서류만 제출해 주세요.
             </span>
             </div>
             <div class="item-guide">
                 <span class="text-content">
-                모든 학력인증 서류는 가리는 부분 없이 제출해주세요 (단, 학생증의 카드번호는 가려주세요)
+                증명서는 가리는 부분 없이 제출해 주세요.
             </span>
             </div>
             <div class="item-guide">
                 <span class="text-content">
-                학생증은 모바일 학생증이 아닌 실물 학생증 촬영본을 제출해주세요
+                학생증으로 증명할 시 모바일 학생증이 아닌 실물 학생증 촬영본을 제출하고 카드번호는 가려주세요.
             </span>
             </div>
             <div class="item-guide">
                 <span class="text-content">
-                제출서류는 위의 학교/학과/학번 탭에서 등록한 학력과 동일해야합니다.
+                제출서류는 추후 등록할 학력과 동일해야 합니다.
             </span>
             </div>
             <div class="item-guide">
@@ -46,7 +46,7 @@
             </div>
             <div class="item-guide">
                 <span class="text-content">
-                학력 정보에 대해 추가 정보가 필요할 경우 요청할 수 있으며, 허위 정보 기재시 선생님 지원이 제한될 수 있습니다.
+                학력 정보에 대해 추가 정보가 필요할 경우 요청할 수 있으며, 허위 기재 시 불이익이 발생할 수 있습니다.
             </span>
             </div>
             </div>
@@ -57,7 +57,7 @@
         <form action="{% url 'teacherapplyapp:schoolimagecreate' pk=target_user.pk %}"
               enctype="multipart/form-data" method="post" onsubmit="return confirmSchoolimageCreate()">
             {% csrf_token %}{% bootstrap_form form %}
-            <input type="submit" class="btn-submit" value="증빙 자료 제출">
+            <input type="submit" class="btn-submit" value="증명 자료 제출">
         </form>
         </div>
     </div>
@@ -66,7 +66,7 @@
 
 <script>
     function confirmSchoolimageCreate() {
-        var confirmMessage = "주의 사항을 확인해주세요. 이후 기재 사항을 수정할 수 없습니다.";
+        var confirmMessage = "주의 사항을 확인해 주세요. 허위 기재 시 불이익이 발생할 수 있습니다.";
         return confirm(confirmMessage);
     }
 </script>

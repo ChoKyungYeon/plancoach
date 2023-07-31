@@ -13,5 +13,5 @@ class RefusalCreateForm(ModelForm):
             'content':'거절 사유 작성',
         }
         widgets = {
-            'content': forms.TextInput(attrs={'placeholder': '거절 사유', 'class': 'textinput'}),
+            'content': forms.TextInput(attrs={'placeholder': '학생에게 전달되는 내용입니다.', 'class': 'textinput'}),
         }

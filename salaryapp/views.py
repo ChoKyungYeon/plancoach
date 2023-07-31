@@ -38,6 +38,7 @@ class SalaryExpectedView(DetailView):
         context['target_bank'] = self.object.teacher.profile.profile_bank
         return context
 
+
 @method_decorator(login_required, name='dispatch')
 @method_decorator(SalaryPayDecorator, name='dispatch')
 class SalaryPayView(DetailView):
@@ -70,6 +71,6 @@ class SalaryStateUpdateView(RedirectView):
             salary.given_at = datetime.now()
             salary.save()
             # sendsms
-            content = f'{salary.salaryday}급여 {salary.paid_amount()}원 입금이 완료되었습니다'
+            content = f'{salary.salaryday} 급여 {salary.paid_amount()}원이 입금되었습니다'
             Send_SMS(teacher.username, content, teacher.can_receive_notification)
             return super(SalaryStateUpdateView, self).get(request, *args, **kwargs)

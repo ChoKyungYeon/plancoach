@@ -14,7 +14,7 @@
 
 <main>
   <div class="main-box">
-      <div class="main-text-title-guideform" >* 오기입에 의한 불이익은 책임지지 않습니다.</div>
+      <div class="main-text-title-guideform" >* 오기입 시의 불이익은 책임지지 않습니다</div>
       <div class="main-container-form">
           <form action="{% url 'teacherapplyapp:bankcreate' pk=target_teacherapply.pk %}"
             method="post" style="width:100%" onsubmit="return confirmBankCreate()">
@@ -26,7 +26,7 @@
 </main>
 <script>
     function confirmBankCreate() {
-        var confirmMessage = "기재 정보를 정학히 확인해주세요. 이후 내용을 수정할 수 없습니다.";
+        var confirmMessage = "주의 사항을 확인해 주세요. 오기입 시 불이익이 발생할 수 있습니다.";
         return confirm(confirmMessage);
     }
 </script>

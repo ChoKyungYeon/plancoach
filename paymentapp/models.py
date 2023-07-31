@@ -70,7 +70,7 @@ class Payment(models.Model):
 
         salaryday = salaryday_calculator(self.created_at.date() + timedelta(days=28))
         self.add_salary(teacher, salaryday)
-        content = f'({self.classname}) 신규 입금이 완료되었습니다. 컨설팅을 시작해주세요!'
+        content = f'{self.consult.student.userrealname} 학생의 신규 입금이 완료되었습니다. 컨설팅을 시작해 주세요!'
         Send_SMS(teacher.username, content, teacher.can_receive_notification)
 
     def extend_payment_process(self, consult, teacher):
@@ -80,7 +80,7 @@ class Payment(models.Model):
         salaryday = salaryday_calculator(self.created_at.date() + timedelta(days=57))
         self.add_salary(teacher, salaryday)
 
-        content = f'({self.classname}) 연장이 완료되었습니다!'
+        content = f'{self.consult.student.userrealname} 학생의 컨설팅 연장이 완료되었습니다!'
         Send_SMS(teacher.username, content, teacher.can_receive_notification)
 
 

@@ -4,7 +4,7 @@
     right:0;
     top:0;
     z-index:101;
-    opacitiy:0;
+    opacity:0;
     flex-direction:column;
     justify-content:center;
     align-items:center;
@@ -50,7 +50,7 @@
     background:rgba(59, 61, 74, 0.7);
     top: 0;
     right: 0;
-    opacitiy:0;
+    opacity:0;
     display: none;
     flex-direction:column;
     justify-content:center;

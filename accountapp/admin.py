@@ -18,10 +18,10 @@ class CustomUserAdmin(admin.ModelAdmin):
     fields = ('display_user_info','display_consult_info','state')
 
     def has_add_permission(self, request):
-        return False
+        return True
 
     def has_delete_permission(self, request, obj=None):
-        return False
+        return True
 
     def display_customUser(self, obj):
         return f"[{obj.get_state_display()}] {obj.userrealname} {obj.username}"

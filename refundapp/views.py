@@ -63,7 +63,7 @@ class RefundCreateView(CreateView):
                 )
             target_consult.delete()
             # sendsms
-            content = f'({form.instance.classname})이 환불 처리 되었습니다.'
+            content = f'{form.instance.student.userrealname} 학생의 요청으로 컨설팅이 환불 처리되었습니다.'
             Send_SMS(teacher.username, content, teacher.can_receive_notification)
             return super().form_valid(form)
 
@@ -83,7 +83,7 @@ class RefundStateUpdateView(RedirectView):
             refund.is_given= True
             refund.given_at= datetime.now()
             refund.save()
-            content = f'({refund.classname})이 환불 완료되었습니다.'
+            content = f'요청하신 환불이 정상 처리되었습니다.'
             Send_SMS(student.username, content, student.can_receive_notification)
             Refusal.objects.filter(student=student).delete()
             Refusal.objects.create(student=student, type='refund')

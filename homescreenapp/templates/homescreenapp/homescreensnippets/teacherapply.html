@@ -7,12 +7,22 @@
     .container-teacherapply .bg-conatiner-left {
         background: #eef2fc;
         width: 50%;
-        height: 40%;
+        height: 35%;
         position: absolute;
-        z-index: -3;
         border-top-right-radius: 100% 100%;
         left: 0;
         bottom: 0;
+        z-index: -1;
+    }
+    .container-teacherapply .bg-conatiner-right {
+        background: #f2f5fd;
+        width: 25%;
+        height: 15%;
+        position: absolute;
+        border-bottom-left-radius: 100% 100%;
+        right: 0;
+        top: 0;
+        z-index: -1;
     }
 
     .container-teacherapply .item-teacherapply {
@@ -76,8 +86,13 @@
         }
 
         .container-teacherapply .bg-conatiner-left {
-            width: 30%;
+            width: 25%;
             height: 45%;
+
+        }
+        .container-teacherapply .bg-conatiner-right {
+            width: 15%;
+            height: 35%;
 
         }
     }
@@ -86,64 +101,65 @@
 
 <div class="main-container-homescreen container-teacherapply">
     <div class="bg-conatiner-left"></div>
+    <div class="bg-conatiner-right"></div>
     <div class="text-subtitle">
         선생님이신가요?
     </div>
     <div class="text-title">
-        절차에 따라<span class="text-emphasize"> 선생님을 신청</span>하고 </br>
-        이 모든 <span class="text-emphasize">학습 툴을</span> 이용해보세요!
+        절차에 따라<span class="text-emphasize"> 계정 전환</span> 후 </br>
+        <span class="text-emphasize">학습 관리 툴</span>을 이용해보세요!
     </div>
 
     <div class="item-teacherapply">
         <div class="array-info ">
-            <span class="text-index interval-index ">자유로운 프로필 관리</span>
-            <span class="text-content">수업 프로필을 관리하고<br> 손쉽게 공유하세요</span>
+            <span class="text-index interval-index ">내 프로필 관리</span>
+            <span class="text-content">컨설팅 프로필을 관리하고<br>손쉽게 공유하세요.</span>
         </div>
         <button onclick="showImage('teacherapplyProfileimage');" class="btn-image-teacherapply">
             <img class="image-teacherapply" src='/static/images/homescreen-teacherapply-1.jpg'>
             <div class="icon-arrow material-icons">ads_click</div>
         </button>
-        <button onclick="closeImage('teacherapplyProfileimage');"
-                id="teacherapplyProfileimage-fullscreen" class="fullscreenimage">
-            <div class="btn-exit material-icons">close</div>
-            <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
-                 src='/static/images/homescreen-teacherapply-1.jpg'>
-        </button>
     </div>
     <div class="item-teacherapply">
         <div class="array-info ">
-            <span class="text-index interval-index">급여 및 환불 시스템</span>
-            <span class="text-content">수업 환불 및 수업료를<br> 자동화해서 한번에 관리하세요 </span>
+            <span class="text-index interval-index">수익 관리 시스템</span>
+            <span class="text-content">자동화된 시스템을 통해<br>내 수익을 관리하세요. </span>
         </div>
         <button onclick="showImage('teacherapplySalaryimage');" class="btn-image-teacherapply">
             <img class="image-teacherapply" src='/static/images/homescreen-teacherapply-2.jpg'>
             <div class="icon-arrow material-icons">ads_click</div>
         </button>
-        <button onclick="closeImage('teacherapplySalaryimage');"
-                id="teacherapplySalaryimage-fullscreen" class="fullscreenimage">
-            <div class="btn-exit material-icons">close</div>
-            <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
-                 src='/static/images/homescreen-teacherapply-2.jpg'>
-        </button>
+
     </div>
     <div class="item-teacherapply">
         <div class="array-info ">
             <span class="text-index interval-index">체계적인 수업 관리</span>
-            <span class="text-content">매주 진행되는 수업을 기록하고<br>학생을 한번에 관리하세요 </span>
+            <span class="text-content">수업 내역을 기록하고<br>학생을 한 눈에 관리하세요. </span>
         </div>
         <button onclick="showImage('teacherapplyManageimage');" class="btn-image-teacherapply">
             <img class="image-teacherapply" src='/static/images/homescreen-teacherapply-3.jpg'>
             <div class="icon-arrow material-icons">ads_click</div>
         </button>
-        <button onclick="closeImage('teacherapplyManageimage');"
-                id="teacherapplyManageimage-fullscreen" class="fullscreenimage">
-            <div class="btn-exit material-icons">close</div>
-            <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
-                 src='/static/images/homescreen-teacherapply-3.jpg'>
-        </button>
     </div>
 </div>
-
+<button onclick="closeImage('teacherapplyProfileimage');"
+        id="teacherapplyProfileimage-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
+         src='/static/images/homescreen-teacherapply-1.jpg'>
+</button>
+<button onclick="closeImage('teacherapplySalaryimage');"
+        id="teacherapplySalaryimage-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
+         src='/static/images/homescreen-teacherapply-2.jpg'>
+</button>
+<button onclick="closeImage('teacherapplyManageimage');"
+        id="teacherapplyManageimage-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
+         src='/static/images/homescreen-teacherapply-3.jpg'>
+</button>
 <script>
     function showImage(imageId) {
         var element = document.getElementById(imageId + "-fullscreen");

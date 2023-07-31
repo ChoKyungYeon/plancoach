@@ -39,7 +39,7 @@ class ApplicationCreateView(CreateView):
             Application.objects.filter(student=student).delete()
             Refusal.objects.filter(student=student).delete()
             # sendsms
-            content = f'{student.userrealname} 학생이 수업을 신청했습니다. 신청서를 확인해주세요'
+            content = f'{student.userrealname} 학생이 매칭을 신청했습니다. 24시간 내로 신청서를 확인해 주세요.'
             Send_SMS(teacher.username, content, teacher.can_receive_notification)
             return super().form_valid(form)
 
@@ -99,7 +99,7 @@ class ApplicationStateUpdateView(RedirectView):
             application.updated_at = datetime.now()
             application.save()
             # sendsms
-            content = '신청서가 수락되었습니다. 연락처를 확인하고 시범 수업을 진행해주세요.'
+            content = '매칭 신청이 수락되어 연락처가 공개되었습니다. 자세한 내용은 웹에서 확인하세요.'
             Send_SMS(student.username, content, student.can_receive_notification)
             return super(ApplicationStateUpdateView, self).get(request, *args, **kwargs)
 
