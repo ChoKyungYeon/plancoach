@@ -2,15 +2,15 @@
 
 
     .help_application .item-circle {
-        color: var(--white);
-        font-size: var(--fontsize-content);
-        font-weight: var(--fontweight-title);
+        color:var(--white);
+        font-size:var(--fontsize-content);
+        font-weight:var(--fontweight-content);
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        height: 4.7rem;
-        width: 4.7rem;
+        height: 4.3rem;
+        width: 4.3rem;
         border-radius: 50%;
         background: var(--gray);
     }
@@ -66,10 +66,10 @@
 
 </style>
 
-<div id="help_application" class="fullscreeninfo help_application">
+<button onclick="closehelp_application()" id="help_application" class="fullscreeninfo help_application">
     <div class="itembox">
         <div class="item-head">
-            <button onclick="closehelp_application()" class="material-icons btn-exit">cancel</button>
+            <div class="material-icons btn-exit">cancel</div>
         </div>
         <div class="item-info">
             <div class="array-info">
@@ -132,7 +132,7 @@
             </div>
         </div>
     </div>
-</div>
+</button>
 <script>
     function showhelp_application() {
         var element = document.getElementById("help_application");
