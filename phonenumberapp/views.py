@@ -30,7 +30,7 @@ class PhonenumberCreateMixin(CreateView):
                 form.add_error('phonenumber', self.error_message)
                 return self.form_invalid(form)
 
-            form.instance.verification_code=111111 #deploy check random.randint(100000, 999999)
+            form.instance.verification_code=random.randint(100000, 999999) #deploy check '111111'
             form.instance.save()
             to = form.instance.phonenumber
             content = f'{self.sms_message} {form.instance.verification_code}를 3분 내에 입력해 주세요'
