@@ -3,12 +3,6 @@
         <span class="main-text-title">기타 정보</span>
     </div>
     <div class="container-setting">
-        {% if user.state == 'student' %}
-        <a href="{% url 'studentapp:refundlist' pk=target_user.pk %}" class="item-content">
-            <span class="main-text-content text-content">환불 내역/규정</span>
-            <span class="material-icons icon-arrow">navigate_next</span>
-        </a>
-        {% endif %}
         <a href="{% url 'homescreenapp:privacypolicy' %}" class="item-content">
             <span class="main-text-content text-content">개인정보 처리 방침</span>
             <span class="material-icons icon-arrow">navigate_next</span>
@@ -17,11 +11,15 @@
             <span class="main-text-content text-content">서비스 이용약관</span>
             <span class="material-icons icon-arrow">navigate_next</span>
         </a>
-        <a href="{% url 'homescreenapp:aboutus' %}" class="item-content" >
-            <span class="main-text-content text-content">AboutUs</span>
+        <a href="{% url 'homescreenapp:refund' %}" class="item-content">
+            <span class="main-text-content text-content">환불 규정</span>
             <span class="material-icons icon-arrow">navigate_next</span>
         </a>
-                <a href="{% url 'homescreenapp:contact' %}" class="item-content" style="border-bottom: None">
+        <a href="{% url 'homescreenapp:announcement' %}" class="item-content">
+            <span class="main-text-content text-content">공지사항</span>
+            <span class="material-icons icon-arrow">navigate_next</span>
+        </a>
+        <a href="{% url 'homescreenapp:contact' %}" class="item-content" style="border-bottom: None">
             <span class="main-text-content text-content">Contact</span>
             <span class="material-icons icon-arrow">navigate_next</span>
         </a>

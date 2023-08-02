@@ -36,7 +36,7 @@ class Consult(models.Model):
         if self.startdate:
             interval = datetime.now().date() - self.startdate
             tuition = self.tuition
-            refund_rates = [(timedelta(days=1), 4 / 4),(timedelta(days=7), 3 / 4), (timedelta(days=14), 1 / 2)]
+            refund_rates = [(timedelta(days=7), 3 / 4), (timedelta(days=14), 1 / 2)]
             for days, rate in refund_rates:
                 if interval < days:
                     return int(round(tuition * rate, -2))

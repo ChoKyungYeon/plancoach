@@ -3,6 +3,12 @@
         <span class="main-text-title">계정 관리</span>
     </div>
     <div class="container-setting">
+        {% if user.state == 'student' %}
+        <a href="{% url 'studentapp:refundlist' pk=target_user.pk %}" class="item-content">
+            <span class="main-text-content text-content">환불 내역</span>
+            <span class="material-icons icon-arrow" style="font-size:1.7rem;">history</span>
+        </a>
+        {% endif %}
         <a href="{% url 'accountapp:passwordupdate' pk=target_user.pk %}" class="item-content">
             <span class="main-text-content text-content">비밀번호 변경</span>
             <span class="material-icons icon-nav">settings</span>

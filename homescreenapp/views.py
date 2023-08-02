@@ -26,14 +26,6 @@ class ContactView(TemplateView):
         return context
 
     
-class AboutusView(TemplateView):
-    template_name = 'homescreenapp/aboutus.html'
-
-    def get(self, request, *args, **kwargs):
-        document = Document.objects.all().first()
-        if document.aboutus_link:
-            return redirect(document.aboutus_link)
-        return super().get(request, *args, **kwargs)
 
 class TermofuseView(TemplateView):
     template_name = 'homescreenapp/termofuse.html'
