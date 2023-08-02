@@ -2,7 +2,7 @@ from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404
 
 from accountapp.models import CustomUser
-from plancoach.decorators import Decorators
+from plancoach.decorators import Decorators, expire_redirector
 from teacherapplyapp.models import Teacherapply
 
 
@@ -23,7 +23,7 @@ def TeacherapplySchoolimageCreateDecorator(func):
 def TeacherapplyUserimageCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         teacherapply=get_object_or_404(Teacherapply, pk=kwargs['pk'])
-        if teacherapply.has_userimage == True:
+        if teacherapply.has_schoolimage == False:
             return HttpResponseForbidden()
         decorators=Decorators(request.user, teacherapply.customuser)
         decorators.update()
@@ -40,7 +40,7 @@ def TeacherapplyUserimageCreateDecorator(func):
 def TeacherapplyBankCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         teacherapply=get_object_or_404(Teacherapply, pk=kwargs['pk'])
-        if teacherapply.has_userimage != True or teacherapply.has_bank == True:
+        if teacherapply.has_userimage == False:
             return HttpResponseForbidden()
         decorators=Decorators(request.user, teacherapply.customuser)
         decorators.update()
@@ -57,7 +57,7 @@ def TeacherapplyBankCreateDecorator(func):
 def TeacherapplyInfoCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         teacherapply=get_object_or_404(Teacherapply, pk=kwargs['pk'])
-        if teacherapply.has_bank != True or teacherapply.is_done == True:
+        if teacherapply.has_bank == False:
             return HttpResponseForbidden()
         decorators=Decorators(request.user, teacherapply.customuser)
         decorators.update()
@@ -87,6 +87,9 @@ def TeacherapplyGuideDecorator(func):
 
 def TeacherapplyDetailDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(request.user, kwargs['pk'], Teacherapply, 'teacherapply')
+        if redirect:
+            return redirect
         decorators=Decorators(request.user, get_object_or_404(Teacherapply, pk=kwargs['pk']).customuser)
         decorators.update()
         permission_checks = [
@@ -96,6 +99,9 @@ def TeacherapplyDetailDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
+        redirect = expire_redirector(request.user, kwargs['pk'], Teacherapply, 'teacherapply')
+        if redirect:
+            return redirect
         return func(request, *args, **kwargs)
     return decorated
 

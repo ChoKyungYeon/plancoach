@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 
 from documentapp.decorators import *
 from documentapp.forms import DocumentCreateForm
@@ -15,6 +16,7 @@ class DocumentCreateView(CreateView):
     template_name = 'documentapp/create.html'
     def get_success_url(self):
         return reverse_lazy('superuserapp:dashboard')
+
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(DocumentCreateDecorator, name='dispatch')

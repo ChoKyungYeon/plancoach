@@ -5,6 +5,7 @@ from django.db import transaction
 from django.db.models import Count, F
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView, UpdateView, DetailView, RedirectView, TemplateView, DeleteView
 from accountapp.models import CustomUser
 from plancoach.choice import subjectchoice, schoolyearchoice
@@ -19,6 +20,7 @@ from profileapp.models import Profile
 from teacherapplyapp.models import Teacherapply
 from django.utils.decorators import method_decorator
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(ProfileCreateDecorator, name='dispatch')
 class ProfileCreateView(CreateView):
@@ -79,7 +81,7 @@ class ProfileDeleteView(DeleteView):
     def get_success_url(self):
         return reverse_lazy('superuserapp:dashboard')
 
-
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(ProfileTuitionUpdateDecorator, name='dispatch')
 class ProfileTuitionUpdateView(UpdateView):
@@ -97,7 +99,7 @@ class ProfileTuitionUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('teacherapp:dashboard', kwargs={'pk': self.object.teacher.pk})
 
-
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(ProfileDetailDecorator, name='dispatch')
 class ProfileDetailView(DetailView):
     model = Profile
@@ -124,6 +126,7 @@ class ProfileDetailView(DetailView):
         context['can_add_sat'] = len(schoolyearchoice) != len(sats)
         return context
 
+@method_decorator(never_cache, name='dispatch')
 class ProfileListView(TemplateView):
     model = Profile
     template_name = 'profileapp/list.html'

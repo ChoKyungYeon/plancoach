@@ -1,13 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 from django.views.generic import UpdateView, RedirectView
 
 from feedback_planapp.decorators import *
 from feedback_planapp.forms import Feedback_planUpdateForm
 from feedback_planapp.models import Feedback_plan
 
-
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(Feedback_planUpdateDecorator, name='dispatch')
 class Feedback_planUpdateView(UpdateView):
@@ -18,6 +19,7 @@ class Feedback_planUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:plandetail', kwargs={'pk': self.object.consult_feedback.pk})
+
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(Feedback_planStateUpdateDecorator, name='dispatch')

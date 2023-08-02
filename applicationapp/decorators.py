@@ -15,6 +15,7 @@ def ApplicationCreateDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
+
         return func(request, *args, **kwargs)
     return decorated
 

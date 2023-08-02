@@ -7,9 +7,10 @@ from plancoach.choice import userstatechoice
 class CustomUser(AbstractUser):
     username = models.CharField(max_length=11, unique=True)
     userrealname = models.CharField(max_length=6)
-    email = models.EmailField(max_length=40, unique=True)
+    email = models.EmailField(max_length=40)
     state = models.CharField(max_length=20, choices=userstatechoice, default='student')
     can_receive_notification = models.BooleanField(default=True)
+    agree_terms = models.BooleanField(blank=True, null=True)
 
     def __str__(self):
         return f"[{self.username}] {self.userrealname}"

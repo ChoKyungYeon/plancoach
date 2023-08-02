@@ -9,7 +9,13 @@ from plancoach.decorators import Decorators
 def AccountCreateDecorator(func):
     def decorated(request, *args, **kwargs):
         phonenumber=get_object_or_404(Phonenumber, pk=kwargs['pk'])
+        if request.user.is_authenticated:
+            return HttpResponseForbidden()
         if phonenumber.is_verified == False:
+            return HttpResponseForbidden()
+        try:
+            request.session['verification_code']
+        except:
             return HttpResponseForbidden()
         if request.session['verification_code'] != str(phonenumber.verification_code):
             return HttpResponseForbidden()

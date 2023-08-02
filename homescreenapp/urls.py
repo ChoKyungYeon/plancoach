@@ -1,6 +1,8 @@
 from django.urls import path
 
-from homescreenapp.views import HomescreenView, ContactView, AboutusView, TermofuseView, PrivacypolicyView, RefundView
+from homescreenapp.views import HomescreenView, ContactView, AboutusView, TermofuseView, PrivacypolicyView, RefundView, \
+    AnnouncementView
+
 app_name = 'homescreenapp'
 
 urlpatterns = [
@@ -10,4 +12,5 @@ urlpatterns = [
     path('termofuse/', TermofuseView.as_view(), name='termofuse'),
     path('refund/', RefundView.as_view(), name='refund'),
     path('privacypolicy/', PrivacypolicyView.as_view(), name='privacypolicy'),
+    path('announcement/', AnnouncementView.as_view(), name='announcement'),
 ]

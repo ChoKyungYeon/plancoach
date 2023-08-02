@@ -86,6 +86,11 @@ class Decorators:
             return HttpResponseForbidden() if not self.obj.state in allow_object else None
 
 
+    def has_object(self, object):
+        if hasattr(self.obj, object):
+            return HttpResponseForbidden()
+
+
     def step_filter(self, allow_teacher, allow_student, allow_superuser):
         if self.user.state == 'superuser' and not allow_superuser:
             return HttpResponseForbidden()
@@ -121,7 +126,8 @@ class Decorators:
 def expire_redirector(user, pk, model, type):
     redirect_dict = {
         'application': 'applicationapp:expire',
-        'consult': 'consultapp:expire'
+        'consult': 'consultapp:expire',
+        'teacherapply': 'teacherapplyapp:expire'
     }
     try:
         get_object_or_404(model, pk=pk)

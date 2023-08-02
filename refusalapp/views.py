@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView
 from accountapp.models import CustomUser
 from applicationapp.models import Application
@@ -12,7 +13,7 @@ from django.utils.decorators import method_decorator
 
 from teacherapplyapp.models import Teacherapply
 
-
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(RefusalApplicationRefuseDecorator, name='dispatch')
 class RefusalApplicationRefuseView(CreateView):
@@ -38,7 +39,8 @@ class RefusalApplicationRefuseView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('teacherapp:applicationlist', kwargs={'pk': self.request.user.pk})\
-            
+
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(RefusalTeacherapplyRefuseDecorator, name='dispatch')
 class RefusalTeacherapplyRefuseView(CreateView):

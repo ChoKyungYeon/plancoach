@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView, UpdateView, DeleteView
 
 from profile_subjectapp.decorators import Profile_subjectEditDecorator
@@ -10,6 +11,7 @@ from profileapp.decorators import Profile_instanceCreateDecorator
 from profileapp.models import Profile
 from django.utils.decorators import method_decorator
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(Profile_instanceCreateDecorator, name='dispatch')
 class Profile_subjectCreateView(CreateView):
@@ -38,6 +40,7 @@ class Profile_subjectCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('profileapp:detail', kwargs={'pk': self.kwargs['pk']})
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(Profile_subjectEditDecorator, name='dispatch')
 class Profile_subjectUpdateView(UpdateView):

@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.views.decorators.cache import never_cache
 from django.views.generic import DetailView
 from accountapp.models import CustomUser
 from django.utils.decorators import method_decorator
@@ -7,7 +8,7 @@ from django.utils.decorators import method_decorator
 from refundapp.models import Refund
 from studentapp.decorators import *
 
-
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(StudentDashboardDecorator, name='dispatch')
 class StudentDashboardView(DetailView):

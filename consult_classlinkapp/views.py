@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from django.db import transaction
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView, UpdateView
 
 from consult_classlinkapp.decorators import *
@@ -12,6 +11,7 @@ from django.utils.decorators import method_decorator
 from consultapp.models import Consult
 
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(Consult_classlinkCreateDecorator, name='dispatch')
 class Consult_classlinkCreateView(CreateView):
@@ -26,10 +26,8 @@ class Consult_classlinkCreateView(CreateView):
         return context
 
     def form_valid(self, form):
-        link = form.cleaned_data['link']
         consult = get_object_or_404(Consult, pk=self.kwargs['pk'])
         with transaction.atomic():
-
             form.instance.consult = consult
             form.instance.save()
             return super().form_valid(form)
@@ -37,7 +35,7 @@ class Consult_classlinkCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('consultapp:dashboard', kwargs={'pk': self.kwargs['pk']})
 
-
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(Consult_classlinkUpdateDecorator, name='dispatch')
 class Consult_classlinkUpdateView(UpdateView):

@@ -62,18 +62,19 @@ class AccountCreateForm(UserCreationForm):
             'autocomplete': 'new-password'
         }),
     )
-
     class Meta:
         model = CustomUser
-        fields = ('email', 'userrealname', 'password1', 'password2')
+        fields = ('email', 'userrealname', 'password1', 'password2','agree_terms')
         labels = {
             'email': '이메일',
             'userrealname': '사용자 실명',
+            'agree_terms': '전체 동의',
         }
 
         widgets = {
             'userrealname': forms.TextInput(attrs={'placeholder': '실명을 입력하세요', 'class': 'textinput', }),
             'email': forms.EmailInput(attrs={'placeholder': '결제 영수증 입력한 이메일로 전송됩니다', 'class': 'textinput', }),
+            'agree_terms': forms.CheckboxInput(attrs={'class': 'checkbox'}),
         }
 
 

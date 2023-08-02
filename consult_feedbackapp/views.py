@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView, DetailView, DeleteView, UpdateView
 
 from consult_feedbackapp.decorators import *
@@ -18,7 +19,7 @@ from feedback_planapp.models import Feedback_plan
 from plancoach.choice import subjectchoice
 from django.utils.decorators import method_decorator
 
-
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(Consult_feedbackCreateDecorator, name='dispatch')
 class Consult_feedbackCreateView(CreateView):
@@ -39,7 +40,7 @@ class Consult_feedbackCreateView(CreateView):
         with transaction.atomic():
             # form error
             if classtime > datetime.now().date():
-                form.add_error('classtime', '수업 기록은 수업 진행 이후에 등록해주세요')
+                form.add_error('classtime', '수업 기록은 수업 진행 이후에 등록해 주세요')
                 return self.form_invalid(form)
             elif classtime in classtimes:
                 form.add_error('classtime', '이미 등록된 수업 일자입니다')
@@ -61,6 +62,7 @@ class Consult_feedbackCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.pk})
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(Consult_feedbackListDecorator, name='dispatch')
 class Consult_feedbackListView(DetailView):
@@ -91,6 +93,7 @@ class Consult_feedbackDeleteView(DeleteView):
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:list', kwargs={'pk': self.object.consult.pk})
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(Consult_feedbackUpdateDecorator, name='dispatch')
 class Consult_feedbackUpdateView(UpdateView):
@@ -108,7 +111,7 @@ class Consult_feedbackUpdateView(UpdateView):
         with transaction.atomic():
             # form invalid
             if classtime > datetime.now().date():
-                form.add_error('classtime', '수업 기록은 수업 후에 등록해주세요')
+                form.add_error('classtime', '수업 기록은 수업 후에 등록해 주세요')
                 return self.form_invalid(form)
             elif classtime in classtimes:
                 form.add_error('classtime', '이미 등록된 수업 일자입니다')
@@ -124,6 +127,7 @@ class Consult_feedbackUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.pk})
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(Consult_feedbackContentUpdateDecorator, name='dispatch')
 class Consult_feedbackContentUpdateView(UpdateView):
@@ -135,6 +139,7 @@ class Consult_feedbackContentUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.pk})
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(Consult_feedbackBaseDetailDecorator, name='dispatch')
 class ConsultFeedbackBaseDetailView(DetailView):

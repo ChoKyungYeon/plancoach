@@ -2,7 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, DeleteView, UpdateView
+from django.views.decorators.cache import never_cache
+from django.views.generic import CreateView, DetailView, DeleteView, UpdateView, TemplateView
 from accountapp.models import CustomUser
 from refusalapp.models import Refusal
 from teacherapplyapp.decorators import *
@@ -11,6 +12,7 @@ from teacherapplyapp.forms import TeacherapplyUserimageCreateForm, TeacherapplyB
 from teacherapplyapp.models import Teacherapply
 from django.utils.decorators import method_decorator
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(TeacherapplySchoolimageCreateDecorator, name='dispatch')
 class TeacherapplySchoolimageCreateView(CreateView):
@@ -30,12 +32,14 @@ class TeacherapplySchoolimageCreateView(CreateView):
             if hasattr(target_user, 'teacherapply'):
                 target_user.teacherapply.delete()
             form.instance.customuser = target_user
+            form.instance.has_schoolimage = True
             form.instance.save()
             return super().form_valid(form)
 
     def get_success_url(self):
         return reverse_lazy('teacherapplyapp:userimagecreate', kwargs={'pk': self.object.pk})
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(TeacherapplyBankCreateDecorator, name='dispatch')
 class TeacherapplyBankCreateView(UpdateView):
@@ -52,6 +56,7 @@ class TeacherapplyBankCreateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('teacherapplyapp:infocreate', kwargs={'pk':self.object.pk})
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(TeacherapplyUserimageCreateDecorator, name='dispatch')
 class TeacherapplyUserimageCreateView(UpdateView):
@@ -68,6 +73,7 @@ class TeacherapplyUserimageCreateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('teacherapplyapp:bankcreate', kwargs={'pk': self.object.pk})
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(TeacherapplyInfoCreateDecorator, name='dispatch')
 class TeacherapplyInfoCreateView(UpdateView):
@@ -86,6 +92,7 @@ class TeacherapplyInfoCreateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('studentapp:dashboard', kwargs={'pk': self.object.customuser.pk})
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(TeacherapplyGuideDecorator, name='dispatch')
 class TeacherapplyGuideView(DetailView):
@@ -103,6 +110,7 @@ class TeacherapplyDeleteView(DeleteView):
     def get_success_url(self):
         return reverse_lazy('superuserapp:dashboard')
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(TeacherapplyDetailDecorator, name='dispatch')
 class TeacherapplyDetailView(DetailView):
@@ -110,9 +118,14 @@ class TeacherapplyDetailView(DetailView):
     context_object_name = 'target_teacherapply'
     template_name = 'teacherapplyapp/detail.html'
 
+
 @method_decorator(login_required, name='dispatch')
 @method_decorator(TeacherapplyRegisterDecorator, name='dispatch')
 class TeacherapplyRegisterView(DetailView):
     model = Teacherapply
     context_object_name = 'target_teacherapply'
     template_name = 'teacherapplyapp/register.html'
+
+@method_decorator(login_required, name='dispatch')
+class TeacherapplyExpireView(TemplateView):
+    template_name = 'applicationapp/expire.html'

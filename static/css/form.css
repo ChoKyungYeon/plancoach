@@ -81,7 +81,7 @@
 
 
 .main-container-form .feild-nolabel{
-    margin-top:2rem;
+    margin-top:1.5rem;
 }
 /*인풋 필드*/
 
@@ -262,6 +262,38 @@ input[type="file"]::-ms-browse {
     align-items:center;
 
 }
+.checkbox {
+    display: none;
+}
+.checkbox-unchecked,
+.checkbox-checked{
+    color: var(--white);
+    font-weight: var(--fontweight-index);
+    font-size:var(--fontsize-detail);
+    background: var(--gray);
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    flex-shrink: 0;
+    align-items:center;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius:0.5rem;
+}
+.checkbox-unchecked{
+    border:2px solid var(--darkgray);
+    background:none;
+    color:var(--darkgray);
+    font-weight: var(--fontweight-emphasize);
+}
+
+.checkbox-unchecked .icon-check,
+.checkbox-checked .icon-check{
+    color: inherit;
+    font-weight: inherit;
+    font-size:inherit;
+}
+
 
 .selectmultiple .form-check {
     margin: 0;

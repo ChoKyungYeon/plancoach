@@ -49,6 +49,18 @@
         </div>
         <div class="main-array-row interval-top">
             <span class="main-text-index interval-right"  >
+                공지사항
+            </span>
+            <span class="main-text-content" >
+                {% if document.announcement_link %}
+                    <span class="text-done">등록 완료</span>
+                {% else %}
+                    미등록
+                {% endif %}
+            </span>
+        </div>
+        <div class="main-array-row interval-top">
+            <span class="main-text-index interval-right"  >
                 오픈 카카오톡
             </span>
             <span class="main-text-content" >

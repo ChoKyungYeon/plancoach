@@ -5,6 +5,7 @@ from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView, FormView
 from django.contrib.auth import login
 from accountapp.models import CustomUser
@@ -15,6 +16,7 @@ from phonenumberapp.models import Phonenumber
 from django.contrib.auth import get_user_model
 from django.utils.decorators import method_decorator
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(PhonenumberCreateDecorator, name='dispatch')
 class PhonenumberCreateMixin(CreateView):
     model = Phonenumber
@@ -24,13 +26,13 @@ class PhonenumberCreateMixin(CreateView):
         usernames = get_user_model().objects.values_list('username', flat=True)
         with transaction.atomic():
             if len(phonenumber) <11 or phonenumber[:3] != '010':
-                form.add_error('phonenumber', '정확한 전화번호를 입력해주세요')
+                form.add_error('phonenumber', '정확한 전화번호를 입력해 주세요')
                 return self.form_invalid(form)
             if self.condition(phonenumber, usernames):
                 form.add_error('phonenumber', self.error_message)
                 return self.form_invalid(form)
 
-            form.instance.verification_code=random.randint(100000, 999999) #deploy check '111111'
+            form.instance.verification_code=111111 #deploy check random.randint(100000, 999999)
             form.instance.save()
             to = form.instance.phonenumber
             content = f'{self.sms_message} {form.instance.verification_code}를 3분 내에 입력해 주세요'
@@ -44,7 +46,7 @@ class PhonenumberCreateMixin(CreateView):
         raise NotImplementedError()
 
 
-
+@method_decorator(UnauthenticatedDecorator, name='dispatch')
 class PhonenumberSignupCreateView(PhonenumberCreateMixin):
     template_name = 'phonenumberapp/signupcreate.html'
     reverse_url = 'phonenumberapp:signupverify'
@@ -66,7 +68,7 @@ class PhonenumberUpdateCreateView(PhonenumberCreateMixin):
     def condition(self, phonenumber, usernames):
         return phonenumber in usernames
 
-
+@method_decorator(UnauthenticatedDecorator, name='dispatch')
 class PhonenumberSearchCreateView(PhonenumberCreateMixin):
     template_name = 'phonenumberapp/searchcreate.html'
     reverse_url = 'phonenumberapp:searchverify'
@@ -76,6 +78,7 @@ class PhonenumberSearchCreateView(PhonenumberCreateMixin):
     def condition(self, phonenumber, usernames):
         return phonenumber not in usernames
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(PhonenumberVerifyDecorator, name='dispatch')
 class PhonenumberVerifyMixin(FormView):
     model = Phonenumber
@@ -94,7 +97,7 @@ class PhonenumberVerifyMixin(FormView):
         error_count = phonenumber.error_count
         with transaction.atomic():
             if len(compare_code) < 6:
-                form.add_error('compare_code', '인증번호 6자리를 입력해주세요')
+                form.add_error('compare_code', '인증번호 6자리를 입력해 주세요')
                 return self.form_invalid(form)
 
             if phonenumber.verification_code == compare_code:
@@ -114,7 +117,7 @@ class PhonenumberVerifyMixin(FormView):
     def success_action(self, phonenumber):
         raise NotImplementedError()
 
-
+@method_decorator(UnauthenticatedDecorator, name='dispatch')
 class PhonenumberSignupVerifyView(PhonenumberVerifyMixin):
     template_name = 'phonenumberapp/signupverify.html'
     redirect_url = 'phonenumberapp:signupcreate'
@@ -128,7 +131,7 @@ class PhonenumberSignupVerifyView(PhonenumberVerifyMixin):
         self.request.session['verification_code'] = phonenumber.verification_code
 
 
-
+@method_decorator(UnauthenticatedDecorator, name='dispatch')
 class PhonenumberSearchVerifyView(PhonenumberVerifyMixin):
     template_name = 'phonenumberapp/searchverify.html'
     redirect_url = 'phonenumberapp:searchcreate'

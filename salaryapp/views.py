@@ -4,12 +4,14 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.urls import reverse_lazy
+from django.views.decorators.cache import never_cache
 from django.views.generic import DetailView, RedirectView
 
 from plancoach.sms import Send_SMS
 from salaryapp.decorators import *
 from salaryapp.models import Salary
 from django.utils.decorators import method_decorator
+
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(SalaryDetailDecorator, name='dispatch')
@@ -24,6 +26,7 @@ class SalaryDetailView(DetailView):
         context['refunds'] = self.object.refund.all()
         return context
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(SalaryExpectedDecorator, name='dispatch')
 class SalaryExpectedView(DetailView):
@@ -38,7 +41,7 @@ class SalaryExpectedView(DetailView):
         context['target_bank'] = self.object.teacher.profile.profile_bank
         return context
 
-
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(SalaryPayDecorator, name='dispatch')
 class SalaryPayView(DetailView):
@@ -51,6 +54,7 @@ class SalaryPayView(DetailView):
         context['refunds'] = self.object.refund.all()
         context['target_bank'] = self.object.teacher.profile.profile_bank
         return context
+
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(SalaryStateUpdateDecorator, name='dispatch')

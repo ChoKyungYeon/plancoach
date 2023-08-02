@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
+from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView, RedirectView, DetailView
 from consultapp.models import Consult
 from plancoach.sms import Send_SMS
@@ -15,7 +16,7 @@ from django.utils.decorators import method_decorator
 
 from refusalapp.models import Refusal
 
-
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(RefundGuideDecorator, name='dispatch')
 class RefundGuideView(DetailView):
@@ -23,6 +24,7 @@ class RefundGuideView(DetailView):
     context_object_name = 'target_consult'
     template_name = 'refundapp/guide.html'
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(RefundCreateDecorator, name='dispatch')
 class RefundCreateView(CreateView):
@@ -70,6 +72,7 @@ class RefundCreateView(CreateView):
     def get_success_url(self):
         return reverse('studentapp:dashboard', kwargs={'pk': self.request.user.pk})
 
+
 @method_decorator(login_required, name='dispatch')
 @method_decorator(RefundStateUpdateDecorator, name='dispatch')
 class RefundStateUpdateView(RedirectView):
@@ -88,6 +91,7 @@ class RefundStateUpdateView(RedirectView):
             Refusal.objects.filter(student=student).delete()
             Refusal.objects.create(student=student, type='refund')
             return super(RefundStateUpdateView, self).get(request, *args, **kwargs)
+
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(RefundDetailDecorator, name='dispatch')

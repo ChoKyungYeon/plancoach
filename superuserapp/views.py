@@ -3,6 +3,7 @@ from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Cast
 from django.db.models import IntegerField
+from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 from accountapp.models import CustomUser
 from documentapp.models import Document
@@ -14,6 +15,7 @@ from teacherapplyapp.models import Teacherapply
 from django.utils.decorators import method_decorator
 
 #1 로그인  3슈퍼유저
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(SuperuserDashboardDecorator, name='dispatch')
 class SuperuserDashboardView(TemplateView):

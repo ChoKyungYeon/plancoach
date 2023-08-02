@@ -19,6 +19,7 @@ class Teacherapply(models.Model):
     consulttype = MultiSelectField(max_length=20, choices=consulttypechoice, null=True)
     is_done = models.BooleanField(default=False)
     has_userimage = models.BooleanField(default=False)
+    has_schoolimage = models.BooleanField(default=False)
     has_bank = models.BooleanField(default=False)
 
 

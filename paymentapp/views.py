@@ -4,6 +4,7 @@ from django.db import transaction
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
+from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView, CreateView, DetailView
 from django.utils.decorators import method_decorator
 
@@ -17,6 +18,7 @@ except:
 from paymentapp.forms import PaymentCreateForm
 from paymentapp.models import Payment
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(PaymentCreateDecorator, name='dispatch')
 class PaymentCreateView(CreateView):
@@ -43,6 +45,7 @@ class PaymentCreateView(CreateView):
         context['extenddate'] = target_consult.extenddate() if target_consult.extenddate() else None
         return context
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(PaymentPayDecorator, name='dispatch')
 class PaymentPayView(DetailView):
@@ -63,6 +66,7 @@ class PaymentPayView(DetailView):
         context['portone_shop_id'] = PORTONE_SHOP_ID  # deploy 바꿔주기
         return context
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(PaymentPayDecorator, name='dispatch')
 class PaymentCheckView(View):
@@ -72,7 +76,7 @@ class PaymentCheckView(View):
         return redirect(reverse('paymentapp:result', kwargs={'pk': payment.pk}))
 
 
-
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(PaymentResultDecorator, name='dispatch')
 class PaymentResultView(TemplateView):
@@ -85,6 +89,7 @@ class PaymentResultView(TemplateView):
         context['extenddate']=payment.consult.extenddate() if payment.consult.extenddate() else None,
         return context
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(PaymentContactDecorator, name='dispatch')
 class PaymentContactView(TemplateView):
@@ -96,6 +101,7 @@ class PaymentContactView(TemplateView):
         context['document']=Document.objects.all().first()
         return context
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(PaymentGuideDecorator, name='dispatch')
 class PaymentGuideView(TemplateView):

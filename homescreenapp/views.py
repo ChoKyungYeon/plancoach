@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Count, F
 from django.shortcuts import redirect, render
 from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 from documentapp.models import Document
 from feedback_likeapp.decorators import Feedback_likeDecorator
@@ -41,6 +42,15 @@ class TermofuseView(TemplateView):
         document = Document.objects.all().first()
         if document.termofuse_link:
             return redirect(document.termofuse_link)
+        return super().get(request, *args, **kwargs)
+
+class AnnouncementView(TemplateView):
+    template_name = 'homescreenapp/announcement.html'
+
+    def get(self, request, *args, **kwargs):
+        document = Document.objects.all().first()
+        if document.announcement_link:
+            return redirect(document.announcement_link)
         return super().get(request, *args, **kwargs)
 
 class RefundView(TemplateView):

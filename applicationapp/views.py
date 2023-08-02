@@ -4,6 +4,7 @@ from django.db import transaction
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, RedirectView, TemplateView
 
 from accountapp.models import CustomUser
@@ -13,7 +14,7 @@ from applicationapp.forms import ApplicationCreateForm
 from applicationapp.models import Application
 from plancoach.sms import Send_SMS
 
-
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(ApplicationCreateDecorator, name='dispatch')
 class ApplicationCreateView(CreateView):
@@ -46,6 +47,7 @@ class ApplicationCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('applicationapp:result')
 
+
 @method_decorator(login_required, name='dispatch')
 @method_decorator(ApplicationDeleteDecorator, name='dispatch')
 class ApplicationDeleteView(DeleteView):
@@ -59,6 +61,7 @@ class ApplicationDeleteView(DeleteView):
         else:
             return reverse_lazy('studentapp:dashboard', kwargs={'pk': self.object.student.pk})
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(ApplicationUpdateDecorator, name='dispatch')
 class ApplicationUpdateView(UpdateView):
@@ -70,6 +73,7 @@ class ApplicationUpdateView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('applicationapp:detail', kwargs={'pk': self.object.pk})
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(ApplicationDetailDecorator, name='dispatch')
 class ApplicationDetailView(DetailView):
@@ -81,6 +85,7 @@ class ApplicationDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['state'] = self.object.state
         return context
+
 
 @method_decorator(login_required, name='dispatch')
 @method_decorator(ApplicationStateUpdateDecorator, name='dispatch')
@@ -103,6 +108,7 @@ class ApplicationStateUpdateView(RedirectView):
             Send_SMS(student.username, content, student.can_receive_notification)
             return super(ApplicationStateUpdateView, self).get(request, *args, **kwargs)
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(ApplicationGuideDecorator, name='dispatch')
 class ApplicationGuideView(DetailView):
@@ -110,11 +116,12 @@ class ApplicationGuideView(DetailView):
     context_object_name = 'target_user'
     template_name = 'applicationapp/guide.html'
 
-
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(ApplicationResultDecorator, name='dispatch')
 class ApplicationResultView(TemplateView):
     template_name = 'applicationapp/result.html'
+
 
 @method_decorator(login_required, name='dispatch')
 class ApplicationExpireView(TemplateView):

@@ -16,6 +16,7 @@ def Consult_classlinkCreateDecorator(func):
         permission_checks = [
             decorators.object_filter(allow_object= ['extended','unextended']),
             decorators.member_filter(role='teacher', allow_superuser=False),
+            decorators.has_object('consult_classlink')
         ]
         for check in permission_checks:
             if check is not None:

@@ -2,7 +2,7 @@ from django.urls import path
 
 from teacherapplyapp.views import TeacherapplyGuideView, TeacherapplyDeleteView, \
     TeacherapplyDetailView, TeacherapplyBankCreateView, TeacherapplyInfoCreateView, TeacherapplyUserimageCreateView, \
-    TeacherapplySchoolimageCreateView, TeacherapplyRegisterView
+    TeacherapplySchoolimageCreateView, TeacherapplyRegisterView, TeacherapplyExpireView
 
 app_name = 'teacherapplyapp'
 
@@ -15,4 +15,5 @@ urlpatterns = [
     path('delete/<int:pk>', TeacherapplyDeleteView.as_view(), name='delete'),
     path('detail/<int:pk>', TeacherapplyDetailView.as_view(), name='detail'),
     path('register/<int:pk>', TeacherapplyRegisterView.as_view(), name='register'),
+    path('expire/', TeacherapplyExpireView.as_view(), name='expire'),
 ]
