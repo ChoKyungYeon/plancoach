@@ -47,11 +47,11 @@ form .form-check{
                 </div>
                 {% csrf_token %}{% bootstrap_form form %}
                 <a href="{% url 'homescreenapp:termofuse' %}" class="item-terms">
-                    <span class="main-text-content" >(필수) 서비스 이용약관 동의</span>
+                    <span class="main-text-content" >(필수) 서비스 이용 약관 동의</span>
                     <span class="main-text-content" >보기</span>
                 </a>
                 <a href="{% url 'homescreenapp:privacypolicy' %}" class="item-terms">
-                    <span class="main-text-content">(필수) 개인정보 처리방침 동의</span>
+                    <span class="main-text-content">(필수) 개인정보처리방침 동의</span>
                     <span class="main-text-content" >보기</span>
                 </a>
                 <input type="submit" class="btn-submit" value="회원가입">

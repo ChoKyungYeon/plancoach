@@ -10,8 +10,8 @@ class DocumentCreateForm(forms.ModelForm):
         fields = ( 'termofuse_link', 'privacypolicy_link','announcement_link','email', 'kakaotalk',)
 
         labels = {
-            'termofuse_link': '이용약관 노션',
-            'privacypolicy_link': '개인정보 처리 방침 노션',
+            'termofuse_link': '이용 약관 노션',
+            'privacypolicy_link': '개인정보처리방침 노션',
             'announcement_link': '공지사항 노션',
             'kakaotalk': '오픈 카카오톡',
             'email': '이메일 주소',

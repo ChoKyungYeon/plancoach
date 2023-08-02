@@ -10,7 +10,7 @@ from plancoach.sms import Send_SMS
 class Profile(models.Model):
     teacher = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
     state = models.CharField(max_length=20, choices=teacherstatechoice, default='disabled')
-    tuition = models.IntegerField(choices=tuitionchoice, default=1600) #deploy check
+    tuition = models.IntegerField(choices=tuitionchoice, default=160000) #deploy check
     payment_updated_at = models.DateField(null=True, blank=True)
 
 
