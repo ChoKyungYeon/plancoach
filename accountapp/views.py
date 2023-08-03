@@ -111,3 +111,11 @@ class AccountNotificationUpdateView(RedirectView):
         target_user.can_receive_notification = True if target_user.can_receive_notification == False else False
         target_user.save()
         return super(AccountNotificationUpdateView, self).get(request, *args, **kwargs)
+
+from django.contrib.auth import  login
+
+def test_login(request):
+    user = CustomUser.objects.get(username='01000000000')
+    if user is not None:
+        login(request, user)
+        return redirect('homescreenapp:homescreen')

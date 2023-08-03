@@ -35,7 +35,7 @@
     <div class="item-nav">
         <button onclick="showSlide(1)" id="btn-slide1" class="nav-bar-touched">학습</button>
         <button onclick="showSlide(2)" id="btn-slide2" class="nav-bar-untouched">참여자</button>
-        {% if user == target_consult.student  %}
+        {% if user == target_consult.student or user.state == 'superuser' %}
         <button onclick="showSlide(3)" id="btn-slide3" class="nav-bar-untouched">연장/환불</button>
         {% endif %}
     </div>

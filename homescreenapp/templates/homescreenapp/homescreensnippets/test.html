@@ -1,0 +1,157 @@
+<style>
+    .container-test {
+        background: linear-gradient(5deg, #efeff5, var(--whiteblue),
+        #efeff5, var(--whiteblue), #efeff5);
+    }
+
+    .container-test .text-subtitle {
+        color: var(--white);
+        font-size: 1.4rem;
+        font-weight: var(--fontweight-content);
+        margin-right: auto;
+        background: var(--blackblue);
+        border-radius: 0.5rem;
+        padding: 0.4rem 0.7rem;
+        margin-bottom: 1rem;
+    }
+
+    .container-test .text-title {
+        color: var(--black);
+    }
+
+    .container-test .btn-test {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 1.3rem 1.5rem;
+        background: var(--blackblue);
+        border-radius: 0.5rem;
+        width: 100%;
+        margin-top: 3rem;
+        color: var(--white);
+        font-size: 1.45rem;
+        font-weight: var(--fontweight-content);
+    }
+    .container-test .icon-alert{
+        background: var(--red);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 2.3rem;
+        height: 2.3rem;
+        font-size: 1.3rem;
+        color: var(--white);
+        font-weight: var(--fontsize-emphasize);
+        border-radius: 0.5rem;
+        margin-right: 2rem;
+        flex-shrink: 0;
+    }
+
+    .container-test .item-test {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 1.7rem 7%;
+        width: 100%;
+        border-radius: 0.5rem;
+        background: var(--white);
+        box-shadow: var(--shadow-itembox);
+        margin-top:2rem;
+    }
+
+
+</style>
+{% if not user.is_authenticated %}
+<div class="main-container-homescreen container-test" >
+     <div class="text-subtitle">
+        학습 컨설팅 Test 결제
+    </div>
+    <div class="text-title">
+        상품 확인 및 결제 테스트를 진행할 수 있는 <br>
+        Test 결제관련 주의사항입니다.
+    </div>
+    <div class="item-test ">
+        <div class="icon-alert material-icons">priority_high</div>
+        <div class="text-content ">
+            현재 창은 임시적인 Test 결제창이며, <br>
+            실제 서비스에서 사용되지 않습니다.
+        </div>
+    </div>
+    <div class="item-test ">
+        <div class="icon-alert material-icons">priority_high</div>
+        <div class="text-content ">
+            판매 가능한 서비스(학습 컨설팅) 및 금액/상세 내용은 <br>
+            Test 회원 로그인 후 대시보드에서 확인할 수 있습니다.
+        </div>
+    </div>
+       <div class="item-test ">
+        <div class="icon-alert material-icons">priority_high</div>
+        <div class="text-content ">
+            판매 가능한 서비스(학습 컨설팅) 제공 기간 및 환불 규정은 <br>
+            학생 회원 로그인 후 대시보드에서 확인이 가능합니다.
+        </div>
+    </div>
+        <div class="item-test ">
+        <div class="icon-alert material-icons">priority_high</div>
+        <div class="text-content ">
+            학습 컨설팅은 학생 회원과 선생님 회원의 매칭을 통해 생성됩니다.<br>
+            매칭 이후 컨설팅이 개설되면, 학생 회원은 상품 구매(컨설팅 결제)를<br>
+            진행하고 서비스가 시작됩니다.
+        </div>
+    </div>
+    <div class="item-test ">
+        <div class="icon-alert material-icons">priority_high</div>
+        <div class="text-content ">
+            plan&coach는 회원 구매만 가능한 폐쇄몰이므로 <br>
+            상품 확인 및 결제 테스트를 진행할 수 있는 <br>
+            매칭 과정이 완료된, 서비스 결제 단계의 <br>
+            테스트용 학생 ID/PW을 제공합니다.
+        </div>
+    </div>
+    <a href="{% url 'accountapp:test_login' %}" class="btn-test">테스트용 학생 회원 로그인</a>
+</div>
+{% else %}
+<div class="main-container-homescreen container-test" >
+    <div class="text-subtitle">
+        학습 컨설팅 Test 결제
+    </div>
+    <div class="text-title">
+         상품 확인 및 결제 테스트를 진행할 수 있는 <br> 테스트용 계정 ID/PW 로 로그인 되었습니다.
+    </div>
+           <div class="item-test ">
+        <div class="icon-alert material-icons">priority_high</div>
+        <div class="text-content ">
+            판매 가능한 서비스(학습 컨설팅) 및 금액/상세 내용은 <br>
+            대시보드 결제 안내에서 확인이 가능합니다.
+        </div>
+    </div>
+    <div class="item-test ">
+        <div class="icon-alert material-icons">priority_high</div>
+        <div class="text-content ">
+         판매 가능한 서비스(학습 컨설팅) 제공 기간 및 환불 규정은 <br>
+            대시보드 결제 안내에서 확인이 가능합니다.
+        </div>
+    </div>
+        <div class="item-test ">
+        <div class="icon-alert material-icons">priority_high</div>
+        <div class="text-content ">
+            학습 컨설팅은 학생 회원과 선생님 회원의 매칭을 통해 생성됩니다.<br>
+            매칭 이후 컨설팅이 개설되면, 학생 회원은 상품 구매(컨설팅 결제)를<br>
+            진행하고 서비스가 시작됩니다.
+        </div>
+    </div>
+        <div class="item-test ">
+        <div class="icon-alert material-icons">priority_high</div>
+        <div class="text-content ">
+            plan&coach는 회원 구매만 가능한 폐쇄몰이므로 <br>
+            상품 확인 및 결제 테스트를 진행할 수 있는 <br>
+            매칭 과정이 완료된, 서비스 결제 단계의 <br>
+            테스트용 학생 ID/PW을 제공합니다.
+        </div>
+    </div>
+    <a href="{% url 'studentapp:dashboard' pk=user.pk %}" class="btn-test">결제 대시보드 바로가기</a>
+</div>
+{% endif %}

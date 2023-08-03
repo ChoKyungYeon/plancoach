@@ -1,35 +1,53 @@
 <div class="main-box consult-dashboard-setting">
     <div class="main-array-title"><span class="main-text-title">컨설팅 연장</span>
     </div>
-    {% if target_consult.state == 'unextended'%}
-    <a href="{% url 'paymentapp:create' pk=target_consult.pk %}" class="main-container-dashboard">
-        <div class="item-content">
-            <span class="main-text-content">컨설팅을 연장하시겠습니까?</span>
-            <div class="main-array-row interval-top">
-                <span class="main-text-content text-content">현재 상태</span>
-                <span class="main-text-index">미연장</span>
+    {% if not user.state == 'superuser' %}
+        {% if target_consult.state == 'unextended'%}
+        <a href="{% url 'paymentapp:create' pk=target_consult.pk %}" class="main-container-dashboard">
+            <div class="item-content">
+                <span class="main-text-content">컨설팅을 연장하시겠습니까?</span>
+                <div class="main-array-row interval-top">
+                    <span class="main-text-content text-content">현재 상태</span>
+                    <span class="main-text-index">미연장</span>
+                </div>
             </div>
-        </div>
-        <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
-    </a>
-    {% else %}
-    <div class="main-container-dashboard">
-        <div class="item-content">
-            <div class="main-array-row">
-            <span class="main-text-content">
-                {{ target_consult.extenddate|date:"m월 d일" }}
-            </span>
+            <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
+        </a>
+        {% else %}
+        <div class="main-container-dashboard">
+            <div class="item-content">
+                <div class="main-array-row">
                 <span class="main-text-content">
-                부터 재연장 가능
-            </span>
-            </div>
-            <div class="main-array-row interval-top">
-                <span class="main-text-content text-content">현재 상태</span>
-                <span class="main-text-index">연장 완료</span>
+                    {{ target_consult.extenddate|date:"m월 d일" }}
+                </span>
+                    <span class="main-text-content">
+                    부터 재연장 가능
+                </span>
+                </div>
+                <div class="main-array-row interval-top">
+                    <span class="main-text-content text-content">현재 상태</span>
+                    <span class="main-text-index">연장 완료</span>
+                </div>
             </div>
         </div>
-    </div>
+        {% endif %}
     {% endif %}
+    {% if not user.state == 'superuser' %}
+    <a href="{% url 'consultapp:paymentlist' pk=target_consult.pk %}" class="main-container-dashboard" style="margin-top:2rem;">
+    {% else %}
+    <a href="{% url 'consultapp:paymentlist' pk=target_consult.pk %}" class="main-container-dashboard" >
+    {% endif %}
+        <div class="item-content">
+            <span class="main-text-content">입금 내역이 궁금하신가요?</span>
+            <div class="main-array-row interval-top">
+                <span class="main-text-content text-content">입금 내역</span>
+                <span class="main-text-index">
+                    {{payments}}개
+                </span>
+            </div>
+        </div>
+        <div class="material-icons item-nav" style="font-size:1.9rem;">zoom_in</div>
+    </a>
 </div>
 
 

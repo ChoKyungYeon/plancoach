@@ -28,8 +28,9 @@
     </div>
     <div class="consult-dashboard-slide3" style="display:none">
         {% include 'consultapp/dashboardsnippets/extend.html' %}
-        {% include 'consultapp/dashboardsnippets/history.html' %}
+        {% if not user.state == 'superuser' %}
         {% include 'consultapp/dashboardsnippets/refund.html' %}
+        {% endif %}
     </div>
     {% include 'consultapp/dashboardsnippets/warning.html' %}
 </main>

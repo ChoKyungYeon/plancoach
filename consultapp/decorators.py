@@ -108,7 +108,7 @@ def ConsultPaymentListDecorator(func):
         decorators.update()
         permission_checks = [
             decorators.object_filter(allow_object= 'all'),
-            decorators.member_filter(role='student', allow_superuser=False),
+            decorators.member_filter(role='student', allow_superuser=True),
         ]
         for check in permission_checks:
             if check is not None:
