@@ -7,7 +7,7 @@ from plancoach.decorators import *
 
 def Consult_feedbackCreateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -20,7 +20,7 @@ def Consult_feedbackCreateDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -29,7 +29,7 @@ def Consult_feedbackCreateDecorator(func):
 
 def Consult_feedbackListDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -42,7 +42,7 @@ def Consult_feedbackListDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -52,7 +52,7 @@ def Consult_feedbackListDecorator(func):
 
 def Consult_feedbackDeleteDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_feedback, 'consult')
         if redirect:
             return redirect
 
@@ -66,7 +66,7 @@ def Consult_feedbackDeleteDecorator(func):
             if check is not None:
                 return check
 
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_feedback, 'consult')
         if redirect:
             return redirect
 
@@ -76,7 +76,7 @@ def Consult_feedbackDeleteDecorator(func):
 
 def Consult_feedbackUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_feedback, 'consult')
         if redirect:
             return redirect
 
@@ -91,7 +91,7 @@ def Consult_feedbackUpdateDecorator(func):
             if check is not None:
                 return check
 
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_feedback, 'consult')
         if redirect:
             return redirect
 
@@ -100,7 +100,7 @@ def Consult_feedbackUpdateDecorator(func):
 
 def Consult_feedbackContentUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_feedback, 'consult')
         if redirect:
             return redirect
 
@@ -114,7 +114,7 @@ def Consult_feedbackContentUpdateDecorator(func):
             if check is not None:
                 return check
 
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_feedback, 'consult')
         if redirect:
             return redirect
 
@@ -124,7 +124,7 @@ def Consult_feedbackContentUpdateDecorator(func):
 
 def Consult_feedbackBaseDetailDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_feedback, 'consult')
         if redirect:
             return redirect
 
@@ -137,7 +137,7 @@ def Consult_feedbackBaseDetailDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_feedback, 'consult')
         if redirect:
             return redirect
 

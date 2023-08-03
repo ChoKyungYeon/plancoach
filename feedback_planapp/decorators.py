@@ -7,7 +7,7 @@ from plancoach.decorators import *
 
 def Feedback_planUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Feedback_plan, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Feedback_plan, 'consult')
         if redirect:
             return redirect
 
@@ -20,7 +20,7 @@ def Feedback_planUpdateDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Feedback_plan, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Feedback_plan, 'consult')
         if redirect:
             return redirect
         return func(request, *args, **kwargs)
@@ -28,7 +28,7 @@ def Feedback_planUpdateDecorator(func):
 
 def Feedback_planStateUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, request.GET.get('plan_pk'), Feedback_plan, 'consult')
+        redirect = expire_redirector( request.GET.get('plan_pk'), Feedback_plan, 'consult')
         if redirect:
             return redirect
 
@@ -44,7 +44,7 @@ def Feedback_planStateUpdateDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, request.GET.get('plan_pk'), Feedback_plan, 'consult')
+        redirect = expire_redirector( request.GET.get('plan_pk'), Feedback_plan, 'consult')
         if redirect:
             return redirect
 

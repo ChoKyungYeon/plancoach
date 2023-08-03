@@ -16,6 +16,9 @@ class Consult(models.Model):
     problem = models.TextField(max_length=500)
     strategy = models.TextField(max_length=500)
 
+    def __str__(self):
+        return self.consult_name()
+
     def expire_new(self):
         return time_expire(self.created_at, 48)
 

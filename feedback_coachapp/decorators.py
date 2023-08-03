@@ -7,7 +7,7 @@ from plancoach.decorators import *
 
 def Feedback_coachCreateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_feedback, 'consult')
         if redirect:
             return redirect
 
@@ -20,7 +20,7 @@ def Feedback_coachCreateDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_feedback, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_feedback, 'consult')
         if redirect:
             return redirect
 
@@ -29,7 +29,7 @@ def Feedback_coachCreateDecorator(func):
 
 def Feedback_coachUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Feedback_coach, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Feedback_coach, 'consult')
         if redirect:
             return redirect
 
@@ -42,7 +42,7 @@ def Feedback_coachUpdateDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Feedback_coach, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Feedback_coach, 'consult')
         if redirect:
             return redirect
 
@@ -51,7 +51,7 @@ def Feedback_coachUpdateDecorator(func):
 
 def Feedback_coachDeleteDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Feedback_coach, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Feedback_coach, 'consult')
         if redirect:
             return redirect
 
@@ -64,7 +64,7 @@ def Feedback_coachDeleteDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Feedback_coach, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Feedback_coach, 'consult')
         if redirect:
             return redirect
 

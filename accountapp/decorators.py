@@ -3,11 +3,14 @@ from django.shortcuts import get_object_or_404
 
 from accountapp.models import CustomUser
 from phonenumberapp.models import Phonenumber
-from plancoach.decorators import Decorators
+from plancoach.decorators import Decorators, expire_redirector
 
 
 def AccountCreateDecorator(func):
     def decorated(request, *args, **kwargs):
+        redirect = expire_redirector(kwargs['pk'], Phonenumber, 'accountcreate')
+        if redirect:
+            return redirect
         phonenumber=get_object_or_404(Phonenumber, pk=kwargs['pk'])
         if request.user.is_authenticated:
             return HttpResponseForbidden()
@@ -19,6 +22,9 @@ def AccountCreateDecorator(func):
             return HttpResponseForbidden()
         if request.session['verification_code'] != str(phonenumber.verification_code):
             return HttpResponseForbidden()
+        redirect = expire_redirector(kwargs['pk'], Phonenumber, 'accountcreate')
+        if redirect:
+            return redirect
         return func(request, *args, **kwargs)
     return decorated
 

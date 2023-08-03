@@ -4,6 +4,7 @@ from django import forms
 from django.core.validators import MaxLengthValidator
 from django.forms import ModelForm
 from accountapp.models import CustomUser
+from plancoach.widgets import CustomSelect
 
 
 class AccountLoginForm(AuthenticationForm):
@@ -119,13 +120,29 @@ class AccountPasswordUpdateForm(UserCreationForm):
         self.fields.pop('username')
 
 
-class AccountAdminForm(ModelForm):
+class AccountCreateAdminForm(ModelForm):
     class Meta:
         model = CustomUser
-        fields = ('state','username','email','userrealname')
+        fields = ('username','email','userrealname')
         labels = {
-            'state': '계정 상태',
             'username': '전화번호',
             'userrealname': '실명',
             'email': '이메일',
+        }
+        widgets = {
+            'username':forms.NumberInput(attrs={'placeholder': '- 제외 전화번호 11자',
+                                     'class': 'textinput', 'oninput': 'this.value = this.value.slice(0, 11);'}),
+            'userrealname': forms.TextInput(attrs={'placeholder': '실명을 입력하세요', 'class': 'textinput', }),
+            'email': forms.EmailInput(attrs={'placeholder': '결제 영수증이 입력한 이메일로 전송됩니다', 'class': 'textinput', }),
+        }
+
+class AccountUpdateAdminForm(ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ('state',)
+        labels = {
+            'state': '계정 상태',
+        }
+        widgets = {
+            'state':CustomSelect(attrs={'class': 'select'}),
         }

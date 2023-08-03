@@ -4,7 +4,7 @@ from plancoach.decorators import *
 
 def Feedback_likeDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, request.GET.get('feedback_pk'), Consult_feedback, 'consult')
+        redirect = expire_redirector( request.GET.get('feedback_pk'), Consult_feedback, 'consult')
         if redirect:
             return redirect
 
@@ -18,7 +18,7 @@ def Feedback_likeDecorator(func):
             if check is not None:
                 return check
 
-        redirect = expire_redirector(request.user, request.GET.get('feedback_pk'), Consult_feedback, 'consult')
+        redirect = expire_redirector( request.GET.get('feedback_pk'), Consult_feedback, 'consult')
         if redirect:
             return redirect
 

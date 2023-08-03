@@ -8,7 +8,7 @@ from refundapp.models import Refund
 
 def RefundCreateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -25,7 +25,7 @@ def RefundCreateDecorator(func):
             if check is not None:
                 return check
 
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
         return func(request, *args, **kwargs)
@@ -33,7 +33,7 @@ def RefundCreateDecorator(func):
 
 def RefundGuideDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -49,7 +49,7 @@ def RefundGuideDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 

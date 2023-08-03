@@ -10,7 +10,6 @@ def Profile_profileimageDeleteDecorator(func):
         decorators=Decorators(request.user, get_object_or_404(Profile_profileimage, pk=kwargs['pk']).profile)
         permission_checks = [
             decorators.member_filter(role='teacher', allow_superuser=False),
-            decorators.has_object('profile_profileimage')
         ]
         for check in permission_checks:
             if check is not None:

@@ -123,11 +123,12 @@ class Decorators:
             if not self.user == self.obj:
                 return HttpResponseForbidden()
 
-def expire_redirector(user, pk, model, type):
+def expire_redirector(pk, model, type):
     redirect_dict = {
         'application': 'applicationapp:expire',
         'consult': 'consultapp:expire',
-        'teacherapply': 'teacherapplyapp:expire'
+        'teacherapply': 'teacherapplyapp:expire',
+        'accountcreate': 'accountapp:login',
     }
     try:
         get_object_or_404(model, pk=pk)

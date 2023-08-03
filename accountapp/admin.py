@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .forms import AccountAdminForm
+from .forms import AccountCreateAdminForm, AccountUpdateAdminForm
 from .models import CustomUser
 from django.contrib.auth.models import Group
 
@@ -12,10 +12,18 @@ admin.site.index_title = ""
 
 
 class CustomUserAdmin(admin.ModelAdmin):
-    form = AccountAdminForm
     list_display = ('display_customUser',)
     readonly_fields = ('display_user_info','display_consult_info')
-    fields = ('display_user_info','display_consult_info','state')
+    add_fields = ('username','email','userrealname')
+    change_fields = ('display_user_info','display_consult_info','state')
+
+    def get_form(self, request, obj=None, **kwargs):
+        if obj is None:
+            self.fields = self.add_fields
+            return AccountCreateAdminForm
+        else:
+            self.fields = self.change_fields
+            return AccountUpdateAdminForm
 
     def has_add_permission(self, request):
         return True

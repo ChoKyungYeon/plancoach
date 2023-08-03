@@ -8,7 +8,7 @@ from plancoach.decorators import *
 
 def PaymentCreateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -21,7 +21,7 @@ def PaymentCreateDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
         return func(request, *args, **kwargs)
@@ -86,7 +86,7 @@ def PaymentContactDecorator(func):
 
 def PaymentGuideDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -99,7 +99,7 @@ def PaymentGuideDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 

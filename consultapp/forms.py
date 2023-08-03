@@ -41,7 +41,7 @@ class ConsultAdminForm(forms.ModelForm):
 
     class Meta:
         model = Consult
-        fields = ('state', 'startdate')
+        fields = ('student', 'teacher','state','age','belong','tuition')
         labels = {
             'state': '상태',
             'startdate': '시작일',

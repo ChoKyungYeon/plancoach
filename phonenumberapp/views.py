@@ -16,7 +16,7 @@ from phonenumberapp.models import Phonenumber
 from django.contrib.auth import get_user_model
 from django.utils.decorators import method_decorator
 
-@method_decorator(never_cache, name='dispatch')
+
 @method_decorator(PhonenumberCreateDecorator, name='dispatch')
 class PhonenumberCreateMixin(CreateView):
     model = Phonenumber
@@ -31,8 +31,11 @@ class PhonenumberCreateMixin(CreateView):
             if self.condition(phonenumber, usernames):
                 form.add_error('phonenumber', self.error_message)
                 return self.form_invalid(form)
-
-            form.instance.verification_code=random.randint(100000, 999999) #deploy check random.randint(100000, 999999)
+            try:  # deploy check
+                import plancoach.settings.local
+                form.instance.verification_code=111111
+            except:
+                form.instance.verification_code=random.randint(100000, 999999)
             form.instance.save()
             to = form.instance.phonenumber
             content = f'{self.sms_message} {form.instance.verification_code}를 3분 내에 입력해 주세요'
@@ -78,7 +81,7 @@ class PhonenumberSearchCreateView(PhonenumberCreateMixin):
     def condition(self, phonenumber, usernames):
         return phonenumber not in usernames
 
-@method_decorator(never_cache, name='dispatch')
+
 @method_decorator(PhonenumberVerifyDecorator, name='dispatch')
 class PhonenumberVerifyMixin(FormView):
     model = Phonenumber

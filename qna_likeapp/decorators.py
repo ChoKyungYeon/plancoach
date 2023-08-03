@@ -4,7 +4,7 @@ from plancoach.decorators import *
 
 def Qna_likeDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, request.GET.get('qna_pk'), Consult_qna, 'consult')
+        redirect = expire_redirector( request.GET.get('qna_pk'), Consult_qna, 'consult')
         if redirect:
             return redirect
 
@@ -18,7 +18,7 @@ def Qna_likeDecorator(func):
             if check is not None:
                 return check
 
-        redirect = expire_redirector(request.user, request.GET.get('qna_pk'), Consult_qna, 'consult')
+        redirect = expire_redirector( request.GET.get('qna_pk'), Consult_qna, 'consult')
         if redirect:
             return redirect
 

@@ -34,6 +34,9 @@ class Payment(models.Model):
     amount = models.PositiveIntegerField()
     is_checked = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f"[{self.classname}] {self.amount}원 {self.created_at.strftime('%Y-%m-%d %H:%M')} "
+
     @property
     def merchant_uid(self) -> str:
         return self.uid.hex

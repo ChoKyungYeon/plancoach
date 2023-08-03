@@ -8,7 +8,7 @@ from plancoach.decorators import *
 
 def Consult_qnaCreateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -22,7 +22,7 @@ def Consult_qnaCreateDecorator(func):
             if check is not None:
                 return check
 
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -31,7 +31,7 @@ def Consult_qnaCreateDecorator(func):
 
 def Consult_qnaListDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -44,7 +44,7 @@ def Consult_qnaListDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -54,7 +54,7 @@ def Consult_qnaListDecorator(func):
 
 def Consult_qnaUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_qna, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_qna, 'consult')
         if redirect:
             return redirect
 
@@ -68,7 +68,7 @@ def Consult_qnaUpdateDecorator(func):
             if check is not None:
                 return check
 
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_qna, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_qna, 'consult')
         if redirect:
             return redirect
 
@@ -77,7 +77,7 @@ def Consult_qnaUpdateDecorator(func):
 
 def Consult_qnaDetailDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_qna, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_qna, 'consult')
         if redirect:
             return redirect
 
@@ -90,7 +90,7 @@ def Consult_qnaDetailDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_qna, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_qna, 'consult')
         if redirect:
             return redirect
         return func(request, *args, **kwargs)

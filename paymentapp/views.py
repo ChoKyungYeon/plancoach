@@ -45,7 +45,7 @@ class PaymentCreateView(CreateView):
         context['extenddate'] = target_consult.extenddate() if target_consult.extenddate() else None
         return context
 
-@method_decorator(never_cache, name='dispatch')
+
 @method_decorator(login_required, name='dispatch')
 @method_decorator(PaymentPayDecorator, name='dispatch')
 class PaymentPayView(DetailView):
@@ -66,7 +66,7 @@ class PaymentPayView(DetailView):
         context['portone_shop_id'] = PORTONE_SHOP_ID  # deploy 바꿔주기
         return context
 
-@method_decorator(never_cache, name='dispatch')
+
 @method_decorator(login_required, name='dispatch')
 @method_decorator(PaymentPayDecorator, name='dispatch')
 class PaymentCheckView(View):

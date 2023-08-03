@@ -41,7 +41,6 @@ class SalaryExpectedView(DetailView):
         context['target_bank'] = self.object.teacher.profile.profile_bank
         return context
 
-@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
 @method_decorator(SalaryPayDecorator, name='dispatch')
 class SalaryPayView(DetailView):

@@ -11,7 +11,6 @@ def Profile_introductionEditDecorator(func):
         decorators=Decorators(request.user, get_object_or_404(Profile_introduction, pk=kwargs['pk']).profile)
         permission_checks = [
             decorators.member_filter(role='teacher', allow_superuser=False),
-            decorators.has_object('profile_introduction')
         ]
         for check in permission_checks:
             if check is not None:

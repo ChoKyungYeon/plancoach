@@ -116,7 +116,7 @@ class ApplicationGuideView(DetailView):
     context_object_name = 'target_user'
     template_name = 'applicationapp/guide.html'
 
-@method_decorator(never_cache, name='dispatch')
+
 @method_decorator(login_required, name='dispatch')
 @method_decorator(ApplicationResultDecorator, name='dispatch')
 class ApplicationResultView(TemplateView):

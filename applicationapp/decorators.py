@@ -21,7 +21,7 @@ def ApplicationCreateDecorator(func):
 
 def ApplicationDeleteDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        redirect = expire_redirector( kwargs['pk'], Application, 'application')
         if redirect:
             return redirect
 
@@ -34,7 +34,7 @@ def ApplicationDeleteDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        redirect = expire_redirector( kwargs['pk'], Application, 'application')
         if redirect:
             return redirect
         return func(request, *args, **kwargs)
@@ -42,7 +42,7 @@ def ApplicationDeleteDecorator(func):
 
 def ApplicationUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        redirect = expire_redirector( kwargs['pk'], Application, 'application')
         if redirect:
             return redirect
 
@@ -55,7 +55,7 @@ def ApplicationUpdateDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        redirect = expire_redirector( kwargs['pk'], Application, 'application')
         if redirect:
             return redirect
 
@@ -65,7 +65,7 @@ def ApplicationUpdateDecorator(func):
 
 def ApplicationDetailDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        redirect = expire_redirector( kwargs['pk'], Application, 'application')
         if redirect:
             return redirect
 
@@ -78,7 +78,7 @@ def ApplicationDetailDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        redirect = expire_redirector( kwargs['pk'], Application, 'application')
         if redirect:
             return redirect
 
@@ -87,7 +87,7 @@ def ApplicationDetailDecorator(func):
 
 def ApplicationStateUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user,request.GET.get('application_pk'), Application, 'application')
+        redirect = expire_redirector(request.GET.get('application_pk'), Application, 'application')
         if redirect:
             return redirect
         decorators=Decorators(request.user, Application.objects.get(pk=request.GET.get('application_pk')))
@@ -100,7 +100,7 @@ def ApplicationStateUpdateDecorator(func):
             if check is not None:
                 return check
 
-        redirect = expire_redirector(request.user,request.GET.get('application_pk'), Application, 'application')
+        redirect = expire_redirector(request.GET.get('application_pk'), Application, 'application')
         if redirect:
             return redirect
         return func(request, *args, **kwargs)

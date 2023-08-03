@@ -7,7 +7,7 @@ from plancoach.decorators import *
 
 def Consult_classlinkCreateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -21,7 +21,7 @@ def Consult_classlinkCreateDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
         if redirect:
             return redirect
 
@@ -30,7 +30,7 @@ def Consult_classlinkCreateDecorator(func):
 
 def Consult_classlinkUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_classlink, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_classlink, 'consult')
         if redirect:
             return redirect
         decorators=Decorators(request.user, get_object_or_404(Consult_classlink, pk=kwargs['pk']).consult)
@@ -42,7 +42,7 @@ def Consult_classlinkUpdateDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Consult_classlink, 'consult')
+        redirect = expire_redirector( kwargs['pk'], Consult_classlink, 'consult')
         if redirect:
             return redirect
         return func(request, *args, **kwargs)

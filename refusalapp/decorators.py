@@ -7,7 +7,7 @@ from teacherapplyapp.models import Teacherapply
 
 def RefusalApplicationRefuseDecorator(func):
     def decorated(request, *args, **kwargs):
-        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        redirect = expire_redirector( kwargs['pk'], Application, 'application')
         if redirect:
             return redirect
         decorators=Decorators(request.user,get_object_or_404(Application, pk=kwargs['pk']))
@@ -18,7 +18,7 @@ def RefusalApplicationRefuseDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector(request.user, kwargs['pk'], Application, 'application')
+        redirect = expire_redirector( kwargs['pk'], Application, 'application')
         if redirect:
             return redirect
         return func(request, *args, **kwargs)
