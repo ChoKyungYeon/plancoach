@@ -121,9 +121,28 @@ class AccountPasswordUpdateForm(UserCreationForm):
 
 
 class AccountCreateAdminForm(ModelForm):
+    password1 = forms.CharField(
+        label=("비밀번호 "),
+        strip=False,
+        widget=forms.PasswordInput(attrs={
+            'placeholder': '영문/숫자/특수문자 혼합 8~20자',
+            'class': 'textinput',
+            'autocomplete': 'new-password',
+        }),
+    )
+
+    password2 = forms.CharField(
+        label=(""),
+        strip=False,
+        widget=forms.PasswordInput(attrs={
+            'placeholder': "확인을 위해 위와 동일한 비밀번호를 입력해 주세요",
+            'class': 'textinput feild-nolabel',
+            'autocomplete': 'new-password'
+        }),
+    )
     class Meta:
         model = CustomUser
-        fields = ('username','email','userrealname')
+        fields = ('username','email','userrealname', 'password1', 'password2')
         labels = {
             'username': '전화번호',
             'userrealname': '실명',

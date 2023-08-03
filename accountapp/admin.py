@@ -14,7 +14,7 @@ admin.site.index_title = ""
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('display_customUser',)
     readonly_fields = ('display_user_info','display_consult_info')
-    add_fields = ('username','email','userrealname')
+    add_fields = ('username','email','userrealname','password1', 'password2')
     change_fields = ('display_user_info','display_consult_info','state')
 
     def get_form(self, request, obj=None, **kwargs):
