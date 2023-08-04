@@ -73,7 +73,7 @@
                 <span class="text-content">담당 학생</span>
                 <span class="main-text-rowindex">{{ target_consult.student.userrealname}}</span>
             </div>
-            <form action="" method="post" onsubmit="return confirmCreatePayment()">
+            <form action="" method="post" onsubmit="return True">
                 {% csrf_token %}{% bootstrap_form form %}
                 <input type="submit" class="btn-submit" value="결제 진행">
             </form>

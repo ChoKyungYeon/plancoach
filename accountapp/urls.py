@@ -4,7 +4,7 @@ from django.urls import path
 from accountapp import views
 from accountapp.views import AccountDeleteView, AccountCreateView, AccountLoginView, AccountSettingView, \
     AccountInfoUpdateView, AccountPasswordUpdateView, AccountNotificationUpdateView, AccountPasswordResetView, \
-    test_login
+    test_student, test_superuser
 
 app_name = 'accountapp'
 
@@ -18,5 +18,6 @@ urlpatterns = [
     path('delete/<int:pk>', AccountDeleteView.as_view(), name='delete'),
     path('create/<int:pk>', AccountCreateView.as_view(), name='create'),
     path('setting/<int:pk>', AccountSettingView.as_view(), name='setting'),
-    path('test_login/', test_login, name='test_login'),
+    path('test_student/', test_student, name='test_student'),
+    path('test_superuser/', test_superuser, name='test_superuser'),
 ]

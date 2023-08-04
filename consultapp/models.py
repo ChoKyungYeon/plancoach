@@ -3,6 +3,7 @@ from django.db import models
 from accountapp.models import CustomUser
 from plancoach.choice import consultstatechoice, agechoice
 from plancoach.utils import time_expire
+
 class Consult(models.Model):
     student = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='consult_student')
     teacher = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='consult_teacher')

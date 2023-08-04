@@ -112,10 +112,21 @@ class AccountNotificationUpdateView(RedirectView):
         target_user.save()
         return super(AccountNotificationUpdateView, self).get(request, *args, **kwargs)
 
-from django.contrib.auth import  login
+from django.contrib.auth import login, logout
 
-def test_login(request):
+
+def test_student(request):
     user = CustomUser.objects.get(username='01000000000')
+    if request.user.is_authenticated:
+        logout(request)
+    if user is not None:
+        login(request, user)
+        return redirect('homescreenapp:homescreen')
+
+def test_superuser(request):
+    user = CustomUser.objects.get(username='01031583718')
+    if request.user.is_authenticated:
+        logout(request)
     if user is not None:
         login(request, user)
         return redirect('homescreenapp:homescreen')
