@@ -156,9 +156,35 @@ class AccountCreateAdminForm(ModelForm):
         }
 
 class AccountUpdateAdminForm(ModelForm):
+    password1 = forms.CharField(
+        label=("비밀번호 "),
+        strip=False,
+        widget=forms.PasswordInput(attrs={
+            'placeholder': '영문/숫자/특수문자 혼합 8~20자',
+            'class': 'textinput',
+            'autocomplete': 'new-password',
+        }),
+    )
+
+    password2 = forms.CharField(
+        label=(""),
+        strip=False,
+        widget=forms.PasswordInput(attrs={
+            'placeholder': "확인을 위해 위와 동일한 비밀번호를 입력해 주세요",
+            'class': 'textinput feild-nolabel',
+            'autocomplete': 'new-password'
+        }),
+    )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['state'].choices = [
+            ('student', '학생'),
+            ('superuser', '관리자')
+        ]
+
     class Meta:
         model = CustomUser
-        fields = ('state',)
+        fields = ('state','password1', 'password2')
         labels = {
             'state': '계정 상태',
         }

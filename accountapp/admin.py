@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.core.exceptions import ValidationError
 from django.utils.html import format_html
 
 from .forms import AccountCreateAdminForm, AccountUpdateAdminForm
@@ -15,7 +16,7 @@ class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('display_customUser',)
     readonly_fields = ('display_user_info','display_consult_info')
     add_fields = ('username','email','userrealname','password1', 'password2')
-    change_fields = ('display_user_info','display_consult_info','state')
+    change_fields = ('display_user_info','display_consult_info','state','password1', 'password2')
 
     def get_form(self, request, obj=None, **kwargs):
         if obj is None:
@@ -89,4 +90,10 @@ class CustomUserAdmin(admin.ModelAdmin):
             )
     display_consult_info.short_description = '컨설팅 정보'
 
+    def save_model(self, request, obj, form, change):
+        if form.cleaned_data['password1'] == form.cleaned_data['password2']:
+            obj.set_password(form.cleaned_data['password1'])
+        else:
+            raise ValidationError("Passwords do not match")
+        super().save_model(request, obj, form, change)
 admin.site.register(CustomUser, CustomUserAdmin)

@@ -26,7 +26,7 @@ class SuperuserDashboardView(TemplateView):
         context = super().get_context_data(**kwargs)
         profiles = Profile.objects.annotate(username_as_int=Cast('teacher__username', IntegerField())).order_by('username_as_int')
         context['profiles'] = profiles
-        context['salarys'] = Salary.objects.filter(is_given=True, salaryday__lte=datetime.now().date()+timedelta(days=43))
+        context['salarys'] = Salary.objects.filter(is_given=False, salaryday__lte=datetime.now().date()+timedelta(days=43))
         context['refunds'] = Refund.objects.filter(is_given=False)
         context['teacherapplys'] = Teacherapply.objects.filter(is_done=True)
         context['document'] = Document.objects.all().first()
