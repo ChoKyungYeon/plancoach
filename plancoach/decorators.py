@@ -41,7 +41,7 @@ class Decorators:
             extend_enddate = consult.extend_enddate()
             target_state = consult.state
             created_interval=datetime.now() - consult.created_at
-            if target_state == 'new' and created_interval > timedelta(hours=96): #hour 48
+            if target_state == 'new' and created_interval > timedelta(hours=168): #hour 48
                 create_refusal(consult, '기간 내 입금이 완료되지 않았습니다.','matching')
             elif target_state == 'unextended' and extenddate <= today: # extenddate <= today
                 create_refusal(consult, None,'consult')

@@ -4,7 +4,7 @@ from django.urls import path
 from accountapp import views
 from accountapp.views import AccountDeleteView, AccountCreateView, AccountLoginView, AccountSettingView, \
     AccountInfoUpdateView, AccountPasswordUpdateView, AccountNotificationUpdateView, AccountPasswordResetView, \
-    test_student, test_superuser, test_teacher
+    test_student, test_superuser, test_teacher, test_teacherapply
 
 app_name = 'accountapp'
 
@@ -21,4 +21,5 @@ urlpatterns = [
     path('test_student/', test_student, name='test_student'),
     path('test_superuser/', test_superuser, name='test_superuser'),
     path('test_teacher/', test_teacher, name='test_teacher'),
+    path('test_teacherapply/', test_teacherapply, name='test_teacherapply'),
 ]

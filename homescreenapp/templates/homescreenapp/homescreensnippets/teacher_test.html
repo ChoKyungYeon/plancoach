@@ -1,52 +1,11 @@
-{% if not user.is_authenticated or user.state != 'teacher'%}
-<div class=" container-test" >
-     <div class="text-subtitle">
-        선생님 회원 학습 컨설팅 관리
-    </div>
-    <div class="text-title">
-        선생님 회원으로 접속하여 <br>
-        현재 진행중인 학습 컨설팅 및 프로필을 관리할 수 있습니다.
-    </div>
-    <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-            [매칭, 컨설팅] 선생님은 신청서 및 수업을 관리 진행할 수 있으며<br>
-            제공 기간이 만료되면 자동으로 사라집니다.
-        </div>
-    </div>
-    <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-            [급여] 급여는 매달 10일 정산되며 <br>
-            환불 내역과 수업 입금 내역을 정산하여 표시됩니다. <br>
-            선생님은 예상 급여 및 급여 내역을 확인할 수 있습니다.
-            8월 10일 급여는 존재하지 않는 관계로 9월 10일의 급여를 임시 노출합니다.
-        </div>
-    </div>
-       <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-            [프로필] 선생님은 자신의 프로필 관리 페이지에 접속하여<br>
-            자유롭게 프로필을 수정할 수 있으며, 노출을 중지할 수 있습니다.
-        </div>
-    </div>
-    <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-            [학력 및 급여 계좌] 학력 및 급여 계좌는 오기입 방지를 위하여<br>
-            고객 센터를 통해 연라하면 관리자 모드로 수정이 가능합니다.
-        </div>
-    </div>
-    <a href="{% url 'accountapp:test_teacher' %}" class="btn-test">테스트용 선생님 회원 로그인</a>
-</div>
-{% else %}
+
 <div class=" container-test" >
         <div class="text-subtitle">
         선생님 회원 학습 컨설팅 관리
     </div>
-    <div class="text-title">
-        컨설팅 및 매칭을 관리할 수 있는 <br>
-        선생님 계정 ID/PW 로 로그인 되었습니다.
+        <div class="text-title">
+        현재 진행중인 학습 컨설팅 및 프로필을 <br>
+        관리할 수 선생님 회원 주의사항입니다.
     </div>
     <div class="item-test ">
         <div class="icon-alert material-icons">priority_high</div>
@@ -78,8 +37,5 @@
             고객 센터를 통해 연라하면 관리자 모드로 수정이 가능합니다.
         </div>
     </div>
-    {% if user.state == 'teacher' %}
-    <a href="{% url 'teacherapp:dashboard' pk=user.pk %}" class="btn-test">선생님 대시보드 바로가기</a>
-    {% endif %}
+    <a href="{% url 'accountapp:test_teacher' %}" class="btn-test">선생님 대시보드 바로가기</a>
 </div>
-{% endif %}

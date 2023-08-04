@@ -1,4 +1,3 @@
-{% if not user.is_authenticated or user.state != 'student'%}
 <div class=" container-test" >
      <div class="text-subtitle">
         학습 컨설팅 Test 결제
@@ -47,47 +46,3 @@
     </div>
     <a href="{% url 'accountapp:test_student' %}" class="btn-test">테스트용 학생 회원 로그인</a>
 </div>
-{% else %}
-<div class=" container-test" >
-    <div class="text-subtitle">
-        학습 컨설팅 Test 결제
-    </div>
-    <div class="text-title">
-         상품 확인 및 결제 테스트를 진행할 수 있는 <br> 학생 회원 ID/PW 로 로그인 되었습니다.
-    </div>
-           <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-            판매 가능한 서비스(학습 컨설팅) 및 금액/상세 내용은 <br>
-            대시보드 결제 안내에서 확인이 가능합니다.
-        </div>
-    </div>
-    <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-         판매 가능한 서비스(학습 컨설팅) 제공 기간 및 환불 규정은 <br>
-            대시보드 결제 안내에서 확인이 가능합니다.
-        </div>
-    </div>
-        <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-            학습 컨설팅은 학생 회원과 선생님 회원의 매칭을 통해 생성됩니다.<br>
-            매칭 이후 컨설팅이 개설되면, 학생 회원은 상품 구매(컨설팅 결제)를<br>
-            진행하고 서비스가 시작됩니다.
-        </div>
-    </div>
-        <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-            plan&coach는 회원 구매만 가능한 폐쇄몰이므로 <br>
-            상품 확인 및 결제 테스트를 진행할 수 있는 <br>
-            매칭 과정이 완료된, 서비스 결제 단계의 <br>
-            테스트용 학생 ID/PW을 제공합니다.
-        </div>
-    </div>
-    {% if user.state == 'student' and user.consult_student %}
-    <a href="{% url 'paymentapp:create' pk=user.consult_student.pk %}" class="btn-test">결제 바로하기</a>
-    {% endif %}
-</div>
-{% endif %}

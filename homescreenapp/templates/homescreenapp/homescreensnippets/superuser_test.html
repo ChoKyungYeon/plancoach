@@ -1,63 +1,11 @@
-{% if not user.is_authenticated or user.state != 'superuser'%}
-<div class="container-test" >
-     <div class="text-subtitle">
-        비대면 수업 및 선생님 관리 감독
-    </div>
-    <div class="text-title">
-        환불, 급여, 선생님, 비대면 수업을 <br>
-        관리 감독하는 관리자 모드 주의사항입니다.
-    </div>
-    <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-            [급여] 급여는 매달 10일 정산되며 <br>
-            환불 내역과 수업 입금 내역을 정산하여 표시되며 <br>
-            관리자는 이에 대해 확인하고 계좌이체로 지급합니다.<br>
-            8월 10일 급여는 존재하지 않는 관계로 9월 10일의 급여를 임시 노출합니다.
-        </div>
-    </div>
-        <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-            [환불 신청] 수업 환불이 요청되면, 수업은 자동으로 종료되며 <br>
-            환불 규정에 따라 관리자 페이지에 환불 요청이 생성됩니다. <br>
-            관리자는 이에 대해 확인하고 계좌이체로 지급합니다.
-        </div>
-    </div>
-       <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-            [계정 전환] 학생이 선생님으로 계정 전환 신청시 <br>
-            신청서가 접수되고 관리자는 진위를 판단하고 등록합니다.
-        </div>
-    </div>
-        <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-            [선생님] 관리자는 선생님 창에 등록된 선생님들의<br>
-            대시보드에 접속하여, 현재 진행중인 수업의 기록과 비대면 수업을<br>
-            포함한 전체 정보를 확인할 수 있습니다.<br>
-            또한 블라인드 처리 및 선생님 박탈이 가능합니다.
-        </div>
-    </div>
-    <div class="item-test ">
-        <div class="icon-alert material-icons">priority_high</div>
-        <div class="text-content ">
-            [문서] 문서는 오픈 카카오톡 링크 및 고객 센터 전화번호<br>
-            각종 노션 링크를 업로드할 수 있으며 <br>
-            업로드시 자동으로 링크가 설정됩니다. <br>
-        </div>
-    </div>
-    <a href="{% url 'accountapp:test_superuser' %}" class="btn-test">관리자로 로그인</a>
-</div>
-{% else %}
+
 <div class=" container-test" >
     <div class="text-subtitle">
         비대면 수업 및 선생님 관리 감독
     </div>
     <div class="text-title">
         환불, 급여, 선생님, 비대면 수업을 <br>
-        관리 감독할 수 있는 관리자로 로그인 되었습니다.
+        관리 감독할 수 관리자 모드 주의사항입니다.
     </div>
            <div class="item-test ">
         <div class="icon-alert material-icons">priority_high</div>
@@ -100,8 +48,5 @@
             업로드시 자동으로 링크가 설정됩니다. <br>
         </div>
     </div>
-    {% if user.state == 'superuser' %}
-    <a href="{% url 'superuserapp:dashboard' %}" class="btn-test">관리자 대시보드 바로가기</a>
-    {% endif %}
+    <a href="{% url 'accountapp:test_superuser' %}" class="btn-test">관리자 대시보드 바로가기</a>
 </div>
-{% endif %}

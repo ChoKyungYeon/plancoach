@@ -121,7 +121,7 @@ def test_student(request):
         logout(request)
     if user is not None:
         login(request, user)
-        return redirect('homescreenapp:homescreen')
+        return redirect('paymentapp:create',pk=user.consult_student.pk)
 
 def test_superuser(request):
     user = CustomUser.objects.get(username='01031583718')
@@ -129,7 +129,7 @@ def test_superuser(request):
         logout(request)
     if user is not None:
         login(request, user)
-        return redirect('homescreenapp:homescreen')
+        return redirect('superuserapp:dashboard')
 
 def test_teacher(request):
     user = CustomUser.objects.get(username='01031585834')
@@ -137,4 +137,12 @@ def test_teacher(request):
         logout(request)
     if user is not None:
         login(request, user)
-        return redirect('homescreenapp:homescreen')
+        return redirect('teacherapp:dashboard' ,pk=user.pk)
+
+def test_teacherapply(request):
+    user = CustomUser.objects.get(username='01000000005')
+    if request.user.is_authenticated:
+        logout(request)
+    if user is not None:
+        login(request, user)
+        return redirect('teacherapplyapp:schoolimagecreate', pk=user.pk)
