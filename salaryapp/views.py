@@ -28,7 +28,6 @@ class SalaryDetailView(DetailView):
 
 @method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')
-@method_decorator(SalaryExpectedDecorator, name='dispatch')
 class SalaryExpectedView(DetailView):
     model = Salary
     context_object_name = 'target_salary'

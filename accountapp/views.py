@@ -130,3 +130,11 @@ def test_superuser(request):
     if user is not None:
         login(request, user)
         return redirect('homescreenapp:homescreen')
+
+def test_teacher(request):
+    user = CustomUser.objects.get(username='01031585834')
+    if request.user.is_authenticated:
+        logout(request)
+    if user is not None:
+        login(request, user)
+        return redirect('homescreenapp:homescreen')

@@ -20,4 +20,5 @@ urlpatterns = [
     path('setting/<int:pk>', AccountSettingView.as_view(), name='setting'),
     path('test_student/', test_student, name='test_student'),
     path('test_superuser/', test_superuser, name='test_superuser'),
+    path('test_teacher/', test_superuser, name='test_teacher'),
 ]
