@@ -11,10 +11,7 @@ from documentapp.models import Document
 from paymentapp.decorators import *
 from plancoach.sms import Send_SMS
 
-try:#deploy check
-    from plancoach.settings.local import PORTONE_SHOP_ID
-except:
-    from plancoach.settings.deploy import PORTONE_SHOP_ID
+
 
 from paymentapp.forms import PaymentCreateForm
 from paymentapp.models import Payment

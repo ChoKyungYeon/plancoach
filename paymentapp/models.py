@@ -9,15 +9,8 @@ from accountapp.models import CustomUser
 from consultapp.models import Consult
 from plancoach.utils import salaryday_calculator
 from salaryapp.models import Salary
-
-try:
-    from plancoach.settings.local import PORTONE_API_KEY, PORTONE_API_SECRET
-except:
-    from plancoach.settings.deploy import PORTONE_API_KEY, PORTONE_API_SECRET
 from plancoach.sms import Send_SMS
 
-
-logger = logging.getLogger('portone')
 
 class Payment(models.Model):
     classname = models.CharField(max_length=100)

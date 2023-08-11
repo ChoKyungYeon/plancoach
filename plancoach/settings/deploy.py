@@ -16,13 +16,10 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 
 SECRET_KEY = read_secret('DJANGO_SECRET_KEY') # secretkey 수정
-PORTONE_SHOP_ID= read_secret('PORTONE_SHOP_ID')
-PORTONE_API_KEY= read_secret('PORTONE_API_KEY')
-PORTONE_API_SECRET= read_secret('PORTONE_API_SECRET')
 SENS_ACCESS_KEY= read_secret('SENS_ACCESS_KEY')
 SENS_SECRET_KEY= read_secret('SENS_SECRET_KEY')
 SENS_SERVICE_KEY= read_secret('SENS_SERVICE_KEY')
-DEBUG = True #deploy check ,
+DEBUG = False #deploy check ,
 
 ALLOWED_HOSTS = ['*'] #모든 호스트를 허용
 
