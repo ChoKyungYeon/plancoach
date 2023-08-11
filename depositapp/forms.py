@@ -17,7 +17,7 @@ class DepositCreateForm(ModelForm):
 
         widgets = {
             'bank': CustomSelect(attrs={'placeholder': '', 'class': 'select'}),
-            'accountnumber': forms.NumberInput(attrs={'placeholder': '- 제외 숫자만 입력','class': 'textinput',}),
+            'accountnumber': forms.TextInput(attrs={'placeholder': '- 제외 숫자만 입력','class': 'textinput',}),
             'depositor': forms.TextInput(attrs={'placeholder': '본인 명의의 계좌를 입력해 주세요', 'class': 'textinput' }),
         }
 
