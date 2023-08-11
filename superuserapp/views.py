@@ -6,7 +6,9 @@ from django.db.models import IntegerField
 from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 from accountapp.models import CustomUser
+from depositapp.models import Deposit
 from documentapp.models import Document
+from paymentapp.models import Payment
 from profileapp.models import Profile
 from refundapp.models import Refund
 from salaryapp.models import Salary
@@ -26,9 +28,11 @@ class SuperuserDashboardView(TemplateView):
         context = super().get_context_data(**kwargs)
         profiles = Profile.objects.annotate(username_as_int=Cast('teacher__username', IntegerField())).order_by('username_as_int')
         context['profiles'] = profiles
-        context['salarys'] = Salary.objects.filter(is_given=False, salaryday__lte=datetime.now().date()+timedelta(days=43))
+        context['salarys'] = Salary.objects.filter(is_given=False, salaryday__lte=datetime.now().date())
         context['refunds'] = Refund.objects.filter(is_given=False)
+        context['payments'] = Payment.objects.filter(is_paid_ok=False)
         context['teacherapplys'] = Teacherapply.objects.filter(is_done=True)
         context['document'] = Document.objects.all().first()
+        context['deposit'] = Deposit.objects.all().first()
         return context
 

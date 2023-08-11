@@ -1,0 +1,40 @@
+
+<style>
+
+
+
+.container-payment{
+    box-shadow: none;
+    border-radius: 0;
+    background: none;
+    padding-top:1.7rem;
+    padding-bottom:1.7rem;
+}
+
+
+
+</style>
+
+<div  class="container-payment main-container-snippets">
+    <div  class="main-array-column" >
+        <div class="main-array-row">
+            <span class="main-text-index interval-right"  >
+                {% if payment.is_initial_payment %}
+                신규
+                {% else %}
+                연장
+                {% endif %}
+            </span>
+            <span class="main-text-content"  style="font-size: var(--fontsize-detail)">
+                {{payment.created_at |date:"m.d / G:i" }}
+            </span>
+        </div>
+        <span class="main-text-content interval-top" >
+            {{payment.classname }}
+        </span>
+    </div>
+    <div class="item-amount">
+        {{payment.amount}}원
+    </div>
+</div>
+

@@ -1,0 +1,19 @@
+
+<a id="tostategiven" href="{% url 'refundapp:stateupdate' %}?refund_pk={{ target_refund.pk }}"
+   class="main-icon-positive material-icons" >done
+</a>
+
+<script>
+function confirmtostategiven(event) {
+    if (confirm("환불액을 지급 완료하셨나요?.")) {
+        window.location.href = event.target.href;
+    } else {
+        event.preventDefault();
+    }
+}
+
+const tostategiven = document.getElementById('tostategiven');
+if (tostategiven) {
+    tostategiven.addEventListener('click', confirmtostategiven);
+}
+</script>

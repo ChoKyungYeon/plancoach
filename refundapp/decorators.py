@@ -76,7 +76,6 @@ def RefundStateUpdateDecorator(func):
 def RefundDetailDecorator(func):
     def decorated(request, *args, **kwargs):
         decorators=Decorators(request.user, get_object_or_404(Refund, pk=kwargs['pk']))
-        print(get_object_or_404(Refund, pk=kwargs['pk']).student)
         permission_checks = [
 
             decorators.member_filter(role='student', allow_superuser=False),

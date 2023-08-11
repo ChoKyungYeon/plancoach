@@ -1,6 +1,6 @@
 from django.urls import path
 from consultapp.views import ConsultDashboardView, ConsultCreateView, ConsultInfoUpdateView, ConsultPaymentListView, \
-    ConsultApplyDetailView, ConsultExpireView
+    ConsultApplyDetailView, ConsultExpireView, ConsultWaitingView
 
 app_name = 'consultapp'
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('paymentlist/<int:pk>', ConsultPaymentListView.as_view(), name='paymentlist'),
     path('applydetail/<int:pk>', ConsultApplyDetailView.as_view(), name='applydetail'),
     path('expire/', ConsultExpireView.as_view(), name='expire'),
+    path('waiting/<int:pk>', ConsultWaitingView.as_view(), name='waiting'),
 ]

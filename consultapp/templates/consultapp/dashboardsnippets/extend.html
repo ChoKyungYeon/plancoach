@@ -1,18 +1,32 @@
 <div class="main-box consult-dashboard-setting">
-    <div class="main-array-title"><span class="main-text-title">컨설팅 연장</span>
+    <div class="main-array-title">
+        <span class="main-text-title">컨설팅 연장</span>
     </div>
     {% if not user.state == 'superuser' %}
-        {% if target_consult.state == 'unextended'%}
-        <a href="{% url 'paymentapp:create' pk=target_consult.pk %}" class="main-container-dashboard">
-            <div class="item-content">
-                <span class="main-text-content">컨설팅을 연장하시겠습니까?</span>
-                <div class="main-array-row interval-top">
-                    <span class="main-text-content text-content">현재 상태</span>
-                    <span class="main-text-index">미연장</span>
+        {% if target_consult.state == 'unextended' %}
+            {% if target_consult.is_waiting %}
+            <a href="{% url 'consultapp:waiting' pk=target_consult.pk %}" class="main-container-dashboard">
+                <div class="item-content">
+                    <span class="main-text-content">현재 입금 요청을 확인 중입니다</span>
+                    <div class="main-array-row interval-top">
+                        <span class="main-text-content text-content">현재 상태</span>
+                        <span class="main-text-index">연장 대기</span>
+                    </div>
                 </div>
-            </div>
-            <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
-        </a>
+                <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
+            </a>
+            {% else %}
+            <a href="{% url 'paymentapp:guide' pk=target_consult.pk %}" class="main-container-dashboard">
+                <div class="item-content">
+                    <span class="main-text-content">컨설팅을 연장하시겠습니까?</span>
+                    <div class="main-array-row interval-top">
+                        <span class="main-text-content text-content">현재 상태</span>
+                        <span class="main-text-index">미연장</span>
+                    </div>
+                </div>
+                <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
+            </a>
+            {% endif %}
         {% else %}
         <div class="main-container-dashboard">
             <div class="item-content">

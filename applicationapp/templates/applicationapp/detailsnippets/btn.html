@@ -1,0 +1,95 @@
+{% if user == target_application.student and state == 'applied' %}
+<a href="{% url 'applicationapp:update' pk=target_application.pk %}"
+   class="main-icon-positive material-icons" style="right: 6rem">
+    edit
+</a>
+<form action="{% url 'applicationapp:delete' pk=target_application.pk %}" method="post"
+      id="application-delete-form">
+    {% csrf_token %}
+    <input style="display:none" type="submit" name="next"
+           value="{% url 'studentapp:dashboard' pk=target_application.student.pk %}">
+    <button type="button" onclick="confirmapplicationDelete()" class="main-icon-negative material-icons" style="font-weight: 400;">
+        delete_forever
+    </button>
+</form>
+{% endif %}
+{% if user == target_application.teacher %}
+    {% if state == 'applied' %}
+    <a id="tostatebreak" class="main-icon-negative material-icons"
+       href="{% url 'refusalapp:applicationrefuse' pk=target_application.pk %}">close
+    </a>
+    <a id="tostatematching" href="{% url 'applicationapp:stateupdate' %}?application_pk={{ target_application.pk }}"
+       class="main-icon-positive material-icons" style="right:6rem;">done
+    </a>
+    {% elif state == 'matching' %}
+    <a id="tostaterefsual" class="main-icon-negative material-icons"
+       href="{% url 'refusalapp:applicationrefuse' pk=target_application.pk %}">close
+    </a>
+    <a id="toconsultcreate" href="{% url 'consultapp:create' pk=target_application.pk %}"
+       class="main-icon-positive material-icons" style="right:6rem;">done
+    </a>
+    {% endif %}
+{% endif %}
+
+<script>
+    function confirmapplicationDelete() {
+    if (confirm("현재 신청서를 삭제하시겠습니까?")) {
+        document.getElementById("application-delete-form").submit();
+    }
+}
+
+    function confirmtostatematching(event) {
+        if (confirm("현재 신청서를 수락하시겠습니까? 이후 취소할 수 없습니다.")) {
+            window.location.href = event.target.href;
+        } else {
+            event.preventDefault();
+        }
+    }
+
+    const tostatematching = document.getElementById('tostatematching');
+    if (tostatematching) {
+        tostatematching.addEventListener('click', confirmtostatematching);
+    }
+
+
+    function confirmtoconsultcreate(event) {
+        if (confirm("매칭이 성사되었나요? 컨설팅을 개설해주세요.")) {
+            window.location.href = event.target.href;
+        } else {
+            event.preventDefault();
+        }
+    }
+
+    const toconsultcreate = document.getElementById('toconsultcreate');
+    if (toconsultcreate) {
+        toconsultcreate.addEventListener('click', confirmtoconsultcreate);
+    }
+
+
+    function confirmtostatebreak(event) {
+        if (confirm("매칭이 종료되었나요? 거절 사유를 작성하세요.")) {
+            window.location.href = event.target.href;
+        } else {
+            event.preventDefault();
+        }
+    }
+
+    const tostatebreak = document.getElementById('tostatebreak');
+    if (tostatebreak) {
+        tostatebreak.addEventListener('click', confirmtostatebreak);
+    }
+
+    function confirmtostaterefsual(event) {
+        if (confirm("매칭이 종료되었나요? 거절 사유를 작성하세요.")) {
+            window.location.href = event.target.href;
+        } else {
+            event.preventDefault();
+        }
+    }
+
+    const tostaterefsual = document.getElementById('tostaterefsual');
+    if (tostaterefsual) {
+        tostaterefsual.addEventListener('click', confirmtostaterefsual);
+    }
+
+</script>

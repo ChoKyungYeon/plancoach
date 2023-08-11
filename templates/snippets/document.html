@@ -72,6 +72,18 @@
                 {% endif %}
             </span>
         </div>
+        <div class="main-array-row interval-top">
+            <span class="main-text-index interval-right"  >
+                고객센터 연락처
+            </span>
+            <span class="main-text-content" >
+                {% if document.phonenumber %}
+                    <span class="text-done">등록 완료</span>
+                {% else %}
+                    미등록
+                {% endif %}
+            </span>
+        </div>
     </div>
     <div class="item-amount">
         수정

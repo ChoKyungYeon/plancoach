@@ -211,6 +211,7 @@
     color:var(--black);
     font-size:1.33rem;
     font-weight:var(--fontweight-title);
+    flex-shrink: 0;
 }
 .main-container-snippets .item-image{
     width:2.6rem;
@@ -223,7 +224,7 @@
     margin-right: 0.7rem;
 }
 .main-container-snippets .interval-top{
-    margin-top: 0.3rem;
+    margin-top: 0.4rem;
 }
 .main-container-info{
     display: flex;

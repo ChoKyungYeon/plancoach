@@ -125,3 +125,15 @@ class ConsultPaymentListView(DetailView):
 @method_decorator(login_required, name='dispatch')
 class ConsultExpireView(TemplateView):
     template_name = 'consultapp/expire.html'
+
+
+
+
+
+@method_decorator(never_cache, name='dispatch')
+@method_decorator(login_required, name='dispatch')
+@method_decorator(ConsultWaitingDecorator, name='dispatch')
+class ConsultWaitingView(DetailView):
+    model = Consult
+    context_object_name = 'target_consult'
+    template_name = 'consultapp/waiting.html'

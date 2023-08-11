@@ -1,0 +1,38 @@
+<style>
+
+.container-bankaccount{
+    display: flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    align-items: center;
+    box-shadow: none;
+    padding:0;
+}
+
+.container-bankaccount .item-bank{
+    width:3.7rem;
+    height:3.7rem;
+    border-radius:50%;
+    object-fit: cover;
+    margin-right:5%;
+}
+.container-bankaccount .item-accountinfo{
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items: flex-start;
+}
+</style>
+<div class="main-container-guideform" style="margin-bottom: 1.5rem;">
+    <div class="container-bankaccount main-container-snippets">
+      <img class="item-bank" src={{depositbank.bankimage}}>
+      <div class="item-accountinfo">
+          <div class="main-array-row" >
+              <span class="main-text-index interval-right">{{depositbank.bank}}</span>
+              <span class="main-text-content">{{depositbank.accountnumber}}</span>
+          </div>
+          <span class="main-text-content" style="margin-top:0.2rem;">{{depositbank.depositor}}</span>
+      </div>
+    </div>
+</div>
+

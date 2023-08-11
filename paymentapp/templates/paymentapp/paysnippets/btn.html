@@ -1,0 +1,35 @@
+
+<form action="{% url 'paymentapp:delete' pk=target_payment.pk %}" method="post"
+      id="payment-delete-form">
+    {% csrf_token %}
+    <input style="display:none" type="submit" name="next"
+           value="{% url 'superuserapp:dashboard' %}">
+    <button type="button" onclick="confirmpaymentDelete()" class="main-icon-negative material-icons" style="font-weight: 400;">
+        delete_forever
+    </button>
+</form>
+<a id="tostatechecked" href="{% url 'paymentapp:stateupdate' %}?payment_pk={{target_payment.pk }}"
+   class="main-icon-positive material-icons" style="right: 6rem">done
+</a>
+
+<script>
+function confirmtostatechecked(event) {
+    if (confirm("입금액 확인을 완료하셨나요?.")) {
+        window.location.href = event.target.href;
+    } else {
+        event.preventDefault();
+    }
+}
+
+const tostatechecked = document.getElementById('tostatechecked');
+if (tostatechecked) {
+    tostatechecked.addEventListener('click', confirmtostatechecked);
+}
+
+function confirmpaymentDelete() {
+    if (confirm("현재 입금 확인 요청을 삭제하시겠습니까?")) {
+        document.getElementById("payment-delete-form").submit();
+    }
+}
+
+</script>

@@ -29,7 +29,7 @@
         <div class="material-icons item-nav">arrow_forward_ios</div>
     </a>
     {% else %}
-        {% if user == target_consult.teacher %}
+        {% if user == target_consult.teacher and target_consult.state != 'new' %}
         <a href="{% url 'consult_classlinkapp:create' pk=target_consult.pk %}"
            class="main-container-dashboard container-link">
         {% else %}
@@ -39,7 +39,7 @@
             <div class="item-content">
                 <span class="main-text-content">등록된 정기 수업 시간이 없습니다</span>
             </div>
-            {% if user == target_consult.teacher %}
+            {% if user == target_consult.teacher and target_consult.state != 'new' %}
             <div class="material-icons item-nav" style="font-size:1.9rem;">add</div>
             {% endif %}
         </a>

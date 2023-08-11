@@ -16,7 +16,11 @@
     {% elif target_step == 'matching' %}
     {% include 'studentapp/dashboardsnippets/matching.html' %}
     {% elif target_step == 'new' %}
-    {% include 'studentapp/dashboardsnippets/new.html' %}
+        {% if user.consult_student.is_waiting == True %}
+        {% include 'studentapp/dashboardsnippets/waiting.html' %}
+        {% else %}
+        {% include 'studentapp/dashboardsnippets/new.html' %}
+        {% endif %}
     {% elif target_step == 'refund' %}
     {% include 'studentapp/dashboardsnippets/refund.html' %}
     {% elif target_step == 'end' %}

@@ -1,13 +1,8 @@
-from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from django.db import transaction
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView, DeleteView, UpdateView, DetailView, RedirectView, TemplateView
-
-from accountapp.models import CustomUser
 from applicationapp.decorators import *
 from refusalapp.models import Refusal
 from applicationapp.forms import ApplicationCreateForm
@@ -56,10 +51,7 @@ class ApplicationDeleteView(DeleteView):
     template_name = 'applicationapp/delete.html'
 
     def get_success_url(self):
-        if self.request.user.state == 'teacher':
-            return reverse_lazy('teacherapp:dashboard', kwargs={'pk': self.object.teacher.pk})
-        else:
-            return reverse_lazy('studentapp:dashboard', kwargs={'pk': self.object.student.pk})
+        return reverse_lazy('studentapp:dashboard', kwargs={'pk': self.object.student.pk})
 
 @method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')

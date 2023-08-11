@@ -1,7 +1,12 @@
-{% extends 'base_noback.html' %}
+{% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
 
+<style>
+    .main-container-info{
+        margin-bottom: 1.5rem;
+    }
+</style>
 
 <header class="header-black">
         {% url 'superuserapp:dashboard'  as url %}
@@ -15,8 +20,8 @@
 
 <div class="main-box account-salary_last" >
     {% include 'salaryapp/detailsnippets/salaryinfo.html' %}
-    <div class="main-container-info" style="margin-bottom:2rem;">
-        {% include 'salaryapp/detailsnippets/bank.html' %}
+    {% include 'salaryapp/detailsnippets/bank.html' %}
+    <div class="main-container-info">
         {% include 'salaryapp/detailsnippets/amountinfo.html' %}
         <a id="tostategiven" href="{% url 'salaryapp:stateupdate' %}?salary_pk={{ target_salary.pk }}"
            class="btn-submit">지급 완료

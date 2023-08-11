@@ -120,3 +120,27 @@ def ConsultPaymentListDecorator(func):
         return func(request, *args, **kwargs)
     return decorated
 
+def ConsultWaitingDecorator(func):
+    def decorated(request, *args, **kwargs):
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
+        consult=get_object_or_404(Consult, pk=kwargs['pk'])
+        if consult.is_waiting() == False:
+            return HttpResponseForbidden()
+        decorators=Decorators(request.user, consult)
+        decorators.update()
+        permission_checks = [
+            decorators.object_filter(allow_object=['unextended']),
+            decorators.member_filter(role='student', allow_superuser=False),
+        ]
+        for check in permission_checks:
+            if check is not None:
+                return check
+        redirect = expire_redirector( kwargs['pk'], Consult, 'consult')
+        if redirect:
+            return redirect
+
+        return func(request, *args, **kwargs)
+    return decorated

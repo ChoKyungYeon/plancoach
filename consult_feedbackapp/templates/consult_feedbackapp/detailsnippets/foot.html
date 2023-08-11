@@ -12,7 +12,7 @@
     {% csrf_token %}
     <input style="display:none" type="submit" name="next"
            value="{% url 'consult_feedbackapp:list' pk=target_consult.pk %}">
-    <button type="button" onclick="confirmfeedbackDelete()" class="material-icons main-icon-negative">
+    <button type="button" onclick="confirmfeedbackDelete()" class="material-icons main-icon-negative" style="font-weight: 400;">
         delete_forever
     </button>
 </form>

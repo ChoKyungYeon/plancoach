@@ -5,12 +5,14 @@
 <style>
     .container-guide {
         flex-direction: column;
+        align-items: flex-start;
     }
 
     .container-guide .text-title {
         font-weight: var(--fontweight-index);
         color: var(--red);
         font-size: 1.6rem;
+        margin-bottom: 0.5rem;
     }
 
     .container-guide .text-message {
@@ -34,7 +36,7 @@
     }
 
     .container-guide .interval-message {
-        margin-top: 3rem;
+        margin-top: 2.2rem;
         align-items: flex-start;
     }
 
@@ -46,8 +48,8 @@
         width: 100%;
         background: var(--color-btn-submit);
         color: var(--white);
-        margin-top: 3.5rem;
-        height: 4.5rem;
+        margin-top: 3rem;
+        height: 4.2rem;
         font-size: 1.4rem;
         border-radius: 1rem;
         border: none;
@@ -58,15 +60,22 @@
 
 
 <header class="header-white">
+    {% if target_consult.state == 'new' %}
     {% url 'studentapp:dashboard' pk=target_consult.student.pk as url %}
     {% include 'headersnippets/navback.html' with url=url %}
+    {% else %}
+    {% url 'consultapp:dashboard' pk=target_consult.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
+    {% endif %}
 </header>
+
 
 <main class="main-guide homescreen-refund ">
     <div class="main-container-etc container-guide">
         <span class="text-title">
             주의 사항을 꼭 확인하세요!
         </span>
+        {% if target_consult.state == 'new' %}
         <div class="main-array-row interval-message">
             <div class="material-icons icon-warning">error</div>
             <div class="text-message">
@@ -89,10 +98,10 @@
             <div class="material-icons icon-warning">error</div>
             <div class="text-message">
                 학습 컨설팅은
-                <span class="text-emphasize">결제일을</span>
+                <span class="text-emphasize">입금일을</span>
                 기준으로
                 <span class="text-emphasize">28일간</span>
-                진행됩니다.
+                진행됩니다. (입금 확인까지 시간이 소요될 수 있습니다.)
             </div>
         </div>
         <div class="main-array-row interval-message">
@@ -102,13 +111,26 @@
                 <span class="text-emphasize">비대면 수업은</span> 결제 당일이 아닌, 상담시 조율된 날짜에 맞춰 시작됩니다.
             </div>
         </div>
+        {% else %}
         <div class="main-array-row interval-message">
             <div class="material-icons icon-warning">error</div>
-            <div class="text-message">
-                수업 연장을 원하시는 경우,
-                <span class="text-emphasize">컨설팅 대시보드</span>에서 진행할 수 있습니다.
-            </div>
+            <span class="text-message">
+                컨설팅을 연장하면,&nbsp;
+                <span class="text-emphasize">
+                    {{ target_consult.extenddate |date:"Y.m.d" }}
+                </span>부터 자동으로 연장됩니다.
+            </span>
         </div>
+        <div class="main-array-row interval-message">
+            <div class="material-icons icon-warning">error</div>
+            <span class="text-message">
+                연장 입금된 수업료는
+                <span class="text-emphasize">
+                    {{ target_consult.extenddate |date:"Y.m.d" }}
+                </span> 이전까지 전액 환불이 가능합니다.
+            </span>
+        </div>
+        {% endif %}
         <a href="{% url 'paymentapp:create' pk=target_consult.pk %}" class="btn-nav">확인했습니다</a>
     </div>
 </main>

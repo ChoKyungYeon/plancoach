@@ -71,11 +71,16 @@
     box-shadow: var(--shadow-btn);
     font-weight:var(--fontweight-content);
 }
-.main-container-info .btn-submit,
+
 .main-container-form .btn-submit-short,
 .main-container-guideform .btn-submit{
     margin-top:2.5rem;
     height: 4.2rem;
+}
+.main-container-info .btn-submit,
+.main-container-guideform .btn-submit{
+    margin-top:1.5rem;
+    height: 4rem;
 }
 /*폼 관리*/
 

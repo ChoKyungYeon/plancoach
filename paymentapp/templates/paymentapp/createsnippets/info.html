@@ -1,0 +1,25 @@
+<div class="item-info">
+    <span class="text-content">입금 수업</span>
+    <span class="main-text-rowindex">
+        {{ target_consult.consult_name }}
+    </span>
+</div>
+<div class="item-info">
+    {% if target_consult.state == 'new' %}
+    <span class="text-content">컨설팅 기간</span>
+    <span class="main-text-rowindex">
+        {{startdate |date:"Y.m.d" }} ~ {{ enddate |date:"Y.m.d" }}
+    </span>
+    {% else %}
+    <span class="text-content">연장될 기간</span>
+    <span class="main-text-rowindex">
+        {{ target_consult.extenddate |date:"Y.m.d" }} ~ {{ target_consult.extend_enddate |date:"Y.m.d" }}
+    </span>
+    {% endif %}
+</div>
+<div class="item-info">
+    <span class="text-content">입금 수업료</span>
+    <span class="main-text-rowindex">
+        {{ target_consult.tuition }}원
+    </span>
+</div>

@@ -32,6 +32,8 @@ class Consult(models.Model):
     def extend_enddate(self): #컨설팅 연장날 끝나는 날, 이날까지 포함
         return self.startdate + timedelta(days=57) if self.startdate else None
 
+    def is_waiting(self):
+        return self.payment.filter(is_paid_ok=False).exists()
 
     def consult_name(self):
         return f"[{self.teacher.userrealname}T] {self.student.userrealname} 컨설팅"
@@ -50,7 +52,7 @@ class Consult(models.Model):
         return self.refund_amount() + self.tuition if self.state == 'extended' else self.refund_amount()
 
     def can_refund(self):
-        return True if self.refund_entire_amount() != 0 else False
+        return True if self.refund_entire_amount() != 0 and self.is_waiting() == False else False
 
     def extend_warning(self):
         if self.enddate():

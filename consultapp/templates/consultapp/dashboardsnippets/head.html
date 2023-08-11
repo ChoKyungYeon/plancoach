@@ -19,16 +19,24 @@
             <span class="text-content">상태:</span>
             {% if target_consult.state == 'unextended' %}
             <span class="text-subcontent">
-                        {{ target_consult.startdate|date:"y.m.d" }} ~ {{ target_consult.enddate|date:"y.m.d" }}
-                        &nbsp;미연장
-                    </span>
+            {{ target_consult.startdate|date:"y.m.d" }} ~ {{ target_consult.enddate|date:"y.m.d" }}
+            {% if target_consult.is_waiting %}
+            &nbsp;연장 대기
+            {% else %}
+            &nbsp;미연장
+            {% endif %}
+            </span>
             {% elif target_consult.state == 'extended' %}
             <span class="text-subcontent">
                         {{ target_consult.startdate|date:"y.m.d" }} ~ {{ target_consult.enddate|date:"y.m.d" }}
                         &nbsp;연장 완료
                     </span>
             {% elif target_consult.state == 'new' %}
+            {% if target_consult.is_waiting %}
+            <span class="text-subcontent">입금 대기</span>
+            {% else %}
             <span class="text-subcontent">신규 컨설팅</span>
+            {% endif %}
             {% endif %}
         </div>
     </div>

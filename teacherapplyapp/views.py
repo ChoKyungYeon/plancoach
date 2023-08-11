@@ -5,6 +5,8 @@ from django.urls import reverse_lazy
 from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView, DetailView, DeleteView, UpdateView, TemplateView
 from accountapp.models import CustomUser
+from documentapp.models import Document
+from plancoach.sms import Send_SMS
 from refusalapp.models import Refusal
 from teacherapplyapp.decorators import *
 from teacherapplyapp.forms import TeacherapplyUserimageCreateForm, TeacherapplyBankCreateForm, \
@@ -87,6 +89,11 @@ class TeacherapplyInfoCreateView(UpdateView):
             Refusal.objects.filter(student=self.object.customuser).delete()
             form.instance.is_done = True
             form.instance.save()
+
+            content = f'[{form.instance.customuser.userrealname}] 계정 전환을 확인하세요'
+            phonenumber = Document.objects.all().first().phonenumber
+            if phonenumber:
+                Send_SMS(phonenumber, content, True)
             return super().form_valid(form)
 
     def get_success_url(self):

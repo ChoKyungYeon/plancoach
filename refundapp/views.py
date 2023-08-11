@@ -7,6 +7,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView, RedirectView, DetailView
 from consultapp.models import Consult
+from documentapp.models import Document
 from plancoach.sms import Send_SMS
 from plancoach.utils import salaryday_calculator
 from refundapp.decorators import *
@@ -43,9 +44,10 @@ class RefundCreateView(CreateView):
         teacher = target_consult.teacher
         salaryday = salaryday_calculator(target_consult.enddate())
         target_salary = target_consult.teacher.salary.get(salaryday=salaryday)
+        classname=target_consult.consult_name()
         with transaction.atomic():
             # form instacne
-            form.instance.classname = target_consult.consult_name()
+            form.instance.classname = classname
             form.instance.student = target_consult.student
             form.instance.amount = target_consult.refund_amount()
             form.instance.salary = target_salary
@@ -65,8 +67,13 @@ class RefundCreateView(CreateView):
                 )
             target_consult.delete()
             # sendsms
-            content = f'{form.instance.student.userrealname} 학생의 요청으로 컨설팅이 환불 처리되었습니다.'
-            Send_SMS(teacher.username, content, teacher.can_receive_notification)
+            content_teacher = f'{form.instance.student.userrealname} 학생의 요청으로 컨설팅이 환불 처리되었습니다.'
+            Send_SMS(teacher.username, content_teacher, teacher.can_receive_notification)
+
+            content = f'[{classname}] 환불 요청을 확인하세요'
+            phonenumber = Document.objects.all().first().phonenumber
+            if phonenumber:
+                Send_SMS(phonenumber, content, True)
             return super().form_valid(form)
 
     def get_success_url(self):

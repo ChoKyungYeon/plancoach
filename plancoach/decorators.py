@@ -29,29 +29,31 @@ class Decorators:
             target_state = application.state
             updated_at = application.updated_at
             updated_interval = datetime.now() - updated_at
-            if target_state == 'applied' and updated_interval > timedelta(hours=24): #minute 24
+            if target_state == 'applied' and updated_interval > timedelta(hours=24): #hours 24
                 create_refusal(application,'기간 내 신청이 확인되지 않았습니다.','matching')
             elif target_state == 'matching' and updated_interval > timedelta(hours=168): #minute 168
                 create_refusal(application,'기간 내 매칭이 성사되지 않았습니다.','matching')
 
     def consult_update(self,consult): #deploy check
         with transaction.atomic():
-            today = datetime.now().date()
-            extenddate = consult.extenddate()
-            extend_enddate = consult.extend_enddate()
-            target_state = consult.state
-            created_interval=datetime.now() - consult.created_at
-            if target_state == 'new' and created_interval > timedelta(hours=168): #hour 48
-                create_refusal(consult, '기간 내 입금이 완료되지 않았습니다.','matching')
-            elif target_state == 'unextended' and extenddate <= today: # extenddate <= today
-                create_refusal(consult, None,'consult')
-            elif target_state == 'extended':
-                if extend_enddate < today:
+            if consult.is_waiting() == False:
+                today = datetime.now().date()
+                extenddate = consult.extenddate()
+                extend_enddate = consult.extend_enddate()
+                target_state = consult.state
+                created_interval=datetime.now() - consult.created_at
+                if target_state == 'new' and created_interval > timedelta(hours=48): #hour 48
+                    create_refusal(consult, '기간 내 입금이 완료되지 않았습니다.','matching')
+                elif target_state == 'unextended' and extenddate <= today: # extenddate <= today
                     create_refusal(consult, None,'consult')
-                elif extenddate <= today <= extend_enddate:
-                    consult.startdate = extenddate
-                    consult.state = 'unextended'
-                    consult.save()
+                elif target_state == 'extended':
+                    if extend_enddate < today:
+                        create_refusal(consult, None,'consult')
+                    elif extenddate <= today <= extend_enddate:
+                        consult.startdate = extenddate
+                        consult.state = 'unextended'
+                        consult.save()
+
 
     def user_update(self,user):
         with transaction.atomic():

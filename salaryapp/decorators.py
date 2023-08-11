@@ -26,7 +26,7 @@ def SalaryDetailDecorator(func):
 def SalaryExpectedDecorator(func):
     def decorated(request, *args, **kwargs):
         salary=get_object_or_404(Salary, pk=kwargs['pk'])
-        if salary.is_given == True or salary.salaryday != salaryday_calculator(datetime.now().date()):
+        if salary.is_given == False or salary.salaryday != salaryday_calculator(datetime.now().date()):
             return HttpResponseForbidden()
         decorators=Decorators(request.user,salary)
         permission_checks = [

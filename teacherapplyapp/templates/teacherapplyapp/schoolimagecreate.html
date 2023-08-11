@@ -57,7 +57,7 @@
         <form action="{% url 'teacherapplyapp:schoolimagecreate' pk=target_user.pk %}"
               enctype="multipart/form-data" method="post" onsubmit="return confirmSchoolimageCreate()">
             {% csrf_token %}{% bootstrap_form form %}
-            <input type="submit" class="btn-submit" value="증명 자료 제출">
+            <input type="submit" class="btn-submit" value="증명 자료 제출" style="margin-top:2.5rem;">
         </form>
         </div>
     </div>

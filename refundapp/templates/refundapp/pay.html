@@ -15,26 +15,11 @@
     <div class="main-container-info" >
         {% include 'refundapp/detailsnippets/bank.html' %}
         {% include 'refundapp/detailsnippets/amountinfo.html' %}
-        <a id="tostategiven" href="{% url 'refundapp:stateupdate' %}?refund_pk={{ target_refund.pk }}"
-           class="btn-submit">지급 완료
-        </a>
+        {% include 'refundapp/detailsnippets/btn.html' %}
     </div>
 </div>
 </main>
-<script>
-function confirmtostategiven(event) {
-    if (confirm("환불액을 지급 완료하셨나요?.")) {
-        window.location.href = event.target.href;
-    } else {
-        event.preventDefault();
-    }
-}
 
-const tostategiven = document.getElementById('tostategiven');
-if (tostategiven) {
-    tostategiven.addEventListener('click', confirmtostategiven);
-}
-</script>
 {% endblock %}
 
 

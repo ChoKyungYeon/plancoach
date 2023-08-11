@@ -15,14 +15,14 @@
     <div class="main-array-title">
       <div class="main-text-title" >
         {% if target_refund.is_given %}
-        {{ target_refund.given_at|date:"y.m.d"}} 환급 완료
+        {{ target_refund.given_at|date:"y.m.d"}} 환불 완료
         {% else %}
-        환급 대기중
+        환불 대기중
         {% endif %}
       </div>
     </div>
+    {% include 'refundapp/detailsnippets/bank.html' %}
     <div class="main-container-info" >
-        {% include 'refundapp/detailsnippets/bank.html' %}
         {% include 'refundapp/detailsnippets/amountinfo.html' %}
     </div>
 </div>

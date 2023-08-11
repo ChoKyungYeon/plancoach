@@ -69,6 +69,7 @@ INSTALLED_APPS = [
 
     'phonenumberapp',
     'documentapp',
+    'depositapp',
 
 ]
 

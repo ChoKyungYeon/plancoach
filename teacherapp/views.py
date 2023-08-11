@@ -33,7 +33,7 @@ class TeacherDashboardView(DetailView):
         context['profiles_uncompleted']=profiles_uncompleted
         context['profile_completeness']=ratio
         context['salary_length'] = len(self.object.salary.filter(is_given=True))
-        context['target_salary']= target_user.salary.filter(salaryday=salaryday_calculator(datetime.now().date()+timedelta(days=28))).first()
+        context['target_salary']= target_user.salary.filter(salaryday=salaryday_calculator(datetime.now().date())).first()
         return context
 
 

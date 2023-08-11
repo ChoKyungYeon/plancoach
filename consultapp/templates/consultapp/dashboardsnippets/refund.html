@@ -4,9 +4,6 @@
     </div>
     {% if target_consult.can_refund %}
     <a href="{% url 'refundapp:guide' pk=target_consult.pk %}" class="main-container-dashboard">
-    {% else %}
-    <a class="main-container-dashboard">
-    {% endif %}
         <div class="item-content">
             <span class="main-text-content">환불을 진행하고 싶으신가요?</span>
             <div class="main-array-row interval-top">
@@ -15,10 +12,26 @@
                     {{target_consult.refund_entire_amount}}원
                 </span>
             </div>
-
         </div>
         <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
     </a>
+    {% else %}
+    <a class="main-container-dashboard">
+        <div class="item-content">
+            {% if target_consult.is_waiting %}
+            <span class="main-text-content">입금 확인 후 환불이 가능합니다</span>
+            {% else %}
+            <span class="main-text-content">현재 환불 가능 기간이 아닙니다</span>
+            {% endif %}
+            <div class="main-array-row interval-top">
+                <span class="main-text-content text-content">환불 예정액</span>
+                <span class="main-text-index">
+                    {{target_consult.refund_entire_amount}}원
+                </span>
+            </div>
+        </div>
+    </a>
+    {% endif %}
 </div>
 
 

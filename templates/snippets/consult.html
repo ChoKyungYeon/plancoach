@@ -41,10 +41,18 @@
 
 <a href="{% url 'consultapp:dashboard' pk=consult.pk %}" class="container-consult main-container-snippets">
     <div class="item-info">
-        {% if consult.state == 'new'%}
-        <span class="main-text-content text-new">신규 개설</span>
-        {% elif consult.state == 'unextended'%}
-        <span class="main-text-content text-ongoing">{{consult.remaining_day}}</span>
+        {% if consult.state == 'new' %}
+            {% if consult.is_waiting %}
+            <span class="main-text-content text-new">입금 대기</span>
+            {% else %}
+            <span class="main-text-content text-new">신규 개설</span>
+            {% endif %}
+        {% elif consult.state == 'unextended' %}
+            {% if consult.is_waiting %}
+            <span class="main-text-content text-ongoing">연장 대기</span>
+            {% else %}
+            <span class="main-text-content text-ongoing">{{consult.remaining_day}}</span>
+            {% endif %}
         {% else %}
         <span class="main-text-content text-ongoing">{{consult.remaining_day}}</span>
         {% endif %}

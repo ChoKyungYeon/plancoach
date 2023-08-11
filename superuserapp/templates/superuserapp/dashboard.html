@@ -10,19 +10,22 @@
 <main class=" superuser-dashboard ">
     {% include 'superuserapp/dashboardsnippets/head.html' %}
     <div class="superuser-dashboard-slide1" style="display:block">
-        {% include 'superuserapp/dashboardsnippets/salary.html' %}
+        {% include 'superuserapp/dashboardsnippets/payment.html' %}
     </div>
     <div class="superuser-dashboard-slide2" style="display:none">
-        {% include 'superuserapp/dashboardsnippets/teacherapply.html' %}
+        {% include 'superuserapp/dashboardsnippets/salary.html' %}
     </div>
     <div class="superuser-dashboard-slide3" style="display:none">
-        {% include 'superuserapp/dashboardsnippets/refund.html' %}
+        {% include 'superuserapp/dashboardsnippets/teacherapply.html' %}
     </div>
     <div class="superuser-dashboard-slide4" style="display:none">
-        {% include 'superuserapp/dashboardsnippets/teacher.html' %}
+        {% include 'superuserapp/dashboardsnippets/refund.html' %}
     </div>
     <div class="superuser-dashboard-slide5" style="display:none">
-        {% include 'superuserapp/dashboardsnippets/documents.html' %}
+        {% include 'superuserapp/dashboardsnippets/teacher.html' %}
+    </div>
+    <div class="superuser-dashboard-slide6" style="display:none">
+        {% include 'superuserapp/dashboardsnippets/document.html' %}
     </div>
 </main>
 {% endblock %}

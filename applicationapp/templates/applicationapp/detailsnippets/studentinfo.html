@@ -1,0 +1,30 @@
+   <div class="main-array-title-table">
+            <div class="main-text-title-table">신청자 정보</div>
+        </div>
+        <div class="main-container-table">
+            <div class="main-array-row">
+                <div class="row-index border1">이름</div>
+                <div class="row-content-half">{{ target_application.student.userrealname}}</div>
+                <div class="row-index">학년</div>
+                <div class="row-content-half border2">{{ target_application.get_age_display}}</div>
+            </div>
+            <div class="main-array-row">
+                <div class="row-index">소속</div>
+                <div class="row-content-full ">
+                    {{ target_application.belong}}
+                </div>
+            </div>
+            <div class="main-array-row">
+                <div class="row-index border4">연락처</div>
+
+                {% if target_application.state == 'matching' %}
+                <div class="row-content-full border3">
+                    {{ target_application.student.user_phonenumber }}
+                </div>
+                {% else %}
+                <div class="row-content-full border3 text-empty">
+                    신청서 수락 이후 공개됩니다
+                </div>
+                {% endif %}
+            </div>
+        </div>

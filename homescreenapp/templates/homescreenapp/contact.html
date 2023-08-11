@@ -48,6 +48,32 @@
         margin-bottom: 1.5rem;
         margin-top: 1rem;
     }
+        .container-contact .item-phone{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2rem;
+    }
+    .container-contact .icon-phone{
+        font-size: 1.4rem;
+        color: var(--black);
+        font-weight: var(--fontweight-index);
+        margin-right: 0.6rem;
+    }
+    .container-contact .text-contactinfo{
+        font-size: 1.3rem;
+        color: var(--gray);
+        font-weight: var(--fontweight-content);
+    }
+    .container-contact .icon-time{
+        font-size: 1.5rem;
+        color: var(--black);
+        font-weight: 400;
+        margin-right: 0.6rem;
+        margin-left: 2rem;
+    }
 </style>
 
 <header class="header-black">
@@ -60,7 +86,7 @@
 <main class="main-guide">
     <div class="main-container-etc container-contact">
         <div class="text-index">문의 사항이 있으신가요?</div>
-        <div class="text-content text-guide">본인의 등록 전화번호와 문의 사항을 함께 알려주세요! 답변까지는 평균 1시간 정도 소요됩니다.
+        <div class="text-content text-guide">본인의 등록 전화번호와 문의 사항을 함께 알려주세요! 답변까지 평균 1시간이 소요됩니다.
         </div>
         <div class="item-contact">
             <img class="img-contact" src='/static/icons/email.png'>
@@ -70,6 +96,12 @@
             <img class="img-contact" src='/static/icons/kakaotalk.png'>
             <a href={{document.kakaotalk}} class="btn-openkakako">카카오톡 문의하기</a>
         </div>
+            <div class="item-phone">
+         <div class="material-icons icon-phone">call</div>
+        <div class="text-contactinfo">{{document.phonenumber}}</div>
+        <div class="material-icons icon-time">event_available</div>
+        <div class="text-contactinfo">9:00 ~ 22:00</div>
+    </div>
     </div>
 </main>
 

@@ -5,10 +5,9 @@
     display: flex;
     flex-direction:row;
     justify-content:flex-start;
-    align-items: flex-start;
+    align-items: center;
     box-shadow: none;
     padding:0;
-    margin-bottom: 1.7rem;
 }
 
 .container-bankaccount .item-bank{
@@ -25,13 +24,15 @@
     align-items: flex-start;
 }
 </style>
-<div class="container-bankaccount main-container-snippets">
-  <img class="item-bank" src={{target_refund.bankimage}}>
-  <div class="item-accountinfo">
-      <div class="main-array-row" >
-          <span class="main-text-index" style="margin-right: 0.5rem;">{{target_refund.bank}}</span>
-          <span class="main-text-content">{{target_refund.accountnumber}}</span>
+<div class="main-container-info" style="margin-bottom: 1.5rem;">
+    <div class="container-bankaccount main-container-snippets">
+      <img class="item-bank" src={{target_refund.bankimage}}>
+      <div class="item-accountinfo">
+          <div class="main-array-row" >
+              <span class="main-text-index interval-right" >{{target_refund.bank}}</span>
+              <span class="main-text-content">{{target_refund.accountnumber}}</span>
+          </div>
+          <span class="main-text-content" style="margin-top:0.2rem;">{{target_refund.depositor}}</span>
       </div>
-      <span class="main-text-content">{{target_refund.depositor}}</span>
-  </div>
+    </div>
 </div>

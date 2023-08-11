@@ -7,7 +7,6 @@
     align-items: flex-start;
     box-shadow: none;
     padding:0;
-    margin-bottom: 2rem;
 }
 
 .container-bankaccount .item-bank{
@@ -24,26 +23,28 @@
     align-items: flex-start;
 }
 </style>
-{% if target_salary.is_given %}
-<div class="container-bankaccount main-container-snippets">
-  <img class="item-bank" src={{target_salary.bankimage}}>
-  <div class="item-accountinfo">
-      <div class="main-array-row" >
-          <span class="main-text-index interval-right">{{target_salary.bank}}</span>
-          <span class="main-text-content">{{target_salary.accountnumber}}</span>
+<div class="main-container-info" >
+    {% if target_salary.is_given %}
+    <div class="container-bankaccount main-container-snippets">
+      <img class="item-bank" src={{target_salary.bankimage}}>
+      <div class="item-accountinfo">
+          <div class="main-array-row" >
+              <span class="main-text-index interval-right">{{target_salary.bank}}</span>
+              <span class="main-text-content">{{target_salary.accountnumber}}</span>
+          </div>
+          <span class="main-text-content">{{target_salary.depositor}}</span>
       </div>
-      <span class="main-text-content">{{target_salary.depositor}}</span>
-  </div>
-</div>
-{% else %}
-<div class="container-bankaccount main-container-snippets">
-  <img class="item-bank" src={{target_bank.bankimage}}>
-  <div class="item-accountinfo">
-      <div class="main-array-row" >
-          <span class="main-text-index interval-right" >{{target_bank.bank}}</span>
-          <span class="main-text-content">{{target_bank.accountnumber}}</span>
+    </div>
+    {% else %}
+    <div class="container-bankaccount main-container-snippets">
+      <img class="item-bank" src={{target_bank.bankimage}}>
+      <div class="item-accountinfo">
+          <div class="main-array-row" >
+              <span class="main-text-index interval-right" >{{target_bank.bank}}</span>
+              <span class="main-text-content">{{target_bank.accountnumber}}</span>
+          </div>
+          <span class="main-text-content" style="margin-top:0.2rem;">{{target_bank.depositor}}</span>
       </div>
-      <span class="main-text-content">{{target_bank.depositor}}</span>
-  </div>
+    </div>
+    {% endif %}
 </div>
-{% endif %}

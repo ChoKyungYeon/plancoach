@@ -111,38 +111,3 @@ class AccountNotificationUpdateView(RedirectView):
         target_user.can_receive_notification = True if target_user.can_receive_notification == False else False
         target_user.save()
         return super(AccountNotificationUpdateView, self).get(request, *args, **kwargs)
-
-from django.contrib.auth import login, logout
-
-
-def test_student(request):
-    user = CustomUser.objects.get(username='01000000000')
-    if request.user.is_authenticated:
-        logout(request)
-    if user is not None:
-        login(request, user)
-        return redirect('paymentapp:create',pk=user.consult_student.pk)
-
-def test_superuser(request):
-    user = CustomUser.objects.get(username='01031583718')
-    if request.user.is_authenticated:
-        logout(request)
-    if user is not None:
-        login(request, user)
-        return redirect('superuserapp:dashboard')
-
-def test_teacher(request):
-    user = CustomUser.objects.get(username='01031585834')
-    if request.user.is_authenticated:
-        logout(request)
-    if user is not None:
-        login(request, user)
-        return redirect('teacherapp:dashboard' ,pk=user.pk)
-
-def test_teacherapply(request):
-    user = CustomUser.objects.get(username='01000000005')
-    if request.user.is_authenticated:
-        logout(request)
-    if user is not None:
-        login(request, user)
-        return redirect('teacherapplyapp:schoolimagecreate', pk=user.pk)

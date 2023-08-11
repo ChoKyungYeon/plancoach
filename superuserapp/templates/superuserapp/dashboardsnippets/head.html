@@ -36,11 +36,12 @@
         <span class="head-text-classification">관리자</span><span class="head-text-title">대시보드</span>
     </div>
     <div class="item-nav">
-        <button onclick="showSlide(1)" id="btn-slide1" class="btn-touched">급여</button>
-        <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched">계정 전환</button>
-        <button onclick="showSlide(3)" id="btn-slide3" class="btn-untouched">환불 신청</button>
-        <button onclick="showSlide(4)" id="btn-slide4" class="btn-untouched">선생님</button>
-        <button onclick="showSlide(5)" id="btn-slide5" class="btn-untouched">문서</button>
+        <button onclick="showSlide(1)" id="btn-slide1" class="btn-touched">입금</button>
+        <button onclick="showSlide(2)" id="btn-slide2" class="btn-untouched">급여</button>
+        <button onclick="showSlide(3)" id="btn-slide3" class="btn-untouched">계정</button>
+        <button onclick="showSlide(4)" id="btn-slide4" class="btn-untouched">환불</button>
+        <button onclick="showSlide(5)" id="btn-slide5" class="btn-untouched">선생님</button>
+        <button onclick="showSlide(6)" id="btn-slide6" class="btn-untouched">기타</button>
     </div>
 </div>
 
@@ -48,7 +49,7 @@
 
 <script>
 function showSlide(slideNumber) {
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 1; i <= 6; i++) {
         const btn = document.querySelector(`#btn-slide${i}`);
         const slide = document.querySelector(`.superuser-dashboard-slide${i}`);
         if (i === slideNumber) {

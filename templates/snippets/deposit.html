@@ -1,0 +1,48 @@
+<style>
+
+
+
+
+.container-bank .item-bank{
+    width:4rem;
+    height:4rem;
+    border-radius:50%;
+    object-fit: cover;
+    margin-right:5%;
+}
+.container-bank .item-accountinfo{
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items: flex-start;
+    margin-right: auto;
+    width: 100%;
+}
+
+
+</style>
+
+{% if deposit %}
+    <a href="{% url 'depositapp:update' pk=deposit.pk %}"  class=" main-container-snippets container-bank">
+      <img class="item-bank" src={{deposit.bankimage}}>
+      <div class="item-accountinfo">
+          <div class="main-array-row" >
+              <div class="main-text-index">{{deposit.bank}}</div>
+              <div class="main-text-content" style="padding-left:0.5rem;">{{deposit.accountnumber}}</div>
+          </div>
+          <span class="main-text-content" style="padding-top:0.3rem;">{{deposit.depositor}}</span>
+      </div>
+    <div class="item-amount">
+        수정
+    </div>
+</a>
+{% else %}
+<a href="{% url 'depositapp:create' %}"  class=" main-container-snippets">
+    <span class="main-text-content">
+       등록 계좌가 없습니다
+    </span>
+    <div class="item-amount">
+        등록
+    </div>
+</a>
+{% endif %}

@@ -15,8 +15,8 @@ class Profile_bankManageView(UpdateView):
     model = Profile_bank
     form_class = Profile_bankManageForm
     context_object_name = 'target_profile_bank'
-    template_name = 'profile_bankapp/update.html'
+    template_name = 'profile_bankapp/manage.html'
     def get_success_url(self):
-        return reverse_lazy('teacherapp:dashboard', kwargs={'pk': self.object.customuser.pk})
+        return reverse_lazy('teacherapp:dashboard', kwargs={'pk': self.object.profile.teacher.pk})
 
 

@@ -15,7 +15,7 @@
         {% if payments %}
         <div class="main-container-snippetitem">
             {% for payment in payments %}
-            {% include 'snippets/payment.html' %}
+            {% include 'snippets/paymentlist.html' %}
             {% if not forloop.last %}
             <div class="main-interval-line"></div>
             {% endif %}

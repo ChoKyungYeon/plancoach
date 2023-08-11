@@ -5,6 +5,7 @@ from django.views.generic import DetailView
 from accountapp.models import CustomUser
 from django.utils.decorators import method_decorator
 
+from paymentapp.models import Payment
 from refundapp.models import Refund
 from studentapp.decorators import *
 
@@ -19,8 +20,9 @@ class StudentDashboardView(DetailView):
     def get(self, request, *args, **kwargs):
         target_user = self.get_object()
         consult_student = getattr(target_user, 'consult_student', None)
-        if consult_student and consult_student.state != 'new':
-            return redirect('consultapp:dashboard', pk=consult_student.pk)
+        if consult_student:
+            if consult_student.state != 'new':
+                return redirect('consultapp:dashboard', pk=consult_student.pk)
         return super().get(request, *args, **kwargs)
 
 
@@ -40,3 +42,4 @@ class StudentRefundListView(DetailView):
         context = super().get_context_data(**kwargs)
         context['refunds'] = Refund.objects.filter(student=self.object)
         return context
+

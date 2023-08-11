@@ -1,0 +1,21 @@
+        <div class="main-array-title-table">
+            <div class="main-text-title-table">선생님 정보</div>
+        </div>
+        <div class="main-container-table">
+            <div class="main-array-row">
+                <div class="row-index border1">이름</div>
+                <div class="row-content-full border2">{{ target_application.teacher.userrealname}} 선생님</div>
+            </div>
+            <div class="main-array-row">
+                <div class="row-index border4">연락처</div>
+                {% if target_application.state == 'matching' %}
+                <div class="row-content-full border3">
+                    {{ target_application.teacher.user_phonenumber }}
+                </div>
+                {% else %}
+                <div class="row-content-full border3 text-empty">
+                    신청서 수락 이후 공개됩니다
+                </div>
+                {% endif %}
+            </div>
+        </div>
