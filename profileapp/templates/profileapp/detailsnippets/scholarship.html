@@ -1,12 +1,14 @@
 <style>
-.profile-detail-scholarship .main-array-row{
-    margin-bottom:0.6rem;
-}
+
 
 
 
 .profile-detail-scholarship .main-text-content{
-    margin-top:0.5rem;
+    margin-top:0.6rem;
+}
+.profile-detail-scholarship .main-text-subindex{
+    margin-left:0.5rem;
+    margin-right:0rem;
 }
 
 
@@ -20,7 +22,10 @@
         <div class="container-info">
             <div class="main-array-row">
                 <span class="main-text-index">
-                    {{scholarship.school}}&nbsp;{{scholarship.major}}&nbsp;{{scholarship.studentid}}학번
+                     {{scholarship.school}}&nbsp;{{scholarship.major}}&nbsp;{{scholarship.studentid}}학번
+                </span>
+                <span class="main-text-subindex">
+                    [{{ scholarship.accepttype }}]
                 </span>
                     <button onclick="showscholarshipimage()" class="material-icons btn-verification">verified</button>
                     <button onclick="closescholarshipimage()" id="scholarshipimage-fullscreen" class="fullscreenimage" >
@@ -42,7 +47,6 @@
                 </div>
                 {% endif %}
             </div>
-            <div class="main-text-subindex">전형: {{ scholarship.accepttype }}</div>
             <div class="main-text-content">
                 {% if scholarship.content %}
                 {{ scholarship.content|safe|linebreaksbr }}

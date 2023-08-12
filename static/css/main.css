@@ -36,9 +36,9 @@
 
 .main-text-subindex{
     color:var(--middleblue);
-    font-size:var(--fontsize-content);
+    font-size:1.3rem;
     font-weight:var(--fontweight-content);
-    margin-right:0.6rem;
+    margin-right:0.5rem;
 }
 
 

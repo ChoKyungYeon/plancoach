@@ -116,7 +116,7 @@ class ProfileDetailView(DetailView):
         subjects=getattr(target_profile, 'profile_subject', None).all()
         sats=getattr(target_profile, 'profile_sat', None).order_by('-satyear').all()
         context['scholarship'] =getattr(target_profile, 'profile_scholarship', None)
-        context['careers'] = getattr(target_profile, 'profile_career', None).order_by('year').all().all()
+        context['careers'] = getattr(target_profile, 'profile_career', None).order_by('-year').all().all()
         context['sats'] = sats
         context['gpa'] = getattr(target_profile, 'profile_gpa', None)
         context['subjects'] = subjects

@@ -4,7 +4,10 @@
     margin-top:0.5rem;
 }
 
-
+.profile-detail-gpa .main-text-subindex{
+    margin-left:0.5rem;
+    margin-right:0rem;
+}
 
 </style>
 
@@ -24,8 +27,8 @@
                 {% endif %}
                 </div>
                 <div class="main-array-row" >
-                    <span class="main-text-index">{{gpa.highschool}}
-                        ({{gpa.schooltype}})</span>
+                    <span class="main-text-index">{{gpa.highschool}}</span>
+                    <span class="main-text-subindex">[{{gpa.schooltype}}]</span>
                     {% if gpa.gpaverificationimage %}
                     <button onclick="showgpaimage()" class="material-icons btn-verification">verified</button>
                     <button onclick="closegpaimage()" id="gpaimage-fullscreen" class="fullscreenimage" >
