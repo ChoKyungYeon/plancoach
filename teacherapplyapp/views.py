@@ -6,7 +6,7 @@ from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView, DetailView, DeleteView, UpdateView, TemplateView
 from accountapp.models import CustomUser
 from documentapp.models import Document
-from plancoach.sms import Send_SMS
+from plancoach.sms import Send_SMS, contact_phone
 from refusalapp.models import Refusal
 from teacherapplyapp.decorators import *
 from teacherapplyapp.forms import TeacherapplyUserimageCreateForm, TeacherapplyBankCreateForm, \
@@ -91,9 +91,7 @@ class TeacherapplyInfoCreateView(UpdateView):
             form.instance.save()
 
             content = f'[{form.instance.customuser.userrealname}] 계정 전환을 확인하세요'
-            phonenumber = Document.objects.all().first().phonenumber
-            if phonenumber:
-                Send_SMS(phonenumber, content, True)
+            Send_SMS(contact_phone, content, True)
             return super().form_valid(form)
 
     def get_success_url(self):

@@ -1,9 +1,17 @@
 import hmac, hashlib, base64
 import time, requests, json
+
+from documentapp.models import Document
+
 try:#deploy check
     from plancoach.settings.local import SENS_ACCESS_KEY, SENS_SECRET_KEY, SENS_SERVICE_KEY
 except:
     from plancoach.settings.deploy import SENS_ACCESS_KEY, SENS_SECRET_KEY, SENS_SERVICE_KEY
+
+try:
+    contact_phone = Document.objects.all().first().phonenumber.replace('-', '')
+except:
+    contact_phone = '01031585834'
 
 
 SENS_ACCESS_KEY= SENS_ACCESS_KEY
@@ -32,7 +40,7 @@ def Send_SMS(to, contents, can_receive):
     }
     data = {
         "type":"SMS",
-        "from":"01031585834",  #deploy check
+        "from":contact_phone,  #deploy check
         "content":'[Plan & Coach]' +contents,
         "subject":"SENS",
         "messages":[

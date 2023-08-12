@@ -9,9 +9,7 @@ from django.utils.decorators import method_decorator
 from depositapp.models import Deposit
 from documentapp.models import Document
 from paymentapp.decorators import *
-from plancoach.sms import Send_SMS
-
-
+from plancoach.sms import Send_SMS, contact_phone
 
 from paymentapp.forms import PaymentCreateForm
 from paymentapp.models import Payment
@@ -35,9 +33,7 @@ class PaymentCreateView(CreateView):
             form.instance.save()
 
             content = f'{classname} 입금을 확인하세요'
-            phonenumber = Document.objects.all().first().phonenumber
-            if phonenumber:
-                Send_SMS(phonenumber, content, True)
+            Send_SMS(contact_phone, content, True)
             return super().form_valid(form)
 
     def get_context_data(self, **kwargs):

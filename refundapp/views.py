@@ -8,7 +8,7 @@ from django.views.decorators.cache import never_cache
 from django.views.generic import CreateView, RedirectView, DetailView
 from consultapp.models import Consult
 from documentapp.models import Document
-from plancoach.sms import Send_SMS
+from plancoach.sms import Send_SMS, contact_phone
 from plancoach.utils import salaryday_calculator
 from refundapp.decorators import *
 from refundapp.forms import RefundCreateForm
@@ -71,9 +71,7 @@ class RefundCreateView(CreateView):
             Send_SMS(teacher.username, content_teacher, teacher.can_receive_notification)
 
             content = f'[{classname}] 환불 요청을 확인하세요'
-            phonenumber = Document.objects.all().first().phonenumber
-            if phonenumber:
-                Send_SMS(phonenumber, content, True)
+            Send_SMS(contact_phone, content, True)
             return super().form_valid(form)
 
     def get_success_url(self):
