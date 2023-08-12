@@ -1,0 +1,50 @@
+<style>
+    .container-todo {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 5rem calc(var(--main-padding-snippet) + 0.5rem);
+        background: var(--white);
+    }
+
+    .container-todo .text-todo {
+        font-size: var(--fontsize-index);
+        font-weight: var(--fontweight-content);
+        color: #454854;
+        margin-top: 1.5rem;
+    }
+
+    .container-todo .text-title {
+        font-size: 1.55rem;
+        color: var(--black);
+        font-weight: var(--fontweight-emphasize);
+    }
+
+    .container-todo .image-todo {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 1rem;
+    }
+</style>
+
+<div class="container-todo ">
+    <div class="main-array-row">
+        <img class="image-todo" src='/static/icons/schedule.png'>
+        <span class="text-title">
+        종합 플랜
+        </span>
+        {% if user == target_consult.teacher %}
+        <a href="{% url 'consult_feedbackapp:todoupdate' pk=target_feedback.pk %}"
+           class="main-btn-edit material-icons">edit</a>
+        {% endif %}
+    </div>
+    {% if target_feedback.todo %}
+    <span class="text-todo">{{target_feedback.todo|safe|linebreaksbr}}</span>
+    {% else %}
+    <span class="text-todo">종합 플랜 작성</span>
+    {% endif %}
+</div>

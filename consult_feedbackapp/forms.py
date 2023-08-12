@@ -42,3 +42,16 @@ class Consult_feedbackContentUpdateForm(ModelForm):
             'content': forms.Textarea(
                 attrs={'placeholder': '1 공부법 및 학습 조언 2 학생 시험, 성적 분석 3 교재 및 강의 4 기타 사항 등', 'class': 'textarea-wide'}),
         }
+
+class Consult_feedbackTodoUpdateForm(ModelForm):
+    class Meta:
+        model = Consult_feedback
+        fields = ('todo',)
+        labels = {
+            'todo': '종합 학습 플랜',
+        }
+
+        widgets = {
+            'todo': forms.Textarea(
+                attrs={'placeholder': '전체 과목별 학습 시간 및 분량, 교재/인강 학습 범위 작성. 필요시 요일별 상세 플랜 작성', 'class': 'textarea-wide'}),
+        }

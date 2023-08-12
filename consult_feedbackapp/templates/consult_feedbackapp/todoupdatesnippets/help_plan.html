@@ -1,0 +1,71 @@
+<style>
+
+    .help_plan .item-info {
+        padding-left: 8%;
+        padding-right: 8%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+
+
+    .help_plan .text-emphasize {
+        color: var(--black);
+        font-size: 1.3rem;
+        font-weight: var(--fontweight-index);
+    }
+
+    .help_plan .image-todo {
+        width: 2.3rem;
+        height: 2.3rem;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 1rem;
+    }
+
+
+
+
+</style>
+
+<button onclick="closehelp_plan()" id="help_plan" class="fullscreeninfo help_plan">
+    <div class="itembox">
+        <div class="item-head">
+            <div class="material-icons btn-exit">cancel</div>
+        </div>
+        <div class="item-info">
+            <div class="main-array-row" style="margin-bottom:1.3rem; justify-content: center">
+                <img class="image-todo" src='/static/icons/schedule.png'>
+                <span class="text-emphasize">
+                {{feedback_before.classtime|date:"m.d D"}} 플랜
+                </span>
+            </div>
+            <span class="main-text-content">
+                {{feedback_before.todo|safe|linebreaksbr}}
+            </span>
+        </div>
+    </div>
+</button>
+<script>
+    function showhelp_plan() {
+        var element = document.getElementById("help_plan");
+        element.style.display = "flex";
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.transition = 'opacity 0.2s ease-in-out';
+            element.style.opacity = 1;
+        }, 10);
+    }
+
+    function closehelp_plan() {
+        var element = document.getElementById("help_plan");
+        element.style.transition = 'opacity 0.4s ease-in-out';
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.display = "none";
+        }, 400);
+    }
+</script>

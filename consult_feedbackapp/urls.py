@@ -2,7 +2,7 @@ from django.urls import path
 
 from consult_feedbackapp.views import Consult_feedbackCreateView, Consult_feedbackListView, \
     Consult_feedbackDeleteView, Consult_feedbackCoachDetailView, Consult_feedbackPlanDetailView, \
-    Consult_feedbackUpdateView, Consult_feedbackContentUpdateView
+    Consult_feedbackUpdateView, Consult_feedbackContentUpdateView, Consult_feedbackTodoUpdateView
 
 app_name = 'consult_feedbackapp'
 
@@ -12,6 +12,7 @@ urlpatterns = [
     path('delete/<int:pk>', Consult_feedbackDeleteView.as_view(), name='delete'),
     path('update/<int:pk>', Consult_feedbackUpdateView.as_view(), name='update'),
     path('contentupdate/<int:pk>', Consult_feedbackContentUpdateView.as_view(), name='contentupdate'),
+    path('todoupdate/<int:pk>', Consult_feedbackTodoUpdateView.as_view(), name='todoupdate'),
     path('plandetail/<int:pk>', Consult_feedbackPlanDetailView.as_view(), name='plandetail'),
     path('coachdetail/<int:pk>', Consult_feedbackCoachDetailView.as_view(), name='coachdetail')
 ]

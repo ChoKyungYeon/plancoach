@@ -121,6 +121,29 @@ def Consult_feedbackContentUpdateDecorator(func):
         return func(request, *args, **kwargs)
     return decorated
 
+def Consult_feedbackTodoUpdateDecorator(func):
+    def decorated(request, *args, **kwargs):
+        redirect = expire_redirector( kwargs['pk'], Consult_feedback, 'consult')
+        if redirect:
+            return redirect
+
+        decorators=Decorators(request.user, get_object_or_404(Consult_feedback, pk=kwargs['pk']).consult)
+        decorators.update()
+        permission_checks = [
+            decorators.object_filter(allow_object= ['extended','unextended']),
+            decorators.member_filter(role='teacher', allow_superuser=False),
+        ]
+        for check in permission_checks:
+            if check is not None:
+                return check
+
+        redirect = expire_redirector( kwargs['pk'], Consult_feedback, 'consult')
+        if redirect:
+            return redirect
+
+        return func(request, *args, **kwargs)
+    return decorated
+
 
 def Consult_feedbackBaseDetailDecorator(func):
     def decorated(request, *args, **kwargs):

@@ -8,6 +8,7 @@ class Consult_feedback(models.Model):
     consult = models.ForeignKey(Consult, on_delete=models.CASCADE, related_name='consult_feedback')
     subjects = MultiSelectField(max_length=100, choices=subjectchoice)
     content = models.TextField(max_length=1000, null=True)
+    todo = models.TextField(max_length=1000, null=True)
     classtime = models.DateField()
 
     class Meta:

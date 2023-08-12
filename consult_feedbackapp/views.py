@@ -9,7 +9,7 @@ from django.views.generic import CreateView, DetailView, DeleteView, UpdateView
 
 from consult_feedbackapp.decorators import *
 from consult_feedbackapp.forms import Consult_feedbackCreateForm, Consult_feedbackUpdateForm, \
-    Consult_feedbackContentUpdateForm
+    Consult_feedbackContentUpdateForm, Consult_feedbackTodoUpdateForm
 from consult_feedbackapp.models import Consult_feedback
 from consult_feedbackapp.utils import planatime_calulator
 from consultapp.models import Consult
@@ -138,6 +138,28 @@ class Consult_feedbackContentUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('consult_feedbackapp:coachdetail', kwargs={'pk': self.object.pk})
+
+@method_decorator(never_cache, name='dispatch')
+@method_decorator(login_required, name='dispatch')
+@method_decorator(Consult_feedbackTodoUpdateDecorator, name='dispatch')
+class Consult_feedbackTodoUpdateView(UpdateView):
+    model = Consult_feedback
+    form_class = Consult_feedbackTodoUpdateForm
+    context_object_name = 'target_consult_feedback'
+    template_name = 'consult_feedbackapp/todoupdate.html'
+
+    def get_success_url(self):
+        return reverse_lazy('consult_feedbackapp:plandetail', kwargs={'pk': self.object.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        target_feedback = get_object_or_404(Consult_feedback, pk=self.kwargs['pk'])
+        target_consult = target_feedback.consult
+        feedback_before = Consult_feedback.objects.filter(consult=target_consult,
+                                                          classtime__lt=target_feedback.classtime).order_by('-classtime').first()
+        context['feedback_before'] = feedback_before
+        return context
+
 
 @method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required, name='dispatch')

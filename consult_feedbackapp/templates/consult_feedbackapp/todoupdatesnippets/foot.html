@@ -1,0 +1,34 @@
+<style>
+    .container-lastplan {
+        background: var(--white);
+        height: 4.5rem;
+        transition: opacity 1s;
+    }
+
+    .container-lastplan .icon-teacher {
+        color: var(--white);
+        padding: 0.4rem;
+        border-radius: 0.5rem;
+        font-weight: 400;
+        font-size: 1.4rem;
+        margin-right: 0.7rem;
+        background: var(--darkblue);
+    }
+
+    .container-lastplan .text-content {
+        color: var(--black);
+        margin-left:0.5rem;
+    }
+
+</style>
+{% if feedback_before.todo %}
+<button onclick="showhelp_plan()" class="main-container-popup container-lastplan">
+    <div class="icon-teacher material-icons">
+        history
+    </div>
+    <div class="text-popup text-content">
+        지난 플랜
+    </div>
+</button>
+{% endif %}
+{% include 'consult_feedbackapp/todoupdatesnippets/help_plan.html' %}

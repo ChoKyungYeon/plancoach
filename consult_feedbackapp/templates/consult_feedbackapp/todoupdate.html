@@ -3,9 +3,9 @@
 {% block content %}
 
 <header class="header-black">
-    {% url 'consult_feedbackapp:coachdetail' pk=target_consult_feedback.pk as url %}
+    {% url 'consult_feedbackapp:plandetail' pk=target_consult_feedback.pk as url %}
     {% include 'headersnippets/navback.html' with url=url %}
-    {% with title="종합 분석" %}
+    {% with title="종합 플랜" %}
     {% include 'headersnippets/title.html' %}
     {% endwith %}
 </header>
@@ -13,13 +13,13 @@
 <main>
     <div class="main-box">
         <div class="main-container-form">
-            <form action="{% url 'consult_feedbackapp:contentupdate' pk=target_consult_feedback.pk %}" method="post">
+            <form action="{% url 'consult_feedbackapp:todoupdate' pk=target_consult_feedback.pk %}" method="post">
                 {% csrf_token %}{% bootstrap_form form %}
-                <input type="submit" class="btn-submit btn-submit-short" value="분석 작성">
+                <input type="submit" class="btn-submit btn-submit-short" value="플랜 작성">
             </form>
         </div>
     </div>
 </main>
-
+{% include 'consult_feedbackapp/todoupdatesnippets/foot.html' %}
 {% endblock %}
 
