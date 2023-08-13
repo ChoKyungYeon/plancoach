@@ -178,7 +178,7 @@
 
 .textarea-wide,
 .textarea{
-    height: 8rem;
+    height: 12rem;
     display: flex;
     flex-direction:row;
     justify-content:flex-start;
