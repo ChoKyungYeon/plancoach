@@ -2,6 +2,27 @@
 {% load bootstrap4 %}
 {% block content %}
 
+<style>
+.text-title{
+    font-size:1.5rem;
+    color:var(--black);
+    font-weight:var(--fontweight-emphasize);
+    margin-left:0.5rem;
+}
+.text-subtitle{
+    font-size:1.4rem;
+    color:var(--gray);
+    font-weight:var(--fontweight-content);
+    margin-left:1rem;
+}
+.array-title{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 1.5rem;
+}
+</style>
 
 <header class="header-black">
     {% url 'paymentapp:guide' pk=target_consult.pk as url %}
@@ -19,7 +40,7 @@
 
 <main class="payment-new">
     <div class="main-box">
-        <div class="main-text-title-guideform">입금 완료 후, 꼭 확인 요청을 진행하세요!</div>
+        <div class="main-text-title-guideform">입금자명을 학생 실명으로 해주세요!</div>
         {% include 'paymentapp/createsnippets/bank.html' %}
         <div class="main-container-guideform">
             {% include 'paymentapp/createsnippets/info.html' %}
@@ -33,6 +54,7 @@
         <a href="{% url 'homescreenapp:refund' %}"  class="text-link">환불 규정</a>
     </div>
     </div>
+    {% include 'paymentapp/createsnippets/warning.html' %}
 </main>
 <script>
     function confirmCreatePayment() {

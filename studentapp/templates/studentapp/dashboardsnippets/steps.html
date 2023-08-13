@@ -14,7 +14,7 @@
 
 .container-steps .link-nav{
     display: inline-block;
-        color:var(--orange);
+    color:var(--orange);
     font-weight:var(--fontweight-index);
     font-size:var(--fontweight-content);
 }
@@ -103,7 +103,6 @@
         <div class="text-content">
             프로필 목록에서 선생님들의 프로필을 확인하고 선택합니다.
             {% if step == "initial" %}
-            &nbsp;
             <a href="{% url 'profileapp:list' %}"  class="link-nav">
             프로필 목록 >
             </a>
@@ -124,7 +123,6 @@
         <div class="text-content">
             선택한 선생님에게 양식에 맞는 신청서를 작성합니다.
             {% if step == "applying" %}
-            &nbsp;
             <a href="{% url 'applicationapp:create' pk=target_user.pk %}" class="link-nav">
             신청서 작성 >
             </a>
@@ -145,7 +143,6 @@
         <div class="text-content">
             신청서가 확인될 때까지 대기하며 그 전까지 수정, 삭제가 가능합니다.
             {% if step == "applied" %}
-            &nbsp;
             <a href="{% url 'applicationapp:detail' pk=user.application_student.pk %}" class="link-nav">
             신청서 상세 >
             </a>
@@ -166,7 +163,6 @@
         <div class="text-content">
             수락 이후 양측의 연락처가 공개되며, 선생님과 상담을 진행하고 성사시에 컨설팅이 개설됩니다.
             {% if step == "matching" %}
-            &nbsp;
             <a href="{% url 'applicationapp:detail' pk=user.application_student.pk %}" class="link-nav">
             연락처 확인 >
             </a>
@@ -187,7 +183,6 @@
         <div class="text-content">
             개설된 컨설팅의 수업료를 입금하면 컨설팅이 시작됩니다.
             {% if step == "new" %}
-            &nbsp;
             <a href="{% url 'paymentapp:guide' pk=user.consult_student.pk %}" class="link-nav">
             수업료 입금 >
             </a>

@@ -144,23 +144,36 @@ class ProfileListView(TemplateView):
             .annotate(total=F('num_likes') + F('num_consults'))
             .order_by('-total', '-num_likes')
         )
+        profiles_ascend=profiles.order_by('tuition')
 
         context['profiles_all'] = profiles
+        context['profiles_all_ascend'] = profiles_ascend
         if target_user.is_authenticated:
             profiles_like = profiles.filter(profile_like__student=target_user)
             context['profiles_like'] = profiles_like
+            context['profiles_like_ascend'] = profiles_like.order_by('tuition')
 
         profiles_dict = {'정시': [], '내신': [], '학생부': [], '중등': []}
+        profiles_dict_ascend = {'정시': [], '내신': [], '학생부': [], '중등': []}
 
         for profile in profiles:
             for consulttype in profile.profile_consulttype.consulttype:
                 if consulttype in profiles_dict:
                     profiles_dict[consulttype].append(profile)
 
+        for profile in profiles_ascend:
+            for consulttype in profile.profile_consulttype.consulttype:
+                if consulttype in profiles_dict_ascend:
+                    profiles_dict_ascend[consulttype].append(profile)
+
         context['profiles_sat'] = profiles_dict['정시']
+        context['profiles_sat_ascend'] = profiles_dict_ascend['정시']
         context['profiles_gpa'] = profiles_dict['내신']
+        context['profiles_gpa_ascend'] = profiles_dict_ascend['내신']
         context['profiles_extra'] = profiles_dict['학생부']
+        context['profiles_extra_ascend'] = profiles_dict_ascend['학생부']
         context['profiles_middelschool'] = profiles_dict['중등']
+        context['profiles_middelschool_ascend'] = profiles_dict_ascend['중등']
         return context
 
 

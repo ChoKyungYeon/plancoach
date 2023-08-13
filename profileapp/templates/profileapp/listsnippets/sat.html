@@ -1,0 +1,11 @@
+
+<div style="display: block" id="list_popularity">
+    {% with profiles=profiles_sat %}
+        {% include 'profileapp/listsnippets/list.html' %}
+    {% endwith %}
+</div>
+<div style="display: none" id="list_tuition">
+    {% with profiles=profiles_sat_ascend %}
+        {% include 'profileapp/listsnippets/list.html' %}
+    {% endwith %}
+</div>

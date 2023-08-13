@@ -1,0 +1,34 @@
+<style>
+  .container-warning{
+    background: var(--red);
+      box-shadow: none;
+    transition: opacity 1s;
+
+  }
+  .container-warning .icon-warning{
+    color: var(--white);
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+</style>
+<div class="main-container-popup container-warning">
+    <div class="icon-warning material-icons">
+    notification_important
+    </div>
+    <span class="text-popup">입금 후 확인을 요청하세요</span>
+</div>
+
+<script>
+    window.onload = function() {
+        var popup = document.getElementsByClassName('main-container-popup')[0];
+        setTimeout(function() {
+            popup.style.opacity = "0";
+        }, 4000); // time until disappearing in milliseconds
+
+        setTimeout(function() {
+            popup.style.display = "none";
+        }, 5000); // time until removal from the layout
+    };
+</script>

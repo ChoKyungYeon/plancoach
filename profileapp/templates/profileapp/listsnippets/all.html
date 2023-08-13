@@ -1,0 +1,10 @@
+<div style="display: block" class="list_popularity">
+    {% with profiles=profiles_all %}
+        {% include 'profileapp/listsnippets/list.html' %}
+    {% endwith %}
+</div>
+<div style="display: none" class="list_tuition">
+    {% with profiles=profiles_all_ascend %}
+        {% include 'profileapp/listsnippets/list.html' %}
+    {% endwith %}
+</div>

@@ -1,0 +1,76 @@
+<style>
+
+  #button_popularity,
+  #button_tuition{
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items: center;
+    width:14rem;
+    height:4rem;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: var(--orange);
+    box-shadow: var(--shadow-btn);
+    font-size: var(--fontsize-index);
+    color: var(--white);
+    font-weight: var(--fontweight-content);
+  }
+
+  .icon-array{
+    margin-right: 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+</style>
+
+
+<div class="main-hr-head"></div>
+    <button onclick="toggleVisibility()" id="button_popularity" >
+          <div class="icon-array material-icons">keyboard_double_arrow_down</div>
+
+      낮은 수업료순
+</button>
+        <button onclick="toggleVisibility()" id="button_tuition" style="display: none">
+          <div class="icon-array material-icons" style="font-size: 1.35rem">star</div>
+        인기 및 활동순
+</button>
+<script>
+function toggleVisibility() {
+    var listPopularity = document.querySelectorAll(".list_popularity"); // get all elements
+    var listTuition = document.querySelectorAll(".list_tuition"); // get all elements
+    var buttonPopularity = document.getElementById("button_popularity");
+    var buttonTuition = document.getElementById("button_tuition");
+
+    listPopularity.forEach(function(popularityDiv, index) {
+        if (popularityDiv.style.display === "none") {
+            popularityDiv.style.display = "block";
+            if (index === 0) {
+                buttonPopularity.style.display = "flex";
+            }
+        } else {
+            popularityDiv.style.display = "none";
+            if (index === 0) {
+                buttonPopularity.style.display = "none";
+            }
+        }
+    });
+
+    listTuition.forEach(function(tuitionDiv, index) {
+        if (tuitionDiv.style.display === "none") {
+            tuitionDiv.style.display = "block";
+            if (index === 0) {
+                buttonTuition.style.display = "flex";
+            }
+        } else {
+            tuitionDiv.style.display = "none";
+            if (index === 0) {
+                buttonTuition.style.display = "none";
+            }
+        }
+    });
+}
+</script>
