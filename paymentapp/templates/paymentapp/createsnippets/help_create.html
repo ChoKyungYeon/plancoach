@@ -1,0 +1,102 @@
+{% load bootstrap4 %}
+<style>
+
+    .help_create .item-info {
+        padding-left: 8%;
+        padding-right: 8%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+
+
+    .help_create .item-info{
+        padding-bottom:3.5rem;
+        padding-top:3.5rem;
+    }
+    .help_create .text-message{
+        color: var(--gray);
+        font-size: 1.35rem;
+        font-weight: var(--fontweight-content);
+    }
+    .help_create .text-emphasize {
+        color: var(--black);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: var(--fontweight-index);
+    }
+
+    .help_create .image-todo {
+        width: 2.3rem;
+        height: 2.3rem;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 1rem;
+    }
+
+.help_create .btn-submit{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    background:var(--color-btn-submit);
+    color:var(--white);
+    font-size:1.4rem;
+    border-radius:1rem;
+    border:none;
+    box-shadow: var(--shadow-btn);
+    font-weight:var(--fontweight-content);
+    margin-top:2rem;
+    height: 4.2rem;
+}
+
+
+</style>
+
+<button onclick="closehelp_create()" id="help_create" class="fullscreeninfo help_create">
+    <div class="itembox">
+        <div class="item-head">
+            <div class="material-icons btn-exit">cancel</div>
+        </div>
+        <div class="item-info" >
+            <span class="text-emphasize">
+                <span style="color: var(--orange); font-size: inherit; font-weight: inherit">꼭! </span>입금 완료 후&nbsp;
+                확인을 요청하세요
+            </span>
+            <span class="text-message">
+            입금을 완료하지 않고 확인을 요청하시면
+            </span>
+            <span class="text-message">
+            확인이 지연되거나 불이익이 발생합니다.
+            </span>
+            <form action="" method="post" style="width: 80%">
+                {% csrf_token %}{% bootstrap_form form %}
+                <input type="submit" class="btn-submit" value="입금 확인 요청" >
+            </form>
+        </div>
+    </div>
+</button>
+<script>
+    function showhelp_create() {
+        var element = document.getElementById("help_create");
+        element.style.display = "flex";
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.transition = 'opacity 0.2s ease-in-out';
+            element.style.opacity = 1;
+        }, 10);
+    }
+
+    function closehelp_create() {
+        var element = document.getElementById("help_create");
+        element.style.transition = 'opacity 0.4s ease-in-out';
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.display = "none";
+        }, 400);
+    }
+</script>

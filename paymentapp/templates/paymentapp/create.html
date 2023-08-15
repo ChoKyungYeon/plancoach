@@ -40,26 +40,18 @@
 
 <main class="payment-new">
     <div class="main-box">
-        <div class="main-text-title-guideform">입금자명을 학생 실명으로 해주세요!</div>
+        <div class="main-text-title-guideform">학생 실명으로 입금해주세요!</div>
         {% include 'paymentapp/createsnippets/bank.html' %}
         <div class="main-container-guideform">
             {% include 'paymentapp/createsnippets/info.html' %}
-            <form action="" method="post" onsubmit="return confirmCreatePayment()">
-                {% csrf_token %}{% bootstrap_form form %}
-                <input type="submit" class="btn-submit" value="입금 확인 요청" >
-            </form>
+            <button onclick="showhelp_create()" class="btn-submit" style="font-size: 1.35rem">입금을 완료하셨나요?</button>
         </div>
         <div class="main-link-help">
         <span class="text-help">환불 규정이 궁금하신가요?</span>
-        <a href="{% url 'homescreenapp:refund' %}"  class="text-link">환불 규정</a>
+        <a href="{% url 'homescreenapp:refund' %}"  class="text-link" >환불 규정</a>
     </div>
     </div>
-    {% include 'paymentapp/createsnippets/warning.html' %}
+    {% include 'paymentapp/createsnippets/help_create.html' %}
 </main>
-<script>
-    function confirmCreatePayment() {
-        var confirmMessage = "입금 정보를 정확하게 확인해 주세요. 잘못된 송금으로 인한 불이익은 책임지지 않습니다.";
-        return confirm(confirmMessage);
-    }
-</script>
+
 {% endblock %}
