@@ -13,7 +13,6 @@ try:
 except:
     contact_phone = '01031585834'
 
-
 SENS_ACCESS_KEY= SENS_ACCESS_KEY
 SENS_SECRET_KEY= SENS_SECRET_KEY
 SENS_SERVICE_KEY= SENS_SERVICE_KEY
@@ -31,13 +30,14 @@ def make_signature(SENS_SECRET_KEY, SENS_ACCESS_KEY, timestamp, uri):
 
 
 def Send_SMS(to, contents, can_receive):
-    timestamp = str(int(time.time() * 1000)) # Move timestamp here
+    timestamp = str(int(time.time() * 1000))
     header = {
         "Content-Type": "application/json; charset=utf-8",
         "x-ncp-apigw-timestamp": timestamp,
         "x-ncp-iam-access-key": SENS_ACCESS_KEY,
         "x-ncp-apigw-signature-v2": make_signature(SENS_SECRET_KEY, SENS_ACCESS_KEY, timestamp, uri)
     }
+    print(contact_phone)
     data = {
         "type":"SMS",
         "from":contact_phone,  #deploy check
