@@ -62,7 +62,7 @@
     }
 
     .container-teacherapply .btn-image-teacherapply {
-        width: 30%;
+        width: 28%;
         border-radius: 1rem;
         position: relative;
     }
@@ -77,14 +77,6 @@
     }
 
     @media screen and (min-width: 600px) {
-        .container-teacherapply .btn-image-teacherapply {
-            width: 25%;
-        }
-
-        .container-teacherapply .image-teacherapply {
-            height: 13rem;
-        }
-
         .container-teacherapply .bg-conatiner-left {
             width: 25%;
             height: 45%;
@@ -96,15 +88,27 @@
 
         }
     }
+    @media screen and (min-width: 800px) {
+        .container-teacherapply .btn-image-teacherapply {
+            width: 25%;
+        }
+
+        .container-teacherapply .image-teacherapply {
+            height: 15rem;
+        }
+    }
 
 </style>
 
 <div class="main-container-homescreen container-teacherapply">
+
     <div class="bg-conatiner-left"></div>
     <div class="bg-conatiner-right"></div>
+
     <div class="text-subtitle">
         선생님이신가요?
     </div>
+
     <div class="text-title">
         절차에 따라<span class="text-emphasize"> 계정 전환</span> 후 </br>
         <span class="text-emphasize">학습 관리 툴</span>을 이용해보세요!
@@ -120,6 +124,7 @@
             <div class="icon-arrow material-icons">ads_click</div>
         </button>
     </div>
+
     <div class="item-teacherapply">
         <div class="array-info ">
             <span class="text-index interval-index">수익 관리 시스템</span>
@@ -129,18 +134,19 @@
             <img class="image-teacherapply" src='/static/images/homescreen-teacherapply-2.jpg'>
             <div class="icon-arrow material-icons">ads_click</div>
         </button>
-
     </div>
+
     <div class="item-teacherapply">
         <div class="array-info ">
             <span class="text-index interval-index">체계적인 수업 관리</span>
-            <span class="text-content">수업 내역을 기록하고<br>학생을 한 눈에 관리하세요. </span>
+            <span class="text-content">컨설팅 매칭을 확인하고<br>학생을 한 눈에 관리하세요. </span>
         </div>
         <button onclick="showImage('teacherapplyManageimage');" class="btn-image-teacherapply">
             <img class="image-teacherapply" src='/static/images/homescreen-teacherapply-3.jpg'>
             <div class="icon-arrow material-icons">ads_click</div>
         </button>
     </div>
+
 </div>
 <button onclick="closeImage('teacherapplyProfileimage');"
         id="teacherapplyProfileimage-fullscreen" class="fullscreenimage">

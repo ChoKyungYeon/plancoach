@@ -48,18 +48,6 @@
 }
 
 
-.IndexFont{
-    font-weight: 600;
-}
-.ContentFont{
-    font-weight: 450;
-}
-.TitleFont{
-    font-weight: 700;
-}
-.EmphasizeFont{
-    font-weight: 900;
-}
 @media screen and (min-width: 600px) {
   :root {
     --main-padding:26%;

@@ -58,7 +58,7 @@ class Consult(models.Model):
         if self.enddate():
             interval = (self.enddate() - datetime.now().date()).days
             if self.state == 'unextended':
-                if interval <= 5:
+                if interval <= 7:
                     remaining_day = f'{interval}일 후'
                 elif interval == 0:
                     remaining_day = '금일'
