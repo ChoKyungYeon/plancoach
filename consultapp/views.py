@@ -45,7 +45,7 @@ class ConsultCreateView(CreateView):
             # object delete
             application.delete()
             # sendsms
-            content = '신규 컨설팅이 개설되었습니다. 48시간 내로 입금을 완료하고 컨설팅을 시작하세요!'
+            content = '신규 컨설팅이 개설되었습니다. 48시간 내로 웹에서 입금을 완료해 주세요!'
             Send_SMS(student.username, content, student.can_receive_notification)
             return super().form_valid(form)
 
