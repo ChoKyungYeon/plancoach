@@ -2,7 +2,11 @@
 {% load bootstrap4 %}
 {% block content %}
 
-
+<style>
+    .textarea-comment{
+            height: 20rem;
+    }
+</style>
 <header class="header-black">
         {% url 'consult_qnaapp:detail' pk=target_qna.pk as url %}
         {% include 'headersnippets/navback.html' with url=url %}    
@@ -21,5 +25,6 @@
       </div>
   </div>
 </main>
+{% include 'qna_commentapp/createsnippets/foot.html' %}
 {% endblock %}
 

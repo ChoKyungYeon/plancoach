@@ -29,6 +29,15 @@
         font-weight: var(--fontweight-index);
         color: var(--middleblue);
     }
+    .container-quesiton .btn-download {
+        padding:0.2rem;
+        background: var(--darkblue);
+        font-size: 1.23rem;
+        font-weight: 400;
+        color: var(--white);
+        margin-left: auto;
+        border-radius: 0.3rem;
+    }
 </style>
 
 <div class="container-quesiton">
@@ -37,7 +46,12 @@
     </span>
     <span class="text-question">{{target_qna.content|safe|linebreaksbr}}</span>
     {% if target_qna.image %}
+    <div class="main-array-row">
     <button onclick="showquestionimage()" class="btn-image">질문 이미지 ></button>
+    <a  class="btn-download material-icons" href="{{ target_qna.image.url }}" download>
+        download
+    </a>
+    </div>
     <button onclick="closequestionimage()" id="questionimage-fullscreen" class="fullscreenimage">
         <div class="btn-exit material-icons">close </div>
         <img class="fullscreenimage-image" src="{{ target_qna.image.url }}">

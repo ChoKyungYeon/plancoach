@@ -109,8 +109,17 @@ header .btn-exit{
 header .btn-dashboard{
     color:inherit;
     font-size: 2.3rem;
-    var(--fontweight-title);
+    font-weight:var(--fontweight-title);
     margin-left:auto;
+    position: relative;
+}
+header .text-alert{
+    color:var(--orange);
+    font-size: var(--fontsize-content);
+    font-weight:var(--fontweight-emphasize);
+    position: absolute;
+    top:-0.7rem;
+    right:-0.7rem;
 }
 
 header .btn-main{

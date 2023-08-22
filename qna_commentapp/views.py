@@ -25,6 +25,7 @@ class Qna_commentCreateView(CreateView):
         context['target_qna'] = target_qna
         return context
 
+
     def form_valid(self, form):
         target_qna=get_object_or_404(Consult_qna, pk=self.kwargs['pk'])
         target_user=self.request.user
@@ -51,6 +52,11 @@ class Qna_commentUpdateView(UpdateView):
     template_name = 'qna_commentapp/update.html'
     def get_success_url(self):
         return reverse_lazy('consult_qnaapp:detail', kwargs={'pk': self.object.consult_qna.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['target_qna'] = self.object.consult_qna
+        return context
 
 
 

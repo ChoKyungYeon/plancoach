@@ -1,0 +1,75 @@
+<style>
+
+    .help_qna .item-info {
+        padding:2.5rem 8% 4rem 7%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+
+
+    .help_qna .text-emphasize {
+        color: var(--black);
+        font-size: 1.3rem;
+        font-weight: var(--fontweight-index);
+    }
+
+.help_qna .image-question {
+    width: 90%;
+    max-height: 23rem;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+}
+
+@media screen and (min-width: 1100px) {
+    .help_qna .image-question {
+        max-height: 30rem;
+    }
+}
+</style>
+
+<button onclick="closehelp_qna()" id="help_qna" class="fullscreeninfo help_qna">
+    <div class="itembox">
+        <div class="item-head">
+            <div class="material-icons btn-exit">cancel</div>
+        </div>
+        <div class="item-info">
+            <span class="text-emphasize" style="margin-bottom:1.2rem;">
+                {{target_qna.title|truncatechars:25}}
+                </span>
+            <span class="main-text-content" style="text-align: left;">
+                {{target_qna.content|truncatechars:600}}
+            </span>
+            {% if target_qna.image %}
+            <img class="image-question" src="{{ target_qna.image.url }}">
+            {% endif %}
+        </div>
+    </div>
+</button>
+<script>
+    function showhelp_qna() {
+        var element = document.getElementById("help_qna");
+        element.style.display = "flex";
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.transition = 'opacity 0.2s ease-in-out';
+            element.style.opacity = 1;
+        }, 10);
+    }
+
+    function closehelp_qna() {
+        var element = document.getElementById("help_qna");
+        element.style.transition = 'opacity 0.4s ease-in-out';
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.display = "none";
+        }, 400);
+    }
+
+</script>

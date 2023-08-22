@@ -15,6 +15,6 @@ class Qna_commentCreateForm(ModelForm):
         }
 
         widgets = {
-            'content': forms.Textarea(attrs={'placeholder': '답변 작성 이후 삭제가 불가능합니다.', 'class': 'textarea-wide'}),
+            'content': forms.Textarea(attrs={'placeholder': '답변 작성 이후 삭제가 불가능합니다.', 'class': 'textarea-wide textarea-comment'}),
             'image':  forms.FileInput(attrs={ 'class': 'fileinput'}),
         }

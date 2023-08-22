@@ -1,8 +1,14 @@
+<style>
 
+</style>
 {% if not user.is_authenticated %}
     {% include 'headersnippets/login.html'  %}
 {% elif user.state == 'teacher' %}
-    <a class="btn-dashboard material-icons" href="{% url 'teacherapp:dashboard' pk=user.pk %}">dashboard</a>
+    <a class="btn-dashboard material-icons" href="{% url 'teacherapp:dashboard' pk=user.pk %}">
+            {% if user.has_alert %}
+    <div class="text-alert">N</div>
+    {% endif %}
+        dashboard</a>
 {% elif user.state == 'superuser' %}
     <a class="btn-dashboard material-icons" href="{% url 'superuserapp:dashboard' %}">dashboard</a>
 {% else %}

@@ -1,0 +1,34 @@
+<style>
+    .container-qna {
+        background: var(--white);
+        height: 4.5rem;
+        transition: opacity 1s;
+    }
+
+    .container-qna .icon-teacher {
+        color: var(--white);
+        padding: 0.4rem;
+        border-radius: 0.5rem;
+        font-weight: 400;
+        font-size: 1.4rem;
+        margin-right: 0.7rem;
+        background: var(--darkblue);
+    }
+
+    .container-qna .text-content {
+        color: var(--black);
+        margin-left:0.5rem;
+    }
+
+</style>
+{% if user == target_qna.consult.student or user == target_qna.consult.teacher %}
+<button onclick="showhelp_qna()" class="main-container-popup container-qna">
+    <div class="icon-teacher material-icons">
+        question_mark
+    </div>
+    <div class="text-popup text-content">
+        질문 확인
+    </div>
+</button>
+{% endif %}
+{% include 'qna_commentapp/createsnippets/help_qna.html' %}

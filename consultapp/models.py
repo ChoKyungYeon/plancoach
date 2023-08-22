@@ -79,4 +79,7 @@ class Consult(models.Model):
                 remaining_day = None
             return remaining_day
 
+    def has_new_qna(self):
+        return self.consult_qna.filter(is_answered=False).exists()
+
 

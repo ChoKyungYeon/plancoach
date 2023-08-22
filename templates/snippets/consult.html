@@ -34,7 +34,12 @@
     color:var(--orange);
 }
 
-
+.container-consult  .text-unanswered{
+    color: var(--orange);
+    margin-left: 0.5rem;
+    font-size: inherit;
+    font-weight: var(--fontweight-index);
+}
 </style>
 
 
@@ -57,7 +62,11 @@
         <span class="main-text-content text-ongoing">{{consult.remaining_day}}</span>
         {% endif %}
 
-        <span class="main-text-index interval-top">{{consult.student.userrealname}}&nbsp;학생</span>
+        <span class="main-text-index interval-top">{{consult.student.userrealname}}&nbsp;학생
+        {% if consult.has_new_qna %}
+            <span class="text-unanswered">N</span>
+        {% endif %}
+        </span>
         <span class="main-text-content">{{ consult.belong }}</span>
     </div>
     <div class="item-nav material-icons" style="font-size: 1.4rem;">

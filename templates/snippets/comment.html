@@ -26,6 +26,15 @@
     font-size: var(--fontsize-content);
     color: var(--middleblue);
 }
+.container-comment .btn-download {
+    padding:0.2rem;
+    background: var(--darkblue);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-left: auto;
+    border-radius: 0.3rem;
+}
 </style>
 
 <div class="container-comment main-container-snippets">
@@ -35,18 +44,25 @@
     {% endif %}
     </div>
     <div class="main-array-row" >
-        <span class="text-title">{{comment.customuser.userrealname}}</span>
+        <span class="text-title">{{comment.customuser.userrealname}}
+        {% if comment.customuser.state == 'teacher' %}
+            <span style="font-size: inherit; font-weight: var(--fontweight-index); color: var(--orange)">T</span>
+        {% endif %}
+        </span>
         <span class="text-before">{{comment.created_before}}</span>
     </div>
     <span class="main-text-content text-content">
     {{comment.content|safe|linebreaksbr}}
     </span>
      {% if comment.image %}
-
+    <div class="main-array-row">
     <button onclick="showcommentimage({{ forloop.counter }})" class=" btn-image">답변 이미지 ></button>
+        <a  class="btn-download material-icons" href="{{ comment.image.url }}" download>
+        download
+    </a>
+    </div>
     <button onclick="closecommentimage({{ forloop.counter }})" id="commentimage-fullscreen{{ forloop.counter }}" class="fullscreenimage" >
-    <div
-            class="btn-exit material-icons">close
+    <div class="btn-exit material-icons">close
     </div>
     <img class="fullscreenimage-image" src="{{ comment.image.url }}">
     </button>

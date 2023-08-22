@@ -66,3 +66,8 @@ class CustomUser(AbstractUser):
         [refund.delete() for refund in self.refund.all() if not refund.salary]
         super().delete(*args, **kwargs)
 
+    def has_alert(self):
+        for consult in self.consult_teacher.exclude(state='new'):
+            if consult.has_new_qna():
+                return True
+        return self.application_teacher.filter(state='applied').exists()

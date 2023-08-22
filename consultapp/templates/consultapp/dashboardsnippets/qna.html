@@ -13,6 +13,12 @@
         font-weight: var(--fontweight-content);
 
     }
+    .container-qna .text-unanswered{
+        color: var(--orange);
+        margin-left: 0.5rem;
+        font-size: var(--fontsize-content);
+        font-weight: var(--fontweight-index);
+    }
 </style>
 
 <div class="main-box">
@@ -27,9 +33,10 @@
                     <span class="main-text-index text-content">
                     {{qnas_answered_length}}개의
                 </span>
-                    <span class="main-text-content">대기 질문이 있습니다.</span>
+                    <span class="main-text-content">대기 질문이 있습니다</span>
+                    <span class="text-unanswered">N</span>
                     {% else %}
-                    <span class="main-text-content text-content">대기 중인 질문이 없습니다.</span>
+                    <span class="main-text-content text-content">대기 중인 질문이 없습니다</span>
                     {% endif %}
                 </div>
                 <div class="main-array-row interval-top">
