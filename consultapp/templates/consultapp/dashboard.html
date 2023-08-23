@@ -10,7 +10,11 @@
     {% else %}
     {% include 'headersnippets/home.html' %}
     <a class="btn-dashboard material-icons"
-       href="{% url 'teacherapp:dashboard' pk=target_consult.teacher.pk  %}">dashboard</a>
+       href="{% url 'teacherapp:dashboard' pk=target_consult.teacher.pk  %}">
+        {% if user.has_alert %}
+        <div class="text-alert">N</div>
+        {% endif %}
+        dashboard</a>
     {% endif %}
 </header>
 

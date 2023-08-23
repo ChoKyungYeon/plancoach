@@ -19,7 +19,7 @@
 </style>
 {% if subjects %}
 <div class="main-box profile-detail-subject">
-    <div class="main-array-title"><span class="main-text-title">담당 교과목</span>
+    <div class="main-array-title"><span class="main-text-title">컨설팅 교과목</span>
         {% if user == target_profile.teacher %}
             {% if can_add_subject %}
             <a href="{% url 'profile_subjectapp:create' pk=target_profile.pk %}" class="main-btn-add material-icons">add</a>
@@ -59,12 +59,12 @@
 {% else %}
     {% if user == target_profile.teacher %}
         <div class="main-box profile-detail-subject">
-            <div class="main-array-title"><span class="main-text-title">담당 교과목</span>
+            <div class="main-array-title"><span class="main-text-title">컨설팅 교과목</span>
             <a href="{% url 'profile_subjectapp:create' pk=target_profile.pk %}" class="main-btn-add material-icons">add</a>
             </div>
             <div class="main-container-empty">
                 <span class="text-empty">
-                담당 교과목을 추가해주세요!
+                컨설팅 교과목을 추가해주세요!
                 </span>
             </div>
         </div>
@@ -74,7 +74,7 @@
 <script>
 
 function confirmsubjectDelete(counter) {
-    if (confirm("선택한 담당 교과목을 정말 삭제하시겠습니까?")) {
+    if (confirm("선택한 컨설팅 교과목을 정말 삭제하시겠습니까?")) {
         document.getElementById("subject-delete-form"+ counter).submit();
     }
 }
