@@ -61,42 +61,53 @@
         background: linear-gradient(45deg, #1d2d35, #2d4552, #2d4552, #1d2d35);
     }
 
-    .item-consulting .image-left,
-    .item-consulting .image-right {
-        width: 100%;
+    .item-consulting .image-left-left,
+    .item-consulting .image-left-right,
+    .item-consulting .image-right-right,
+    .item-consulting .image-right-left {
+        width: 50%;
         height: 13rem;
         object-fit: cover;
         object-position: top;
         border: 1.5px solid #d1d6e0;
     }
 
-    .item-consulting .image-left {
-        border-top-right-radius: 0.5rem;
+    .item-consulting .image-left-left{
         border-bottom-left-radius: 0.4rem;
         border-left: none;
         border-bottom: none;
-
     }
 
-    .item-consulting .image-right {
-        border-top-left-radius: 0.5rem;
+    .item-consulting .image-left-right {
+        border-top-right-radius: 0.5rem;
+        border-bottom: none;
+    }
+    .item-consulting .image-right-right {
         border-bottom-right-radius: 0.4rem;
         border-right: none;
         border-bottom: none;
     }
+    .item-consulting .image-right-left {
+        border-top-left-radius: 0.5rem;
+        border-bottom: none;
+    }
 
-    .item-consulting .btn-image-left,
-    .item-consulting .btn-image-right {
+    .item-consulting .item-image-left,
+    .item-consulting .item-image-right {
+        display: flex;
+        flex-direction:row;
+        justify-content: space-between;
+        align-items: center;
         width: 57%;
-        border-radius: 1rem;
+        background: transparent;
         position: relative;
     }
 
-    .item-consulting .btn-image-left {
+    .item-consulting .item-image-left {
         margin-right: auto;
     }
 
-    .item-consulting .btn-image-right {
+    .item-consulting .item-image-right {
         margin-left: auto;
     }
 
@@ -128,13 +139,15 @@
     }
 
     @media screen and (min-width: 600px) {
-        .item-consulting .image-left,
-        .item-consulting .image-right {
-            height: 14.5rem;
+        .item-consulting .image-left-left,
+        .item-consulting .image-left-right,
+        .item-consulting .image-right-right,
+        .item-consulting .image-right-left {
+            height: 15rem;
         }
 
-        .item-consulting .btn-image-left,
-        .item-consulting .btn-image-right {
+        .item-consulting .item-image-left,
+        .item-consulting .item-image-right {
             width: 54%;
         }
 
@@ -155,10 +168,12 @@
         }
 
     }
-    @media screen and (min-width: 600px) {
-        .item-consulting .image-left,
-        .item-consulting .image-right {
-            height: 15.5rem;
+    @media screen and (min-width: 800px) {
+        .item-consulting .image-left-left,
+        .item-consulting .image-left-right,
+        .item-consulting .image-right-right,
+        .item-consulting .image-right-left {
+            height: 17rem;
         }
     }
 
@@ -177,10 +192,13 @@
     </div>
     <div class="item-consulting" style="margin-top:2rem;">
         <div class="text-index text-explain-white">간단한 매칭을 통해 만나는<br>서울대, 의대생 선생님</div>
-        <button onclick="showImage('consultingQnaimage');" class="btn-image-right">
-            <img class="image-right" src='/static/images/homescreen-consulting-1.png'>
+        <div  class="item-image-right">
+            <img class="image-right-left" src='/static/images/homescreen-consulting-1-1.png'
+                 onclick="showImage('consultingQnaimage-1');">
+            <img class="image-right-right" src='/static/images/homescreen-consulting-1-2.png'
+                 onclick="showImage('consultingQnaimage-2');">
             <div class="icon-arrow material-icons">ads_click</div>
-        </button>
+        </div>
     </div>
     <div class="item-consulting item-consulting-whiteblue">
         <div class="array-explain-dark">
@@ -191,35 +209,56 @@
                 1:1 학습 코칭과 학습 플랜 작성
             </div>
         </div>
-        <button onclick="showImage('consultingPlanimage');" class="btn-image-left">
-            <img class="image-left" src='/static/images/homescreen-consulting-2.png'>
+        <div class="item-image-left">
+            <img class="image-left-left" src='/static/images/homescreen-consulting-2-1.png' 
+                 onclick="showImage('consultingPlanimage-1');">            
+            <img class="image-left-right" src='/static/images/homescreen-consulting-2-2.png' 
+                 onclick="showImage('consultingPlanimage-2');">
             <div class="icon-arrow material-icons">ads_click</div>
-        </button>
+        </div>
     </div>
     <div class="item-consulting item-consulting-darkgreen ">
         <div class="text-index text-explain-white">24시간 언제든 가능한 <br>학습 질문 답변 시스템</div>
-        <button onclick="showImage('consultingMatchingimage');" class="btn-image-right">
-            <img class="image-right" src='/static/images/homescreen-consulting-3.png'>
+        <div class="item-image-right">
+            <img class="image-right-left" src='/static/images/homescreen-consulting-3-1.png'
+                onclick="showImage('consultingMatchingimage-1');">
+            <img class="image-right-right" src='/static/images/homescreen-consulting-3-2.png'
+                onclick="showImage('consultingMatchingimage-2');">
             <div class="icon-arrow material-icons">ads_click</div>
-        </button>
+        </div>
     </div>
 </div>
-<button onclick="closeImage('consultingQnaimage');" id="consultingQnaimage-fullscreen" class="fullscreenimage">
+<button onclick="closeImage('consultingQnaimage-1');" id="consultingQnaimage-1-fullscreen" class="fullscreenimage">
     <div class="btn-exit material-icons">close</div>
-    <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
-         src='/static/images/homescreen-consulting-1.png'>
+    <img class="fullscreenimage-image"
+         src='/static/images/homescreen-consulting-1-1.png'>
 </button>
-<button onclick="closeImage('consultingPlanimage');" id="consultingPlanimage-fullscreen"
+<button onclick="closeImage('consultingQnaimage-2');" id="consultingQnaimage-2-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/homescreen-consulting-1-2.png'>
+</button>
+<button onclick="closeImage('consultingPlanimage-1');" id="consultingPlanimage-1-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/homescreen-consulting-2-1.png'>
+</button>
+<button onclick="closeImage('consultingPlanimage-2');" id="consultingPlanimage-2-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/homescreen-consulting-2-2.png'>
+</button>
+<button onclick="closeImage('consultingMatchingimage-1');" id="consultingMatchingimage-1-fullscreen"
         class="fullscreenimage">
     <div class="btn-exit material-icons">close</div>
-    <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
-         src='/static/images/homescreen-consulting-2.png'>
+    <img class="fullscreenimage-image"
+         src='/static/images/homescreen-consulting-3-1.png'>
 </button>
-<button onclick="closeImage('consultingMatchingimage');" id="consultingMatchingimage-fullscreen"
+<button onclick="closeImage('consultingMatchingimage-2');" id="consultingMatchingimage-2-fullscreen"
         class="fullscreenimage">
     <div class="btn-exit material-icons">close</div>
-    <img class="fullscreenimage-image" style="border:2px solid var(--whitegray)"
-         src='/static/images/homescreen-consulting-3.png'>
+    <img class="fullscreenimage-image"
+         src='/static/images/homescreen-consulting-3-2.png'>
 </button>
 <script>
     function showImage(imageId) {

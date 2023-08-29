@@ -1,111 +1,218 @@
 <style>
     .container-contact {
-        background: var(--white);
-        align-items: center;
+        background: linear-gradient(180deg, var(--white),
+        var(--color-base), var(--color-base),var(--color-base),var(--color-base),var(--white));
         padding-bottom: 8rem;
     }
 
+    .container-contact .bg-conatiner-left,
+    .container-contact .bg-conatiner-middle {
+        background: #f9f9fb;
+        position: absolute;
+        z-index: -1;
+    }
 
-    .container-contact .img-contact {
-        width: 4rem;
-        height: 4rem;
+
+
+    .container-contact .bg-conatiner-left {
+        left: 5%;
+        bottom: 0;
+            width: 50%;
+            height: 30%;
+        border-top-right-radius: 50% 100%;
+        border-top-left-radius:  50% 100%;
+    }
+
+    .container-contact .bg-conatiner-middle {
+        border-radius: 50%;
+        left: 50%;
+        top: 10%;
+        width: 37%;
+        height: 37%;
+    }
+
+    .container-contact .img-nav {
+        width: 2rem;
+        height: 2rem;
         object-fit: cover;
+        margin-right: 1.5rem;
 
     }
-
-    .container-contact .btn-openkakako,
-    .container-contact .btn-mail {
-        margin-left: 1rem;
-        width: 100%;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        border-radius: 0.5rem;
-        font-size: 1.4rem;
-        font-weight: var(--fontweight-content);
-        color: var(--black);
-        box-shadow: 0px 2px 6px #bdc1d6;
-        border:1.5px solid #478549;
-        background: #59a65c;
-        color: var(--white);
-    }
-
-    .container-contact .btn-openkakako {
-        background: #f6e655;
-        border:1.5px solid #dfcc20;
-        font-size: 1.35rem;
-        font-weight: var(--fontweight-index);
-        color: var(--black);
-    }
-
-
 
     .container-contact .item-contact {
-        width: 87%;
         display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
+        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
-        margin-top: 1rem;
-    }
-    .container-contact .item-phone{
+        padding: 0;
         width: 100%;
+        border-radius: 0.5rem;
+        background: var(--white);
+        box-shadow: var(--shadow-itembox);
+        border: 1.5px solid #d1d6e0;
+        margin-top: 2rem;
+    }
+
+    .container-contact .btn-nav-middle,
+    .container-contact .btn-nav-right,
+    .container-contact .btn-nav-left{
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin-top: 2.5rem;
+        width: 50%;
+        background: var(--blackblue);
+        padding-top: 1.3rem;
+        padding-bottom: 1.3rem;
+        border: 1px solid #d1d6e0;
     }
-    .container-contact .icon-phone{
-        font-size: 1.5rem;
-        color: var(--black);
-        font-weight: var(--fontweight-index);
-        margin-right: 0.7rem;
+
+
+    .container-contact .btn-nav-left {
+        border-bottom-left-radius: 0.5rem;
     }
-    .container-contact .text-contactinfo{
-        font-size: 1.4rem;
-        color: var(--gray);
+
+    .container-contact .btn-nav-right {
+        border-bottom-right-radius: 0.5rem;
+    }
+    .container-contact .btn-nav-middle {
+        border-bottom-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        justify-content: space-between;
+        padding-left: var(--content-padding);
+        padding-right: var(--content-padding);
+        width: 100%;
+    }
+    .container-contact .text-time {
+        font-size: 1.2rem;
         font-weight: var(--fontweight-content);
+        color: var(--darkgray);
+        margin-left: 1.5rem;
     }
-    .container-contact .icon-time{
-        font-size: 1.7rem;
-        color: var(--black);
-        font-weight: 400;
-        margin-right: 0.7rem;
-        margin-left: 2rem;
+
+    .container-contact .array-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
     }
+
+    .container-contact .array-info {
+        display: flex;
+        flex-direction: column;
+        padding:3rem var(--content-padding) 2.5rem var(--content-padding);
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+
+
+    .container-contact .text-white {
+        font-weight: var(--fontweight-content);
+        color: var(--white);
+        font-size: 1.2rem;
+    }
+
+
+    @media screen and (min-width: 600px) {
+        .container-contact .bg-conatiner-left {
+            left: 10%;
+            width: 33%;
+            height: 25%;
+
+        }
+        .container-contact .bg-conatiner-middle {
+        width: 28%;
+        height: 39%;
+
+        }
+
+
+    }
+    @media screen and (min-width: 800px) {
+        .container-contact .bg-conatiner-left {
+            left: 10%;
+            width: 30%;
+            height: 32%;
+
+        }
+        .container-contact .bg-conatiner-middle {
+        width: 27%;
+        height: 47%;
+
+        }
+
+
+    }
+    @media screen and (min-width:1100px) {
+        .container-contact .bg-conatiner-left {
+            left: 6%;
+            width: 28%;
+            height: 39%;
+
+        }
+        .container-contact .bg-conatiner-middle {
+        width: 22%;
+        height: 50%;
+
+        }
+
+
+
+    }
+
 </style>
 
 <div class="main-container-homescreen container-contact">
-    <div class="text-title">
-        더 <span class="text-emphasize">궁금하신 점</span>이 있으신가요?
+    <div class="bg-conatiner-left"></div>
+    <div class="bg-conatiner-middle"></div>
+    <div class="text-subtitle">
+        기타 컨텐츠/서비스
     </div>
-    <div class="text-title" style="margin-bottom: 1rem;">
-        언제든 <span class="text-emphasize">고객센터로</span> 문의주세요
-    </div>
-    <div class="item-contact">
-        <img class="img-contact" src='/static/icons/email.png'>
-        {% if document.email_link %}
-        <a href={{document.email_link}} class="btn-mail">메일로 문의하기</a>
-        {% else %}
-        <a class="btn-mail">메일로 문의하기</a>
-        {% endif %}
-    </div>
-    <div class="item-contact">
-        <img class="img-contact" src='/static/icons/kakaotalk.png'>
-        {% if document.email_link %}
-        <a href={{document.kakaotalk}} class="btn-openkakako">카카오톡 문의하기</a>
-        {% else %}
-        <a class="btn-openkakako">카카오톡 문의하기</a>
-        {% endif %}
-    </div>
-    <div class="item-phone">
-         <div class="material-icons icon-phone">call</div>
-        <div class="text-contactinfo">{{document.phonenumber}}</div>
-        <div class="material-icons icon-time">event_available</div>
-        <div class="text-contactinfo">9:00 ~ 22:00</div>
+    <div class="item-contact" style="margin-top:0.5rem;">
+
+        <div class="array-info ">
+            <span class="text-index interval-index">수헙생을 위한 입시 컨텐츠</span>
+            <span class="text-content ">상위 1% 선생님들의 직접 작성하는<br>
+                입시 및 학습 컨텐츠를 확인하세요.<br></span>
+        </div>
+        <div class="array-btn">
+            {% if document.blog %}
+            <a href={{document.blog}} class="btn-nav-left">
+            {% else %}
+            <a class="btn-nav-left">
+            {% endif %}
+                <img class="img-nav" src='/static/icons/naver.png'>
+                <span class="text-index text-white">블로그</span>
+            </a>
+            {% if document.instagram  %}
+            <a href={{document.instagram}} class="btn-nav-right">
+            {% else %}
+            <a class="btn-nav-right">
+            {% endif %}
+                <img class="img-nav" src='/static/icons/instagram.png'>
+                <span class="text-index text-white">인스타그램</span>
+            </a>
+        </div>
+    </div> <div class="item-contact" style="margin-top:3rem;">
+
+        <div class="array-info ">
+            <span class="text-index interval-index">무료 학습/입시 상담</span>
+            <span class="text-content ">학습 또는 입시 관련 궁금한 점이<br>
+                     있는 경우 언제나 상담이 가능합니다.<br></span>
+        </div>
+        <div class="array-btn">
+            {% if document.kakaotalk  %}
+            <a href={{document.kakaotalk }} class="btn-nav-right">
+            {% else %}
+            <a class="btn-nav-middle">
+            {% endif %}
+                <img class="img-nav" src='/static/icons/kakaotalk.png'>
+                <span class="text-index text-white" style="margin-right: auto">고객센터 카카오톡</span>
+                <span class="text-time">9:00 ~ 22:00</span>
+            </a>
+        </div>
     </div>
 </div>

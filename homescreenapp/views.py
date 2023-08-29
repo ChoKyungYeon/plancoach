@@ -33,8 +33,8 @@ class TermofuseView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         document = Document.objects.all().first()
-        if document.termofuse_link:
-            return redirect(document.termofuse_link)
+        if document.termofuse:
+            return redirect(document.termofuse)
         return super().get(request, *args, **kwargs)
 
 class AnnouncementView(TemplateView):
@@ -42,8 +42,8 @@ class AnnouncementView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         document = Document.objects.all().first()
-        if document.announcement_link:
-            return redirect(document.announcement_link)
+        if document.announcement:
+            return redirect(document.announcement)
         return super().get(request, *args, **kwargs)
 
 class RefundView(TemplateView):
@@ -55,7 +55,7 @@ class PrivacypolicyView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         document = Document.objects.all().first()
-        if document.privacypolicy_link:
-            return redirect(document.privacypolicy_link)
+        if document.privacypolicy:
+            return redirect(document.privacypolicy)
         return super().get(request, *args, **kwargs)
 

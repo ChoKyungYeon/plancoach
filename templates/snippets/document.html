@@ -16,7 +16,7 @@
                 개인정보처리방침
             </span>
             <span class="main-text-content" >
-                {% if document.privacypolicy_link %}
+                {% if document.privacypolicy %}
                     <span class="text-done">등록 완료</span>
                 {% else %}
                     미등록
@@ -28,7 +28,7 @@
                 이용 약관
             </span>
             <span class="main-text-content" >
-                {% if document.termofuse_link %}
+                {% if document.termofuse %}
                     <span class="text-done">등록 완료</span>
                 {% else %}
                     미등록
@@ -41,7 +41,31 @@
                 공지사항
             </span>
             <span class="main-text-content" >
-                {% if document.announcement_link %}
+                {% if document.announcement %}
+                    <span class="text-done">등록 완료</span>
+                {% else %}
+                    미등록
+                {% endif %}
+            </span>
+        </div>
+        <div class="main-array-row interval-top">
+            <span class="main-text-index interval-right"  >
+                네이버 블로그
+            </span>
+            <span class="main-text-content" >
+                {% if document.blog %}
+                    <span class="text-done">등록 완료</span>
+                {% else %}
+                    미등록
+                {% endif %}
+            </span>
+        </div>
+        <div class="main-array-row interval-top">
+            <span class="main-text-index interval-right"  >
+                인스타그램
+            </span>
+            <span class="main-text-content" >
+                {% if document.instagram %}
                     <span class="text-done">등록 완료</span>
                 {% else %}
                     미등록
@@ -54,18 +78,6 @@
             </span>
             <span class="main-text-content" >
                 {% if document.kakaotalk %}
-                    <span class="text-done">등록 완료</span>
-                {% else %}
-                    미등록
-                {% endif %}
-            </span>
-        </div>
-        <div class="main-array-row interval-top">
-            <span class="main-text-index interval-right"  >
-                문의 이메일
-            </span>
-            <span class="main-text-content" >
-                {% if document.email %}
                     <span class="text-done">등록 완료</span>
                 {% else %}
                     미등록
