@@ -20,6 +20,7 @@
     }
 
 </style>
+{% if user.state != 'superuser' %}
 <a href="{% url 'teacherapplyapp:guide' pk=target_user.pk %}" class="main-container-popup container-teacherguide">
     <div class="icon-teacher material-icons">
     school
@@ -28,7 +29,7 @@
         선생님이신가요?
     </div>
 </a>
-
+{% endif %}
 <script>
     window.onload = function() {
         var popup = document.getElementsByClassName('container-teacherguide')[0];

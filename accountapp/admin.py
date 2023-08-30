@@ -48,10 +48,12 @@ class CustomUserAdmin(admin.ModelAdmin):
 
     def display_user_info(self, obj):
         return format_html(
+            "<strong>PK:</strong> {}<br>"
             "<strong>상태:</strong> {}<br>"
             "<strong>실명:</strong> {}<br>"
             "<strong>이메일:</strong> {}<br>"
             "<strong>연락처:</strong> {}",
+            obj.pk,
             obj.get_state_display(),
             obj.userrealname,
             obj.email,
