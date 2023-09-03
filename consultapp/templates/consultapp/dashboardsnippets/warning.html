@@ -13,13 +13,17 @@
 }
 
 </style>
-{% if target_consult.extend_warning and user ==  target_consult.student %}
-<a href="{% url 'paymentapp:create' pk=target_consult.pk %}" class="main-container-popup container-warning">
-    <div class="icon-warning material-icons">
-    notification_important
-    </div>
-    <span class="text-popup">{{target_consult.extend_warning}} 컨설팅이 종료됩니다</span>
-</a>
+{% if target_consult.extend_warning %}
+    {% if user ==  target_consult.student %}
+    <a href="{% url 'paymentapp:create' pk=target_consult.pk %}" class="main-container-popup container-warning">
+    {% else %}
+    <a class="main-container-popup container-warning">
+    {% endif %}
+        <div class="icon-warning material-icons">
+        notification_important
+        </div>
+        <span class="text-popup">{{target_consult.extend_warning}} 컨설팅이 종료됩니다</span>
+    </a>
 {% endif %}
 
 <script>
