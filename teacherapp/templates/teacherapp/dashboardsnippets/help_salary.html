@@ -1,0 +1,87 @@
+<style>
+
+    .help_salary .item-info {
+        padding: 2.5rem 8% 4rem 7%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+
+    .help_salary .text-emphasize {
+        color: var(--black);
+        font-size: 1.3rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        align-items: center;
+        font-weight: var(--fontweight-index);
+    }
+
+    .help_salary .interval-explain {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        text-align: left;
+        margin-left: 0.3rem;
+    }
+
+    .help_salary .icon-explain{
+        font-size: 1.8rem;
+        font-weight: var(--fontweight-index);
+        margin-right: 0.3rem;
+    }
+
+
+</style>
+
+<button onclick="closehelp_salary()" id="help_salary" class="fullscreeninfo help_salary">
+    <div class="itembox">
+        <div class="item-head">
+            <div class="material-icons btn-exit">cancel</div>
+        </div>
+        <div class="item-info">
+            <div class="text-emphasize">
+                <span class="icon-explain material-icons">arrow_right</span>급여액
+            </div>
+            <span class="main-text-content interval-explain">
+                급여일은 매월 10일이며, 1영업일 내로 지급이 완료됩니다.
+            </span>
+            <div class="text-emphasize">
+                <span class="icon-explain material-icons">arrow_right</span>수업료 정산
+            </div>
+            <span class="main-text-content interval-explain">
+                 수업료 정산은 해당 급여일과 이전 급여일 사이 종료 또는 연장된 수업들의 수업료 합산에서, 환불 금액을 차감하여 이루어집니다.
+            </span>
+            <div class="text-emphasize">
+                <span class="icon-explain material-icons">arrow_right</span>실수령액
+            </div>
+            <span class="main-text-content interval-explain">
+                실수령액은 정산된 수업료에서 수수료와 부가세 (총 25%)를 차감한 금액입니다.
+            </span>
+        </div>
+    </div>
+</button>
+<script>
+    function showhelp_salary() {
+        var element = document.getElementById("help_salary");
+        element.style.display = "flex";
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.transition = 'opacity 0.2s ease-in-out';
+            element.style.opacity = 1;
+        }, 10);
+    }
+
+    function closehelp_salary() {
+        var element = document.getElementById("help_salary");
+        element.style.transition = 'opacity 0.4s ease-in-out';
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.display = "none";
+        }, 400);
+    }
+
+</script>

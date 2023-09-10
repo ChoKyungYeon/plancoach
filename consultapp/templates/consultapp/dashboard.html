@@ -31,9 +31,11 @@
         {% include 'consultapp/dashboardsnippets/application.html' %}
     </div>
     <div class="consult-dashboard-slide3" style="display:none">
+        {% if user.state == 'student' %}
         {% include 'consultapp/dashboardsnippets/extend.html' %}
-        {% if not user.state == 'superuser' %}
         {% include 'consultapp/dashboardsnippets/refund.html' %}
+        {% else %}
+        {% include 'consultapp/dashboardsnippets/classinfo.html' %}
         {% endif %}
     </div>
     {% include 'consultapp/dashboardsnippets/warning.html' %}

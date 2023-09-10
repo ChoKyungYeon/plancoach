@@ -2,55 +2,49 @@
     <div class="main-array-title">
         <span class="main-text-title">컨설팅 연장</span>
     </div>
-    {% if not user.state == 'superuser' %}
-        {% if target_consult.state == 'unextended' %}
-            {% if target_consult.is_waiting %}
-            <a href="{% url 'consultapp:waiting' pk=target_consult.pk %}" class="main-container-dashboard">
-                <div class="item-content">
-                    <span class="main-text-content">현재 입금 요청을 확인 중입니다</span>
-                    <div class="main-array-row interval-top">
-                        <span class="main-text-content text-content">현재 상태</span>
-                        <span class="main-text-index">연장 대기</span>
-                    </div>
-                </div>
-                <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
-            </a>
-            {% else %}
-            <a href="{% url 'paymentapp:guide' pk=target_consult.pk %}" class="main-container-dashboard">
-                <div class="item-content">
-                    <span class="main-text-content">컨설팅을 연장하시겠습니까?</span>
-                    <div class="main-array-row interval-top">
-                        <span class="main-text-content text-content">현재 상태</span>
-                        <span class="main-text-index">미연장</span>
-                    </div>
-                </div>
-                <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
-            </a>
-            {% endif %}
-        {% else %}
-        <div class="main-container-dashboard">
+    {% if target_consult.state == 'unextended' %}
+        {% if target_consult.is_waiting %}
+        <a href="{% url 'consultapp:waiting' pk=target_consult.pk %}" class="main-container-dashboard">
             <div class="item-content">
-                <div class="main-array-row">
-                <span class="main-text-content">
-                    {{ target_consult.extenddate|date:"m월 d일" }}
-                </span>
-                    <span class="main-text-content">
-                    부터 재연장 가능
-                </span>
-                </div>
+                <span class="main-text-content">현재 입금 요청을 확인 중입니다</span>
                 <div class="main-array-row interval-top">
                     <span class="main-text-content text-content">현재 상태</span>
-                    <span class="main-text-index">연장 완료</span>
+                    <span class="main-text-index">연장 대기</span>
                 </div>
             </div>
-        </div>
+            <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
+        </a>
+        {% else %}
+        <a href="{% url 'paymentapp:guide' pk=target_consult.pk %}" class="main-container-dashboard">
+            <div class="item-content">
+                <span class="main-text-content">컨설팅을 연장하시겠습니까?</span>
+                <div class="main-array-row interval-top">
+                    <span class="main-text-content text-content">현재 상태</span>
+                    <span class="main-text-index">미연장</span>
+                </div>
+            </div>
+            <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
+        </a>
         {% endif %}
-    {% endif %}
-    {% if not user.state == 'superuser' %}
-    <a href="{% url 'consultapp:paymentlist' pk=target_consult.pk %}" class="main-container-dashboard" style="margin-top:2rem;">
     {% else %}
-    <a href="{% url 'consultapp:paymentlist' pk=target_consult.pk %}" class="main-container-dashboard" >
+    <div class="main-container-dashboard">
+        <div class="item-content">
+            <div class="main-array-row">
+            <span class="main-text-content">
+                {{ target_consult.extenddate|date:"m월 d일" }}
+            </span>
+                <span class="main-text-content">
+                부터 재연장 가능
+            </span>
+            </div>
+            <div class="main-array-row interval-top">
+                <span class="main-text-content text-content">현재 상태</span>
+                <span class="main-text-index">연장 완료</span>
+            </div>
+        </div>
+    </div>
     {% endif %}
+    <a href="{% url 'consultapp:paymentlist' pk=target_consult.pk %}" class="main-container-dashboard" style="margin-top:2rem;">
         <div class="item-content">
             <span class="main-text-content">입금 내역이 궁금하신가요?</span>
             <div class="main-array-row interval-top">
