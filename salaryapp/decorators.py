@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404
@@ -26,7 +26,7 @@ def SalaryDetailDecorator(func):
 def SalaryExpectedDecorator(func):
     def decorated(request, *args, **kwargs):
         salary=get_object_or_404(Salary, pk=kwargs['pk'])
-        if salary.is_given == True or salary.salaryday != salaryday_calculator(datetime.now().date()):
+        if salary.is_given == True or salary.salaryday != salaryday_calculator(datetime.now().date()+timedelta(days=1)):
             return HttpResponseForbidden()
         decorators=Decorators(request.user,salary)
         permission_checks = [
