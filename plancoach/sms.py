@@ -37,7 +37,6 @@ def Send_SMS(to, contents, can_receive):
         "x-ncp-iam-access-key": SENS_ACCESS_KEY,
         "x-ncp-apigw-signature-v2": make_signature(SENS_SECRET_KEY, SENS_ACCESS_KEY, timestamp, uri)
     }
-    print(contact_phone)
     data = {
         "type":"SMS",
         "from":contact_phone,  #deploy check

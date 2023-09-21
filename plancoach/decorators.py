@@ -40,7 +40,7 @@ class Decorators:
             warning=consult.extend_warning()
             teacher=consult.teacher
             student=consult.student
-            if consult.is_warned == False and warning == True:
+            if warning != None and consult.is_warned == False:
                 content_teacher = f'{student.userrealname} 학생의 컨설팅이 {warning} 종료됩니다. 미연장 시 컨설팅이 삭제됩니다.'
                 Send_SMS(teacher.username, content_teacher, teacher.can_receive_notification)
                 content_student = f'컨설팅이 {warning} 종료됩니다. 미연장 시 컨설팅이 삭제됩니다.'
