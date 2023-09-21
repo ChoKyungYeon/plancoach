@@ -16,6 +16,7 @@ class Consult(models.Model):
     want = models.TextField(max_length=500)
     problem = models.TextField(max_length=500)
     strategy = models.TextField(max_length=500)
+    is_warned=models.BooleanField(default=False)
 
     def __str__(self):
         return self.consult_name()

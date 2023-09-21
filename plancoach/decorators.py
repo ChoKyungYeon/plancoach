@@ -7,6 +7,7 @@ from accountapp.models import CustomUser
 from applicationapp.models import Application
 from consultapp.models import Consult
 from phonenumberapp.models import Phonenumber
+from plancoach.sms import Send_SMS
 from plancoach.utils import create_refusal
 
 
@@ -36,6 +37,17 @@ class Decorators:
 
     def consult_update(self,consult): #deploy check
         with transaction.atomic():
+            warning=consult.extend_warning()
+            teacher=consult.teacher
+            student=consult.student
+            if consult.is_warned == False and warning == True:
+                content_teacher = f'{student.userrealname} 학생의 컨설팅이 {warning} 종료됩니다. 미연장 시 컨설팅이 삭제됩니다.'
+                Send_SMS(teacher.username, content_teacher, teacher.can_receive_notification)
+                content_student = f'컨설팅이 {warning} 종료됩니다. 미연장 시 컨설팅이 삭제됩니다.'
+                Send_SMS(student.username, content_student, student.can_receive_notification)
+                consult.is_warned = True
+                consult.save()
+
             if consult.is_waiting() == False:
                 today = datetime.now().date()
                 extenddate = consult.extenddate()
@@ -50,6 +62,7 @@ class Decorators:
                     if extend_enddate < today:
                         create_refusal(consult, None,'consult')
                     elif extenddate <= today <= extend_enddate:
+                        consult.is_warned = False
                         consult.startdate = extenddate
                         consult.state = 'unextended'
                         consult.save()
