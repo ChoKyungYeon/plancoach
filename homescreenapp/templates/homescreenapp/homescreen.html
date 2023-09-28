@@ -21,7 +21,9 @@
     {% include 'homescreenapp/homescreensnippets/apply.html' %}
     {% include 'homescreenapp/homescreensnippets/teacherapply.html' %}
     {% include 'homescreenapp/homescreensnippets/contact.html' %}
-
+    {% if not request.user.is_authenticated or user.can_apply == True %}
+    {% include 'homescreenapp/homescreensnippets/advertisement.html' %}
+    {% endif %}
 </main>
 {% include 'homescreenapp/homescreensnippets/footer.html' %}
 

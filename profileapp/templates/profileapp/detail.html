@@ -57,6 +57,9 @@
     </div>
     {% include 'profileapp/detailsnippets/foot.html' %}
     {% include 'profileapp/detailsnippets/warning.html' %}
+    {% if not request.user.is_authenticated %}
+    {% include 'homescreenapp/homescreensnippets/advertisement.html' %}
+    {% endif %}
 </main>
 
 {% endblock %}

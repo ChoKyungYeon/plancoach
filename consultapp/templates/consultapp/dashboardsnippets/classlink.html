@@ -17,17 +17,18 @@
         {% endif %}
     </div>
     {% if target_consult_classlink %}
-    <a href="{{target_classlink}}" class="main-container-dashboard container-link">
-        <img class="img-meet" src='/static/icons/meet.png'>
-        <div class="item-content">
-            <span class="main-text-content">클릭해서 이동하세요!</span>
-            <div class="main-array-row interval-top">
-                <span class="main-text-content text-content">시간</span>
-                <span class="main-text-index">{{target_consult_classlink.weekdate}}&nbsp;{{target_consult_classlink.classtime}}</span>
-            </div>
+    <a href="{{target_classlink}}" target="_blank" rel="noopener noreferrer" class="main-container-dashboard container-link">
+    <img class="img-meet" src='/static/icons/meet.png'>
+    <div class="item-content">
+        <span class="main-text-content">클릭해서 이동하세요!</span>
+        <div class="main-array-row interval-top">
+            <span class="main-text-content text-content">시간</span>
+            <span class="main-text-index">{{target_consult_classlink.weekdate}}&nbsp;{{target_consult_classlink.classtime}}</span>
         </div>
-        <div class="material-icons item-nav">arrow_forward_ios</div>
+    </div>
+    <div class="material-icons item-nav">arrow_forward_ios</div>
     </a>
+
     {% else %}
         {% if user == target_consult.teacher and target_consult.state != 'new' %}
         <a href="{% url 'consult_classlinkapp:create' pk=target_consult.pk %}"

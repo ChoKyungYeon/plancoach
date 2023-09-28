@@ -34,5 +34,21 @@
           </div>
           <span class="main-text-content" style="margin-top:0.2rem;">{{target_refund.depositor}}</span>
       </div>
+        {% if target_refund.accountnumber %}
+        <button class="material-icons btn-copy" onclick="copyToClipboard()">content_copy</button>
+        {% endif %}
     </div>
 </div>
+
+<script>
+    function copyToClipboard() {
+        var textArea = document.createElement("textarea");
+        textArea.value = "{{target_refund.accountnumber}}";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        alert('계좌 번호가 복사되었습니다.');
+    }
+</script>

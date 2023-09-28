@@ -16,7 +16,8 @@ class Consult_feedback(models.Model):
 
     def subjects_list(self):
         text = ''
-        for subject in self.subjects:
+        for coach in self.feedback_coach.all():
+            subject=coach.subject
             if len(text + subject) > 25:
                 return text.rstrip(', ') + '...'
             text += subject + ', '

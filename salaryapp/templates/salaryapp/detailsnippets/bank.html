@@ -4,7 +4,7 @@
     display: flex;
     flex-direction:row;
     justify-content:flex-start;
-    align-items: flex-start;
+    align-items: center;
     box-shadow: none;
     padding:0;
 }
@@ -45,6 +45,22 @@
           </div>
           <span class="main-text-content" style="margin-top:0.2rem;">{{target_bank.depositor}}</span>
       </div>
+        {% if target_bank.accountnumber and user.state == 'superuser' %}
+        <button class="material-icons btn-copy" onclick="copyToClipboard()">content_copy</button>
+        {% endif %}
     </div>
     {% endif %}
 </div>
+
+<script>
+    function copyToClipboard() {
+        var textArea = document.createElement("textarea");
+        textArea.value = "{{target_bank.accountnumber}}";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        alert('계좌 번호가 복사되었습니다.');
+    }
+</script>

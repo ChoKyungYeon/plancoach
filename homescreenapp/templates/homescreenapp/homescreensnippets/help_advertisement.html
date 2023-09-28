@@ -1,0 +1,106 @@
+<style>
+
+
+    .help_advertisement .array-ad {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top:2rem;
+    }
+
+    .help_advertisement .item-info {
+        align-items: center;
+        padding:2.5rem 12% 4rem 12%;
+        background: var(--white);
+    }
+
+
+    .help_advertisement .text-adtitle {
+        color: var(--black);
+        font-size: 1.5rem;
+        font-weight: var(--fontweight-emphasize);
+    }
+    .help_advertisement .text-emphasize {
+        color: var(--middleblue);
+        font-size: inherit;
+        font-weight: inherit;
+    }
+    .help_advertisement .text-ad {
+        text-align: left;
+    }
+
+
+    .help_advertisement .image-advertisement {
+        width: 5rem;
+        height: 5rem;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    .help_advertisement .item-image {
+        width: 7rem;
+        height: 7rem;
+        border-radius: 0.5rem;
+        margin-right: 8%;
+        background: var(--yellow);
+        display: flex;
+        flex-direction: row;
+        justify-content:center;
+        align-items:center;
+        flex-shrink: 0;
+    }
+    @media screen and (min-width: 800px) {
+        .help_advertisement .image-advertisement {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+        .help_advertisement .item-image {
+            width: 5rem;
+            height: 5rem;
+        }
+    }
+
+</style>
+
+<button onclick="closehelp_advertisement()" id="help_advertisement" class="fullscreeninfo help_advertisement">
+    <div class="itembox">
+        <div class="item-head">
+            <div class="material-icons btn-exit">cancel</div>
+        </div>
+        <div class="item-info">
+            <span class="text-adtitle">
+                &#127881; 10월
+                <span class="text-emphasize">첫 수업 매칭</span>
+                 혜택! &#127881;
+            </span>
+            <div class="array-ad">
+                <div class="item-image">
+                <img class="image-advertisement" src='/static/images/advertise.png'>
+                </div>
+                <div class="main-text-content text-ad">
+                    매칭을 통해 첫 컨설팅이 성사되면, 스타벅스 기프티콘을 즉시 지급해 드립니다!
+                </div>
+            </div>
+        </div>
+    </div>
+</button>
+<script>
+    function showhelp_advertisement() {
+        var element = document.getElementById("help_advertisement");
+        element.style.display = "flex";
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.transition = 'opacity 0.2s ease-in-out';
+            element.style.opacity = 1;
+        }, 10);
+    }
+
+    function closehelp_advertisement() {
+        var element = document.getElementById("help_advertisement");
+        element.style.transition = 'opacity 0.4s ease-in-out';
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.display = "none";
+        }, 400);
+    }
+</script>

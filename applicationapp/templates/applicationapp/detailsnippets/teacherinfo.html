@@ -1,21 +1,48 @@
-        <div class="main-array-title-table">
-            <div class="main-text-title-table">선생님 정보</div>
+<style>
+    .btn-profile{
+        padding:0.3rem 1.3rem;
+        background: var(--whitegray);
+        border-radius: 0.5rem;
+        font-size: 1.21rem;
+        font-weight: var(--fontweight-content);
+        color: var(--black);
+        margin-left: auto;
+    }
+</style>
+<div class="main-array-title-table">
+    <div class="main-text-title-table">선생님 정보</div>
+</div>
+<div class="main-container-table">
+    <div class="main-array-row">
+        <div class="row-index border1">이름</div>
+        <div class="row-content-full border2">{{ target_application.teacher.userrealname}} 선생님
+        <a href="{% url 'profileapp:detail' pk=target_application.teacher.profile.pk %}" class="btn-profile">프로필</a></div>
+    </div>
+    <div class="main-array-row">
+        <div class="row-index border4">연락처</div>
+        {% if target_application.state == 'matching' %}
+        <div class="row-content-full border3">
+            {{ target_application.teacher.user_phonenumber }}
+            {% if user.state == 'student' %}
+            <button class="material-icons btn-copy" onclick="copyTeacherPhoneToClipboard()">content_copy</button>
+            {% endif %}
         </div>
-        <div class="main-container-table">
-            <div class="main-array-row">
-                <div class="row-index border1">이름</div>
-                <div class="row-content-full border2">{{ target_application.teacher.userrealname}} 선생님</div>
-            </div>
-            <div class="main-array-row">
-                <div class="row-index border4">연락처</div>
-                {% if target_application.state == 'matching' %}
-                <div class="row-content-full border3">
-                    {{ target_application.teacher.user_phonenumber }}
-                </div>
-                {% else %}
-                <div class="row-content-full border3 text-empty">
-                    신청서 수락 이후 공개됩니다
-                </div>
-                {% endif %}
-            </div>
+        {% else %}
+        <div class="row-content-full border3 text-empty">
+            신청서 수락 이후 공개됩니다
         </div>
+        {% endif %}
+    </div>
+</div>
+<script>
+    function copyTeacherPhoneToClipboard() {
+        var textArea = document.createElement("textarea");
+        textArea.value = "{{target_application.teacher.username}}";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        alert('선생님의 연락처가 복사되었습니다.');
+    }
+</script>

@@ -33,6 +33,21 @@
           </div>
           <span class="main-text-content" style="margin-top:0.2rem;">{{depositbank.depositor}}</span>
       </div>
+        {% if depositbank.accountnumber %}
+        <button class="material-icons btn-copy" onclick="copyToClipboard()">content_copy</button>
+        {% endif %}
     </div>
 </div>
 
+<script>
+    function copyToClipboard() {
+        var textArea = document.createElement("textarea");
+        textArea.value = "{{depositbank.accountnumber}}";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+
+        alert('계좌 번호가 복사되었습니다.');
+    }
+</script>
