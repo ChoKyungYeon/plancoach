@@ -42,7 +42,7 @@ class Payment(models.Model):
         consult.startdate = self.created_at.date()
         consult.save()
 
-        salaryday = salaryday_calculator(self.created_at.date() + timedelta(days=28))
+        salaryday = salaryday_calculator(consult.enddate())
         self.add_salary(teacher, salaryday)
         content = f'{self.consult.student.userrealname} 학생의 신규 입금이 완료되었습니다. 컨설팅을 시작해 주세요!'
         Send_SMS(teacher.username, content, teacher.can_receive_notification)
@@ -51,7 +51,7 @@ class Payment(models.Model):
         consult.state = 'extended'
         consult.save()
 
-        salaryday = salaryday_calculator(self.created_at.date() + timedelta(days=57))
+        salaryday = salaryday_calculator(consult.extend_enddate())
         self.add_salary(teacher, salaryday)
 
         content = f'{self.consult.student.userrealname} 학생의 컨설팅 연장이 완료되었습니다!'
