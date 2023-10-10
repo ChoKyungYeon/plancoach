@@ -56,7 +56,7 @@ def SalaryPayDecorator(func):
 def SalaryStateUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
         salary=Salary.objects.get(pk=request.GET.get('salary_pk'))
-        if salary.is_given == True or salary.salaryday > datetime.now().date():
+        if salary.salaryday > datetime.now().date():
             return HttpResponseForbidden()
         decorators=Decorators(request.user,salary)
         permission_checks = [

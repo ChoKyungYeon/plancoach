@@ -158,6 +158,7 @@ class ProfileListView(TemplateView):
 
         for profile in profiles:
             for consulttype in profile.profile_consulttype.consulttype:
+                print(consulttype)
                 if consulttype in profiles_dict:
                     profiles_dict[consulttype].append(profile)
 
@@ -172,8 +173,8 @@ class ProfileListView(TemplateView):
         context['profiles_gpa_ascend'] = profiles_dict_ascend['내신']
         context['profiles_extra'] = profiles_dict['학생부']
         context['profiles_extra_ascend'] = profiles_dict_ascend['학생부']
-        context['profiles_middelschool'] = profiles_dict['중등']
-        context['profiles_middelschool_ascend'] = profiles_dict_ascend['중등']
+        context['profiles_middle'] = profiles_dict['중등']
+        context['profiles_middle_ascend'] = profiles_dict_ascend['중등']
         return context
 
 

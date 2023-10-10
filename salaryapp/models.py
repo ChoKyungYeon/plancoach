@@ -15,6 +15,9 @@ class Salary(models.Model):
     is_given = models.BooleanField(default=False)
     given_at = models.DateTimeField(null=True)
 
+    def __str__(self):
+        return f"[{self.teacher.userrealname}T] {self.salaryday}"
+
     def bankimage(self):
         return bankdictionary[self.bank] if self.bank else None
 
