@@ -17,6 +17,9 @@ class Refund(models.Model):
     depositor = models.CharField(max_length=6)
     given_at = models.DateTimeField(null=True)
 
+    def __str__(self):
+        return f"[{self.classname}] {self.amount}원 {self.created_at.strftime('%Y-%m-%d %H:%M')} "
+
     def bankimage(self):
         return bankdictionary[self.bank] if self.bank else None
 

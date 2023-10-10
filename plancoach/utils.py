@@ -59,13 +59,13 @@ def profile_completeness_calculator(user):
     return profile_completed, profile_uncompleted, ratio
 
 
+
 def salaryday_calculator(target_date):
     month_diff = (target_date.day > 10)
-    target_month=target_date.month - 1 + month_diff
+    target_month = target_date.month - 1 + month_diff
     new_month = target_month % 12 + 1
     new_year = target_date.year + (target_month // 12)
-    if new_month == 12 and target_date.month != 12:
-        new_year += 1
+
     return date(new_year, new_month, 10)
 
 def create_refusal(object, message,type):
