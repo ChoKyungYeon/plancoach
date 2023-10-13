@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count, F
 from django.shortcuts import redirect, render
@@ -14,8 +15,12 @@ from profileapp.models import Profile
 class HomescreenView(TemplateView):
     template_name = 'homescreenapp/homescreen.html'
     def get_context_data(self, **kwargs):
+        target_user = self.request.user
         context = super().get_context_data(**kwargs)
         context['document'] = Document.objects.all().first()
+        context['target_month'] = datetime.now().month
+        context['can_teacherapply'] = not target_user.is_authenticated or \
+                                      (target_user.state == 'student' and target_user.student_step() in ['initial', 'end'])
         return context
 
 class ContactView(TemplateView):
@@ -59,3 +64,9 @@ class PrivacypolicyView(TemplateView):
             return redirect(document.privacypolicy)
         return super().get(request, *args, **kwargs)
 
+
+class ReviewView(TemplateView):
+    template_name = 'homescreenapp/review.html'
+
+class ClassdetailView(TemplateView):
+    template_name = 'homescreenapp/classdetail.html'

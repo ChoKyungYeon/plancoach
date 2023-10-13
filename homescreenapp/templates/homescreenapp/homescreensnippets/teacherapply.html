@@ -1,188 +1,120 @@
 <style>
+
     .container-teacherapply {
-        background: linear-gradient(5deg, var(--whiteblue),
-        var(--whiteblue), var(--whiteblue), var(--white));
+        background: linear-gradient(10deg,var(--white),#fffcfa,var(--white));
     }
-
-    .container-teacherapply .bg-conatiner-left {
-        background: #eef2fc;
-        width: 50%;
-        height: 35%;
-        position: absolute;
-        border-top-right-radius: 100% 100%;
-        left: 0;
-        bottom: 0;
-        z-index: -1;
+    .container-teacherapply .image-teacherapply {
+        border-radius: 0.5rem;
+        height: 18rem;
+        object-fit: cover;
+        width: 100%;
+        object-position: center top;
+        border: 1.5px solid #d1d6e0;
     }
-    .container-teacherapply .bg-conatiner-right {
-        background: #f2f5fd;
-        width: 30%;
-        height: 17%;
-        position: absolute;
-        border-bottom-left-radius: 100% 100%;
-        right: 0;
-        top: 0;
-        z-index: -1;
+    .container-teacherapply .item-image {
+        background: transparent;
+        width: 46%;
+        position: relative;
+        flex-shrink: 0;
     }
-
     .container-teacherapply .item-teacherapply {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 0;
-        width: 100%;
-        border-radius: 0.5rem;
-        background: var(--white);
-        box-shadow: var(--shadow-itembox);
-        margin-top: 2rem;
-        border: 1.5px solid #d1d6e0;
-    }
+        background: #fbf1e9;
 
-    .container-teacherapply .array-info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        margin-left: var(--content-padding);
-        height: 10rem;
-        width: fit-content;
-    }
-
-
-    .container-teacherapply .image-teacherapply {
-        width: 100%;
-        border-top-right-radius: 0.4rem;
-        border-bottom-right-radius: 0.4rem;
-        object-fit: cover;
-        object-position: top;
-        height: 12rem;
-        flex-shrink: 0;
-        border-left: 1.5px solid #d1d6e0;
-    }
-
-    .container-teacherapply .btn-image-teacherapply {
-        width: 28%;
-        background: transparent;
-        position: relative;
-    }
-
-    .container-teacherapply .icon-arrow {
-        color: var(--darkblue);
-        font-size: 2rem;
-        font-weight: 600;
-        position: absolute;
-        right: 0.5rem;
-        bottom: 0.5rem;
-    }
-
-    @media screen and (min-width: 600px) {
-        .container-teacherapply .bg-conatiner-left {
-            width: 25%;
-            height: 45%;
-
-        }
-        .container-teacherapply .bg-conatiner-right {
-            width: 15%;
-            height: 35%;
-
-        }
-    }
-    @media screen and (min-width: 800px) {
-        .container-teacherapply .btn-image-teacherapply {
-            width: 25%;
-        }
-
-        .container-teacherapply .image-teacherapply {
-            height: 15rem;
-        }
     }
 
 </style>
+<style>
+    .container-teacherapply .bg-conatiner-bottom,
+    .container-teacherapply .bg-conatiner-top {
+        position: absolute;
+        z-index: -1;
+    }
 
+    .container-teacherapply .bg-conatiner-top {
+        background: #fff9f5;
+        width: 40%;
+        height: 23%;
+        border-radius: 50%;
+        right: 10%;
+        top: 10%;
+    }
+    .container-teacherapply .bg-conatiner-bottom {
+        background: #fff9f5;
+        width: 40%;
+        height: 26%;
+        border-top-right-radius: 100% 100%;
+        left:0;
+        bottom: 0;
+    }
+
+
+    @media screen and (min-width: 600px) {
+
+        .container-teacherapply .bg-conatiner-top {
+            width: 16%;
+            height: 35%;
+
+        }
+      .container-teacherapply .bg-conatiner-bottom {
+            width: 17%;
+            height: 40%;
+
+        }
+        .container-teacherapply .image-teacherapply {
+            height: 22rem;
+        }
+        .container-teacherapply .item-image {
+            width: 43%;
+        }
+    }
+</style>
 <div class="main-container-homescreen container-teacherapply">
-
-    <div class="bg-conatiner-left"></div>
-    <div class="bg-conatiner-right"></div>
-
-    <div class="text-subtitle">
-        선생님이신가요?
+    <div class="bg-conatiner-top"></div>
+    <div class="bg-conatiner-bottom"></div>
+    <span class="text-subtitle interval-index" >수익 정산, 수업 관리, 프로필 작성</span>
+    <div class="text-title" >
+        <span class="text-emphasize">절차에 따라 선생님 계정으로 전환하고</span><br>
+        <span class="text-emphasize">학습 툴과 서비스를 이용해보세요</span>
     </div>
-
-    <div class="text-title">
-        절차에 따라<span class="text-emphasize"> 계정 전환</span> 후 </br>
-        <span class="text-emphasize">학습 관리 툴</span>을 이용해보세요!
-    </div>
-
-    <div class="item-teacherapply">
-        <div class="array-info ">
-            <span class="text-index interval-index ">내 프로필 관리</span>
-            <span class="text-content">컨설팅 프로필을 관리하고<br>손쉽게 공유하세요.</span>
+    <span class="item-subtitle">저희와 함께 해요!</span>
+    <div class="item-content item-teacherapply">
+        <div class="item-image">
+            <img class="image-teacherapply" src='/static/images/homescreen-teacherapply-1.png'
+                     onclick="showImage('Teacherapplyimage-1');">
+            <img class="image-click" src='/static/icons/touch.png'>
         </div>
-        <button onclick="showImage('teacherapplyProfileimage');" class="btn-image-teacherapply">
-            <img class="image-teacherapply" src='/static/images/homescreen-teacherapply-1.png'>
-            <div class="icon-arrow material-icons">ads_click</div>
-        </button>
-    </div>
-
-    <div class="item-teacherapply">
-        <div class="array-info ">
-            <span class="text-index interval-index">수익 관리 시스템</span>
-            <span class="text-content">자동화된 시스템을 통해<br>내 수익을 관리하세요. </span>
+        <div class="item-image">
+            <img class="image-teacherapply" src='/static/images/homescreen-teacherapply-2.png'
+                     onclick="showImage('Teacherapplyimage-2');">
+            <img class="image-click" src='/static/icons/touch.png'>
         </div>
-        <button onclick="showImage('teacherapplySalaryimage');" class="btn-image-teacherapply">
-            <img class="image-teacherapply" src='/static/images/homescreen-teacherapply-2.png'>
-            <div class="icon-arrow material-icons">ads_click</div>
-        </button>
     </div>
-
-    <div class="item-teacherapply">
-        <div class="array-info ">
-            <span class="text-index interval-index">체계적인 수업 관리</span>
-            <span class="text-content">컨설팅 매칭을 확인하고<br>학생을 한 눈에 관리하세요. </span>
-        </div>
-        <button onclick="showImage('teacherapplyManageimage');" class="btn-image-teacherapply">
-            <img class="image-teacherapply" src='/static/images/homescreen-teacherapply-3.png'>
-            <div class="icon-arrow material-icons">ads_click</div>
-        </button>
-    </div>
-
+    {% if can_teacherapply %}
+        {% if not request.user.is_authenticated %}
+        <a href="{% url 'accountapp:login' %}" class="btn-nav">
+        {% else %}
+        <a href="{% url 'teacherapplyapp:guide' pk=target_user.pk %}" class="btn-nav">
+        {% endif %}
+            선생님 등록 프로세스 확인
+            <span class="icon-arrow material-icons">arrow_forward</span>
+            <span class="text-click">Click</span>
+        </a>
+    {% endif %}
 </div>
-<button onclick="closeImage('teacherapplyProfileimage');"
-        id="teacherapplyProfileimage-fullscreen" class="fullscreenimage">
+
+<button onclick="closeImage('Teacherapplyimage-1');" id="Teacherapplyimage-1-fullscreen" class="fullscreenimage">
     <div class="btn-exit material-icons">close</div>
     <img class="fullscreenimage-image"
          src='/static/images/homescreen-teacherapply-1.png'>
 </button>
-<button onclick="closeImage('teacherapplySalaryimage');"
-        id="teacherapplySalaryimage-fullscreen" class="fullscreenimage">
+
+<button onclick="closeImage('Teacherapplyimage-2');" id="Teacherapplyimage-2-fullscreen" class="fullscreenimage">
     <div class="btn-exit material-icons">close</div>
     <img class="fullscreenimage-image"
          src='/static/images/homescreen-teacherapply-2.png'>
 </button>
-<button onclick="closeImage('teacherapplyManageimage');"
-        id="teacherapplyManageimage-fullscreen" class="fullscreenimage">
-    <div class="btn-exit material-icons">close</div>
-    <img class="fullscreenimage-image"
-         src='/static/images/homescreen-teacherapply-3.png'>
-</button>
-<script>
-    function showImage(imageId) {
-        var element = document.getElementById(imageId + "-fullscreen");
-        element.style.display = "flex";
-        element.style.opacity = 0;
-        setTimeout(function () {
-            element.style.transition = 'opacity 0.2s ease-in-out';
-            element.style.opacity = 1;
-        }, 10);
-    }
 
-    function closeImage(imageId) {
-        var element = document.getElementById(imageId + "-fullscreen");
-        element.style.transition = 'opacity 0.4s ease-in-out';
-        element.style.opacity = 0;
-        setTimeout(function () {
-            element.style.display = "none";
-        }, 400);
-    }
-</script>

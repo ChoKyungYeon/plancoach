@@ -1,218 +1,107 @@
 <style>
     .container-contact {
-        background: linear-gradient(180deg, var(--white),
-        var(--color-base), var(--color-base),var(--color-base),var(--color-base),var(--white));
-        padding-bottom: 8rem;
+        background: linear-gradient(5deg,var(--white),var(--color-base),  var(--color-base));
+        padding-bottom: 14rem;
     }
 
-    .container-contact .bg-conatiner-left,
-    .container-contact .bg-conatiner-middle {
-        background: #f9f9fb;
-        position: absolute;
-        z-index: -1;
-    }
-
-
-
-    .container-contact .bg-conatiner-left {
-        left: 5%;
-        bottom: 0;
-            width: 50%;
-            height: 30%;
-        border-top-right-radius: 50% 100%;
-        border-top-left-radius:  50% 100%;
-    }
-
-    .container-contact .bg-conatiner-middle {
-        border-radius: 50%;
-        left: 50%;
-        top: 10%;
-        width: 37%;
-        height: 37%;
-    }
-
-    .container-contact .img-nav {
-        width: 2rem;
-        height: 2rem;
+    .container-contact .img-icon {
+        width: 3rem;
+        height: 3rem;
         object-fit: cover;
-        margin-right: 1.5rem;
-
+        margin-right: var(--content-padding);
     }
 
-    .container-contact .item-contact {
+
+
+    .container-contact .item-contact{
+        padding:0;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        flex-direction: row;
         align-items: center;
-        padding: 0;
-        width: 100%;
-        border-radius: 0.5rem;
+        justify-content: space-between;
+        width:85%;
         background: var(--white);
-        box-shadow: var(--shadow-itembox);
-        border: 1.5px solid #d1d6e0;
-        margin-top: 2rem;
+        border-radius: 1rem;
+        height: 5.7rem;
+        margin-top:2rem;
+        border:none;
     }
-
-    .container-contact .btn-nav-middle,
-    .container-contact .btn-nav-right,
-    .container-contact .btn-nav-left{
+    .container-contact .btn-left {
         display: flex;
         flex-direction: row;
-        justify-content: center;
         align-items: center;
-        width: 50%;
-        background: var(--blackblue);
-        padding-top: 1.3rem;
-        padding-bottom: 1.3rem;
-        border: 1px solid #d1d6e0;
-    }
-
-
-    .container-contact .btn-nav-left {
-        border-bottom-left-radius: 0.5rem;
-    }
-
-    .container-contact .btn-nav-right {
-        border-bottom-right-radius: 0.5rem;
-    }
-    .container-contact .btn-nav-middle {
-        border-bottom-right-radius: 0.5rem;
-        border-bottom-left-radius: 0.5rem;
-        justify-content: space-between;
-        padding-left: var(--content-padding);
-        padding-right: var(--content-padding);
-        width: 100%;
-    }
-    .container-contact .text-time {
-        font-size: 1.2rem;
-        font-weight: var(--fontweight-content);
-        color: var(--darkgray);
-        margin-left: 1.5rem;
-    }
-
-    .container-contact .array-btn {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
-
-    .container-contact .array-info {
-        display: flex;
-        flex-direction: column;
-        padding:3rem var(--content-padding) 2.5rem var(--content-padding);
         justify-content: flex-start;
-        align-items: flex-start;
-        width: 100%;
+        padding-left: var(--content-padding);
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        width:80%;
+        height: 5.7rem;
     }
-
-
-
-    .container-contact .text-white {
-        font-weight: var(--fontweight-content);
+    .container-contact .btn-sns{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        font-weight: var(--fontweight-emphasize);
+        font-size: 1.6rem;
         color: var(--white);
-        font-size: var(--fontsize-detail);
+        width:20%;
+        height: 5.7rem;
+        background: var(--gray);
+    }
+    .container-contact .main-text-index{
+        color:#626c84;
     }
 
 
-    @media screen and (min-width: 600px) {
-        .container-contact .bg-conatiner-left {
-            left: 10%;
-            width: 33%;
-            height: 25%;
-
-        }
-        .container-contact .bg-conatiner-middle {
-        width: 28%;
-        height: 39%;
-
-        }
 
 
-    }
-    @media screen and (min-width: 800px) {
-        .container-contact .bg-conatiner-left {
-            left: 10%;
-            width: 30%;
-            height: 32%;
-
-        }
-        .container-contact .bg-conatiner-middle {
-        width: 27%;
-        height: 47%;
-
-        }
-
-
-    }
-    @media screen and (min-width:1100px) {
-        .container-contact .bg-conatiner-left {
-            left: 6%;
-            width: 28%;
-            height: 39%;
-
-        }
-        .container-contact .bg-conatiner-middle {
-        width: 22%;
-        height: 50%;
-
-        }
-
-
-
-    }
 
 </style>
 
 <div class="main-container-homescreen container-contact">
-    <div class="bg-conatiner-left"></div>
-    <div class="bg-conatiner-middle"></div>
-    <div class="text-subtitle">
-        기타 컨텐츠/서비스
+  <div class="text-title">
+        학습 컨설팅을 <span class="text-emphasize">시작하기 전</span><br>
+        <span class="text-emphasize">상담을 진행</span>하고 싶으신가요?
     </div>
-    <div class="item-contact" style="margin-top:0.5rem;">
-
-        <div class="array-info ">
-            <span class="text-index interval-index">수헙생을 위한 입시 컨텐츠</span>
-            <span class="text-content ">상위 1% 선생님들이 직접 작성하는<br>
-                입시 및 학습 컨텐츠를 확인하세요.<br></span>
-        </div>
-        <div class="array-btn">
-            {% if document.blog %}
-            <a href={{document.blog}} class="btn-nav-left">
-            {% else %}
-            <a class="btn-nav-left">
-            {% endif %}
-                <img class="img-nav" src='/static/icons/naver.png'>
-                <span class="text-index text-white">블로그</span>
-            </a>
-            {% if document.instagram  %}
-            <a href={{document.instagram}} class="btn-nav-right">
-            {% else %}
-            <a class="btn-nav-right">
-            {% endif %}
-                <img class="img-nav" src='/static/icons/instagram.png'>
-                <span class="text-index text-white">인스타그램</span>
-            </a>
-        </div>
-    </div> <div class="item-contact" style="margin-top:3rem;">
-
-        <div class="array-info ">
-            <span class="text-index interval-index">무료 학습/입시 상담</span>
-            <span class="text-content ">학습 또는 입시 관련 궁금한 점이<br>
-                     있는 경우 언제나 상담이 가능합니다.<br></span>
-        </div>
-        <div class="array-btn">
-            {% if document.kakaotalk  %}
-            <a href={{document.kakaotalk }} class="btn-nav-middle">
-            {% else %}
-            <a class="btn-nav-middle">
-            {% endif %}
-                <img class="img-nav" src='/static/icons/kakaotalk.png'>
-                <span class="text-index text-white" style="margin-right: auto">고객센터 카카오톡</span>
-                <span class="text-time">9:00 ~ 22:00</span>
-            </a>
-        </div>
+        {% if document.kakaotalk  %}
+        <a href={{document.kakaotalk }} class="item-content item-contact" >
+        {% else %}
+        <a class="item-content item-contact" >
+        {% endif %}
+            <div class="btn-left" >
+                <img class="img-icon" src='/static/icons/kakaotalk.png'>
+                <span class="main-text-index">카톡 고객센터</span>
+            </div>
+            <span class="btn-sns material-icons">arrow_forward_ios</span>
+        </a>
+  <div class="text-title" style="margin-top:5rem">
+        저희 코치들이 <span class="text-emphasize">직접 발행하는</span><br>
+        <span class="text-emphasize">수험생 입시 컨텐츠</span>를 만나보세요!
     </div>
+        {% if document.instagram  %}
+        <a href={{document.instagram }} class="item-content item-contact">
+        {% else %}
+        <a class="item-content item-contact">
+        {% endif %}
+            <div class="btn-left" >
+                <img class="img-icon" src='/static/icons/instagram.png'>
+                <span class="main-text-index">인스타그램</span>
+            </div>
+            <span class="btn-sns material-icons">arrow_forward_ios</span>
+        </a>
+            {% if document.blog  %}
+        <a href={{document.blog }} class="item-content item-contact">
+        {% else %}
+        <a class="item-content item-contact">
+        {% endif %}
+            <div class="btn-left" >
+                <img class="img-icon" src='/static/icons/naver.png'>
+                <span class="main-text-index">네이버 블로그</span>
+            </div>
+            <span class="btn-sns material-icons">arrow_forward_ios</span>
+        </a>
+
 </div>

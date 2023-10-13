@@ -1,0 +1,296 @@
+<style>
+    .container-strength {
+        background: linear-gradient(10deg,var(--white),#fffcfa,#fffcfa,
+        #fffcfa, #fffcfa, var(--white),var(--white));
+    }
+    .container-strength .item-point {
+        background: #fbf1e9;
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .container-strength .item-detail {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        padding:1.3rem 6%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 0.5rem;
+        border:none;
+        box-shadow: none;
+    }
+
+    .container-strength .index-point {
+        background: var(--blackblue);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 2.4rem;
+        height: 2.4rem;
+        font-size: 1.2rem;
+        color: var(--white);
+        font-weight: var(--fontsize-emphasize);
+        border-radius:50%;
+        margin-right: var(--content-padding);
+        flex-shrink: 0;
+    }
+    .container-strength .index-teacher {
+        width: 0.5rem;
+        height: 0.5rem;
+        background: var(--blackblue);
+        border-radius: 50%;
+        margin-right: 5%;
+        margin-left: 25%;
+        flex-shrink: 0;
+    }
+    .container-strength .text-verify {
+        color: var(--black);
+    }
+
+    .container-strength .item-teacher {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background: #fbf1e9;
+
+    }
+    .container-strength .image-matching,
+    .container-strength .image-teacherlist {
+        border-radius: 0.5rem;
+        height: 18rem;
+        object-fit: cover;
+        width: 100%;
+        object-position: center top;
+        border: 1.5px solid #d1d6e0;
+    }
+    .container-strength .item-image-matching,
+    .container-strength .item-image-teacherlist {
+        background: transparent;
+        width: 43%;
+        position: relative;
+        flex-shrink: 0;
+    }
+    .container-strength .item-image-matching {
+        width: 46%;
+    }
+
+    .container-strength .array-contents{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+}
+    .container-strength .array-text{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 0.4rem;
+        margin-top: 0.4rem;
+}
+
+        @media screen and (min-width: 800px) {
+        .container-strength .index-point {
+            margin-right: 10%;
+            margin-left: 3%;
+        }
+        .container-strength .image-matching,
+        .container-strength .image-teacherlist {
+            height: 22rem;
+        }
+        .container-strength .item-image-teacherlist {
+        width: 40%;
+        }
+        .container-strength .item-image-matching {
+            width: 43%;
+        }
+    }
+
+</style>
+<style>
+    .container-strength .bg-conatiner-top,
+    .container-strength .bg-conatiner-bottom,
+    .container-strength .bg-conatiner-middle{
+        position: absolute;
+        z-index: -1;
+    }
+
+    .container-strength .bg-conatiner-top {
+        background: #fff9f5;
+        width: 40%;
+        height: 10%;
+        border-bottom-left-radius: 100% 100%;
+        right: 0;
+        top: 0;
+    }
+    .container-strength .bg-conatiner-middle{
+        background: #fff3eb;
+        border-top-right-radius: 100% 50%;
+        border-bottom-right-radius: 100% 50%;
+        left: 0;
+        top: 42%;
+        width: 30%;
+        height: 13%;
+    }
+
+    .container-strength .bg-conatiner-bottom{
+        background: #fff9f5;
+        border-top-left-radius: 100% 100%;
+        right: 0;
+        bottom:0;
+        width: 35%;
+        height: 7%;
+    }
+
+
+
+    @media screen and (min-width: 800px) {
+        .container-strength .bg-conatiner-top {
+            width: 20%;
+            height: 13%;
+        }
+
+        .container-strength .bg-conatiner-middle {
+            width: 13%;
+            height: 23%;
+        }
+        .container-strength .bg-conatiner-bottom {
+            width: 15%;
+            height: 13%;
+        }
+
+    }
+</style>
+
+<div class="main-container-homescreen container-strength" >
+    <div class="bg-conatiner-top"></div>
+    <div class="bg-conatiner-middle"></div>
+    <div class="bg-conatiner-bottom"></div>
+    <div class="text-title">
+        <span class="text-emphasize">학습 전략 코칭과 학습 플랜</span> 작성까지<br>
+        <span class="text-emphasize">플코쌤</span>만 가능한 <span class="text-emphasize">All-Care 컨설팅</span> 프로그램
+    </div>
+    <span class="item-subtitle">차별화 Point</span>
+    <div class="item-content item-point">
+        <div class="item-content item-detail">
+            <div class="index-point">1</div>
+            <div class="text-content ">
+                <span class="text-index">실시간 학습 코칭 & 계획 수립</span></br>
+                주 1회 50분 비대면 수업 진행
+            </div>
+
+        </div>
+        <div class="item-content item-detail">
+            <div class="index-point">2</div>
+            <div class="text-content ">
+                <span class="text-index">1대1 학생 맞춤형 관리</span></br>
+                교재, 인강, 과목별 코칭, 생기부
+            </div>
+
+        </div>
+        <div class="item-content item-detail">
+            <div class="index-point">3</div>
+            <div class="text-content ">
+                <span class="text-index">24시간 학습 질문답변</span></br>
+                공부법/교과목 관련 모든 QnA
+            </div>
+        </div>
+        <div class="item-content item-detail">
+            <div class="index-point">4</div>
+            <div class="text-content ">
+                <span class="text-index">이번 주 인증 시스템</span></br>
+                과제를 업로드하고 인증하기!
+            </div>
+        </div>
+        <div class="item-content item-detail">
+            <div class="index-point">5</div>
+            <div class="text-content ">
+                <span class="text-index">합리적인 수업료의 올케어</span></br>
+                17만 원대에 모든 서비스를 이용
+            </div>
+        </div>
+    </div>
+    <!--<a href="{% url 'homescreenapp:classdetail' %}" class="btn-nav">-->
+    <a class="btn-nav">
+        수업내용 미리보기
+        <span class="icon-arrow material-icons">arrow_forward</span>
+        <span class="text-click">Click</span>
+    </a>
+    <div class="item-line"></div>
+    <div class="text-title">
+        <span class="text-emphasize">Plan&Coach</span>는 5단계의 <span class="text-emphasize">검증과 교육</span>을 <br>
+        거친 <span class="text-emphasize">국내 최상위 선생님들</span>과 함께합니다.
+    </div>
+    <span class="item-subtitle">검증된 플코 선생님</span>
+    <div class="item-content item-teacher">
+        <div class="item-image-teacherlist">
+            <img class="image-teacherlist" src='/static/images/homescreen-strength-1.png'
+                     onclick="showImage('Strengthimage-1');">
+            <img class="image-click" src='/static/icons/touch.png'>
+        </div>
+        <div class="array-contents">
+            <div class="array-text">
+                <span class="index-teacher"></span>
+                <span class="text-content text-verify">학력 인증</span>
+            </div>
+            <div class="array-text">
+                <span class="index-teacher"></span>
+                <span class="text-content text-verify">출신 고교 인증</span>
+            </div>
+            <div class="array-text">
+                <span class="index-teacher"></span>
+                <span class="text-content text-verify">성적 증명 확인</span>
+            </div>
+            <div class="array-text">
+                <span class="index-teacher"></span>
+                <span class="text-content text-verify">자체 교육 시스템</span>
+            </div>
+            <div class="array-text">
+                <span class="index-teacher"></span>
+                <span class="text-content text-verify">경력 사항 증명</span>
+            </div>
+        </div>
+    </div>
+    <span class="text-subtitle interval-index" style="margin-top:5rem;">전공, 학력, 수업 스타일, 경력까지</span>
+    <div class="text-title" >
+        <span class="text-emphasize">프로필을 통해 나에게 맞는 선생님을</span><br>
+        <span class="text-emphasize">직접 선택하고 매칭할 수 있어요!</span>
+    </div>
+    <div class="item-content item-teacher">
+        <div class="item-image-matching">
+            <img class="image-matching" src='/static/images/homescreen-strength-2.png'
+                     onclick="showImage('Strengthimage-2');">
+            <img class="image-click" src='/static/icons/touch.png'>
+        </div>
+        <div class="item-image-matching">
+            <img class="image-matching" src='/static/images/homescreen-strength-3.png'
+                     onclick="showImage('Strengthimage-3');">
+            <img class="image-click" src='/static/icons/touch.png'>
+        </div>
+    </div>
+    <a href="{% url 'profileapp:list' %}" class="btn-nav">
+        상위 1%의 선생님 확인
+        <span class="icon-arrow material-icons">arrow_forward</span>
+        <span class="text-click">Click</span>
+    </a>
+</div>
+<button onclick="closeImage('Strengthimage-1');" id="Strengthimage-1-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/homescreen-strength-1.png'>
+</button>
+<button onclick="closeImage('Strengthimage-2');" id="Strengthimage-2-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/homescreen-strength-2.png'>
+</button>
+<button onclick="closeImage('Strengthimage-3');" id="Strengthimage-3-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/homescreen-strength-3.png'>
+</button>

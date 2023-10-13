@@ -2,11 +2,7 @@
 {% load bootstrap4 %}
 {% block content %}
 
-<style>
-    .fullscreenimage-image{
-        border:2px solid var(--whitegray)
-    }
-</style>
+
 
 <header class="header-black">
     {% include 'headersnippets/logo.html' %}
@@ -15,10 +11,9 @@
 
 <main style="padding-bottom: 0;">
     {% include 'homescreenapp/homescreensnippets/head.html' %}
-    {% include 'homescreenapp/homescreensnippets/consulting.html' %}
-    {% include 'homescreenapp/homescreensnippets/introduce.html' %}
-    {% include 'homescreenapp/homescreensnippets/guide.html' %}
-    {% include 'homescreenapp/homescreensnippets/apply.html' %}
+    {% include 'homescreenapp/homescreensnippets/intro.html' %}
+    {% include 'homescreenapp/homescreensnippets/strength.html' %}
+    {% include 'homescreenapp/homescreensnippets/review.html' %}
     {% include 'homescreenapp/homescreensnippets/teacherapply.html' %}
     {% include 'homescreenapp/homescreensnippets/contact.html' %}
     {% if not request.user.is_authenticated or user.can_apply == True %}
@@ -26,5 +21,24 @@
     {% endif %}
 </main>
 {% include 'homescreenapp/homescreensnippets/footer.html' %}
+<script>
+    function showImage(imageId) {
+        var element = document.getElementById(imageId + "-fullscreen");
+        element.style.display = "flex";
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.transition = 'opacity 0.2s ease-in-out';
+            element.style.opacity = 1;
+        }, 10);
+    }
 
+    function closeImage(imageId) {
+        var element = document.getElementById(imageId + "-fullscreen");
+        element.style.transition = 'opacity 0.4s ease-in-out';
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.display = "none";
+        }, 400);
+    }
+</script>
 {% endblock %}

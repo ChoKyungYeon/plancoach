@@ -1,7 +1,7 @@
 <style>
     .container-head {
         padding-top: 8rem;
-        padding-bottom: 8.5rem;
+        padding-bottom: 8rem;
         justify-content: center;
         align-items: center;
         background: linear-gradient(-15deg, #1d2134, #30354f,#1d2134, #1d2134, #1d2134, #1d2134);
@@ -10,43 +10,43 @@
 
     .container-head .text-intro {
         color: var(--white);
-        font-size: 1.83rem;
+        font-size: 1.8rem;
         font-weight: var(--fontweight-index);
     }
 
     .container-head .text-program {
-        margin-bottom: 2rem;
-        margin-top: 0.3rem;
+        margin-top: 0.2rem;
     }
 
     .container-head .text-emphasize {
-        font-size: 1.85rem;
+        font-size: 1.82rem;
         font-weight: var(--fontweight-title);
         color: var(--lightblue);
     }
 
     .container-head .btn-teacher {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+        color: var(--black);
+        font-size: 1.45rem;
+        font-weight: var(--fontweight-index);
         padding: 1rem 1.5rem;
         background: var(--white);
+        margin-top:2rem;
+        width: fit-content;
         border-radius: 0.5rem;
     }
 </style>
 
 <div class="main-container-homescreen container-head">
     <div class="text-intro text-teacher">
-        <span class="text-emphasize">상위 1%</span>
-        선생님들의
+        <span class="text-emphasize" >상위 1%</span>
+        의 공부법이
     </div>
     <div class="text-intro text-program">
-        올인원
-        <span class="text-emphasize">학습 컨설팅</span>
-        프로그램
+        어느새
+        <span class="text-emphasize" >나의 실력이</span>
+        됩니다
     </div>
-    <a href="{% url 'profileapp:list' %}" class="btn-teacher">
-        <span class="text-btn">&nbsp;Plan&Coach 선생님 확인하기 ></span>
+    <a href="{% url 'profileapp:list' %}" class="btn-nav btn-teacher" >
+        &nbsp;Plan&Coach 선생님 확인하기 >
     </a>
 </div>

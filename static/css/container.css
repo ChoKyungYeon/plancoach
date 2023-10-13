@@ -364,7 +364,7 @@
     display: flex;
     flex-direction:column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     width:100%;
     padding:5rem var(--main-padding);
     background: var(--white);
@@ -373,56 +373,147 @@
 }
 
 
-.main-container-homescreen .text-emphasize-white,
 .main-container-homescreen .text-emphasize {
     font-weight: var(--fontweight-index);
     font-size: 1.5rem;
     color: var(--black);
 }
-.main-container-homescreen .text-title-white,
 .main-container-homescreen .text-title{
     font-weight: var(--fontweight-content);
     font-size: 1.5rem;
-    margin-left: 0.2rem;
+    text-align: center;
     color:#626c84;
 }
-.main-container-homescreen .text-emphasize-white {
-    font-weight: var(--fontweight-index);
-    color: var(--lightblue)
-}
-.main-container-homescreen .text-title-white{
+/* color:#626c84; */
+
+.main-container-homescreen .text-subtitle{
+    font-size:1.4rem;
+    text-align: center;
+    color:#626c84;
     font-weight: var(--fontweight-content);
-     color: var(--white)
 }
+.main-container-homescreen .text-mint{
+    font-weight:inherit;
+    font-size:inherit;
+    color: var(--lightblue);
+}
+.main-container-homescreen .text-content-emphasize{
+    font-weight:var(--fontweight-index);
+    font-size:inherit;
+    color: var(--black);
+}
+
+
 .main-container-homescreen .text-index{
     font-size: 1.37rem;
     color:var(--black);
     font-weight:var(--fontweight-index);
 }
+
 .main-container-homescreen .text-content{
     font-weight: var(--fontweight-content);
-    font-size:1.3rem;
+    font-size:1.35rem;
     color:var(--gray);
 }
+
 .main-container-homescreen .interval-index{
         margin-bottom:0.5rem;
     }
 
-.main-container-homescreen .text-btn{
-    color: var(--black);
-    font-size: 1.45rem;
-    font-weight: var(--fontweight-title);
-}
-.main-container-homescreen .text-subtitle{
-        color: var(--middleblue);
-        font-size:1.4rem;
-        font-weight: var(--fontweight-content);
-        margin-right: auto;
-        background:#dee4fc;
+
+.main-container-homescreen .item-subtitle {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0.7rem 0%;
+        color: var(--lightorange);
+        margin-top: 2.5rem;
+        margin-bottom: 0.5rem;
+        width: 55%;
+        border-radius: 1.7rem;
+        background: var(--white);
+        border: 2.5px solid var(--lightorange);
+        font-size: 1.37rem;
+        font-weight:var(--fontweight-index);
+    }
+.main-container-homescreen .item-line{
+        width: 95%;
+        background: var(--blackblue);
+        height: 0.6rem;
+        border-radius: 2rem;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
+.main-container-homescreen .item-title{
+        width: 83%;
+        border-radius: 2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 3rem;
+        background: linear-gradient(45deg, #1d2135, #2d3352, #2d3352, #1d2135);
+        padding-top:1.3rem;
+        padding-bottom:1.3rem;
+            color: var(--white);
+        font-size: 1.45rem;
+        font-weight: var(--fontweight-index);
+    }
+
+.main-container-homescreen .item-content{
+        width: 100%;
         border-radius: 0.5rem;
-        padding:0.4rem 0.7rem;
-        margin-bottom: 1rem;
-}
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        background: var(--white);
+        padding: 1.7rem var(--content-padding);
+        border: 1.5px solid #d1d6e0;
+        margin-top: 3rem;
+        flex-shrink: 0;
+        box-shadow: var(--shadow-itembox);
+    }
+
+
+.main-container-homescreen .btn-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem 1.5rem;
+        background: var(--color-btn-nav);
+        border-radius:2rem;
+        width: 85%;
+        margin-top: 4rem;
+        color: var(--white);
+        font-size: 1.4rem;
+        font-weight: var(--fontweight-index);
+    }
+.main-container-homescreen .btn-nav .icon-arrow{
+        font-size: 1.5rem;
+        color: #feb067;
+        font-weight: 900;
+        margin-left: 0.7rem;
+        margin-right: 0.7rem;
+    }
+.main-container-homescreen .btn-nav .text-click{
+        color:#feb067;
+        font-weight: var(--fontweight-emphasize);
+        font-size: inherit;
+    }
+
+.main-container-homescreen  .image-click {
+        width: 2.5rem;
+        height: 2.5rem;
+        object-fit: cover;
+        position: absolute;
+        right: 0.7rem;
+        bottom: 0.7rem;
+    }
+
+
 
 .main-container-popup{
     display:flex;

@@ -1,0 +1,247 @@
+<style>
+    .container-intro{
+        background: linear-gradient(10deg,var(--color-base),var(--whitegray),
+        var(--whitegray), var(--color-base), var(--color-base));
+    }
+    .container-intro .item-subtitle {
+        color: var(--middleblue);
+        border: 2.5px solid var(--middleblue);
+    }
+    .container-intro .array-items {
+        margin-top:3rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    .container-intro .item-intro {
+        margin-top:0;
+        margin-left: auto;
+        padding-top:1.5rem;
+        padding-bottom:1.5rem;
+        width: 78%;
+        align-items: flex-start;
+        position: relative;
+    }
+
+    .container-intro .item-arrow-right,
+    .container-intro .item-arrow-left{
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        display: inline-block;
+        position: absolute;
+        background: transparent;
+        top:50%;
+        transform: translateY(-50%);
+    }
+    .container-intro .item-arrow-right{
+        border-left: 17px solid var(--white);
+        right: -16px;
+    }
+    .container-intro .item-arrow-left{
+        border-right: 17px solid var(--white);
+        left: -16px;
+    }
+
+
+    .container-intro .icon-intro {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 4.2rem;
+        height: 4.2rem;
+        border-radius: 50%;
+        background: var(--blackblue);
+        border:2px solid var(--gray);
+        flex-shrink: 0;
+
+    }
+    .container-intro .img-intro {
+        object-fit: cover;
+        width: 2.2rem;
+        height: 2.2rem;
+    }
+    .container-intro .item-effect {
+        justify-content: center;
+        align-items: center;
+        padding-top:0.5rem;
+        padding-bottom:0.5rem;
+        margin-bottom: 2rem;
+    }
+    .container-intro .array-effect {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+
+    .container-intro .circle-top,
+    .container-intro .circle-bottom {
+        background: #e6f0fa;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 8.8rem;
+        height: 8.8rem;
+        font-size: 1.7rem;
+        color: var(--black);
+        font-weight: var(--fontweight-emphasize);
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-left: 1.2rem;
+        margin-right: 1rem;
+    }
+
+    .container-intro .circle-bottom {
+        height: 10rem;
+        width: 10rem;
+        font-size:1.8rem;
+        background: rgba(191, 199, 243, 0.5);
+    }
+    .container-intro .text-effect {
+        font-size: 1.37rem;
+    }
+        @media screen and (min-width: 800px) {
+          .container-intro .item-intro {
+            width: 80%;
+        }
+    }
+
+</style>
+<style>
+    .container-intro .bg-conatiner-top,
+    .container-intro .bg-conatiner-middle{
+        position: absolute;
+        z-index: -1;
+    }
+
+    .container-intro .bg-conatiner-top {
+        background: #f9f9fb;
+        width: 38%;
+        height: 14%;
+        border-bottom-left-radius: 100% 100%;
+        right: 0;
+        top: 0%;
+    }
+    .container-intro .bg-conatiner-middle{
+        background:#f3f3f7;
+        border-top-right-radius: 100% 50%;
+        border-bottom-right-radius: 100% 50%;
+        left: 0;
+        top: 41%;
+        width: 23%;
+        height: 20%;
+    }
+
+
+
+    @media screen and (min-width: 800px) {
+
+        .container-intro .bg-conatiner-top {
+            width: 20%;
+            height: 21%;
+        }
+        .container-intro .bg-conatiner-middle {
+            width: 12%;
+            height: 40%;
+        }
+
+    }
+</style>
+
+<div class="main-container-homescreen container-intro" >
+    <div class="bg-conatiner-top"></div>
+    <div class="bg-conatiner-middle"></div>
+    <div class="text-title">
+        <span class="text-emphasize">Plan&Coach</span>는 상위 1% 선생님들이<br>
+        직접 개발/검증한<span class="text-emphasize"> 올케어 학습 컨설팅</span>입니다
+    </div>
+    <div class="item-subtitle">어떤 고민이 있으신가요?</div>
+    <div class="array-items">
+        <div class="item-content item-intro" style="margin-right: auto; margin-left: 0">
+            <div class="item-arrow-right"></div>
+            <div class="text-content" >
+                어떤 <span class="text-content-emphasize">인강과 교재</span>를 사용해서 </br>
+                공부를 <span class="text-content-emphasize">시작할 지 막막</span>해요 ㅠㅠ
+            </div>
+        </div>
+        <div class="icon-intro">
+            <img class="img-intro" src='/static/icons/book.png'>
+        </div>
+    </div>
+    <div class="array-items">
+        <div class="icon-intro">
+            <img class="img-intro" src='/static/icons/bachelor.png' style="width: 2.4rem; height: 2.4rem; position: relative; bottom:0.2rem;">
+        </div>
+        <div class="item-content item-intro" >
+            <div class="item-arrow-left"></div>
+            <div class="text-content" >
+                <span class="text-content-emphasize">꿈에 대학 선생님</span>이 내 공부를</br>
+                 도와 <span class="text-content-emphasize">전략을 세워주면</span> 좋겠어요!
+            </div>
+        </div>
+    </div>
+    <div class="array-items">
+        <div class="item-content item-intro" style="margin-right: auto; margin-left: 0">
+            <div class="item-arrow-right"></div>
+            <div class="text-content"   >
+                <span class="text-content-emphasize">학원과 인강으로 공부</span>하지만 </br>
+                성적이 왜 <span class="text-content-emphasize">제자리 걸음</span>일까요?
+            </div>
+        </div>
+        <div class="icon-intro">
+            <img class="img-intro" src='/static/icons/sad.png'>
+        </div>
+    </div>
+    {% if not request.user.is_authenticated %}
+    <a href="{% url 'accountapp:login' %}" class="btn-nav">
+    {% elif request.user.state == 'teacher' %}
+    <a href="{% url 'teacherapp:dashboard' pk=user.pk  %}" class="btn-nav">
+    {% elif request.user.state == 'superuser' %}
+    <a href="{% url 'superuserapp:dashboard' %}" class="btn-nav">
+    {% else %}
+    <a href="{% url 'studentapp:dashboard' pk=user.pk %}" class="btn-nav">
+    {% endif %}
+        {% if request.user.state == 'teacher' or request.user.state == 'superuser' or request.user.student_step == 'ongoing' %}
+        내 컨설팅 현황 확인
+        {% else %}
+        지금 바로 신청하기!
+        {% endif %}
+        <span class="icon-arrow material-icons" style="color: #a7b3f1">arrow_forward</span>
+        <span class="text-click" style="color: #a7b3f1">Click</span>
+    </a>
+    <div class="item-line"></div>
+    <span class="text-subtitle interval-index">대치동에서부터 온라인까지</span>
+    <div class="text-title">
+        <span class="text-emphasize">5년 이상의 코칭 서비스 운영을 통해</span><br>
+        <span class="text-emphasize">개발 검증된 학습 컨설팅의 효과</span>
+    </div>
+    <div class="item-content item-effect">
+        <div class="array-effect" style="position: relative; top:1.7rem">
+            <span class="text-content text-effect">평균</span>
+            <div class="circle-top">92.6 %</div>
+            <span class="text-content text-effect">수업 재결제율 **</span>
+        </div>
+        <div class="array-effect" style="position: relative; bottom:1.7rem">
+            <span class="text-content text-effect">* 학습 컨설팅</br> &nbsp;&nbsp;&nbsp;누적 데이터</span>
+            <div class="circle-bottom">5,000 +</div>
+            <span class="text-content text-effect">건 이상</span>
+        </div>
+    </div>
+    <span class="main-text-content" >* 17.01 ~ 23.05 기간 내 저장된 데이터 기준&nbsp;&nbsp;</span>
+    <span class="main-text-content">** 23.01 ~ 23.07 결제자 중 연장 결제 유지 비율&nbsp;&nbsp;&nbsp;</span>
+
+</div>
+
+
+</div>
