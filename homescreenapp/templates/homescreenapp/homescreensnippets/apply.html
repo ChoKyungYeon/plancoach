@@ -1,0 +1,145 @@
+<style>
+    .container-apply {
+        background: linear-gradient(45deg, #1d2135, #2d3352, #2d3352, #1d2135);
+    }
+
+    .container-apply .item-apply {
+        padding: 1.5rem 0;
+        width: 45%;
+        box-shadow: var(--shadow-itembox-info);
+        height: 9.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .container-apply .btn-nav {
+        background: var(--mint);
+        color: var(--black);
+        margin-top:5rem;
+    }
+
+    .container-apply .array-apply-bottom {
+        width: 45%;
+        height: 13.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .container-apply .text-emphasize {
+        color: var(--mint);
+    }
+
+
+    .container-apply .item-subtitle {
+        color: var(--mint);
+        background: #2d3352;
+        border: 2.5px solid var(--mint);
+    }
+
+
+    .container-apply .icon-check {
+        font-size: 1.3rem;
+        display: inline-block;
+        font-weight: 900;
+        color: var(--middleblue);
+        position: relative;
+        bottom: 0.2rem;
+        margin-left: 0.2rem;
+        text-shadow: 0 0 1.5px var(--middleblue);
+    }
+
+    .container-apply .text-content {
+        text-align: center;
+    }
+
+    .container-apply .item-arrow-horizontal,
+    .container-apply .item-arrow-vertical {
+        color: var(--mint);
+        font-weight: 900;
+        width: 10%;
+        font-size: 2.5rem;
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container-apply .item-arrow-vertical {
+        width: 100%;
+        height: 4rem;
+        margin-top: 0rem;
+    }
+
+    .container-apply .array-items {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-flow: wrap;
+        width: 100%;
+    }
+
+    .container-apply .text-index {
+        font-size: 1.3rem;
+    }
+
+</style>
+
+<div class="main-container-homescreen container-apply">
+    <div class="text-title" style="color: var(--white)">
+        <span class="text-emphasize">수업 매칭</span>부터 <span class="text-emphasize">연장, 종료</span>까지<br>
+        전체 <span class="text-emphasize">수업 프로세스</span>가 궁금해요!
+    </div>
+    <div class="item-subtitle">전체 수업 프로세스</div>
+    <div class="array-items">
+        <div class="item-content item-apply ">
+            <span class="text-index interval-index">
+                1. 매칭 신청서 작성
+            </span>
+            <div class="text-content ">
+                상세 프로필 확인 후</br>
+                양식에 맞게 작성
+            </div>
+        </div>
+        <div class="item-arrow-horizontal material-icons">keyboard_arrow_right</div>
+        <div class="item-content item-apply ">
+            <span class="text-index interval-index">
+                2. 상담 후 입금
+            </span>
+            <div class="text-content">
+                선생님과 상담을 진행</br>
+                후 수업료 입금
+            </div>
+        </div>
+        <div class="array-apply-bottom">
+            <div class="item-arrow-vertical material-icons">keyboard_arrow_up</div>
+            <div class="item-content item-apply " style="margin-top:0rem; width:100%">
+                <span class="text-index interval-index">
+                  4. 컨설팅 연장/ 종료
+                </span>
+                <div class="text-content">
+                    자유롭게 다음 수업을</br>
+                    연장하거나 종료해요
+                </div>
+            </div>
+        </div>
+        <div class="item-arrow-horizontal material-icons">keyboard_arrow_left</div>
+        <div class="array-apply-bottom">
+            <div class="item-arrow-vertical material-icons">keyboard_arrow_down</div>
+            <div class="item-content item-apply " style="margin-top:0rem; width:100%">
+                <span class="text-index interval-index">
+                  3. 컨설팅 시작
+                </span>
+                <div class="text-content">
+                    학습 코칭, 플랜 작성</br>
+                    24시간 QnA까지!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

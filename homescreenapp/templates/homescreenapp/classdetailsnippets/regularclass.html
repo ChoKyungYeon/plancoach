@@ -1,0 +1,37 @@
+<style>
+    .container-regularclass{
+        background: #f1f3f8;
+    }
+</style>
+
+<div class="main-container-homescreen container-regularclass" >
+    <div class="text-title interval-index">
+        <span class="text-emphasize">주 1회 정기 비대면 수업</span>
+    </div>
+    <div class="text-title">
+        수업은 4주(28일간) 진행되며, 매주 1회 웹사이트에 있는 구글 미트 링크를 활용하여 50~60분의 비대면 수업을 진행하게 됩니다.
+    </div>
+    <div class="item-content">
+        <div class="item-image">
+            <img class="image-classdetail" src='/static/images/classdetail-regularclass-1.png'
+                     onclick="showImage('Regularclass-2');">
+            <img class="image-click" src='/static/icons/touch.png'>
+        </div>
+        <div class="item-image">
+            <img class="image-classdetail" src='/static/images/classdetail-regularclass-2.png'
+                     onclick="showImage('Regularclass-3');">
+            <img class="image-click" src='/static/icons/touch.png'>
+        </div>
+    </div>
+    <div class="text-help">이미지를 클릭하고 자세한 내용을 확인하세요!</div>
+</div>
+<button onclick="closeImage('Regularclass-2');" id="Regularclass-2-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/classdetail-regularclass-1.png'>
+</button>
+<button onclick="closeImage('Regularclass-3');" id="Regularclass-3-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/classdetail-regularclass-2.png'>
+</button>

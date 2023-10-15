@@ -1,0 +1,37 @@
+<style>
+    .container-plan{
+        background:#f5eefc
+    }
+</style>
+
+<div class="main-container-homescreen container-plan" >
+    <div class="text-title interval-index">
+        <span class="text-emphasize">1주일 간의 학습 계획 작성</span>
+    </div>
+    <div class="text-title">
+        학생 종합 분석과 교과목별 학습 현황을 파악하고 이를 토대로 1주일간의 학습 계획과 과제를 설정합니다.
+    </div>
+    <div class="item-content">
+        <div class="item-image">
+            <img class="image-classdetail" src='/static/images/classdetail-plan-1.png'
+                     onclick="showImage('planimage-2');">
+            <img class="image-click" src='/static/icons/touch.png'>
+        </div>
+        <div class="item-image">
+            <img class="image-classdetail" src='/static/images/classdetail-plan-2.png'
+                     onclick="showImage('planimage-3');">
+            <img class="image-click" src='/static/icons/touch.png'>
+        </div>
+    </div>
+    <div class="text-help">이미지를 클릭하고 자세한 내용을 확인하세요!</div>
+</div>
+<button onclick="closeImage('planimage-2');" id="planimage-2-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/classdetail-plan-1.png'>
+</button>
+<button onclick="closeImage('planimage-3');" id="planimage-3-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/classdetail-plan-2.png'>
+</button>

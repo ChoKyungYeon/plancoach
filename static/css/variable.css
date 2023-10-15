@@ -53,19 +53,20 @@
 
 @media screen and (min-width: 600px) {
   :root {
-    --main-padding:26%;
-    --main-padding-snippet:26%;
-    --header-padding:25%;
-    --footer-padding:31%;
+    --main-padding:23%;
+    --main-padding-snippet:25%;
+    --header-padding:22%;
+    --footer-padding:27%;
   }
 }
 
 @media screen and (min-width: 1100px) {
   :root {
-    --main-padding:34%;
-    --main-padding-snippet:34%;
-    --header-padding:33%;
-    --footer-padding:37%;
+    --main-padding:29%;
+    --main-padding-snippet:31%;
+    --header-padding:28%;
+    --footer-padding:33%;
+    --content-padding:8%;
   }
 }
 

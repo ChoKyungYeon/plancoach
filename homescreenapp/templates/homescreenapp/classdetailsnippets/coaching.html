@@ -1,0 +1,37 @@
+<style>
+    .container-coaching{
+        background: #fdf7ed
+    }
+</style>
+
+<div class="main-container-homescreen container-coaching" >
+    <div class="text-title interval-index">
+        <span class="text-emphasize">학생 종합 분석/ 교과목 코칭</span>
+    </div>
+    <div class="text-title">
+        선생님은 시험 성적, 문제점, 학습 현황 등 학생 회원의 종합적인 상황을 분석하고 교과목 별 인강, 교재와 학습 전략을 수립합니다
+    </div>
+    <div class="item-content">
+        <div class="item-image">
+            <img class="image-classdetail" src='/static/images/classdetail-coaching-1.png'
+                     onclick="showImage('coachingimage-2');">
+            <img class="image-click" src='/static/icons/touch.png'>
+        </div>
+        <div class="item-image">
+            <img class="image-classdetail" src='/static/images/classdetail-coaching-2.png'
+                     onclick="showImage('coachingimage-3');">
+            <img class="image-click" src='/static/icons/touch.png'>
+        </div>
+    </div>
+    <div class="text-help">이미지를 클릭하고 자세한 내용을 확인하세요!</div>
+</div>
+<button onclick="closeImage('coachingimage-2');" id="coachingimage-2-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/classdetail-coaching-1.png'>
+</button>
+<button onclick="closeImage('coachingimage-3');" id="coachingimage-3-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/classdetail-coaching-2.png'>
+</button>

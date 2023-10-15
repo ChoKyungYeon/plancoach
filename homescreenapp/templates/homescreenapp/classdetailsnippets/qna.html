@@ -1,0 +1,37 @@
+<style>
+    .container-qna{
+        background:var(--color-base)
+    }
+</style>
+
+<div class="main-container-homescreen container-qna" >
+    <div class="text-title interval-index">
+        <span class="text-emphasize">24시간 학습 qna</span>
+    </div>
+    <div class="text-title">
+        학습 도중 발생하는 공부 방법, 고민, 교과목 질문 관련 어떤 질문이라도 자유롭게 질문하세요!
+    </div>
+    <div class="item-content">
+        <div class="item-image">
+            <img class="image-classdetail" src='/static/images/classdetail-qna-1.png'
+                     onclick="showImage('qnaimage-2');">
+            <img class="image-click" src='/static/icons/touch.png'>
+        </div>
+        <div class="item-image">
+            <img class="image-classdetail" src='/static/images/classdetail-qna-2.png'
+                     onclick="showImage('qnaimage-3');">
+            <img class="image-click" src='/static/icons/touch.png'>
+        </div>
+    </div>
+    <div class="text-help">이미지를 클릭하고 자세한 내용을 확인하세요!</div>
+</div>
+<button onclick="closeImage('qnaimage-2');" id="qnaimage-2-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/classdetail-qna-1.png'>
+</button>
+<button onclick="closeImage('qnaimage-3');" id="qnaimage-3-fullscreen" class="fullscreenimage">
+    <div class="btn-exit material-icons">close</div>
+    <img class="fullscreenimage-image"
+         src='/static/images/classdetail-qna-2.png'>
+</button>

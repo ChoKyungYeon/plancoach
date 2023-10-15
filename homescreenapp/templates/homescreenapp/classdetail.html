@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<style>
+    .main-classdetail .text-title{
+        text-align: left;
+    }        
+    .main-classdetail .main-container-homescreen{
+        align-items: flex-start;
+        padding-top:4rem;
+        padding-bottom:4rem;
+    }
+    .main-classdetail .item-content{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-flow:wrap;
+        margin-top:3rem;
+    }
+    .main-classdetail .image-classdetail{
+        border-radius: 0.5rem;
+        height: 20rem;
+        object-fit: cover;
+        width: 100%;
+        object-position: center top;
+        border: 1.5px solid #d1d6e0;
+    }
+    .main-classdetail .text-help{
+        font-size: var(--fontsize-detail);
+        font-weight: var(--fontweight-content);
+        margin-top:1rem;
+        color: var(--gray);
+    }
+    .main-classdetail .item-image{
+        background: transparent;
+        width: 46%;
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    @media screen and (min-width: 800px) {
+        .main-classdetail .image-classdetail{
+            height: 27rem;
+        }
+        .main-classdetail .item-image {
+            width: 43%;
+        }
+    }
+    @media screen and (min-width: 1100px) {
+        .main-classdetail .image-classdetail{
+            height: 32rem;
+        }
+        .main-classdetail .item-image {
+            width: 38%;
+        }
+    }
+</style>
+
+<header class="header-black">
+    {% include 'headersnippets/back.html' %}
+    {% with title="수업 내용 미리보기" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
+</header>
+<main class="main-classdetail">
+    {% include 'homescreenapp/classdetailsnippets/regularclass.html' %}
+    {% include 'homescreenapp/classdetailsnippets/coaching.html' %}
+    {% include 'homescreenapp/classdetailsnippets/plan.html' %}
+    {% include 'homescreenapp/classdetailsnippets/qna.html' %}
+</main>
+
+<script>
+    function showImage(imageId) {
+        var element = document.getElementById(imageId + "-fullscreen");
+        element.style.display = "flex";
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.transition = 'opacity 0.2s ease-in-out';
+            element.style.opacity = 1;
+        }, 10);
+    }
+
+    function closeImage(imageId) {
+        var element = document.getElementById(imageId + "-fullscreen");
+        element.style.transition = 'opacity 0.4s ease-in-out';
+        element.style.opacity = 0;
+        setTimeout(function () {
+            element.style.display = "none";
+        }, 400);
+    }
+</script>
+{% endblock %}

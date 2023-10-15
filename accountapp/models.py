@@ -1,3 +1,5 @@
+from datetime import timedelta, datetime
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -49,6 +51,18 @@ class CustomUser(AbstractUser):
         if self.state == 'student':
             if self.student_step() in ['initial', 'end']:
                 return True
+        return False
+
+    def can_review(self):
+        if self.state == 'superuser':
+            return True
+        elif self.state == 'student':
+            if self.review.all():
+                return False
+            consult = getattr(self, 'consult_student', None)
+            if consult:
+                if consult.created_at.date() + timedelta(days=56) < datetime.now().date():
+                    return True
         return False
 
     def can_delete(self):

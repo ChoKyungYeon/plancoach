@@ -1,6 +1,11 @@
 
 
 <style>
+
+:root {
+    --padding-simplead:10%;
+}
+
     .container-simplead {
         opacity: 1;
         transition: opacity 1s;
@@ -8,8 +13,8 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
-        padding:1.6rem var(--main-padding);
-        position:fixed;  
+        padding:1.3rem var(--padding-simplead);
+        position:fixed;
         bottom:0;
         left: 0;
         background:var(--blackblue);
@@ -20,20 +25,20 @@
         color: var(--mint);
         font-weight: var(--fontweight-emphasize);
     }
-    
+
     .container-simplead .text-event{
         font-weight: var(--fontweight-index);
         font-size: 1.5rem;
         color: var(--white);
         margin-left: auto;
     }
-    
+
     .container-simplead .item-simplead{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 0.5rem var(--content-padding);
+        padding: 0.35rem var(--content-padding);
         border-radius: 1rem;
         background: var(--mint);
         flex-shrink: 0;
@@ -151,6 +156,21 @@
         font-weight:var(--fontweight-index);
     }
 
+
+    @media screen and (min-width: 700px) {
+        .fullscreeninfo{
+            padding-left: var(--padding-simplead);
+            padding-right: var(--padding-simplead);
+        }
+        :root {
+            --padding-simplead:26%;
+        }
+    }
+    @media screen and (min-width: 700px) {
+        :root {
+            --padding-simplead:31%;
+        }
+    }
 </style>
 <button onclick="showAd()" class="main-container-homescreen container-simplead">
     <div class="item-simplead">

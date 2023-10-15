@@ -1,7 +1,7 @@
 <style>
     .container-contact {
-        background: linear-gradient(5deg,var(--white),var(--color-base),  var(--color-base));
-        padding-bottom: 14rem;
+        background: var(--white);
+        padding-bottom: 7rem;
     }
 
     .container-contact .img-icon {
@@ -21,8 +21,8 @@
         justify-content: space-between;
         width:85%;
         background: var(--white);
-        border-radius: 1rem;
-        height: 5.7rem;
+        border-radius: 0.5rem;
+        height: 5rem;
         margin-top:2rem;
         border:none;
     }
@@ -32,23 +32,23 @@
         align-items: center;
         justify-content: flex-start;
         padding-left: var(--content-padding);
-        border-top-left-radius: 1rem;
-        border-bottom-left-radius: 1rem;
-        width:80%;
-        height: 5.7rem;
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        width:100%;
+        height: 5rem;
     }
     .container-contact .btn-sns{
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        border-top-right-radius: 1rem;
-        border-bottom-right-radius: 1rem;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
         font-weight: var(--fontweight-emphasize);
         font-size: 1.6rem;
         color: var(--white);
-        width:20%;
-        height: 5.7rem;
+        width:15%;
+        height: 5rem;
         background: var(--gray);
     }
     .container-contact .main-text-index{
@@ -63,11 +63,11 @@
 
 <div class="main-container-homescreen container-contact">
   <div class="text-title">
-        학습 컨설팅을 <span class="text-emphasize">시작하기 전</span><br>
-        <span class="text-emphasize">상담을 진행</span>하고 싶으신가요?
+        수업을 <span class="text-emphasize">시작하기 전</span> 언제나<br>
+        <span class="text-emphasize">학습 상담을 진행</span>할 수 있어요!
     </div>
         {% if document.kakaotalk  %}
-        <a href={{document.kakaotalk }} class="item-content item-contact" >
+        <a href={{document.kakaotalk }} target="_blank" rel="noopener noreferrer" class="item-content item-contact" >
         {% else %}
         <a class="item-content item-contact" >
         {% endif %}
@@ -82,7 +82,7 @@
         <span class="text-emphasize">수험생 입시 컨텐츠</span>를 만나보세요!
     </div>
         {% if document.instagram  %}
-        <a href={{document.instagram }} class="item-content item-contact">
+        <a href={{document.instagram }} target="_blank" rel="noopener noreferrer" class="item-content item-contact">
         {% else %}
         <a class="item-content item-contact">
         {% endif %}
@@ -93,7 +93,7 @@
             <span class="btn-sns material-icons">arrow_forward_ios</span>
         </a>
             {% if document.blog  %}
-        <a href={{document.blog }} class="item-content item-contact">
+        <a href={{document.blog }} target="_blank" rel="noopener noreferrer" class="item-content item-contact">
         {% else %}
         <a class="item-content item-contact">
         {% endif %}

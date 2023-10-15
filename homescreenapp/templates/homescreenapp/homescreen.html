@@ -14,8 +14,12 @@
     {% include 'homescreenapp/homescreensnippets/intro.html' %}
     {% include 'homescreenapp/homescreensnippets/strength.html' %}
     {% include 'homescreenapp/homescreensnippets/review.html' %}
-    {% include 'homescreenapp/homescreensnippets/teacherapply.html' %}
+    {% include 'homescreenapp/homescreensnippets/apply.html' %}
+    {% if not request.user.is_authenticated or user.can_apply == True %}
+    {% include 'homescreenapp/homescreensnippets/start.html' %}
+    {% endif %}
     {% include 'homescreenapp/homescreensnippets/contact.html' %}
+    {% include 'homescreenapp/homescreensnippets/teacherapply.html' %}
     {% if not request.user.is_authenticated or user.can_apply == True %}
     {% include 'homescreenapp/homescreensnippets/advertisement.html' %}
     {% endif %}

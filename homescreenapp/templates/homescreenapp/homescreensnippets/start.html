@@ -1,0 +1,28 @@
+<style>
+    .container-start {
+        background: #f1f8f8;
+        padding-top:4rem;
+        padding-bottom:4rem;
+    }
+    .container-start .btn-nav{
+        margin-top: 2.5rem;
+    }
+
+</style>
+
+<div class="main-container-homescreen container-start" >
+    <div class="text-title interval-index">
+        <span class="text-emphasize">부담 없이 신청서를 작성해 보세요</span>
+    </div>
+    <div class="text-subtitle">수업 전 선생님과 상담이 가능하며<br>자유롭게 수업을 환불할 수 있습니다</div>
+    {% if not request.user.is_authenticated %}
+    <a href="{% url 'accountapp:login' %}" class="btn-nav">
+    {% else %}
+    <a href="{% url 'studentapp:dashboard' pk=user.pk %}" class="btn-nav">
+    {% endif %}
+        신청서 작성하러 가기
+        <span class="icon-arrow material-icons" style="color:  var(--mint)">arrow_forward</span>
+        <span class="text-click" style="color: var(--mint)">Click</span>
+    </a>
+</div>
+

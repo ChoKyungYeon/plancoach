@@ -1,7 +1,12 @@
 <style>
 
     .container-teacherapply {
-        background: linear-gradient(10deg,var(--white),#fffcfa,var(--white));
+        background: linear-gradient(10deg,var(--color-base),var(--whitegray),
+        var(--whitegray), var(--color-base), var(--color-base));
+    }
+    .container-teacherapply .item-subtitle {
+        color: var(--darkgray);
+        border: 2.5px solid var(--darkgray);
     }
     .container-teacherapply .image-teacherapply {
         border-radius: 0.5rem;
@@ -9,7 +14,7 @@
         object-fit: cover;
         width: 100%;
         object-position: center top;
-        border: 1.5px solid #d1d6e0;
+        border: 1.5px solid #d9d1e0;
     }
     .container-teacherapply .item-image {
         background: transparent;
@@ -22,8 +27,6 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        background: #fbf1e9;
-
     }
 
 </style>
@@ -35,7 +38,7 @@
     }
 
     .container-teacherapply .bg-conatiner-top {
-        background: #fff9f5;
+        background: var(--whitegray);
         width: 40%;
         height: 23%;
         border-radius: 50%;
@@ -43,7 +46,7 @@
         top: 10%;
     }
     .container-teacherapply .bg-conatiner-bottom {
-        background: #fff9f5;
+        background: var(--whitegray);
         width: 40%;
         height: 26%;
         border-top-right-radius: 100% 100%;
@@ -71,6 +74,16 @@
             width: 43%;
         }
     }
+        @media screen and (min-width: 1100px) {
+
+
+        .container-teacherapply .image-teacherapply {
+            height: 26rem;
+        }
+        .container-teacherapply .item-image {
+            width: 38%;
+        }
+    }
 </style>
 <div class="main-container-homescreen container-teacherapply">
     <div class="bg-conatiner-top"></div>
@@ -80,7 +93,7 @@
         <span class="text-emphasize">절차에 따라 선생님 계정으로 전환하고</span><br>
         <span class="text-emphasize">학습 툴과 서비스를 이용해보세요</span>
     </div>
-    <span class="item-subtitle">저희와 함께 해요!</span>
+    <span class="item-subtitle">선생님이신가요?</span>
     <div class="item-content item-teacherapply">
         <div class="item-image">
             <img class="image-teacherapply" src='/static/images/homescreen-teacherapply-1.png'
@@ -93,15 +106,16 @@
             <img class="image-click" src='/static/icons/touch.png'>
         </div>
     </div>
+    <div class="text-help">이미지를 클릭하고 자세한 내용을 확인하세요!</div>
     {% if can_teacherapply %}
         {% if not request.user.is_authenticated %}
         <a href="{% url 'accountapp:login' %}" class="btn-nav">
         {% else %}
-        <a href="{% url 'teacherapplyapp:guide' pk=target_user.pk %}" class="btn-nav">
+        <a href="{% url 'teacherapplyapp:guide' pk=request.user.pk %}" class="btn-nav">
         {% endif %}
-            선생님 등록 프로세스 확인
-            <span class="icon-arrow material-icons">arrow_forward</span>
-            <span class="text-click">Click</span>
+            선생님 등록 프로세스
+            <span class="icon-arrow material-icons" style="color:var(--whitegray);">arrow_forward</span>
+            <span class="text-click" style="color:var(--whitegray);">Click</span>
         </a>
     {% endif %}
 </div>

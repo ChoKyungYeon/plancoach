@@ -94,7 +94,7 @@
         margin-top: 0.4rem;
 }
 
-        @media screen and (min-width: 800px) {
+    @media screen and (min-width: 800px) {
         .container-strength .index-point {
             margin-right: 10%;
             margin-left: 3%;
@@ -110,7 +110,18 @@
             width: 43%;
         }
     }
-
+    @media screen and (min-width: 1100px) {
+        .container-strength .image-matching,
+        .container-strength .image-teacherlist {
+            height: 26rem;
+        }
+        .container-strength .item-image-teacherlist {
+        width: 35%;
+        }
+        .container-strength .item-image-matching {
+            width: 37%;
+        }
+    }
 </style>
 <style>
     .container-strength .bg-conatiner-top,
@@ -215,9 +226,8 @@
             </div>
         </div>
     </div>
-    <!--<a href="{% url 'homescreenapp:classdetail' %}" class="btn-nav">-->
-    <a class="btn-nav">
-        수업내용 미리보기
+    <a href="{% url 'homescreenapp:classdetail' %}" class="btn-nav">
+        자세한 수업 내용 보기
         <span class="icon-arrow material-icons">arrow_forward</span>
         <span class="text-click">Click</span>
     </a>
@@ -256,6 +266,7 @@
             </div>
         </div>
     </div>
+    <div class="text-help">이미지를 클릭하고 자세한 내용을 확인하세요!</div>
     <span class="text-subtitle interval-index" style="margin-top:5rem;">전공, 학력, 수업 스타일, 경력까지</span>
     <div class="text-title" >
         <span class="text-emphasize">프로필을 통해 나에게 맞는 선생님을</span><br>
@@ -273,6 +284,7 @@
             <img class="image-click" src='/static/icons/touch.png'>
         </div>
     </div>
+    <div class="text-help">이미지를 클릭하고 자세한 내용을 확인하세요!</div>
     <a href="{% url 'profileapp:list' %}" class="btn-nav">
         상위 1%의 선생님 확인
         <span class="icon-arrow material-icons">arrow_forward</span>

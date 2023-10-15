@@ -1,10 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load bootstrap4 %}
 
-</body>
-</html>
+{% block content %}
+<style>
+    .main-review .main-container-homescreen{
+        align-items: flex-start;
+        padding-top:4rem;
+        padding-bottom:4rem;
+        background: var(--color-base);
+    }
+    .container-review .text-title{
+        text-align: left;
+    }
+    .container-review .item-review {
+        margin-right: auto;
+        padding-top:1.5rem;
+        padding-bottom:1.5rem;
+        width: 88%;
+        align-items: flex-start;
+        position: relative;
+    }
+
+    .container-review .item-arrow-right,
+    .container-review .item-arrow-left{
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        display: inline-block;
+        position: absolute;
+        background: transparent;
+        top:20px;
+    }
+    .container-review .item-arrow-right{
+        border-left: 17px solid var(--white);
+        right: -16px;
+    }
+    .container-review .item-arrow-left{
+        border-right: 17px solid var(--white);
+        left: -16px;
+    }
+    .container-review .text-reviewer {
+        margin-bottom: 0.5rem;
+        width: 100%;
+    }
+
+    .container-review .text-name {
+        font-size: inherit;
+        color: #38468f;
+        font-weight: inherit;
+    }
+</style>
+
+<header class="header-black">
+    {% include 'headersnippets/back.html' %}
+    {% with title="실제 수강생 후기" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
+</header>
+<main class="main-review">
+<div class="main-container-homescreen container-review" >
+    <div class="text-title interval-index">
+        <span class="text-emphasize">Plan&Coach 수강생들의 솔직 후기</span>
+    </div>
+    <div class="text-title">
+        후기는 2회 (56일) 이상 수업을 진행한 학생 회원과 학부모 회원이 직접 작성한 내용입니다
+    </div>
+        <div class="item-content item-review" >
+            <div class="item-arrow-right"></div>
+            <span class="text-index text-reviewer">
+                <span class="text-name">권00 </span>-서울 00여고 2학년</span>
+            <div class="text-content" >
+                인서울만 바라보던 2등급대에 작년과
+                다르게 이제 수의대를 목표로하며
+                공부하는 제 자신이 신기해요!
+            </div>
+        </div>
+        <div class="item-content item-review"  style="margin-left: auto; margin-right: 0">
+            <div class="item-arrow-left"></div>
+             <span class="text-index text-reviewer">
+                <span class="text-name">박00 </span>- 대전 00고 1학년 (학부모)</span>
+            <div class="text-content"   >
+                학원만 다니던 저희 아들이 선생님과 공부한
+                이후 휴대폰 없이 스터디 카페에 다녀요.
+            </div>
+        </div>
+        <div class="item-content item-review" >
+            <div class="item-arrow-right"></div>
+             <span class="text-index text-reviewer">
+                <span class="text-name">권00 </span>- 청주 00고 3학년</span>
+            <div class="text-content" >
+                최근 입시와 학업 고민이 겹쳐 심적으로
+                많이 힘들었는데, 선생님 덕분에
+                입시 불안감이 많이 해결됐어요!!
+            </div>
+        </div>
+        <div class="item-content item-review"  style="margin-left: auto; margin-right: 0">
+            <div class="item-arrow-left"></div>
+             <span class="text-index text-reviewer">
+                <span class="text-name">김00 </span>- 서울 00고 1학년 (학부모)</span>
+            <div class="text-content"   >
+                저희 아들이 어떻게 공부하는지 궁금했는데
+                선생님이 친절하게 설명해 주셔서 감사해요.
+            </div>
+        </div>
+</div>
+
+</main>
+
+{% endblock %}

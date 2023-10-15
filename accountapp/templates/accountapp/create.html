@@ -47,11 +47,11 @@
                     <span class="material-icons icon-check">check</span>
                 </div>
                 {% csrf_token %}{% bootstrap_form form %}
-                <a href="{% url 'homescreenapp:termofuse' %}" class="item-terms">
+                <a href="{% url 'homescreenapp:termofuse' %}" target="_blank" rel="noopener noreferrer" class="item-terms">
                     <span class="main-text-content">(필수) 서비스 이용 약관 동의</span>
                     <span class="main-text-content">보기</span>
                 </a>
-                <a href="{% url 'homescreenapp:privacypolicy' %}" class="item-terms">
+                <a href="{% url 'homescreenapp:privacypolicy' %}" target="_blank" rel="noopener noreferrer" class="item-terms">
                     <span class="main-text-content">(필수) 개인정보처리방침 동의</span>
                     <span class="main-text-content">보기</span>
                 </a>
