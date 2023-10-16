@@ -1,0 +1,90 @@
+<style>
+
+    .container-reviewdetail {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        border: 1.5px solid #d1d6e0;
+        margin-top: 3rem;
+        flex-shrink: 0;
+        width: 88%;
+        padding: 1.5rem var(--content-padding);
+        position: relative;
+    }
+
+    .container-right {
+        margin-left: auto;
+    }
+
+    .container-left {
+        margin-right: auto;
+    }
+
+    .container-reviewdetail .btn-delete {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+
+    .container-reviewdetail .btn-image {
+        font-weight: var(--fontweight-index);
+        font-size: var(--fontsize-content);
+        color: var(--middleblue);
+    }
+
+    .container-reviewdetail .text-name,
+    .container-reviewdetail .text-age {
+        font-size: 1.4rem;
+        color: var(--black);
+        font-weight: var(--fontweight-index);
+    }
+
+    .container-reviewdetail .text-name {
+        color: #38468f;
+    }
+
+    .container-reviewdetail .text-content {
+        font-weight: var(--fontweight-content);
+        font-size: 1.37rem;
+        color: var(--gray);
+    }
+
+    .container-reviewdetail .item-arrow-right,
+    .container-reviewdetail .item-arrow-left {
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        display: inline-block;
+        position: absolute;
+        background: transparent;
+        top: 20px;
+    }
+
+    .container-reviewdetail .item-arrow-right {
+        border-left: 17px solid var(--white);
+        right: -16px;
+    }
+
+    .container-reviewdetail .item-arrow-left {
+        border-right: 17px solid var(--white);
+        left: -16px;
+    }
+</style>
+{% if forloop.counter|divisibleby:2 %}
+<div class="main-container-snippets container-reviewdetail container-right">
+{% else %}
+<div class="main-container-snippets container-reviewdetail container-left">
+{% endif %}
+        {% if forloop.counter|divisibleby:2 %}
+        <div class="item-arrow-left"></div>
+        {% else %}
+        <div class="item-arrow-right"></div>
+        {% endif %}
+        <div class="main-array-row" style="margin-bottom: 0.5rem">
+            <span class="text-name">{{review.safe_username}}</span>
+            <span class="text-age">&nbsp;-&nbsp;{{review.review_age}}</span>
+            <span class="main-text-content" style="margin-left: auto">{{review.created_at |date:"y.m.d" }}</span>
+        </div>
+        <span class="text-content">{{review.content}}</span>
+    </div>

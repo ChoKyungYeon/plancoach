@@ -1,0 +1,128 @@
+<style>
+
+.container-suqareprofile{
+    display: flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+    width:47.5%;
+    margin-top:2rem;
+    padding:0;
+    border-radius: 0.6rem;
+    border: 1.5px solid #cecede;
+}
+
+
+
+
+
+.container-suqareprofile .image-profile{
+    width:100%;
+    height:10rem;
+    object-fit: cover;
+    border-top-right-radius: 0.45rem;
+    border-top-left-radius: 0.45rem;
+    object-position: center center;
+    object-fit: cover;
+    border-bottom:1.5px solid #cecede;
+    flex-shrink: 0;
+}
+
+.container-suqareprofile .icon-profile{
+    margin-right: 0.5rem;
+    color:var(--gray);
+    font-size: 1.23rem;
+    font-weight:400;
+}
+
+.container-suqareprofile .array-info{
+    display: flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    padding:1.7rem 0 1.3rem var(--content-padding);
+    width: 100%;
+}
+
+
+
+.container-suqareprofile .text-profiletitle{
+    width: 100%;
+    padding-left: 1%;
+    color:var(--black);
+    font-weight:var(--fontweight-emphasize);
+    font-size:var(--fontsize-index);
+    margin-bottom:0.3rem;
+}
+.array-normalcontainer{
+    margin-right: 0;
+}
+.array-lastcontainer{
+    margin-right: 0;
+}
+    @media screen and (min-width: 600px) {
+        .container-suqareprofile {
+            width: 45%;
+        }
+        .container-suqareprofile .image-profile {
+            height: 13rem;
+        }
+    }
+    @media screen and (min-width: 900px) {
+        .container-suqareprofile {
+            width: 31%;
+        }
+        .array-normalcontainer{
+            margin-right:3.5%;
+        }
+        .array-lastcontainer{
+            margin-right: 0
+        }
+        .container-suqareprofile .image-profile {
+            height: 11rem;
+        }
+    }
+    @media screen and (min-width: 1100px) {
+        .container-suqareprofile {
+            width: 30.5%;
+        }
+        .array-normalcontainer{
+            margin-right:4.25%;
+        }
+        .array-lastcontainer{
+            margin-right: 0
+        }
+
+        .container-suqareprofile .image-profile {
+            height: 11rem;
+        }
+    }
+</style>
+{% if forloop.counter|divisibleby:3 %}
+<a href="{% url 'profileapp:detail' pk=profile.pk %}"  class="container-suqareprofile main-container-snippets array-lastcontainer" >
+{% else %}
+<a href="{% url 'profileapp:detail' pk=profile.pk %}"  class="container-suqareprofile main-container-snippets array-normalcontainer">
+{% endif %}
+        {% if  profile.profile_profileimage %}
+            <img class="image-profile" src="{{ profile.profile_profileimage.image.url }}">
+        {% else %}
+        <img class="image-profile" src="/static/images/logo.png">
+
+        {% endif %}
+        <div class="array-info">
+            <span class="text-profiletitle">{{profile.teacher.userrealname}}&nbsp;선생님&nbsp;</span>
+            <div class="main-array-row">
+                <span class="icon-profile material-icons">school</span>
+                <span class="main-text-content">{{profile.profile_scholarship.school|truncatechars:14}}</span>
+            </div>
+            <div class="main-array-row">
+                <span class="icon-profile material-icons">history_edu</span>
+                <span class="main-text-content">{{profile.profile_scholarship.major|truncatechars:8}}</span>
+                <span class="main-text-content">&nbsp;{{profile.profile_scholarship.studentid}}</span>
+            </div>
+            <div class="main-array-row">
+                <span class="icon-profile material-icons">subject</span>
+                <span class="main-text-content">{{profile.profile_consulttype.consulttype_name|truncatechars:14}}</span>
+            </div>
+        </div>
+</a>

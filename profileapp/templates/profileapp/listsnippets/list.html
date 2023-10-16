@@ -1,5 +1,46 @@
+<style>
+    .array-snippets {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-flow: wrap;
+        width: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    @media screen and (min-width: 600px) {
+        .array-snippets{
+            justify-content:space-between;
+        }
+    }
+    @media screen and (min-width: 800px) {
+        .array-snippets{
+            padding-left: 23%;
+            padding-right: 23%;
+        }
+    }
+    @media screen and (min-width: 900px) {
+        .array-snippets{
+            justify-content:flex-start;
+            padding-left: 23%;
+            padding-right: 23%;
+        }
+    }
+    @media screen and (min-width: 1100px) {
+        .array-snippets{
+            justify-content: flex-start;
+            padding-left: 29%;
+            padding-right: 29%;
+        }
+    }
+</style>
+
 {% if profiles %}
+    <div class="array-snippets">
     {% for profile in profiles %}
-    {% include 'snippets/profile.html' %}
+    {% include 'snippets/squareprofile.html' %}
     {% endfor %}
+    </div>
 {% endif %}

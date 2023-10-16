@@ -9,6 +9,7 @@ from documentapp.models import Document
 from feedback_likeapp.decorators import Feedback_likeDecorator
 from homescreenapp.decorators import *
 from profileapp.models import Profile
+from reviewapp.models import Review
 
 
 @method_decorator(HomescreenDecorator, name='dispatch')
@@ -19,6 +20,7 @@ class HomescreenView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['document'] = Document.objects.all().first()
         context['target_month'] = datetime.now().month
+        context['reviews'] = Review.objects.all().order_by('created_at')[:4]
         context['can_teacherapply'] = not target_user.is_authenticated or \
                                       (target_user.state == 'student' and target_user.student_step() in ['initial', 'end'])
         return context
@@ -64,9 +66,6 @@ class PrivacypolicyView(TemplateView):
             return redirect(document.privacypolicy)
         return super().get(request, *args, **kwargs)
 
-
-class ReviewView(TemplateView):
-    template_name = 'homescreenapp/review.html'
 
 class ClassdetailView(TemplateView):
     template_name = 'homescreenapp/classdetail.html'

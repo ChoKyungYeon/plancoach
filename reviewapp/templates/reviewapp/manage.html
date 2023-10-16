@@ -5,23 +5,23 @@
 <header class="header-black">
         {% url 'reviewapp:list' as url %}
         {% include 'headersnippets/navback.html' with url=url %}
-        {% with title="수업 후기 등록" %}
+        {% with title="수업 후기 관리" %}
         {% include 'headersnippets/title.html' %}
         {% endwith %}
 </header>
 <main>
   <div class="main-box">
       <div class="main-container-form">
-         <form action="{% url 'reviewapp:create' %}" method="post" onsubmit="return confirmCreateReview()" enctype="multipart/form-data">
+         <form action="{% url 'reviewapp:manage' %}" method="post" onsubmit="return confirmManageReview()" enctype="multipart/form-data">
             {% csrf_token %}{% bootstrap_form form %}
-            <input type="submit" class="btn-submit"   value="후기 등록">
+            <input type="submit" class="btn-submit"   value="후기 추가">
           </form>
       </div>
   </div>
 </main>
 <script>
-    function confirmCreateReview() {
-        var confirmMessage = "작성한 후기는 삭제할 수 없습니다!";
+    function confirmManageReview() {
+        var confirmMessage = "후기는 신중하게 작성해주세요!";
         return confirm(confirmMessage);
     }
 </script>

@@ -56,12 +56,10 @@ class CustomUser(AbstractUser):
     def can_review(self):
         if self.state == 'superuser':
             return True
-        elif self.state == 'student':
-            if self.review.all():
-                return False
-            consult = getattr(self, 'consult_student', None)
-            if consult:
-                if consult.created_at.date() + timedelta(days=56) < datetime.now().date():
+        if self.state == 'student':
+            if not self.review.all().exists():
+                consult = getattr(self, 'consult_student', None)
+                if consult and consult.created_at.date() + timedelta(days=56) < datetime.now().date():
                     return True
         return False
 

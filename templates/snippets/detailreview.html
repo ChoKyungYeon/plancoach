@@ -1,0 +1,125 @@
+<style>
+
+    .container-detailreview {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        border: 1.5px solid #d1d6e0;
+        margin-top: 3rem;
+        flex-shrink: 0;
+        width: 88%;
+        padding: 1.5rem var(--content-padding);
+        position: relative;
+    }
+
+    .container-right {
+        margin-left: auto;
+    }
+
+    .container-left {
+        margin-right: auto;
+    }
+
+    .container-detailreview .btn-delete {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+
+    .container-detailreview .btn-image {
+        font-weight: var(--fontweight-index);
+        font-size: var(--fontsize-content);
+        color: var(--middleblue);
+    }
+
+
+
+    .container-detailreview .text-name {
+        color: #38468f;
+    }
+
+
+
+    .container-detailreview .item-arrow-right,
+    .container-detailreview .item-arrow-left {
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        display: inline-block;
+        position: absolute;
+        background: transparent;
+        top: 20px;
+    }
+
+    .container-detailreview .item-arrow-right {
+        border-left: 17px solid var(--white);
+        right: -16px;
+    }
+
+    .container-detailreview .item-arrow-left {
+        border-right: 17px solid var(--white);
+        left: -16px;
+    }
+</style>
+{% if forloop.counter|divisibleby:2 %}
+<div class="main-container-snippets container-detailreview container-right">
+{% else %}
+<div class="main-container-snippets container-detailreview container-left">
+{% endif %}
+        {% if forloop.counter|divisibleby:2 %}
+        <div class="item-arrow-left"></div>
+        {% else %}
+        <div class="item-arrow-right"></div>
+        {% endif %}
+        {% if user.state == 'superuser' %}
+        <form action="{% url 'reviewapp:delete' pk=review.pk %}" method="post"
+              id="review-delete-form{{ forloop.counter }}">
+            {% csrf_token %}
+            <input style="display:none" type="submit" name="next" value="{% url 'reviewapp:list' %}">
+            <button type="button" onclick="confirmreviewDelete({{ forloop.counter }})"
+                    class="main-btn-delete btn-delete material-icons">remove
+            </button>
+        </form>
+        {% endif %}
+        <div class="main-array-row" style="margin-bottom: 0.5rem">
+            <span class="main-text-index text-name">{{review.safe_username}}</span>
+            <span class="main-text-index text-age">&nbsp;-&nbsp;{{review.review_age}}</span>
+            <span class="main-text-content" style="margin-left: auto">{{review.created_at |date:"y.m.d" }}</span>
+        </div>
+        <span class="main-text-content">{{review.content}}</span>
+        {% if review.image %}
+        <button onclick="showreviewimage({{ forloop.counter }})" class=" btn-image">후기 이미지 ></button>
+        <button onclick="closereviewimage({{ forloop.counter }})" id="reviewimage-fullscreen{{ forloop.counter }}"
+                class="fullscreenimage">
+            <div class="btn-exit material-icons">close</div>
+            <img class="fullscreenimage-image" src="{{ review.image.url }}">
+        </button>
+        {% endif %}
+    </div>
+    <script>
+        function confirmreviewDelete(counter) {
+            if (confirm("선택한 후기를 삭제하시겠습니까?")) {
+                document.getElementById("review-delete-form" + counter).submit();
+            }
+        }
+
+        function showreviewimage(counter) {
+            var element = document.getElementById("reviewimage-fullscreen" + counter);
+            element.style.display = "flex";
+            element.style.opacity = 0;
+            setTimeout(function () {
+                element.style.transition = 'opacity 0.2s ease-in-out';
+                element.style.opacity = 1;
+            }, 10);
+        }
+
+        function closereviewimage(counter) {
+            var element = document.getElementById("reviewimage-fullscreen" + counter);
+            element.style.transition = 'opacity 0.4s ease-in-out';
+            element.style.opacity = 0;
+            setTimeout(function () {
+                element.style.display = "none";
+            }, 400);
+        }
+    </script>

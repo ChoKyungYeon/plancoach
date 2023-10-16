@@ -158,7 +158,6 @@ class ProfileListView(TemplateView):
 
         for profile in profiles:
             for consulttype in profile.profile_consulttype.consulttype:
-                print(consulttype)
                 if consulttype in profiles_dict:
                     profiles_dict[consulttype].append(profile)
 

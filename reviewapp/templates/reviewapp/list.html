@@ -1,10 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load bootstrap4 %}
 
-</body>
-</html>
+{% block content %}
+<style>
+    .main-review .main-container-homescreen{
+        align-items: flex-start;
+        padding-top:4rem;
+        padding-bottom:4rem;
+        background: var(--color-base);
+    }
+    .main-review .text-title{
+        text-align: left;
+    }
+
+</style>
+
+<header class="header-black">
+    {% url 'homescreenapp:homescreen' as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
+    {% with title="실제 수강생 후기" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
+</header>
+<main class="main-review">
+<div class="main-container-homescreen" >
+    <div class="text-title interval-index">
+        <span class="text-emphasize">Plan&Coach 수강생들의 솔직 후기</span>
+    </div>
+    <div class="text-title">
+        후기는 2회 (56일) 이상 수업을 진행한 학생 회원과 학부모 회원이 직접 작성한 내용입니다
+    </div>
+    {% if reviews %}
+        {% for review in reviews %}
+        {% include 'snippets/detailreview.html' %}
+        {% endfor %}
+    {% else %}
+         <div class="main-container-empty" style="margin-top:3rem;">
+        <span class="text-empty">
+         등록된 수업 후기가 없습니다.
+        </span>
+        </div>
+    {% endif %}
+</div>
+    {% if request.user.is_authenticated and can_review %}
+        {% if user.state == 'superuser' %}
+        <a href="{% url 'reviewapp:manage' %}" class="main-container-popup">
+        {% else %}
+        <a href="{% url 'reviewapp:create' %}" class="main-container-popup">
+        {% endif %}
+            <div class="text-indicate">
+                학습 후기
+            </div>
+            <div class="text-popup">
+                작성하기
+            </div>
+        </a>
+    {% endif %}
+</main>
+
+{% endblock %}
