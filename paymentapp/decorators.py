@@ -58,8 +58,6 @@ def PaymentGuideDecorator(func):
 def PaymentStateUpdateDecorator(func):
     def decorated(request, *args, **kwargs):
         payment = Payment.objects.get(pk=request.GET.get('payment_pk'))
-        if payment.is_paid_ok == True:
-            return HttpResponseForbidden()
         decorators = Decorators(request.user, payment.consult)
         permission_checks = [
             decorators.step_filter(allow_teacher=[], allow_student=[], allow_superuser=True)
