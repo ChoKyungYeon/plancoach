@@ -8,10 +8,7 @@ try:#deploy check
 except:
     from plancoach.settings.deploy import SENS_ACCESS_KEY, SENS_SECRET_KEY, SENS_SERVICE_KEY
 
-try:
-    contact_phone = Document.objects.all().first().phonenumber.replace('-', '')
-except:
-    contact_phone = '01031585834'
+contact_phone = '01057325834'
 
 SENS_ACCESS_KEY= SENS_ACCESS_KEY
 SENS_SECRET_KEY= SENS_SECRET_KEY

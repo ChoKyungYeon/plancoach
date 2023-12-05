@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<header class="header-black">
+    {% url 'consult_qnaapp:list' pk=target_consult.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}    
+    {% with title="질문 작성" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
+</header>
+
+<main>
+    <div class="main-box">
+        <div class="main-container-form">
+            <form action="{% url 'consult_qnaapp:create' pk=target_consult.pk %}" method="post"
+                  enctype="multipart/form-data">
+                {% csrf_token %}{% bootstrap_form form %}
+                <input type="submit" class="btn-submit" value="질문 작성">
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+

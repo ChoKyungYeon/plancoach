@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<style>
+    main {
+        padding-top: 10.5rem;
+    }
+
+    .main-hr-head {
+        height: 3px;
+        background: var(--whitegray);
+        width: 100%;
+    }
+</style>
+
+<header class="header-black">
+    {% url 'consultapp:dashboard' pk=target_consult.pk as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
+</header>
+
+<main>
+    {% include 'consult_qnaapp/listsnippets/head.html' %}
+    <div class="main-hr-head"></div>
+    <div class="qna-list-slide1" style="display:block">
+        {% with qnas=qnas %}
+        {% include 'consult_qnaapp/listsnippets/list.html' %}
+        {% endwith %}
+    </div>
+    <div class="qna-list-slide2" style="display:none">
+        {% with qnas=qnas_unanswered %}
+        {% include 'consult_qnaapp/listsnippets/list.html' %}
+        {% endwith %}
+    </div>
+    <div class="qna-list-slide3" style="display:none">
+        {% with qnas=qnas_answered %}
+        {% include 'consult_qnaapp/listsnippets/list.html' %}
+        {% endwith %}
+    </div>
+    <div class="qna-list-slide4" style="display:none">
+        {% with qnas=qnas_like %}
+        {% include 'consult_qnaapp/listsnippets/list.html' %}
+        {% endwith %}
+    </div>
+    {% if user == target_consult.student and target_consult.state != 'new' %}
+    <a href="{% url 'consult_qnaapp:create' pk=target_consult.pk %}" class="main-container-popup">
+        <div class="text-indicate">
+            학습 질문
+        </div>
+        <div class="text-popup">
+            작성하기
+        </div>
+    </a>
+    {% endif %}
+</main>
+
+{% endblock %}
+
