@@ -97,7 +97,12 @@
     font-size:1.25rem;
 }
 
-
+.profile-detail-head .icon-highlight{
+    color: var(--green);
+    margin-left: 0.7rem;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
 </style>
 
 <div class="profile-detail-head container-head-profile" >
@@ -134,6 +139,9 @@
         <div>
             <div class="array-name" >
                 <span class="text-name ">{{target_profile.teacher.userrealname}}&nbsp;선생님</span>
+                {% if target_profile.is_highlighted %}
+                <div class="icon-highlight material-icons">verified</div>
+                {% endif %}
             </div>
             <div class="array-detail">
                 <span class="material-icons icon-headinfo">school</span>

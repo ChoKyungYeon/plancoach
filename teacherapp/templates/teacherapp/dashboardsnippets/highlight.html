@@ -1,0 +1,65 @@
+
+{% if user.state == 'superuser' %}
+<div class="main-box" style="padding-top:1rem">
+    {% if target_user.profile.is_highlighted %}{{arget_user.profile.is_highlighted}}
+    <a id="disablehighlight" href="{% url 'profileapp:highlightupdate' %}?user_pk={{ target_user.pk }}"
+       class="main-container-dashboard" >
+        <script>
+        const disablehighlight = document.getElementById('disablehighlight');
+        disablehighlight.addEventListener('click', confirmdisablehighlight);
+
+        function confirmdisablehighlight(event) {
+            if (confirm("더 이상 프로필이 상단 노출되지 않으며, 고정이 해제됩니다.")) {
+                // Allow the navigation to proceed
+                window.location.href = event.target.href;
+            } else {
+                // Prevent the default navigation behavior
+                event.preventDefault();
+            }
+        }
+        </script>
+        <div class="item-content">
+            <span class="main-text-content">프로필 상단 고정을 해제합니다.</span>
+            <div class="main-array-row interval-top" >
+                <span class="main-text-content text-content">현재</span>
+                <span class="main-text-index">
+                    상단 고정
+                </span>
+            </div>
+        </div>
+        <div class="material-icons item-nav" style="font-weight: 500; font-size: 1.7rem">check_circle</div>
+    </a>
+    {% else %}
+    <a id="ablehighlight" href="{% url 'profileapp:highlightupdate' %}?user_pk={{ target_user.pk }}"
+       class="main-container-dashboard" >
+        <script>
+        const ablehighlight = document.getElementById('ablehighlight');
+        ablehighlight.addEventListener('click', confirmablehighlight);
+
+        function confirmablehighlight(event) {
+            if (confirm("이제 프로필이 상단에 고정됩니다.")) {
+                // Allow the navigation to proceed
+                window.location.href = event.target.href;
+            } else {
+                // Prevent the default navigation behavior
+                event.preventDefault();
+            }
+        }
+        </script>
+        <div class="item-content">
+            <span class="main-text-content">프로필을 상단에 고정합니다.</span>
+            <div class="main-array-row interval-top" >
+                <span class="main-text-content text-content">현재</span>
+                <span class="main-text-index">
+                    상단 미고정
+                </span>
+            </div>
+        </div>
+        <div class="material-icons item-nav" style="font-weight: 500; font-size: 1.7rem">unpublished </div>
+    </a>
+    {% endif %}
+</div>
+{% endif %}
+
+
+

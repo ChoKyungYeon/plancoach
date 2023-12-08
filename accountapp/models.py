@@ -15,6 +15,7 @@ class CustomUser(AbstractUser):
     agree_terms = models.BooleanField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
+
     def __str__(self):
         return f"[{self.username}] {self.userrealname}"
 

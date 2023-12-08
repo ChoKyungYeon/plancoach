@@ -98,3 +98,15 @@ def ProfileStateUpdateDecorator(func):
                 return check
         return func(request, *args, **kwargs)
     return decorated
+
+def ProfileHighlightUpdateDecorator(func):
+    def decorated(request, *args, **kwargs):
+        decorators=Decorators(request.user,CustomUser.objects.get(pk=request.GET.get('user_pk')).profile)
+        permission_checks = [
+            decorators.step_filter(allow_teacher=[], allow_student=[], allow_superuser=True)
+        ]
+        for check in permission_checks:
+            if check is not None:
+                return check
+        return func(request, *args, **kwargs)
+    return decorated

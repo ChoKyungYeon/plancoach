@@ -71,7 +71,9 @@ schoollist=[
     '동국대학교(경주)',
     '동아대학교',
     '부산대학교',
+    '서강대학교',
     '서울대학교',
+    '서울시립대학교',
     '성균관대학교',
     '순천향대학교',
     '아주대학교',
@@ -92,8 +94,14 @@ schoollist=[
     '차의과학대학교',
     '충남대학교',
     '충북대학교',
+    '한국외국어대학교',
     '한림대학교',
-    '한양대학교'
+    '한양대학교',
+    'KAIST',
+    'POSTECH',
+    'UNIST',
+    'DGIST',
+    'GIST'
 ]
 bankdictionary={
     bank: f'/static/banks/{bank}.png' for bank in banklist

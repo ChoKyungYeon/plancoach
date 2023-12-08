@@ -39,7 +39,7 @@
                 <span class="main-text-index">20{{sat.satyear}}학년도 대학수학능력시험</span>
                 {% if sat.satverificationimage %}
                     <button onclick="showsatscoreimage({{ forloop.counter }})"
-                            class="material-icons btn-verification">verified</button>
+                            class="btn-verification">확인</button>
                     <button onclick="closesatscoreimage({{ forloop.counter }})" id="satscoreimage-fullscreen{{ forloop.counter }}" class="fullscreenimage" >
                     <div
                             class="btn-exit material-icons">close

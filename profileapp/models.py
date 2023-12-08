@@ -12,7 +12,7 @@ class Profile(models.Model):
     state = models.CharField(max_length=20, choices=teacherstatechoice, default='disabled')
     tuition = models.IntegerField(choices=tuitionchoice, default=160000) #deploy check
     payment_updated_at = models.DateField(null=True, blank=True)
-
+    is_highlighted = models.BooleanField(default=False)
 
     def is_payment_updated_possible(self):
         if not self.payment_updated_at or self.payment_updated_at + timedelta(days=59) < datetime.now().date():

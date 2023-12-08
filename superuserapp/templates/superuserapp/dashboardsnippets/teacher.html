@@ -13,7 +13,19 @@
 .container-manageprofile .icon-disabled{
     color: var(--red);
 }
-
+.container-manageprofile .item-highlight{
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    background: var(--green);
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--white);
+    font-size: 1.4rem;
+    font-weight: var(--fontweight-content);
+}
 </style>
 
 <div class="main-box">
@@ -34,6 +46,11 @@
                 </div>
                 <span class="main-text-content" style="margin-top:0.3rem;">{{ profile.teacher.user_phonenumber}}</span>
             </div>
+            {% if profile.is_highlighted %}
+            <div class="item-highlight material-icons">
+                verified
+            </div>
+            {% endif %}
         </a>
         {% if not forloop.last %}
         <div class="main-interval-items"></div>

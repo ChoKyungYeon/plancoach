@@ -12,19 +12,30 @@
     margin-right: 7%;
     flex-shrink: 0;
 }
-
+.container-phonenumber .icon-highlight{
+    color: var(--green);
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-left: 0.5rem;
+}
 
 
 </style>
 
 <a href="{% url 'profileapp:detail' pk=profile.pk %}"  class="container-phonenumber main-container-dashboard">
-    {% if  profile.profile_profileimage %}
+    {% if profile.profile_profileimage %}
         <img class="image-profile" src="{{ profile.profile_profileimage.image.url }}">
     {% else %}
         <img class="image-profile" src="/static/images/logo.png">
     {% endif %}
     <div class="item-content" >
-        <span class="main-text-index">{{profile.teacher.userrealname}} 선생님</span>
+        <div class="main-array-row">
+        <span class="main-text-index">{{profile.teacher.userrealname}} 선생님
+        </span>
+        {% if profile.is_highlighted %}
+                <span class="icon-highlight material-icons">verified</span>
+            {% endif %}
+        </div>
         <span class="main-text-content"  style="margin-top:0.3rem;">{{profile.teacher.user_phonenumber}}</span>
     </div>
     <div class="material-icons item-nav">arrow_forward_ios</div>

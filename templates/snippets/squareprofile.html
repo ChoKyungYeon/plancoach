@@ -5,6 +5,7 @@
     flex-direction:column;
     justify-content:space-between;
     align-items:center;
+    position: relative;
     width:47.5%;
     margin-top:2rem;
     padding:0;
@@ -16,18 +17,52 @@
 
 
 
-.container-suqareprofile .image-profile{
+
+.container-suqareprofile .item-profileimage{
     width:100%;
-    height:10rem;
-    object-fit: cover;
     border-top-right-radius: 0.45rem;
     border-top-left-radius: 0.45rem;
-    object-position: center center;
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    flex-shrink: 0;
+    background:#f2f5fc;
+    padding:1.2rem 9% 1.2rem 9%;
+}
+.container-suqareprofile .image-profile{
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height:8rem;
+    background: var(--white);
     object-fit: cover;
-    border-bottom:1.5px solid #cecede;
+    border-radius: 0.5rem;
+    object-position: center center;
     flex-shrink: 0;
 }
-
+.container-suqareprofile .item-highlight{
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+    background: var(--green);
+    border-radius: 50%;
+    width: 2.6rem;
+    height: 2.6rem;
+    position: absolute;
+    top:-0.8rem;
+    right: -0.8rem;
+    color: var(--white);
+    font-size: 1.6rem;
+    font-weight: var(--fontweight-content);
+}
+.container-suqareprofile .image-profile-empty{
+    width: 5.5rem;
+    height: 5.5rem;
+}
 .container-suqareprofile .icon-profile{
     margin-right: 0.5rem;
     color:var(--gray);
@@ -40,7 +75,7 @@
     flex-direction:column;
     justify-content:flex-start;
     align-items:center;
-    padding:1.7rem 0 1.3rem var(--content-padding);
+    padding:1rem 0 1.3rem var(--content-padding);
     width: 100%;
 }
 
@@ -65,7 +100,10 @@
             width: 45%;
         }
         .container-suqareprofile .image-profile {
-            height: 13rem;
+            height: 11rem;
+        }
+        .container-suqareprofile .item-profileimage{
+            padding:1.3rem 10% 1.3rem 10%;
         }
     }
     @media screen and (min-width: 900px) {
@@ -79,7 +117,10 @@
             margin-right: 0
         }
         .container-suqareprofile .image-profile {
-            height: 11rem;
+            height: 9rem;
+        }
+        .container-suqareprofile .item-profileimage{
+            padding:1.3rem 10% 1.3rem 10%;
         }
     }
     @media screen and (min-width: 1100px) {
@@ -92,9 +133,11 @@
         .array-lastcontainer{
             margin-right: 0
         }
-
         .container-suqareprofile .image-profile {
-            height: 11rem;
+            height: 9rem;
+        }
+        .container-suqareprofile .item-profileimage{
+            padding:1.3rem 10% 1.3rem 10%;
         }
     }
 </style>
@@ -103,12 +146,20 @@
 {% else %}
 <a href="{% url 'profileapp:detail' pk=profile.pk %}"  class="container-suqareprofile main-container-snippets array-normalcontainer">
 {% endif %}
-        {% if  profile.profile_profileimage %}
-            <img class="image-profile" src="{{ profile.profile_profileimage.image.url }}">
-        {% else %}
-        <img class="image-profile" src="/static/images/logo.png">
-
+        {% if profile.is_highlighted %}
+        <div class="item-highlight material-icons">
+            verified
+        </div>
         {% endif %}
+        <div class="item-profileimage">
+        {% if  profile.profile_profileimage %}
+        <img class="image-profile" src="{{ profile.profile_profileimage.image.url }}">
+        {% else %}
+            <div class="image-profile">
+                <img class="image-profile-empty" src="/static/icons/user.png">
+            </div>
+        {% endif %}
+        </div>
         <div class="array-info">
             <span class="text-profiletitle">{{profile.teacher.userrealname}}&nbsp;선생님&nbsp;</span>
             <div class="main-array-row">

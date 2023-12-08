@@ -142,9 +142,9 @@ class ProfileListView(TemplateView):
                 num_consults=Count('teacher__consult_teacher')
             )
             .annotate(total=F('num_likes') + F('num_consults'))
-            .order_by('-total', '-num_likes')
+            .order_by(F('is_highlighted').desc(), '-total', '-num_likes')
         )
-        profiles_ascend=profiles.order_by('tuition')
+        profiles_ascend=profiles.order_by(F('is_highlighted').desc(), 'tuition')
 
         context['profiles_all'] = profiles
         context['profiles_all_ascend'] = profiles_ascend
@@ -190,4 +190,17 @@ class ProfileStateUpdateView(RedirectView):
         profile.state = 'abled' if profile.state == 'disabled' else 'disabled'
         profile.save()
         return super(ProfileStateUpdateView, self).get(request, *args, **kwargs)
+
+
+@method_decorator(login_required, name='dispatch')
+@method_decorator(ProfileHighlightUpdateDecorator, name='dispatch')
+class ProfileHighlightUpdateView(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        return reverse('teacherapp:dashboard', kwargs={'pk': self.request.GET.get('user_pk')})
+    def get(self, request, *args, **kwargs):
+        user = CustomUser.objects.get(pk=self.request.GET.get('user_pk'))
+        profile = Profile.objects.get(teacher=user)
+        profile.is_highlighted = False if profile.is_highlighted else True
+        profile.save()
+        return super(ProfileHighlightUpdateView, self).get(request, *args, **kwargs)
 

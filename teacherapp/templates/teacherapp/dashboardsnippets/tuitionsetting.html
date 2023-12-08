@@ -1,7 +1,7 @@
 
-
+{% if user == target_user %}
 <div class="main-box" style="padding-top: 1rem;">
-    {% if target_user.profile.is_payment_updated_possible == True and user == target_user %}
+    {% if target_user.profile.is_payment_updated_possible == True %}
     <a href="{% url 'profileapp:tuitionupdate' pk=target_user.profile.pk %}" class="main-container-dashboard" >
     {% else %}
     <a class="main-container-dashboard" >
@@ -26,7 +26,7 @@
         {% endif %}
     </a>
 </div>
-
+{% endif %}
 
 
 

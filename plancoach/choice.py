@@ -3,7 +3,7 @@ from datetime import date, datetime
 from plancoach.variables import banklist, schoollist, subjectlist
 
 schoolyearchoice = []
-for i in range(12, int(datetime.now().date().strftime("%y")) + 1):
+for i in range(9, int(datetime.now().date().strftime("%y")) + 1):
     schoolyearchoice.append((i, i))
 
 yearchoice = []
@@ -69,7 +69,6 @@ applicationstatechoice=(
 )
 
 
-
 agechoice=(
     ('graden', 'N수'),
     ('grade3', '3학년'),
@@ -77,9 +76,6 @@ agechoice=(
     ('grade1', '1학년'),
     ('middle', '중등'),
 )
-teacheragechoice = []
-for i in range(19, 36):
-    teacheragechoice .append((i, i))
 
 
 highschooltypechoice = (
