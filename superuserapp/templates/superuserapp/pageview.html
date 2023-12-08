@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<header class="header-black">
+    {% url 'superuserapp:dashboard' as url %}
+    {% include 'headersnippets/navback.html' with url=url %}
+    {% with title="방문자 관리" %}
+    {% include 'headersnippets/title.html' %}
+    {% endwith %}
+</header>
+
+<main>
+    {% include 'superuserapp/pageviewsnippets/users.html' %}
+    {% include 'superuserapp/pageviewsnippets/viewcount.html' %}
+</main>
+{% endblock %}

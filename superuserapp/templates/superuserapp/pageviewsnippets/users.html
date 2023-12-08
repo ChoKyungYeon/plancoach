@@ -1,0 +1,46 @@
+<style>
+.superuser-pageview-users .array-container{
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items: center;
+}
+.superuser-pageview-users .main-text-index{
+    margin-top:0.5rem;
+}
+.superuser-pageview-users .container-user{
+    padding-top:2rem;
+    padding-bottom:2rem;
+    width:47%;
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+    margin-bottom:0;
+}
+
+</style>
+<div class="main-box superuser-pageview-users" >
+    <div class="main-array-title">
+        <span class="main-text-title">신규 사용자</span>
+    </div>
+    <div class="array-container">
+        <div class="main-container-snippets container-user">
+            <span class="main-text-content" style="color: var(--orange)">
+                {{today |date:"m월 d일" }}
+            </span>
+            <span class="main-text-index">
+                {{today_user_count}} 명
+            </span>
+        </div>
+        <div class="main-container-snippets container-user" >
+            <span class="main-text-content">
+                {{yesterday |date:"m월 d일" }}
+            </span>
+            <span class="main-text-index">
+                {{yesterday_user_count}} 명
+            </span>
+        </div>
+    </div>
+</div>
+

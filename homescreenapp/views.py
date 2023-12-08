@@ -8,12 +8,26 @@ from django.views.generic import TemplateView
 from documentapp.models import Document
 from feedback_likeapp.decorators import Feedback_likeDecorator
 from homescreenapp.decorators import *
+from homescreenapp.models import Pageview
 from profileapp.models import Profile
 from reviewapp.models import Review
 
 
 @method_decorator(HomescreenDecorator, name='dispatch')
 class HomescreenView(TemplateView):
+    def dispatch(self, request, *args, **kwargs):
+        today = datetime.now().date()
+        pageview = Pageview.objects.filter(date=today).first()
+        if not pageview:
+            pageview = Pageview.objects.create(date=today)
+
+        if not request.session.get('is_checked', None):
+            pageview.count += 1
+            pageview.save()
+            request.session['is_checked'] = True
+
+        return super().dispatch(request, *args, **kwargs)
+
     template_name = 'homescreenapp/homescreen.html'
     def get_context_data(self, **kwargs):
         target_user = self.request.user

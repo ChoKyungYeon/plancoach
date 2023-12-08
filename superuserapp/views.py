@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 from accountapp.models import CustomUser
 from depositapp.models import Deposit
 from documentapp.models import Document
+from homescreenapp.models import Pageview
 from paymentapp.models import Payment
 from profileapp.models import Profile
 from refundapp.models import Refund
@@ -21,7 +22,6 @@ from django.utils.decorators import method_decorator
 @method_decorator(login_required, name='dispatch')
 @method_decorator(SuperuserDashboardDecorator, name='dispatch')
 class SuperuserDashboardView(TemplateView):
-    model = CustomUser
     template_name = 'superuserapp/dashboard.html'
 
     def get_context_data(self, **kwargs):
@@ -34,5 +34,22 @@ class SuperuserDashboardView(TemplateView):
         context['teacherapplys'] = Teacherapply.objects.filter(is_done=True)
         context['document'] = Document.objects.all().first()
         context['deposit'] = Deposit.objects.all().first()
+        return context
+
+@method_decorator(never_cache, name='dispatch')
+@method_decorator(login_required, name='dispatch')
+@method_decorator(SuperuserDashboardDecorator, name='dispatch')
+class SuperuserPageviewView(TemplateView):
+    template_name = 'superuserapp/pageview.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pageviews'] = Pageview.objects.order_by('-date')
+        today=datetime.now().date()
+        yesterday=today-timedelta(days=1)
+        context['today_user_count'] = CustomUser.objects.filter(created_at=today).count()
+        context['yesterday_user_count'] = CustomUser.objects.filter(created_at=yesterday).count()
+        context['today'] = today
+        context['yesterday'] = yesterday
         return context
 

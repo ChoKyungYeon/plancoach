@@ -1,0 +1,14 @@
+<div class="main-box superuser-pageview-users" >
+    <div class="main-array-title">
+        <span class="main-text-title">일일 방문자 수</span>
+    </div>
+    {% if pageviews %}
+        {% for pageview in pageviews %}
+        {% include 'snippets/pageview.html' %}
+        {% if not forloop.last %}
+        <div class="main-interval-items"></div>
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+</div>
+

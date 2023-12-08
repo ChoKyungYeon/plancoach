@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
+class Pageview(models.Model):
+    date = models.DateField(unique=True)
+    count = models.IntegerField(default=0)

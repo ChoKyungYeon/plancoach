@@ -1,0 +1,75 @@
+
+
+<style>
+
+
+.container-consult{
+    padding:0 5% 0 6%;
+    height:10rem;
+    width:47%;
+    margin-bottom: 2rem;
+}
+
+
+.container-consult .item-info{
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: flex-start;
+    width:100%;
+}
+
+
+
+
+.container-consult .text-ongoing{
+    color:var(--middleblue);
+}
+
+
+.container-consult .text-ongoing{
+    color:var(--middleblue);
+}
+.container-consult .text-new{
+    color:var(--orange);
+}
+
+.container-consult  .text-unanswered{
+    color: var(--orange);
+    margin-left: 0.2rem;
+    font-size: inherit;
+    font-weight: var(--fontweight-index);
+}
+</style>
+
+
+
+<a href="{% url 'consultapp:dashboard' pk=consult.pk %}" class="container-consult main-container-snippets">
+    <div class="item-info">
+        {% if consult.state == 'new' %}
+            {% if consult.is_waiting %}
+            <span class="main-text-content text-new">입금 대기</span>
+            {% else %}
+            <span class="main-text-content text-new">신규 개설</span>
+            {% endif %}
+        {% elif consult.state == 'unextended' %}
+            {% if consult.is_waiting %}
+            <span class="main-text-content text-ongoing">연장 대기</span>
+            {% else %}
+            <span class="main-text-content text-ongoing">{{consult.remaining_day}}</span>
+            {% endif %}
+        {% else %}
+        <span class="main-text-content text-ongoing">{{consult.remaining_day}}</span>
+        {% endif %}
+
+        <span class="main-text-index interval-top">{{consult.student.userrealname}}&nbsp;학생
+        {% if consult.has_new_qna %}
+            <span class="text-unanswered">N</span>
+        {% endif %}
+        </span>
+        <span class="main-text-content">{{ consult.belong }}</span>
+    </div>
+    <div class="item-nav material-icons" style="font-size: 1.4rem;">
+        open_in_new
+    </div>
+</a>
