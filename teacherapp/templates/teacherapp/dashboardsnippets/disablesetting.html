@@ -4,7 +4,7 @@
     <div class="main-array-title">
         <span class="main-text-title">프로필 설정</span>
     </div>
-    {% if target_user.profile.state == 'abled' %}
+    {% if target_user.profile.is_activated %}
     <a id="tostateimpossible" href="{% url 'profileapp:stateupdate' %}?user_pk={{ target_user.pk }}"
        class="main-container-dashboard" >
         <script>
@@ -58,7 +58,7 @@
                 </span>
             </div>
         </div>
-        <div class="material-icons item-nav" >person_add_disabled </div>
+        <div class="material-icons item-nav" >person_add_disabled</div>
     </a>
     {% endif %}
 </div>

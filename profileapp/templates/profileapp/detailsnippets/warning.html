@@ -13,7 +13,7 @@
 }
 
 </style>
-{% if user == target_profile.teacher and target_profile.state == 'disabled' %}
+{% if user == target_profile.teacher and not target_profile.is_activated %}
 <div  class="main-container-popup container-warning">
     <div class="icon-warning material-icons">
     notification_important

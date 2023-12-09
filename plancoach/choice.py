@@ -39,11 +39,6 @@ refusaltypechoice=(
 )
 
 
-teacherstatechoice=(
-    ('abled', '모집중'),
-    ('disabled', '모집 중지')
-)
-
 consultstatechoice=(
     ('unextended', '미연장'),
     ('extended', '연장'),

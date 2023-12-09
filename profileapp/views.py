@@ -136,7 +136,7 @@ class ProfileListView(TemplateView):
         target_user = self.request.user
         profiles = (
             Profile.objects
-            .filter(state='abled')
+            .filter(is_activated=True)
             .annotate(
                 num_likes=Count('profile_like'),
                 num_consults=Count('teacher__consult_teacher')
@@ -184,10 +184,11 @@ class ProfileListView(TemplateView):
 class ProfileStateUpdateView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return reverse('teacherapp:dashboard', kwargs={'pk': self.request.GET.get('user_pk')})
+
     def get(self, request, *args, **kwargs):
         user = CustomUser.objects.get(pk=self.request.GET.get('user_pk'))
         profile = Profile.objects.get(teacher=user)
-        profile.state = 'abled' if profile.state == 'disabled' else 'disabled'
+        profile.is_activated = False if profile.is_activated else True
         profile.save()
         return super(ProfileStateUpdateView, self).get(request, *args, **kwargs)
 

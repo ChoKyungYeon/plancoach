@@ -38,7 +38,7 @@
             <div class="main-array-column">
                 <div class="main-array-row">
                 <span class="main-text-index">{{ profile.teacher.userrealname}}</span>
-                {% if profile.state == 'abled' %}
+                {% if profile.is_activated %}
                 <span class="material-icons icon-abled">person</span>
                 {% else %}
                 <span class="material-icons icon-disabled">person_off</span>
