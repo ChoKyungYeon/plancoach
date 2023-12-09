@@ -65,16 +65,14 @@ class AccountCreateForm(UserCreationForm):
     )
     class Meta:
         model = CustomUser
-        fields = ('email', 'userrealname', 'password1', 'password2','agree_terms')
+        fields = ('userrealname', 'password1', 'password2','agree_terms')
         labels = {
-            'email': '이메일',
             'userrealname': '사용자 실명',
             'agree_terms': '전체 동의',
         }
 
         widgets = {
             'userrealname': forms.TextInput(attrs={'placeholder': '실명을 입력하세요', 'class': 'textinput', }),
-            'email': forms.EmailInput(attrs={'placeholder': '결제 영수증 입력한 이메일로 전송됩니다', 'class': 'textinput', }),
             'agree_terms': forms.CheckboxInput(attrs={'class': 'checkbox'}),
         }
 
@@ -82,15 +80,13 @@ class AccountCreateForm(UserCreationForm):
 class AccountInfoUpdateForm(ModelForm):
     class Meta:
         model = CustomUser
-        fields = ('email', 'userrealname')
+        fields = ('userrealname',)
         labels = {
-            'email': '이메일',
             'userrealname': '사용자 실명',
         }
 
         widgets = {
             'userrealname': forms.TextInput(attrs={'placeholder': '실명을 입력하세요', 'class': 'textinput', }),
-            'email': forms.EmailInput(attrs={'placeholder': '결제 영수증이 입력한 이메일로 전송됩니다', 'class': 'textinput', }),
         }
 
 
@@ -142,17 +138,15 @@ class AccountCreateAdminForm(ModelForm):
     )
     class Meta:
         model = CustomUser
-        fields = ('username','email','userrealname', 'password1', 'password2')
+        fields = ('username','userrealname', 'password1', 'password2')
         labels = {
             'username': '전화번호',
             'userrealname': '실명',
-            'email': '이메일',
         }
         widgets = {
             'username':forms.NumberInput(attrs={'placeholder': '- 제외 전화번호 11자',
                                      'class': 'textinput', 'oninput': 'this.value = this.value.slice(0, 11);'}),
             'userrealname': forms.TextInput(attrs={'placeholder': '실명을 입력하세요', 'class': 'textinput', }),
-            'email': forms.EmailInput(attrs={'placeholder': '결제 영수증이 입력한 이메일로 전송됩니다', 'class': 'textinput', }),
         }
 
 class AccountUpdateAdminForm(ModelForm):

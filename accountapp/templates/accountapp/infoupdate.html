@@ -25,7 +25,7 @@
         <div class="main-container-form">
             <form action="{% url 'accountapp:infoupdate' pk=user.pk %}" method="post">
                 {% csrf_token %}{% bootstrap_form form %}
-                <input type="submit" class="btn-submit " value="정보 수정">
+                <input type="submit" class="btn-submit btn-submit-short" value="정보 수정">
             </form>
         </div>
     </div>

@@ -15,7 +15,7 @@ admin.site.index_title = ""
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('display_customUser',)
     readonly_fields = ('display_user_info','display_consult_info')
-    add_fields = ('username','email','userrealname','password1', 'password2')
+    add_fields = ('username','userrealname','password1', 'password2')
     change_fields = ('display_user_info','display_consult_info','state','password1', 'password2')
 
     def get_form(self, request, obj=None, **kwargs):
@@ -51,12 +51,12 @@ class CustomUserAdmin(admin.ModelAdmin):
             "<strong>PK:</strong> {}<br>"
             "<strong>상태:</strong> {}<br>"
             "<strong>실명:</strong> {}<br>"
-            "<strong>이메일:</strong> {}<br>"
+            "<strong>가입:</strong> {}<br>"
             "<strong>연락처:</strong> {}",
             obj.pk,
             obj.get_state_display(),
             obj.userrealname,
-            obj.email,
+            obj.signup_at,
             obj.username
         )
     display_user_info.short_description = '사용자 정보'
