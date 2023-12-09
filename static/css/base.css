@@ -27,12 +27,12 @@ button{
 }
 
 button:focus {
-  color: var(--darkgray);
+  color: var(--whitegray);
 }
 
 button:active,
 a:active {
-  color:var(--darkgray);
+  color:var(--whitegray);
 }
 
 
@@ -51,7 +51,7 @@ main{
 }
 
 .main-white{
-    background:var(--whiteblue);
+    background:var(--lightblue);
 }
 
 .main-guide{

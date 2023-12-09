@@ -3,26 +3,25 @@
 :root {
     --black:black;
     --white:white;
-    --whiteblue:#f6f8fd;
-    --blackblue:#1d2135;
-    --gray:#65697b;
-    --darkgray:#959fb1;
-    --whitegray:#eaeaf1;
+    --middlegray:#65697b;
+    --whitegray:#959fb1;
+    --lightgray:#eaeaf1;
     --orange:#ea9143;
-    --lightorange:#fba051;
-    --darkblue:#394065;
+    --lightblue:#f6f8fd;
+    --whiteblue:#d6ddff;
     --middleblue:#43529d;
+    --darkblue:#394065;
+    --blackblue:#1d2135;
     --red:#e96563;
     --yellow:#fde291;
     --green:#4aa184;
-    --lightblue:#d6ddff;
     --mint:#d6f5f5;
-    --color-btn-nav:#2a2c37;
+
     --color-btn-submit:#414458;
     --color-base:#efeff5;
 
 
-    --fontsize-content:1.3rem;
+    --fontsize-content:1.32rem;
     --fontsize-index:1.35rem;
     --fontsize-title:1.55rem;
     --fontsize-emphasize:1.7rem;

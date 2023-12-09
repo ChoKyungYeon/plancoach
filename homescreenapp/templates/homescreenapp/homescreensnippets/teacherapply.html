@@ -1,12 +1,12 @@
 <style>
 
     .container-teacherapply {
-        background: linear-gradient(10deg,var(--color-base),var(--whitegray),
-        var(--whitegray), var(--color-base), var(--color-base));
+        background: linear-gradient(10deg,var(--color-base),var(--lightgray),
+        var(--lightgray), var(--color-base), var(--color-base));
     }
     .container-teacherapply .item-subtitle {
-        color: var(--darkgray);
-        border: 2.5px solid var(--darkgray);
+        color: var(--whitegray);
+        border: 2.5px solid var(--whitegray);
     }
     .container-teacherapply .image-teacherapply {
         border-radius: 0.5rem;
@@ -38,7 +38,7 @@
     }
 
     .container-teacherapply .bg-conatiner-top {
-        background: var(--whitegray);
+        background: var(--lightgray);
         width: 40%;
         height: 23%;
         border-radius: 50%;
@@ -46,7 +46,7 @@
         top: 10%;
     }
     .container-teacherapply .bg-conatiner-bottom {
-        background: var(--whitegray);
+        background: var(--lightgray);
         width: 40%;
         height: 26%;
         border-top-right-radius: 100% 100%;
@@ -114,8 +114,8 @@
         <a href="{% url 'teacherapplyapp:guide' pk=request.user.pk %}" class="btn-nav">
         {% endif %}
             선생님 등록 프로세스
-            <span class="icon-arrow material-icons" style="color:var(--whitegray);">arrow_forward</span>
-            <span class="text-click" style="color:var(--whitegray);">Click</span>
+            <span class="icon-arrow material-icons" style="color:var(--lightgray);">arrow_forward</span>
+            <span class="text-click" style="color:var(--lightgray);">Click</span>
         </a>
     {% endif %}
 </div>

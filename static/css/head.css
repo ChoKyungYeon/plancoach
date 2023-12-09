@@ -34,7 +34,7 @@
     font-weight:var(--fontweight-index);
 }
 .main-container-head .text-subtitle{
-    color:var(--lightblue);
+    color:var(--whiteblue);
     margin-right: 0.5rem;
 }
 .main-container-head .text-subcontent,
@@ -45,7 +45,7 @@
 }
 
 .main-container-head .text-subcontent{
-    color:var(--darkgray);
+    color:var(--whitegray);
     margin-left:0.7rem;
 }
 
@@ -90,7 +90,7 @@
 }
 .main-container-head .btn-abled .text-index,
 .main-container-head .btn-disabled .text-index{
-    color:var(--darkgray);
+    color:var(--whitegray);
     font-weight:var(--fontweight-index);
     font-size:var(--fontsize-content)
 }
@@ -115,7 +115,7 @@
 .main-container-head .btn-untouched .text-number,
 .main-container-head .btn-touched .text-index,
 .main-container-head .btn-untouched .text-index{
-    color:var(--darkgray);
+    color:var(--whitegray);
     margin-top:0.1rem;
     font-weight:var(--fontweight-content);
     font-size:var(--fontsize-detail);
@@ -131,7 +131,7 @@
     font-size:var(--fontsize-index);
 }
 .main-container-head .btn-touched .text-number{
-    color:var(--lightblue);
+    color:var(--whiteblue);
 }
 
 
@@ -156,7 +156,7 @@
 
 .main-container-head .nav-bar-untouched{
     border-bottom:12px solid var(--blackblue);
-    color:var(--gray);
+    color:var(--middlegray);
 }
 
 .contianer-head-superuser,
@@ -218,7 +218,7 @@
     font-weight:var(--fontweight-emphasize);
 }
 .head-text-classification{
-    color:var(--lightblue);
+    color:var(--whiteblue);
     font-size:2rem;
     font-weight:var(--fontweight-emphasize);
     margin-right:1rem;
@@ -231,7 +231,7 @@
 }
 
 .head-text-empty{
-    color:var(--gray);
+    color:var(--middlegray);
 }
 
 .head-item-index{
@@ -264,7 +264,7 @@
 
 .contianer-head-superuser .btn-untouched{
     border-bottom:12px solid var(--blackblue);
-    color:var(--gray);
+    color:var(--middlegray);
 }
 
 

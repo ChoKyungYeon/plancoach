@@ -35,8 +35,8 @@ class AccountLoginForm(AuthenticationForm):
         if username is not None and password:
             self.user_cache = authenticate(self.request, username=username, password=password)
             if self.user_cache is None:
-                self.add_error('username', '')  # Add field-level error.
-                self.add_error('password', '잘못된 전화번호 또는 비밀번호입니다.')  # Add field-level error.
+                self.add_error('username', '')
+                self.add_error('password', '잘못된 전화번호 또는 비밀번호입니다.')
             else:
                 self.confirm_login_allowed(self.user_cache)
 
@@ -45,7 +45,7 @@ class AccountLoginForm(AuthenticationForm):
 
 class AccountCreateForm(UserCreationForm):
     password1 = forms.CharField(
-        label=("비밀번호 "),
+        label=("비밀번호"),
         strip=False,
         widget=forms.PasswordInput(attrs={
             'placeholder': '영문/숫자/특수문자 혼합 8~20자',
@@ -58,7 +58,7 @@ class AccountCreateForm(UserCreationForm):
         label=(""),
         strip=False,
         widget=forms.PasswordInput(attrs={
-            'placeholder': "확인을 위해 위와 동일한 비밀번호를 입력해 주세요",
+            'placeholder': "위와 동일한 비밀번호를 입력해 주세요",
             'class': 'textinput feild-nolabel',
             'autocomplete': 'new-password'
         }),
@@ -105,7 +105,7 @@ class AccountPasswordUpdateForm(UserCreationForm):
         label=(""),
         strip=False,
         widget=forms.PasswordInput(attrs={
-            'placeholder': "확인을 위해 위와 동일한 비밀번호를 입력해 주세요",
+            'placeholder': "위와 동일한 비밀번호를 입력해 주세요",
             'class': 'textinput feild-nolabel',
             'autocomplete': 'new-password'
         }),
@@ -131,7 +131,7 @@ class AccountCreateAdminForm(ModelForm):
         label=(""),
         strip=False,
         widget=forms.PasswordInput(attrs={
-            'placeholder': "확인을 위해 위와 동일한 비밀번호를 입력해 주세요",
+            'placeholder': "위와 동일한 비밀번호를 입력해 주세요",
             'class': 'textinput feild-nolabel',
             'autocomplete': 'new-password'
         }),
@@ -164,7 +164,7 @@ class AccountUpdateAdminForm(ModelForm):
         label=(""),
         strip=False,
         widget=forms.PasswordInput(attrs={
-            'placeholder': "확인을 위해 위와 동일한 비밀번호를 입력해 주세요",
+            'placeholder': "위와 동일한 비밀번호를 입력해 주세요",
             'class': 'textinput feild-nolabel',
             'autocomplete': 'new-password'
         }),

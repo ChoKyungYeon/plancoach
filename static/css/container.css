@@ -11,7 +11,7 @@
     border:var(--border-container);
 }
 .main-container-empty .text-empty{
-    color:var(--darkgray);
+    color:var(--whitegray);
     font-size:var(--fontsize-content);
     font-weight:var(--fontweight-content);
 }
@@ -52,7 +52,7 @@
     flex-shrink: 0;
 }
 .main-container-dashboard .item-nav{
-    color:var(--color-btn-nav);
+    color:var(--blackblue);
     font-size:1.6rem;
     font-weight:var(--fontweight-emphasize);
 }
@@ -111,7 +111,7 @@
     margin-bottom:0.5rem;
 }
 .main-container-guide .item-content{
-    color:var(--gray);
+    color:var(--middlegray);
     font-weight:var(--fontweight-content);
     font-size:var(--fontsize-title);
     width:25rem;
@@ -147,7 +147,7 @@
 .main-container-etc .text-content{
     font-weight: var(--fontweight-content);
     font-size: var(--fontsize-index);
-    color: var(--gray);
+    color: var(--middlegray);
 }
 .main-container-etc .text-index{
     font-weight: var(--fontweight-index);
@@ -187,7 +187,7 @@
     border-radius:0.5rem;
 }
 .main-container-snippets .item-nav{
-    color:var(--color-btn-nav);
+    color:var(--blackblue);
     font-size:1.6rem;
     font-weight:var(--fontweight-emphasize);
     margin-left: 4%;
@@ -206,9 +206,9 @@
     padding:0.5rem 0.5rem;
     font-size: 1.4rem;
     font-weight: var(--fontweight-index);
-    color: var(--color-btn-nav);
+    color: var(--blackblue);
     border-radius: 0.5rem;
-    background: var(--whitegray);
+    background: var(--lightgray);
     margin-left: auto;
 }
 .main-container-snippets .text-title{
@@ -267,8 +267,8 @@
     align-items: flex-start;
     width:100%;
     padding:0rem;
-    border-bottom:1px solid var(--whitegray);
-    border-top:1px solid var(--whitegray);
+    border-bottom:1px solid var(--lightgray);
+    border-top:1px solid var(--lightgray);
     margin-bottom:3rem;
     border-radius:0.6rem;
 
@@ -285,8 +285,8 @@
     justify-content:flex-start;
     align-items:center;
     font-size:var(--fontsize-detail);
-    border-bottom:1px solid var(--whitegray);
-    border-top:1px solid var(--whitegray);
+    border-bottom:1px solid var(--lightgray);
+    border-top:1px solid var(--lightgray);
     flex-shrink: 0;
     padding-left:1.7rem;
     padding-right:1.7rem;
@@ -341,9 +341,9 @@
     padding:0.3rem 0.3rem;
     font-size: 1.3rem;
     font-weight: var(--fontweight-index);
-    color: var(--color-btn-nav);
+    color: var(--blackblue);
     border-radius: 0.5rem;
-    background: var(--whitegray);
+    background: var(--lightgray);
     margin-left: auto;
 }
 
@@ -395,13 +395,13 @@
 .main-container-homescreen .text-mint{
     font-weight:inherit;
     font-size:inherit;
-    color: var(--lightblue);
+    color: var(--whiteblue);
 }
 .main-container-homescreen .text-help{
     font-size: var(--fontsize-detail);
     font-weight: var(--fontweight-content);
     margin-top:1rem;
-    color: var(--gray);
+    color: var(--middlegray);
     width: 100%;
     text-align: center;
 }
@@ -422,7 +422,7 @@
 .main-container-homescreen .text-content{
     font-weight: var(--fontweight-content);
     font-size:1.37rem;
-    color:var(--gray);
+    color:var(--middlegray);
 }
 
 .main-container-homescreen .interval-index{
@@ -436,13 +436,13 @@
         justify-content: center;
         align-items: center;
         padding: 0.5rem 5%;
-        color: var(--lightorange);
+        color: #fba051;
         margin-top: 2.5rem;
         margin-bottom: 0.5rem;
         width: fit-content;
         border-radius: 1.7rem;
         background: var(--white);
-        border: 2.5px solid var(--lightorange);
+        border: 2.5px solid #fba051;
         font-size: 1.3rem;
         font-weight:var(--fontweight-index);
     }
@@ -492,7 +492,7 @@
         justify-content: center;
         align-items: center;
         padding: 1.5rem 1.5rem;
-        background: var(--color-btn-nav);
+        background: var(--blackblue);
         border-radius:0.5rem;
         width: 85%;
         margin-top: 4rem;
@@ -554,7 +554,7 @@
     flex-shrink: 0;
 }
 .main-container-popup .text-indicate{
-    color:var(--lightblue);
+    color:var(--whiteblue);
     margin-right: 0.5rem;
     font-weight:var(--fontweight-content);
     font-size: 1.4rem;

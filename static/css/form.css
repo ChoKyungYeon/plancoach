@@ -146,7 +146,7 @@
 }
 .form-control.is-valid {
     background: #f8f8fc;
-    border: 1.5px solid var(--whitegray);
+    border: 1.5px solid var(--lightgray);
 }
 .form-control.is-valid:focus,
 .form-control:focus {
@@ -217,8 +217,8 @@
     align-items: center;
 }
 input[type="file"]::-webkit-file-upload-button {
-  color: var(--gray);
-  background:var(--whitegray);
+  color: var(--middlegray);
+  background:var(--lightgray);
   border: none;
   height:4.2rem;
   border-top-left-radius: 0.2rem;
@@ -231,8 +231,8 @@ input[type="file"]::-webkit-file-upload-button {
 }
 
 input[type="file"]::file-selector-button {
-  color: var(--gray);
-  background:var(--whitegray);
+  color: var(--middlegray);
+  background:var(--lightgray);
   border: none;
   height:4.2rem;
   border-top-left-radius: 0.2rem;
@@ -245,8 +245,8 @@ input[type="file"]::file-selector-button {
 }
 
 input[type="file"]::-ms-browse {
-  color: var(--gray);
-  background:var(--whitegray);
+  color: var(--middlegray);
+  background:var(--lightgray);
   border: none;
   height:4.2rem;
   border-top-left-radius: 0.2rem;
@@ -275,7 +275,7 @@ input[type="file"]::-ms-browse {
     color: var(--white);
     font-weight: var(--fontweight-index);
     font-size:var(--fontsize-detail);
-    background: var(--gray);
+    background: var(--middlegray);
     display: flex;
     flex-direction: row;
     justify-content:center;
@@ -286,9 +286,9 @@ input[type="file"]::-ms-browse {
     border-radius:0.5rem;
 }
 .checkbox-unchecked{
-    border:2px solid var(--darkgray);
+    border:2px solid var(--whitegray);
     background:none;
-    color:var(--darkgray);
+    color:var(--whitegray);
     font-weight: var(--fontweight-emphasize);
 }
 
@@ -315,8 +315,8 @@ input[type="file"]::-ms-browse {
     height:3.5rem;
     margin: 0 0 0.7rem 0;
     width: 100%;
-    background:var(--whitegray);
-    color:var(--gray);
+    background:var(--lightgray);
+    color:var(--middlegray);
     font-weight: var(--fontweight-content);
     border-radius: 1rem;
     font-size:var(--fontsize-detail);
