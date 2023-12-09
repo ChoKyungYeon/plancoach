@@ -8,6 +8,11 @@
 .superuser-pageview-users .main-text-index{
     margin-top:0.5rem;
 }
+.superuser-pageview-users .text-emphasize{
+    font-size: inherit;
+    font-weight: inherit;
+    color: var(--orange);
+}
 .superuser-pageview-users .container-user{
     padding-top:2rem;
     padding-bottom:2rem;
@@ -22,23 +27,29 @@
 </style>
 <div class="main-box superuser-pageview-users" >
     <div class="main-array-title">
-        <span class="main-text-title">신규 사용자</span>
+        <span class="main-text-title">전체 사용자</span>
     </div>
     <div class="array-container">
         <div class="main-container-snippets container-user">
-            <span class="main-text-content" style="color: var(--orange)">
-                {{today |date:"m월 d일" }}
+            <span class="main-text-content">
+                학생 회원
             </span>
             <span class="main-text-index">
-                {{today_user_count}} 명
+                {{total_student}}명
+                {% if increased_student_today%}
+                <span class="text-emphasize">( +{{increased_student_today}})</span>
+                {% endif %}
             </span>
         </div>
         <div class="main-container-snippets container-user" >
             <span class="main-text-content">
-                {{yesterday |date:"m월 d일" }}
+                선생님 회원
             </span>
             <span class="main-text-index">
-                {{yesterday_user_count}} 명
+                {{total_teacher}}명
+                {% if increased_teacher_today%}
+                <span class="text-emphasize">( +{{increased_teacher_today}})</span>
+                {% endif %}
             </span>
         </div>
     </div>

@@ -46,10 +46,13 @@ class SuperuserPageviewView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['pageviews'] = Pageview.objects.order_by('-date')
         today=datetime.now().date()
-        yesterday=today-timedelta(days=1)
-        context['today_user_count'] = CustomUser.objects.filter(created_at=today).count()
-        context['yesterday_user_count'] = CustomUser.objects.filter(created_at=yesterday).count()
+        total_user=CustomUser.objects.exclude(state='superuser')
+        total_stundet=total_user.filter(state='student')
+        total_teacher=total_user.filter(state='teacher')
+        context['increased_teacher_today'] = total_teacher.filter(signup_at=today).count()
+        context['increased_student_today'] = total_stundet.filter(signup_at=today).count()
+        context['total_student'] = total_stundet.count()
+        context['total_teacher'] = total_teacher.count()
         context['today'] = today
-        context['yesterday'] = yesterday
         return context
 
