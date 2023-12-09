@@ -19,10 +19,6 @@ from reviewapp.models import Review
 class HomescreenView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         today = datetime.now().date()
-        for user in CustomUser.objects.all():
-            if user.created_at:
-                user.signup_at = user.created_at.date()
-                user.save()
         pageview = Pageview.objects.filter(date=today).first()
         if not pageview:
             pageview = Pageview.objects.create(date=today)
