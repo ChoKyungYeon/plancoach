@@ -1,15 +1,13 @@
-from django.shortcuts import get_object_or_404, redirect
-
-from accountapp.models import CustomUser
-from applicationapp.models import Application
 from plancoach.decorators import *
 
 def ApplicationCreateDecorator(func):
     def decorated(request, *args, **kwargs):
-        decorators=Decorators(request.user, get_object_or_404(CustomUser, pk=kwargs['pk']).profile)
+        profile=get_object_or_404(CustomUser, pk=kwargs['pk']).profile
+        if not profile.is_activated:
+            return HttpResponseForbidden()
+        decorators=Decorators(request.user, profile)
         decorators.request_user_update()
         permission_checks = [
-            decorators.object_filter(allow_object= ['abled']),
             decorators.step_filter(allow_teacher=[], allow_student= ['initial','end'], allow_superuser= False)
         ]
         for check in permission_checks:
@@ -34,7 +32,7 @@ def ApplicationDeleteDecorator(func):
         for check in permission_checks:
             if check is not None:
                 return check
-        redirect = expire_redirector( kwargs['pk'], Application, 'application')
+        redirect = expire_redirector(kwargs['pk'], Application, 'application')
         if redirect:
             return redirect
         return func(request, *args, **kwargs)
@@ -108,10 +106,12 @@ def ApplicationStateUpdateDecorator(func):
 
 def ApplicationGuideDecorator(func):
     def decorated(request, *args, **kwargs):
-        decorators = Decorators(request.user, get_object_or_404(CustomUser, pk=kwargs['pk']).profile)
+        profile=get_object_or_404(CustomUser, pk=kwargs['pk']).profile
+        if not profile.is_activated:
+            return HttpResponseForbidden()
+        decorators = Decorators(request.user, profile)
         decorators.request_user_update()
         permission_checks = [
-            decorators.object_filter(allow_object=['abled']),
             decorators.step_filter(allow_teacher=[], allow_student=['initial','end'], allow_superuser=False),
         ]
         for check in permission_checks:
