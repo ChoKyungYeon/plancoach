@@ -6,6 +6,7 @@ from salaryapp.models import Salary
 
 
 class Refund(models.Model):
+    #uuid
     classname = models.CharField(max_length=100)
     salary = models.ForeignKey(Salary, on_delete=models.SET_NULL, null=True, related_name='refund')
     student = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, related_name='refund')

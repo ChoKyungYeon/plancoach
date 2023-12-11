@@ -5,6 +5,7 @@ from accountapp.models import CustomUser
 
 
 class Phonenumber(models.Model):
+    #uuid
     phonenumber = models.CharField(max_length=11)
     verification_code = models.CharField(max_length=6)
     is_verified=models.BooleanField(default=False)

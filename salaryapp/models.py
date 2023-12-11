@@ -7,6 +7,7 @@ from plancoach.variables import bankdictionary
 
 
 class Salary(models.Model):
+    #uuid
     teacher = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='salary')
     salaryday = models.DateField()
     bank = models.CharField(max_length=20, choices=bankchoice, null=True)

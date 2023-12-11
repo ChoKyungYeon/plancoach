@@ -5,6 +5,7 @@ from plancoach.variables import subjectdictionary
 
 
 class Feedback_coach(models.Model):
+    #uuid
     consult_feedback = models.ForeignKey(Consult_feedback, on_delete=models.CASCADE, related_name='feedback_coach')
     subject = models.CharField(max_length=20, choices=subjectchoice)
     content = models.TextField(max_length=1000,null=True)

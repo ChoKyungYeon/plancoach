@@ -10,6 +10,7 @@ from profileapp.models import Profile
 
 # Create your models here.
 class Profile_gpa(models.Model):
+    #uuid
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='profile_gpa')
     gpaverificationimage = models.ImageField(upload_to='profile_gpa/', blank=True, null=True)
     highschool = models.CharField(max_length=10)

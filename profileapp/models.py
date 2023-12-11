@@ -8,6 +8,7 @@ from plancoach.sms import Send_SMS
 
 
 class Profile(models.Model):
+    #uuid
     teacher = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
     is_activated = models.BooleanField(default=False)
     tuition = models.IntegerField(choices=tuitionchoice, default=160000) #deploy check

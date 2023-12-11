@@ -6,6 +6,7 @@ from profileapp.models import Profile
 
 
 class Profile_bank(models.Model):
+    #uuid
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='profile_bank')
     bank = models.CharField(max_length=20, choices=bankchoice)
     accountnumber = models.CharField(max_length=30)

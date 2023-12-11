@@ -13,6 +13,7 @@ from plancoach.sms import Send_SMS
 
 
 class Payment(models.Model):
+    #uuid
     classname = models.CharField(max_length=100)
     consult = models.ForeignKey(Consult, on_delete=models.SET_NULL, null=True, related_name='payment')
     salary = models.ForeignKey(Salary, on_delete=models.CASCADE, null=True, related_name='payment')

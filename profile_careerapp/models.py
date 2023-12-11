@@ -10,6 +10,7 @@ from profileapp.models import Profile
 
 
 class Profile_career(models.Model):
+    #uuid
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile_career')
     year = models.IntegerField(choices=yearchoice)
     duration = models.CharField(max_length=20, choices=durationchoice)

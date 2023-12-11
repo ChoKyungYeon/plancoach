@@ -4,6 +4,7 @@ from plancoach.utils import time_before
 
 
 class Consult_qna(models.Model):
+    #uuid
     consult = models.ForeignKey(Consult, on_delete=models.CASCADE, related_name='consult_qna')
     image = models.ImageField(upload_to='consult_qna/' ,null=True, blank=True)
     content = models.TextField(max_length=500)

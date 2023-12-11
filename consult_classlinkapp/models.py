@@ -8,6 +8,7 @@ from plancoach.variables import weekdaylist
 
 
 class Consult_classlink(models.Model):
+    #uuid
     consult = models.OneToOneField(Consult, on_delete=models.CASCADE, related_name='consult_classlink')
     weekdate = models.CharField(max_length=20, choices=weekdatechoice)
     classtime = models.CharField(max_length=10)

@@ -5,6 +5,7 @@ from plancoach.choice import consultstatechoice, agechoice
 from plancoach.utils import time_expire
 
 class Consult(models.Model):
+    #uuid
     student = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='consult_student')
     teacher = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='consult_teacher')
     state = models.CharField(max_length=20, choices=consultstatechoice, default='new')

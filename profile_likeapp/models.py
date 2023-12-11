@@ -8,6 +8,7 @@ from profileapp.models import Profile
 
 
 class Profile_like(models.Model):
+    #uuid
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='profile_like')
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile_like')
 

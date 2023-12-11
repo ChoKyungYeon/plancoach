@@ -4,6 +4,7 @@ from accountapp.models import CustomUser
 from consult_qnaapp.models import Consult_qna
 
 class Qna_like(models.Model):
+    #uuid
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='qna_like')
     consult_qna = models.ForeignKey(Consult_qna, on_delete=models.CASCADE, related_name='qna_like')
 

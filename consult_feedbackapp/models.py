@@ -5,6 +5,7 @@ from plancoach.choice import subjectchoice
 
 
 class Consult_feedback(models.Model):
+    #uuid
     consult = models.ForeignKey(Consult, on_delete=models.CASCADE, related_name='consult_feedback')
     subjects = MultiSelectField(max_length=100, choices=subjectchoice)
     content = models.TextField(max_length=1000, null=True)

@@ -6,6 +6,7 @@ from plancoach.choice import agechoice
 
 # Create your models here.
 class Review(models.Model):
+    #uuid
     customuser = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='review')
     image = models.ImageField(upload_to='review/', null=True, blank=True)
     content = models.TextField(max_length=200)

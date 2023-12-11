@@ -8,6 +8,7 @@ from plancoach.utils import time_before
 
 
 class Qna_comment(models.Model):
+    #uuid
     consult_qna = models.ForeignKey(Consult_qna, on_delete=models.CASCADE, related_name='qna_comment')
     customuser = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='qna_comment')
     image = models.ImageField(upload_to='qna_comment/', null=True, blank=True)

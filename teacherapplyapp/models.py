@@ -6,6 +6,7 @@ from multiselectfield import MultiSelectField
 
 
 class Teacherapply(models.Model):
+    #uuid
     customuser = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='teacherapply')
     accepttype = models.CharField(max_length=20, choices=accepttypechoice, null=True)
     studentid = models.IntegerField(choices=schoolyearchoice, null=True)

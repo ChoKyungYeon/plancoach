@@ -7,6 +7,7 @@ from plancoach.choice import userstatechoice
 
 
 class CustomUser(AbstractUser):
+    #uuid
     username = models.CharField(max_length=11, unique=True)
     userrealname = models.CharField(max_length=6)
     state = models.CharField(max_length=20, choices=userstatechoice, default='student')

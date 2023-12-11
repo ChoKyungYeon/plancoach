@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Document(models.Model):
+    #uuid
     termofuse = models.TextField(max_length=200, null=True, blank=True)
     privacypolicy = models.TextField(max_length=200, null=True, blank=True)
     announcement = models.TextField(max_length=200,null=True, blank=True)
