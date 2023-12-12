@@ -19,9 +19,6 @@ from django.db.models.fields import Field
 class HomescreenView(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         today = datetime.now().date()
-        for field in CustomUser._meta.get_fields():
-            if isinstance(field, Field):  # 필드 중에서 실제 데이터베이스 필드만 출력
-                print(field.name, field.get_internal_type())
         pageview = Pageview.objects.filter(date=today).first()
         if not pageview:
             pageview = Pageview.objects.create(date=today)

@@ -2,7 +2,7 @@ from django.db import models
 from consult_feedbackapp.models import Consult_feedback
 from plancoach.choice import subjectchoice
 from plancoach.variables import subjectdictionary
-
+import uuid
 
 class Feedback_coach(models.Model):
     #uuid

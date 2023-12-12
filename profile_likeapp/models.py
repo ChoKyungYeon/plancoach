@@ -1,5 +1,5 @@
 from django.db import models
-
+import uuid
 from accountapp.models import CustomUser
 from profileapp.models import Profile
 

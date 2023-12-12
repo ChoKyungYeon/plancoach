@@ -2,7 +2,7 @@ from django.db import models
 
 from accountapp.models import CustomUser
 from plancoach.choice import agechoice
-
+import uuid
 
 # Create your models here.
 class Review(models.Model):

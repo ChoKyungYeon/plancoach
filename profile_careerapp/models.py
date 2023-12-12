@@ -1,7 +1,7 @@
 from datetime import date
 
 from django.db import models
-
+import uuid
 from plancoach.choice import subjectchoice, durationchoice, yearchoice
 from profileapp.models import Profile
 

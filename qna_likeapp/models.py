@@ -1,5 +1,5 @@
 from django.db import models
-
+import uuid
 from accountapp.models import CustomUser
 from consult_qnaapp.models import Consult_qna
 

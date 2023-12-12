@@ -1,7 +1,7 @@
 from django.db import models
 from consultapp.models import Consult
 from plancoach.utils import time_before
-
+import uuid
 
 class Consult_qna(models.Model):
     #uuid

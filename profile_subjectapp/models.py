@@ -1,6 +1,6 @@
 
 from django.db import models
-
+import uuid
 from plancoach.choice import subjectchoice
 from profileapp.models import Profile
 

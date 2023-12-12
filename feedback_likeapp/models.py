@@ -1,7 +1,7 @@
 from django.db import models
 from accountapp.models import CustomUser
 from consult_feedbackapp.models import Consult_feedback
-
+import uuid
 
 class Feedback_like(models.Model):
     #uuid

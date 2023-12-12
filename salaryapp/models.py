@@ -4,7 +4,7 @@ from django.db.models import Sum
 from accountapp.models import CustomUser
 from plancoach.choice import bankchoice
 from plancoach.variables import bankdictionary
-
+import uuid
 
 class Salary(models.Model):
     #uuid

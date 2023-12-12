@@ -1,7 +1,7 @@
 from datetime import timedelta, date, datetime
 
 from django.db import models, transaction
-
+import uuid
 from accountapp.models import CustomUser
 from plancoach.choice import tuitionchoice
 from plancoach.sms import Send_SMS

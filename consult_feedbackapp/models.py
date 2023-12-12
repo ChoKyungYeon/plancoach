@@ -2,7 +2,7 @@ from django.db import models
 from multiselectfield import MultiSelectField
 from consultapp.models import Consult
 from plancoach.choice import subjectchoice
-
+import uuid
 
 class Consult_feedback(models.Model):
     #uuid

@@ -1,5 +1,5 @@
 from django.db import models
-
+import uuid
 from plancoach.choice import bankchoice
 from plancoach.variables import bankdictionary
 from profileapp.models import Profile

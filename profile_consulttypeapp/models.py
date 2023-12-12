@@ -1,7 +1,7 @@
 
 from django.db import models
 from multiselectfield import MultiSelectField
-
+import uuid
 from plancoach.choice import consulttypechoice
 from profileapp.models import Profile
 

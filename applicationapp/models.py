@@ -3,6 +3,7 @@ from django.db import models, transaction
 from accountapp.models import CustomUser
 from plancoach.choice import agechoice, applicationstatechoice
 from plancoach.utils import time_expire
+import uuid
 
 class Application(models.Model):
     #uuid

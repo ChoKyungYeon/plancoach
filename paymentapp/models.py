@@ -1,10 +1,9 @@
 import logging
 from datetime import timedelta
-from uuid import uuid4
 from django.db import models, transaction
 from django.http import Http404
 from iamport import Iamport
-
+import uuid
 from accountapp.models import CustomUser
 from consultapp.models import Consult
 from plancoach.utils import salaryday_calculator

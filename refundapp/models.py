@@ -3,7 +3,7 @@ from accountapp.models import CustomUser
 from plancoach.choice import bankchoice
 from plancoach.variables import bankdictionary
 from salaryapp.models import Salary
-
+import uuid
 
 class Refund(models.Model):
     #uuid

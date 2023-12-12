@@ -1,5 +1,5 @@
 from django.db import models
-
+import uuid
 
 class Document(models.Model):
     #uuid

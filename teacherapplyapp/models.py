@@ -3,7 +3,7 @@ from accountapp.models import CustomUser
 from plancoach.choice import schoolyearchoice, accepttypechoice, bankchoice, consulttypechoice, schoolchoice
 from plancoach.variables import bankdictionary
 from multiselectfield import MultiSelectField
-
+import uuid
 
 class Teacherapply(models.Model):
     #uuid

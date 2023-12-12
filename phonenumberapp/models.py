@@ -1,6 +1,6 @@
 from datetime import timedelta, datetime
 from django.db import models
-
+import uuid
 from accountapp.models import CustomUser
 
 
