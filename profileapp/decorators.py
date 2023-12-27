@@ -71,7 +71,7 @@ def ProfileTuitionUpdateDecorator(func):
         if profile.is_payment_updated_possible() == False:
             return HttpResponseForbidden()
         permission_checks = [
-            decorators.member_filter(role='teacher', allow_superuser=False)
+            decorators.step_filter(allow_teacher=[], allow_student=[], allow_superuser=True)
         ]
         for check in permission_checks:
             if check is not None:

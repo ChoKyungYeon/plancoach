@@ -1,5 +1,5 @@
 
-{% if user == target_user %}
+{% if user.state == 'superuser' %}
 <div class="main-box" style="padding-top: 1rem;">
     {% if target_user.profile.is_payment_updated_possible == True %}
     <a href="{% url 'profileapp:tuitionupdate' pk=target_user.profile.pk %}" class="main-container-dashboard" >
@@ -21,7 +21,7 @@
                 </span>
             </div>
         </div>
-        {% if target_user.profile.is_payment_updated_possible == True and user == target_user %}
+        {% if target_user.profile.is_payment_updated_possible == True and user.state == 'superuser' %}
         <div class="material-icons item-nav" style="font-weight:var(--fontweight-content);">settings</div>
         {% endif %}
     </a>
