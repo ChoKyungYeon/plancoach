@@ -1,8 +1,6 @@
 import hmac, hashlib, base64
 import time, requests, json
 
-from documentapp.models import Document
-
 try:#deploy check
     from plancoach.settings.local import SENS_ACCESS_KEY, SENS_SECRET_KEY, SENS_SERVICE_KEY
 except:
