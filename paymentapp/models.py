@@ -2,7 +2,6 @@ import logging
 from datetime import timedelta
 from django.db import models, transaction
 from django.http import Http404
-from iamport import Iamport
 import uuid
 from accountapp.models import CustomUser
 from consultapp.models import Consult
